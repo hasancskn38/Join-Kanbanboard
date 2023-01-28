@@ -16,7 +16,7 @@
 
 .layout-contact2 {
     margin-left: 45px;
-    width: 282px;
+    width: 430px;
     height: 720px;
     background-color: aqua;
     box-shadow: 4px 0px 6px rgb(0 0 0 / 8%);
@@ -24,4 +24,30 @@
 
 .layout-contact3 {
     width: calc(100% - 232px);
+    display: flex;
+}
+
+.new-contact {
+    background: #4589FF;
+    border: 1px solid #4589FF;
+    border-radius: 10px;
+    color: white;
+    width: 216px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+    height: 55px;
+    cursor: pointer;
+    margin-top: 625px;
+    margin-left: 430px;
+    font-size: 23px;
+    transition: all 125ms ease-in-out;
+}
+
+.new-contact:hover {
+    transition: all 125ms ease-in-out;
+    background: #4e85e5;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.283);
+
 }
