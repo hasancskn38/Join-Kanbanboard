@@ -5,11 +5,19 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
+
+.cursor {
+    cursor: pointer;
+}
+
+h1 {
+    color:#2A3647;
+}
 /* General Stylings End*/
 
 /* Header Start */
 nav {
-    height:60px;
+    height:70px;
     background: #4589FF;
 }
 
@@ -17,11 +25,11 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 11px 20px;
+    padding: 13px 20px;
 }
 
 .nav-container-left img {
-    height: 35px;
+    height: 40px;
 }
 
 .nav-container-right img {
@@ -44,9 +52,109 @@ main {
     height: 100vh;
 }
 
+main p {
+    font-size: 20px;
+}
+
+main h2 {
+    font-size: 28px;
+}
+
 .main-left {
     height: 100vh;
     width: 25%;
     background-color: black;
 }
+
+.main-right-top {
+    display: flex;
+}
+
+.main-right {
+    display: flex;
+    flex-direction: column;
+    margin: 0 40px;
+}
+
+.task-urgent {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 680px;
+    height: 190px;
+    color: #fff;
+    background-color: #4589ff;
+    margin: 20px 0;
+    border-radius: 30px;
+    transition: all 225ms ease-in-out;
+}
+
+.task-urgent:hover {
+    transform: scale(1.05);
+    background-color: #fff;
+    color: #4589ff;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
+}
+
+.task-urgent-left {
+    margin: 30px;
+}
+
+
+.task-urgent-left-top {
+    display: flex;
+    align-items: center;
+    margin: 0 0 10px 0;
+}
+
+.task-urgent-left-top img {
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #FFFFFF;
+    object-fit: cover;
+    padding: 0;
+    margin: 0 15px 0 0;
+}
+
+.task-urgent-left-top h2 {
+    font-size: 38px;
+}
+
+.task-urgent-right h2 {
+    margin: 0 20px 10px 0;
+}
+
+/* Task To-do Start */
+.task-general {
+    display: inline-block;
+    height: 190px;
+    padding: 50px;
+    margin: 15px;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
+    border-radius: 30px;
+    transition: all 225ms ease-in-out;
+}
+
+.task-general:hover {
+    background-color: #4589ff;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.task-todo {
+    color: #4589FF;
+    background: #D2E3FF;
+}
+
+.task-todo-top {
+    display: flex;
+    align-items: center;
+}
+
+.task-todo-top img {
+    padding: 0px 22px 10px 0;
+}
+/* Task To-do End */
+
+
 /* Main End */

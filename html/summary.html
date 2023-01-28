@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,12 +8,13 @@
     <title>Board</title>
     <link rel="stylesheet" href="../css/summary.css">
 </head>
+
 <body>
-    
+
     <!-- Header Start -->
     <nav>
         <div class="nav-container">
-            <div class="nav-container-left"> 
+            <div class="nav-container-left">
                 <img src="../assets/img/logo-white.png" alt="Logo">
             </div>
 
@@ -26,30 +28,81 @@
 
 
     <!-- Main Start -->
-        <main>
-            <!-- Sidebar Start -->
-            <div class="main-left"></div>
-            <!-- Sidebar End -->
+    <main>
+        <!-- Sidebar Start -->
+        <div class="main-left"></div>
+        <!-- Sidebar End -->
 
-            <div class="main-right">
+        <div class="main-right">
 
-                <!-- Main Right Header Start -->
-                <div class="main-right-header">
-                    <h1>Good morning</h1>
-                </div>
-                <!-- Main Right Header End -->
-
-                <!-- Main Right Tasks Start -->
-                <div class="main-right-tasks">
-                    <div class="task-urgent"></div>
-                    <div class="task-todo"></div>
-                </div>
-                <!-- Main Right Tasks End -->
-
-                <div class="main-right-tasks-information"></div>
+            <!-- Main Right Header Start -->
+            <div class="main-right-header">
+                <h1>Good morning</h1>
             </div>
-        </main>
+            <!-- Main Right Header End -->
+
+            <!-- Main Right Tasks Start -->
+            <div class="main-right-tasks">
+
+                <!-- Main Top Start -->
+                <div class="main-right-top">
+                    
+                <div class="task-urgent cursor">
+                    <div class="task-urgent-left">
+
+                        <div class="task-urgent-left-top"><img src="../assets/img/task-urgent.png" alt="">
+                            <h2>1</h2>
+                        </div>
+                        <p>Tasks Urgent</p>
+                    </div>
+
+                    <hr class="vertical-line" width="2" color="#fff" size="130"/>
+
+                    <div class="task-urgent-right">
+                        <h2>October 16, 2022</h2>
+                        <p>Upcoming Deadline</p>
+                    </div>
+                </div>
+
+                <div class="task-todo task-general task-general cursor">
+                    <div class="task-todo-top"><img src="../assets/img/task-todo.png" alt=""> <h2>1</h2></div>
+                    <p>Tasks To-do</p>
+                </div>
+                
+            </div>
+
+            <!-- Main Top End -->
+
+                <div class="task-board task-general cursor">
+                    <div class="task-todo-top"><img src="../assets/img/task-todo.png" alt=""> <h2>1</h2></div>
+                    <p>Tasks on board</p>
+                </div>
+
+                <div class="task-board task-general cursor">
+                    <div class="task-todo-top"><img src="../assets/img/task-todo.png" alt=""> <h2>1</h2></div>
+                    <p>Task in Progress</p>
+                </div>
+
+                <div class="task-progress task-general cursor">
+                    <div class="task-todo-top"><img src="../assets/img/task-todo.png" alt=""> <h2>1</h2></div>
+                    <p>Awaiting Feedback</p>
+                </div>
+
+                <div class="task-feedback task-general cursor">
+                    <div class="task-todo-top"><img src="../assets/img/task-done.png" alt=""> <h2>1</h2></div>
+                    <p>Tasks done</p>
+                </div>
+
+
+
+            </div>
+            <!-- Main Right Tasks End -->
+
+            <div class="main-right-tasks-information"></div>
+        </div>
+    </main>
     <!-- Main End -->
 
 </body>
+
 </html>
