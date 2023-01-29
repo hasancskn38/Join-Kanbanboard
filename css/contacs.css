@@ -1,12 +1,7 @@
 .main-contact {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    margin-left: 232px;
-    margin-top: 100px;
     height: 100%;
-    width: calc(100% - 232px);
 }
 
 .layout-contact1 {
@@ -15,10 +10,8 @@
 }
 
 .layout-contact2 {
-    margin-left: 45px;
     width: 430px;
-    height: 720px;
-    background-color: aqua;
+    height: 750px;
     box-shadow: 4px 0px 6px rgb(0 0 0 / 8%);
 }
 
