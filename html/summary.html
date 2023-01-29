@@ -15,12 +15,12 @@
     <nav>
         <div class="nav-container">
             <div class="nav-container-left">
-                <img src="../assets/img/logo-white.png" alt="Logo">
+                <img class="cursor" src="../assets/img/logo-white.png" alt="Logo">
             </div>
 
             <div class="nav-container-right">
                 <p>Kanban Project Management Tool</p>
-                <img src="../assets/img/questionmark.png" alt="?">
+                <img class="cursor" src="../assets/img/questionmark.png" alt="?">
             </div>
         </div>
     </nav>
@@ -28,17 +28,17 @@
 
 
     <!-- Main Start -->
-        <main>
-            <!-- Sidebar Start -->
-            <div class="main-left">
-            </div>
-            <!-- Sidebar End -->
+    <main>
+        <!-- Sidebar Start -->
+        <div class="main-left">
+        </div>
+        <!-- Sidebar End -->
 
         <div class="main-right">
 
             <!-- Main Right Header Start -->
             <div class="main-right-header">
-                <h1>Good morning</h1>
+                <h1 id="greeting"></h1>
             </div>
             <!-- Main Right Header End -->
 
@@ -48,55 +48,65 @@
                 <!-- Main Top Start -->
                 <div class="main-right-top">
 
-                <div class="task-urgent cursor">
-                    <div class="task-urgent-left">
+                    <div class="task-urgent cursor">
+                        <div class="task-urgent-left">
 
-                        <div class="task-urgent-left-top"><img src="../assets/img/task-urgent.png" alt="">
+                            <div class="task-urgent-left-top"><img src="../assets/img/task-urgent.png" alt="">
+                                <h2>1</h2>
+                            </div>
+                            <p>Tasks Urgent</p>
+                        </div>
+
+                        <hr class="vertical-line" width="2" color="#fff" size="130"/>
+
+                        <div class="task-urgent-right">
+                            <h2>October 16, 2022</h2>
+                            <p>Upcoming Deadline</p>
+                        </div>
+                    </div>
+
+                    <div class="task-todo task-general cursor">
+                        <div class="task-todo-top"><img src="../assets/img/task-todo.png" alt="">
                             <h2>1</h2>
                         </div>
-                        <p>Tasks Urgent</p>
+                        <p>Tasks To-do</p>
                     </div>
 
-                    <hr class="vertical-line" width="2" color="#fff" size="130"/>
+                </div>
+                <!-- Main Top End -->
 
-                    <div class="task-urgent-right">
-                        <h2>October 16, 2022</h2>
-                        <p>Upcoming Deadline</p>
+                <!-- Main Bottom Start -->
+                <div class="main-right-bottom">
+                    <div class="task-board task-general cursor">
+                        <div class="task-todo-top"><img src="../assets/img/task-todo.png" alt="">
+                            <h2>1</h2>
+                        </div>
+                        <p>Tasks on board</p>
+                    </div>
+
+                    <div class="task-board task-general cursor">
+                        <div class="task-todo-top"><img src="../assets/img/task-inprogress.png" alt="">
+                            <h2>1</h2>
+                        </div>
+                        <p>Task in Progress</p>
+                    </div>
+
+                    <div class="task-progress task-general cursor">
+                        <div class="task-todo-top"><img src="../assets/img/awaiting-feedback.png" alt="">
+                            <h2>1</h2>
+                        </div>
+                        <p>Awaiting Feedback</p>
+                    </div>
+
+                    <div class="task-feedback task-general cursor">
+                        <div class="task-todo-top"><img src="../assets/img/task-done.png" alt="">
+                            <h2>1</h2>
+                        </div>
+                        <p>Tasks done</p>
                     </div>
                 </div>
-
-                <div class="task-todo task-general task-general cursor">
-                    <div class="task-todo-top"><img src="../assets/img/task-todo.png" alt=""> <h2>1</h2></div>
-                    <p>Tasks To-do</p>
-                </div>
-                
             </div>
-
-            <!-- Main Top End -->
-
-                <div class="task-board task-general cursor">
-                    <div class="task-todo-top"><img src="../assets/img/task-todo.png" alt=""> <h2>1</h2></div>
-                    <p>Tasks on board</p>
-                </div>
-
-                <div class="task-board task-general cursor">
-                    <div class="task-todo-top"><img src="../assets/img/task-todo.png" alt=""> <h2>1</h2></div>
-                    <p>Task in Progress</p>
-                </div>
-
-                <div class="task-progress task-general cursor">
-                    <div class="task-todo-top"><img src="../assets/img/task-todo.png" alt=""> <h2>1</h2></div>
-                    <p>Awaiting Feedback</p>
-                </div>
-
-                <div class="task-feedback task-general cursor">
-                    <div class="task-todo-top"><img src="../assets/img/task-done.png" alt=""> <h2>1</h2></div>
-                    <p>Tasks done</p>
-                </div>
-
-
-
-            </div>
+            <!-- Main Bottom Start -->
             <!-- Main Right Tasks End -->
 
             <div class="main-right-tasks-information"></div>
@@ -104,6 +114,7 @@
     </main>
     <!-- Main End -->
 
+    <script src="../js/summary.js"></script>
 </body>
 
 </html>
