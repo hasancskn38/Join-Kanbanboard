@@ -13,6 +13,23 @@ body {
 .login_head img {
     width: 80px;
     object-fit: contain;
+    animation: go_small 2.5s;
+    z-index: 1;
+    object-fit: contain;
+}
+
+@keyframes go_small {
+    from {
+        transform: scale(7);
+        margin-left: 770px;
+        margin-top: 450px;
+    }
+
+    to {
+        transform: scale(1);
+        margin-left: 0px;
+        margin-top: 0px;
+    }
 }
 
 .sign_in_button {
@@ -46,7 +63,21 @@ body {
     width: 350px;
     height: 400px;
     border-radius: 10px;
+    animation: fade_in 3.5s;
 }
+
+@keyframes fade_in {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 
 .login_main_container form {
     display: flex;
@@ -82,9 +113,40 @@ body {
     font-size: 15px;
     text-decoration: none;
     color: rgb(69, 137, 255);
-    ;
 }
 
-input [type="checkbox"] {
-    background-color: red;
+.log_in_buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.log_in_buttons {
+    margin-top: 15px;
+}
+
+.log_in_button {
+    margin-left: 25px;
+    background-color: rgb(69, 137, 255);
+    color: white;
+    border: transparent;
+    height: 30px;
+    width: 60px;
+    border-radius: 5px;
+}
+
+.log_in_button:hover {
+    cursor: pointer;
+    background-color: rgb(59, 131, 255);
+    transition: all .2s ease-in-out;
+}
+
+.guest_log_in_button {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.guest_log_in_button:hover {
+    cursor: pointer;
+    transition: all .2s ease-in-out;
 }
