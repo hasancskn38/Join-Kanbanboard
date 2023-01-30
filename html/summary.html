@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/summary.css">
 </head>
 
-<body>
+<body onload="includeHTML()">
 
     <!-- Header Start -->
     <nav>
@@ -26,12 +26,16 @@
     </nav>
     <!-- Header End -->
 
-
     <!-- Main Start -->
     <main>
         <!-- Sidebar Start -->
-        <div class="main-left">
+        <!-- <div class="main-left">
+        </div> -->
+
+        <div class="sidebar">
+            <div w3-include-html="/assets/templates/sidebar-template.html"></div>
         </div>
+
         <!-- Sidebar End -->
 
         <div class="main-right">
@@ -57,7 +61,7 @@
                             <p>Tasks Urgent</p>
                         </div>
 
-                        <hr class="vertical-line" width="2" color="#fff" size="130"/>
+                        <hr class="vertical-line" width="2" color="#fff" size="130" />
 
                         <div class="task-urgent-right">
                             <h2>October 16, 2022</h2>
