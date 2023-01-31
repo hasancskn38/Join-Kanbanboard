@@ -29,3 +29,16 @@ async function includeHTML() {
         }
     }
 }
+
+// Show Help me Container
+function showHelpmeSection() {
+    document.getElementById('help-me-container').classList.remove('d-none');
+    document.querySelector('main').classList.add('d-none');
+}
+
+// Hide Help me Container
+function hideHelpMeSection() {
+    document.getElementById('help-me-container').classList.add('d-none');
+    document.querySelector('main').classList.remove('d-none');
+}
+
