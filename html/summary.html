@@ -12,30 +12,18 @@
 
 <body onload="includeHTML()">
     <!-- Header Start -->
-    <nav>
-        <div class="nav-container">
-            <div class="nav-container-left">
-                <a href="summary.html"><img class="cursor" src="../assets/img/logo-white.png" alt="Logo"></a>
-            </div>
-
-            <div class="nav-container-right">
-                <p>Kanban Project Management Tool</p>
-                <img id="help-me" class="cursor" src="../assets/img/questionmark.png" alt="?">
-            </div>
-        </div>
-    </nav>
+    <div class="navbar">
+        <div w3-include-html="/assets/templates/header-template.html"></div>
+    </div>
     <!-- Header End -->
 
     <!-- Main Start -->
     <main>
-        <!-- Sidebar Start -->
-        <!-- <div class="main-left">
-        </div> -->
 
+        <!-- Sidebar Start -->
         <div class="sidebar">
             <div w3-include-html="/assets/templates/sidebar-template.html"></div>
         </div>
-
         <!-- Sidebar End -->
 
         <div class="main-right">
@@ -127,3 +115,17 @@
 </body>
 
 </html>
+
+
+<!-- <nav>
+    <div class="nav-container">
+        <div class="nav-container-left">
+            <a href="summary.html"><img class="cursor" src="../assets/img/logo-white.png" alt="Logo"></a>
+        </div>
+
+        <div class="nav-container-right">
+            <p>Kanban Project Management Tool</p>
+            <img id="help-me" class="cursor" src="../assets/img/questionmark.png" alt="?">
+        </div>
+    </div>
+</nav> -->
