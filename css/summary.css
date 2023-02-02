@@ -75,7 +75,7 @@ main h2 {
 
 /* Styling for temporary sidebar remove later*/
 .main-left {
-    height: 100vh;
+    height: 50vh;
     width: 25%;
     background-color: black;
 }
@@ -132,14 +132,9 @@ main h2 {
     box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
 }
 
-.task-urgent:hover .vertical-line {
-    color: red !important;
-}
-
 .task-urgent-left {
     margin: 30px;
 }
-
 
 .task-urgent-left-top {
     display: flex;
