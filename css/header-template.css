@@ -61,7 +61,6 @@ nav {
     height: 100vh;
     position: absolute;
     margin: 150px 100px;
-    /* z-index: -1; */
 }
 
 .help-me-container h1 {
