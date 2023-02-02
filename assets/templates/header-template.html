@@ -4,7 +4,7 @@
     <nav>
         <div class="nav-container">
             <div class="nav-container-left">
-                <img class="cursor" src="/assets/img/logo-white.png" alt="Logo">
+                <img onclick="showHelpmeSection()" class="cursor" src="/assets/img/logo-white.png" alt="Logo">
             </div>
 
             <div class="nav-container-right">
@@ -17,7 +17,12 @@
 
     <!-- Help me Section Start -->
     <div class="d-none help-me-container">
-        <h1>Help</h1>
+
+        <div class="help-me-header">
+            <h1>Help</h1>
+            <button onclick="showHelpmeSection()">X</button>
+        </div> 
+        
         <h2>What is Join ?</h2>
         <p>Join is a kanban board is a visual management tool used to help teams track and prioritize tasks in a workflow. The board is divided into columns that represent different stages of the workflow, and tasks are represented as cards that are moved from one column to the next as they progress. This allows teams to have a clear and up-to-date view of what work is in progress, what needs to be done next, and what has been completed. The use of a kanban board helps teams to manage work more efficiently, reduce bottlenecks and improve communication.</p>
         <h2>How to use it</h2>
