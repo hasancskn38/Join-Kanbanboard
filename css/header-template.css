@@ -26,6 +26,7 @@ nav {
     position: sticky;
     top: 0;
     box-shadow: 0 3px 4px rgb(0 0 0 / 16%);
+    z-index: 1;
 }
 
 .nav-container {
@@ -33,7 +34,6 @@ nav {
     align-items: center;
     justify-content: space-between;
     padding: 18px 20px;
-    z-index: 1;
 }
 
 .nav-container-left img {
