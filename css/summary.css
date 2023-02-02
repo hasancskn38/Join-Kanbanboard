@@ -75,7 +75,7 @@ main h2 {
 
 /* Styling for temporary sidebar remove later*/
 .main-left {
-    height: 50vh;
+    height: 100vh;
     width: 25%;
     background-color: black;
 }
