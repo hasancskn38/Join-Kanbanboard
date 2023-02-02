@@ -84,7 +84,7 @@ li {
     margin: 10px auto;
 }
 
-button {
+.help-me-header button {
     font-size: 25px;
     /* remove default stylings */
     background-color: transparent;
