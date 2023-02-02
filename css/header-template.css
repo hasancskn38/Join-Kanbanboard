@@ -54,3 +54,48 @@ nav {
     padding: 0 22px 0 0;
 }
 /* Header End */
+
+/* Help Me Section Start */
+.help-me-container {
+    background-color:#fff;
+    height: 100vh;
+    position: absolute;
+    margin: 150px 100px;
+}
+
+.help-me-container h1 {
+    font-size: 36px;
+}
+
+.help-me-container h1, .help-me-container h2 {
+    color: #4589FF;
+}
+
+
+.help-me-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+ol {
+    list-style-type: none;
+}
+
+li {
+    margin: 10px auto;
+}
+
+button {
+    font-size: 25px;
+    /* remove default stylings */
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition:all 225ms ease-in-out;
+  }
+
+  button:hover {
+    transform: scale(1.05) rotate(180deg);
+    opacity: .6;
+  }
