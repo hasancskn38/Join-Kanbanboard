@@ -162,7 +162,6 @@ main h2 {
 
 .task-urgent-right h2 {
     margin: 0 20px 10px 0;
-    color: #fff;
 }
 
 /* Task To-do Start */
@@ -267,6 +266,9 @@ main h2 {
     .nav-container {
         justify-content: center;
     }
+    .nav-container p {
+        text-align: center;
+    }
     h1 {
         text-align: center;
     }
@@ -288,9 +290,10 @@ main h2 {
     font-size: 36px;
 }
 
-.help-me-container h1, h2 {
+.help-me-container h1, .help-me-container h2 {
     color: #4589FF;
 }
+
 
 .help-me-header {
     display: flex;
