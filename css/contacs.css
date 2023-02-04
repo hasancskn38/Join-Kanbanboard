@@ -44,3 +44,17 @@
     box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.283);
 
 }
+
+.border-for-contacts {
+    margin-top: 34px;
+    border: 1px solid #D1D1D1;
+}
+
+.single-name {
+    margin-top: 30px;
+}
+
+.contact-email {
+    color: #4589FF;
+
+}

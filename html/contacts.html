@@ -8,57 +8,31 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/contacs.css">
     <link rel="stylesheet" href="/css/summary.css">
+    <script src="/js/summary.js"></script>
+    <script src="/js/contacts.js"></script>
     <title>Contacts</title>
 </head>
 
-<body>
-    <nav>
-        <div class="nav-container">
-            <div class="nav-container-left">
-                <img src="../assets/img/logo-white.png" alt="Logo">
-            </div>
-
-            <div class="nav-container-right">
-                <p>Kanban Project Management Tool</p>
-                <img src="../assets/img/questionmark.png" alt="?">
-            </div>
-        </div>
-    </nav>
+<body onload="showContacts()">
+    <div class="navbar">
+        <div w3-include-html="/assets/templates/header-template.html"></div>
+    </div>
 
     <main class="main-contact">
         <div>
-            <nav class="side-bar">
-                <div class="side-links-div">
-                    <a class="side-links" href="/join-mch/html/summary.html"><img src="/assets/icons/summary-icon.png"><span
-                            class="side-text-size">Summary</span></a>
-                    <a class="side-links" href="/join-mch/html/board.html"><img src="/assets/icons/board-icon.png"><span
-                            class="side-text-size">Board</span></a>
-                    <a class="side-links" href="/join-mch/html/add-task.html"><img src="/assets/icons/addtask-icon.png"><span
-                            class="side-text-size">Add Task</span></a>
-                    <a class="side-links" href="/join-mch/html/contacts.html"><img src="/assets/icons/contacts-icon.png"><span
-                            class="side-text-size">Contacts</span></a>
-                </div>
-                <div class="side-bar-legal">
-                    <a class="side-links" href="/join-mch/html/legalnotice.html"><img src="/assets/icons/legal-icon.png"><span
-                            class="side-text-size">Legal notice</span></a>
-                </div>
-            </nav>
-        </div>
-        </nav>
-        <div class="layout-contact1">
-            <div class="layout-contact2">
-                test
+            <div class="sidebar">
+                <div w3-include-html="/assets/templates/sidebar-template.html"></div>
             </div>
-            <div class="layout-contact3">
-                <span>test</span>
-                <button class="new-contact">New Contact<img src="/assets/img/new.contact.png"></button>
+            <div class="layout-contact1">
+                <div id="contactList" class="layout-contact2">
+                    test
+                </div>
+                <div class="layout-contact3">
+                    <span>test</span>
+                    <button class="new-contact">New Contact<img src="/assets/img/new.contact.png"></button>
+                </div>
             </div>
-        </div>
     </main>
-
-
-
-
 
 </body>
 
