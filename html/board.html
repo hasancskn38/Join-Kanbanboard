@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/board.css">
+    <title>Board</title>
+</head>
+
+<body onload="includeHTML()">
+
+    <!-- Header Start -->
+    <div class="navbar">
+        <div w3-include-html="/assets/templates/header-template.html"></div>
+    </div>
+    <!-- Header End -->
+
+
+
+
+
+
+    <!-- We need to wrap the sidebar and the board content in another div to put it next to each other -->
+    <main class="main">
+
+        <!-- Sidebar Start -->
+        <div class="sidebar">
+            <div w3-include-html="/assets/templates/sidebar-template.html"></div>
+        </div>
+        <!-- Sidebar End -->
+
+        <!-- Board Header Start-->
+
+        <div class="main-column">
+            <div class="board-header">
+
+                <div class="search-task">
+                    <input type="text" placeholder="Find Task">
+                    <!-- <hr class="vertical-line" width="2" color="grey" size="20"/> -->
+                    <button class="search-button cursor" onclick="searchTask()">Search</button>
+                </div>
+                <button class="cursor open-add-task" onclick="openAddTaskPopUp()">Add task <span>+</span></button>
+            </div>
+
+            <!-- Board Header End-->
+
+            <!-- Pop Up Start -->
+            <div id="overlay" class="overlay d-none"></div>
+            <div id="popup" class="popup d-none">
+                <button class="cursor" onclick=" closeAddTaskPopUp()">X</button>
+                <div class="popup-content">
+                    
+                    <div class="popup-header">
+                        
+                        <h2>Add Task</h2><button>Create Task</button>
+                    </div>
+                    <input type="text" placeholder="Create Task">
+
+                    <form>
+                        <select>
+                            <option value="" disabled selected hidden>Select an option</option>
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                            <option value="option3">Option 3</option>
+                            <option value="option4">Option 4</option>
+                        </select>
+                    </form>
+
+                </div>
+
+            </div>
+            <!-- Pop Up End -->
+
+            <!-- Drag and Drop Start -->
+            <div class="stages-container">
+
+                <div class="stage-todo stage-general">
+                    <div class="stage-header">
+                        <h2>To do</h2><button class="cursor">+</button>
+                    </div>
+                </div>
+
+                <div class="stage-todo stage-general">
+                    <div class="stage-header">
+                        <h2>In progress</h2><button class="cursor">+</button>
+                    </div>
+                </div>
+
+                <div class="stage-todo stage-general">
+                    <div class="stage-header">
+                        <h2>Await feedback</h2><button class="cursor">+</button>
+                    </div>
+                </div>
+
+                <div class="stage-todo stage-general">
+                    <div class="stage-header">
+                        <h2>Done</h2><button class="cursor">+</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Drag and Drop End -->
+
+    </main>
+    <script src="../js/board.js"></script>
+</body>
+
+</html>

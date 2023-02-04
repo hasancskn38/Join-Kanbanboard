@@ -15,7 +15,7 @@ setInterval(function() {
     //TODO date.toLocaleDateString(), to eventually display the date, discuss with team !
 }, 1000);
 
-// Implement Sidebar
+// Implement Templates
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {

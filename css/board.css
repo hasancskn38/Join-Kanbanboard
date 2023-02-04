@@ -1,0 +1,203 @@
+/* General Stylings Start*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow: hidden;
+}
+
+.navbar div {
+    z-index: 2;
+    position: relative;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.d-none {
+    display: none;
+}
+/* Remove default stylings */
+button, button:focus{
+    outline: none;
+    border: 1px solid transparent;
+}
+  
+button:active{
+    outline: none;
+    border: 1px solid grey;
+}
+
+select, select:focus{
+    outline: none;
+    border: 1px solid transparent;
+}
+  
+select:active{
+    outline: none;
+    border: 1px solid grey;
+}
+
+input, input:focus{
+    outline: none;
+    background: transparent;
+    border: 1px solid transparent;
+    text-indent: 10px;
+}
+  
+input:active{
+    outline: none;
+    background: transparent;
+    border: 1px solid grey;
+    text-indent: 10px;
+}
+/* General Stylings End*/
+
+/* Main Column Start */
+.main-column {
+    margin: 0 auto;
+}
+/* Main Column End */
+
+
+/* Main Start */
+.main {
+    display: flex;
+}
+
+/* Board Header Start */
+.board-header {
+    display: flex;
+    margin: 50px;
+}
+
+.board-header button {
+    padding-right:20px;
+}
+
+.board-header input, .board-header button {
+    height: 45px;
+    border-radius: 10px;
+}
+
+.search-task {
+    height: 45px;
+    border: 1px solid rgb(184, 184, 184);
+    margin-right: 30px;
+    border-radius: 10px;
+}
+
+::placeholder {
+    color:rgb(196, 196, 196);
+}
+
+.open-add-task {
+    color:#fff;
+    background-color: #4589FF;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+.search-button {
+    color: #000;
+    background: none;
+    padding-right:20px;
+}
+
+/* Board Header End */
+
+/* Pop Up Start */
+.overlay {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100vh;
+    height: 100vh;
+    background-color: rgba(190, 190, 190, 0.3);
+}
+
+.popup {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    height: 100vh;
+    width: 35%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.popup-content {
+    margin: 20px 50px;
+    width: 100%;
+}
+
+.popup-header {
+    display: flex;
+}
+
+/* To only style the first child of an container */
+.popup > *:first-child {
+    position: absolute;
+    right: 2%;
+    top: .5%;
+    background: none;
+    font-size: 20px;
+}
+/* Pop Up End */
+
+/* Stages Container Start */
+.stages-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 50px;
+}
+
+.stage-general {
+    width: 25%;
+}
+
+.stage-header {
+    display: flex;
+    justify-content: space-around;
+    margin-right: 50px;
+    gap: 50px;
+}
+
+.stage-header button {
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
+    background-color: #fff;
+    color: #4589FF;
+    border: 1px solid #4589FF;
+    border-radius: 10px;
+    transition: all 225ms ease-in-out;
+}
+
+.stage-header button:hover {
+    opacity: .7;
+    transform: scale(1.1);
+}
+/* Stages Container End */
+
+/* Main End */
+
+/* Responsive Start */
+@media only screen and (max-width: 1200px) {
+.stages-container {
+    display: flex;
+    flex-direction: column;
+}
+}
+/* Responsive End */ 
