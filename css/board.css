@@ -47,7 +47,10 @@ select:active{
 input, input:focus{
     outline: none;
     background: transparent;
-    border: 1px solid transparent;
+    border-bottom: 1px solid grey;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-top: 1px solid transparent;
     text-indent: 10px;
 }
   
@@ -120,7 +123,7 @@ input:active{
     right: 0;
     left: 0;
     bottom: 0;
-    width: 100vh;
+    width: 100vw;
     height: 100vh;
     background-color: rgba(190, 190, 190, 0.3);
 }
@@ -132,18 +135,161 @@ input:active{
     right: 0;
     background-color: #fff;
     height: 100vh;
-    width: 35%;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 }
 
 .popup-content {
-    margin: 20px 50px;
-    width: 100%;
+    margin:40px 10px
 }
 
 .popup-header {
     display: flex;
+    justify-content: center;
+    font-size: 28px;
+}
+
+.popup-header h2, .createtask-button {
+    margin: 20px;
+    padding: 0 5px;
+}
+
+.createtask-button {
+    color: #fff;
+    background-color: #4589FF;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight:lighter;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+}
+
+.popup-input {
+    width: 90%;
+    border-bottom: 1px solid lightgray;
+    font-size: 28px;
+    padding:5px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+}
+
+select {
+    width: 90%;
+    font-size: 18px;
+    border-bottom: 1px solid lightgray;
+    margin: 20px;
+    padding:5px;
+    color: #4589FF;
+}
+
+select option {
+    color: #000;
+}
+
+.date {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+    width: 90%;
+}
+
+.date > input {
+    font-size: 18px;
+    margin: 20px;
+    padding:5px;    
+}
+
+.date > img {
+    padding: 0;
+    height: 25px;
+    width: 25px;
+}
+
+
+label > input {
+    width: 90%;
+    border-bottom: 1px solid lightgray;
+    font-size: 28px;
+    padding:5px;
+    margin: 0 20px;
+}
+
+.date-header {
+    margin:0 20px;
+    padding:5px;
+}
+
+.priority {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    margin: 20px;
+}
+
+.priority-levels {
+    box-shadow: 1px 1px rgb(0 0 0 / 10%), -1px 1px rgb(0 0 0 / 10%), 1px -1px rgb(0 0 0 / 10%), -1px -1px rgb(0 0 0 / 10%);
+    padding: 10px 15px;
+    width: 31%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.priority-levels > img {
+    padding: 0 0 0 5px;
+}
+
+.priority-levels:nth-child(1):hover {
+    border: 2px solid #ff3d00;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.priority-levels:nth-child(2):hover {
+    border: 2px solid #ffa800;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.priority-levels:nth-child(3):hover {
+    border: 2px solid #7ae229;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.priority-levels:nth-child(1):active {
+    background-color: #ff3d00;
+}
+
+.description {
+    margin:0 20px;
+    padding:5px;
+}
+
+textarea {
+    width: 90%;
+    height: 12vh;
+    margin: 15px 0;
+    border-radius: 10px;
+    border: 1px solid lightgrey;
+}
+
+textarea::placeholder {
+    font-size: 16px;
+    padding: 15px;
 }
 
 /* To only style the first child of an container */

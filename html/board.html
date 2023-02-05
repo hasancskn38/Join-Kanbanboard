@@ -51,16 +51,34 @@
             <div id="popup" class="popup d-none">
                 <button class="cursor" onclick=" closeAddTaskPopUp()">X</button>
                 <div class="popup-content">
-                    
+
                     <div class="popup-header">
-                        
-                        <h2>Add Task</h2><button>Create Task</button>
+                        <h2>Add Task</h2><button class="createtask-button">Create Task</button>
                     </div>
-                    <input type="text" placeholder="Create Task">
+
+                    <div class="input-container">
+                        <input class="popup-input" type="text" placeholder="Enter a title">
+                    </div>
 
                     <form>
-                        <select>
-                            <option value="" disabled selected hidden>Select an option</option>
+                        <select class="select-contact">
+                            <option value="" disabled selected hidden>Select contacts to assign </option>
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                            <option value="option3">Option 3</option>
+                            <option value="option4">Option 4</option>
+                        </select>
+                    </form>
+                    <h2 class="date-header">Due date</h2>
+                    <label for="appointment">
+                        <div class="date">
+                            <input placeholder="dd/mm/yyyy" type="text" id="appointment" name="appointment">
+                            <img class="cursor" src="../assets/icons/date-icon.png" alt="">
+                        </div>
+                    </label>
+                    <form>
+                        <select class="select-contact">
+                            <option value="" disabled selected hidden>Select task category</option>
                             <option value="option1">Option 1</option>
                             <option value="option2">Option 2</option>
                             <option value="option3">Option 3</option>
@@ -68,8 +86,23 @@
                         </select>
                     </form>
 
-                </div>
+                    <div class="priority">
+                        <div class="priority-levels cursor">Urgent <img src="../assets/icons/urgent.png" alt=""></div>
+                        <div class="priority-levels cursor">Medium <img src="../assets/icons/medium.png" alt=""></div>
+                        <div class="priority-levels cursor">Low <img src="../assets/icons/low.png" alt=""></div>
+                    </div>
 
+                    <div class="description">
+                        <h2>Description</h2>
+                        <textarea placeholder="Enter a description"></textarea>
+                    </div>
+
+                    <div class="subtasks">
+                        <h2>Subtask</h2>
+                        <div class="subtasks-input"><input placeholder="Add new subtask" type="text"><button class="cursor">+</button></div>
+                    </div>
+
+                </div>
             </div>
             <!-- Pop Up End -->
 
@@ -78,25 +111,25 @@
 
                 <div class="stage-todo stage-general">
                     <div class="stage-header">
-                        <h2>To do</h2><button class="cursor">+</button>
+                        <h2>To do</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
                     </div>
                 </div>
 
                 <div class="stage-todo stage-general">
                     <div class="stage-header">
-                        <h2>In progress</h2><button class="cursor">+</button>
+                        <h2>In progress</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
                     </div>
                 </div>
 
                 <div class="stage-todo stage-general">
                     <div class="stage-header">
-                        <h2>Await feedback</h2><button class="cursor">+</button>
+                        <h2>Await feedback</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
                     </div>
                 </div>
 
                 <div class="stage-todo stage-general">
                     <div class="stage-header">
-                        <h2>Done</h2><button class="cursor">+</button>
+                        <h2>Done</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
                     </div>
                 </div>
 
