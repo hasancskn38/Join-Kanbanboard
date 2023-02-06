@@ -7,6 +7,10 @@
     scroll-behavior: smooth;
 }
 
+.white {
+    color: #fff;
+}
+
 body {
     overflow: hidden;
 }
@@ -47,12 +51,13 @@ select:active{
 input, input:focus{
     outline: none;
     background: transparent;
-    border-bottom: 1px solid grey;
-    border-left: 1px solid transparent;
-    border-right: 1px solid transparent;
-    border-top: 1px solid transparent;
+    border: none;
     text-indent: 10px;
 }
+
+input[type="text"]:focus {
+    border: none;
+  }
   
 input:active{
     outline: none;
@@ -130,17 +135,49 @@ input:active{
 
 .popup {
     z-index: 2;
-    position: absolute;
-    top: 0;
+    position: fixed;
     right: 0;
+    top: 0;
     background-color: #fff;
     height: 100vh;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
+    right: 0;
 }
 
+/* Animation Start */
+.show {
+    animation: pop-up-right 0.5s forwards;
+  }
+
+.hide {
+    animation: pop-up-right-reverse 0.5s forwards;
+}
+
+  @keyframes pop-up-right {
+    from {
+      right: -100%;
+    }
+    to {
+      right: 0;
+      
+    }
+  }
+
+  @keyframes pop-up-right-reverse {
+    from {
+        right: 0;
+      }
+      to {
+        right: -100%;
+        
+      }
+  }
+/* Animation End */
+
 .popup-content {
-    margin:40px 10px
+    height: 100%;
+    margin: 50px;
 }
 
 .popup-header {
@@ -165,11 +202,11 @@ input:active{
 .input-container {
     display: flex;
     justify-content: center;
+    border-bottom: 1px solid lightgray;
 }
 
 .popup-input {
     width: 90%;
-    border-bottom: 1px solid lightgray;
     font-size: 28px;
     padding:5px;
 }
@@ -198,12 +235,14 @@ select option {
     align-items: center;
     border-bottom: 1px solid lightgray;
     width: 90%;
+    margin: 20px;
+    padding: 5px;
 }
 
 .date > input {
     font-size: 18px;
-    margin: 20px;
-    padding:5px;    
+    
+    border-bottom: 0;
 }
 
 .date > img {
@@ -242,7 +281,6 @@ label > input {
     display: flex;
     align-items: center;
     justify-content: space-around;
-
 }
 
 .priority-levels > img {
@@ -270,9 +308,23 @@ label > input {
     border-right: none;
 }
 
-.priority-levels:nth-child(1):active {
+
+.urgent {
     background-color: #ff3d00;
+    color: #fff;
 }
+
+.medium {
+    background-color: #ffa800;
+    color: #fff;
+}
+
+.low {
+    background-color: #7ae229;
+    color: #fff;
+}
+
+
 
 .description {
     margin:0 20px;
@@ -290,6 +342,33 @@ textarea {
 textarea::placeholder {
     font-size: 16px;
     padding: 15px;
+}
+
+.subtasks {
+    border-bottom: 1px solid lightgray;
+    width: 90%;
+    margin: 20px;
+    padding: 5px;
+}
+
+.subtasks-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+
+.subtasks-input button {
+    height: 25px;
+    width: 25px;
+    background-color: #fff;
+    color: #4589FF;
+}
+
+.subtasks input {
+    font-size: 18px;
+    margin: 15px 0;
+    border-bottom: 0;
 }
 
 /* To only style the first child of an container */

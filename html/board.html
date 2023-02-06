@@ -17,11 +17,6 @@
     </div>
     <!-- Header End -->
 
-
-
-
-
-
     <!-- We need to wrap the sidebar and the board content in another div to put it next to each other -->
     <main class="main">
 
@@ -48,7 +43,7 @@
 
             <!-- Pop Up Start -->
             <div id="overlay" class="overlay d-none"></div>
-            <div id="popup" class="popup d-none">
+            <div id="popup" class="popup d-none hide">
                 <button class="cursor" onclick=" closeAddTaskPopUp()">X</button>
                 <div class="popup-content">
 
@@ -87,9 +82,9 @@
                     </form>
 
                     <div class="priority">
-                        <div class="priority-levels cursor">Urgent <img src="../assets/icons/urgent.png" alt=""></div>
-                        <div class="priority-levels cursor">Medium <img src="../assets/icons/medium.png" alt=""></div>
-                        <div class="priority-levels cursor">Low <img src="../assets/icons/low.png" alt=""></div>
+                        <div class="priority-levels cursor" id="urgent" onclick="changeUrgentColor()">Urgent<img id="img" src="../assets/icons/urgent.png" alt=""></div>
+                        <div class="priority-levels cursor" id="medium" onclick="changeMediumColor()">Medium <img id="img" src="../assets/icons/medium.png" alt=""></div>
+                        <div class="priority-levels cursor" id="low" onclick="changeLowColor()">Low <img id="img" src="../assets/icons/low.png" alt=""></div>
                     </div>
 
                     <div class="description">
