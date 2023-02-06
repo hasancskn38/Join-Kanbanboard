@@ -2,6 +2,8 @@
     display: flex;
     justify-content: center;
     height: 100%;
+    margin-left: 232px;
+    overflow-y: hidden;
 }
 
 .layout-contact1 {
@@ -13,10 +15,11 @@
     width: 430px;
     height: 750px;
     box-shadow: 4px 0px 6px rgb(0 0 0 / 8%);
+    margin-left: 30px;
 }
 
 .layout-contact3 {
-    width: calc(100% - 232px);
+    /* width: calc(100% - 232px);*/
     display: flex;
 }
 
@@ -57,4 +60,20 @@
 .contact-email {
     color: #4589FF;
 
+}
+
+.letter-circle {
+    height: 35px;
+    width: 35px;
+    border-radius: 100%;
+    margin-right: 10px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.over-div-letter-name-email {
+    display: flex;
+    align-items: end;
 }
