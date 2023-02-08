@@ -95,7 +95,7 @@ function renderBigLetter() {
         bigLetter.innerHTML += `
         <span>${letterBig}</span>
         <div class="border-for-contacts"></div>
-        `;
+        `; 
     }
 }
 
