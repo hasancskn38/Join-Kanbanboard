@@ -36,33 +36,51 @@ let low = document.getElementById('low')
 function changeUrgentColor() {
     if(urgent.classList.contains('urgent')) {
         urgent.classList.remove('urgent') 
+        priorityImg.classList.add('white');
         
     } else {
         urgent.classList.add('urgent')
         low.classList.remove('low')
         medium.classList.remove('medium')
+        priorityImg.classList.add('white');
     }
 }
 
 function changeMediumColor() {
     if(medium.classList.contains('medium')) {
         medium.classList.remove('medium') 
+        priorityImg.classList.add('white');
         
     } else {
         medium.classList.add('medium')
         urgent.classList.remove('urgent')
         low.classList.remove('low')
+        priorityImg.classList.add('white');
     }
 }
 
 function changeLowColor() {
     if(low.classList.contains('low')) {
         low.classList.remove('low')
+        priorityImg.classList.add('white');
         
     } else {
         low.classList.add('low')
         urgent.classList.remove('urgent')
         medium.classList.remove('medium')
+        priorityImg.classList.add('white');
     }
     
+}
+
+// Show Help me Container
+function showHelpMeSection() {
+    document.getElementById('help-me-container').classList.remove('d-none');
+    document.querySelector('main').classList.add('d-none');
+}
+
+// Hide Help me Container
+function hideHelpMeSection() {
+    document.getElementById('help-me-container').classList.add('d-none');
+    document.querySelector('main').classList.remove('d-none');
 }

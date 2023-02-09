@@ -177,7 +177,7 @@ input:active{
 
 .popup-content {
     height: 100%;
-    margin: 50px;
+    margin: 30px;
 }
 
 .popup-header {
@@ -203,6 +203,7 @@ input:active{
     display: flex;
     justify-content: center;
     border-bottom: 1px solid lightgray;
+    margin: 20px;
 }
 
 .popup-input {
@@ -241,15 +242,11 @@ select option {
 
 .date > input {
     font-size: 18px;
-    
+    width: 100%;
     border-bottom: 0;
 }
 
-.date > img {
-    padding: 0;
-    height: 25px;
-    width: 25px;
-}
+
 
 
 label > input {
@@ -333,15 +330,15 @@ label > input {
 
 textarea {
     width: 90%;
-    height: 12vh;
+    font-size: 17px;
     margin: 15px 0;
+    padding: 15px;
     border-radius: 10px;
     border: 1px solid lightgrey;
 }
 
 textarea::placeholder {
     font-size: 16px;
-    padding: 15px;
 }
 
 .subtasks {
@@ -419,10 +416,26 @@ textarea::placeholder {
 /* Main End */
 
 /* Responsive Start */
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1450px) {
+
+.sidebar {
+    display: none;
+}
+
 .stages-container {
     display: flex;
     flex-direction: column;
+}
+
+.stage-general {
+    width: 100%;
+}
+
+.stage-header {
+    display: flex;
+    justify-content: space-between;
+    /* margin-right: 50px; 
+    gap: 50px; */
 }
 }
 /* Responsive End */ 
