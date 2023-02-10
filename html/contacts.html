@@ -28,12 +28,13 @@
                 </div>
             <div class="layout-contact3">
                 <span>test</span>
-                <button class="new-contact">New Contact<img src="/assets/img/new.contact.png"></button>
+                <button onclick="openAddContact()" class="new-contact">New Contact<img
+                        src="/assets/img/new.contact.png"></button>
             </div>
         </div>
     </main>
-    <div class="add-contact-layout">
-        <div class="add-contact-layout-2 slide-in">
+    <div onclick="closeAddContact2()" id="addcontactlayout" class="add-contact-layout d-nones">
+        <div onclick="doNotClose(event)" id="add-contact-layout-2" class="add-contact-layout-2 slide-in">
             <div class="add-contact-top">
                 <img class="close-Img" src="/assets/img/close_icon.png" onclick="closeAddContact()">
                 <img class="join-logo-contact" src="/assets/img/logo-white.png">
@@ -45,20 +46,20 @@
                     <img class="user" src="/assets/img/Vector.png">
                 </div>
                 <div class="form">
-                    <form class="add-contact-form" onsubmit="AddNewContact();">
+                    <form class="add-contact-form" onsubmit="AddNewContact(); return false;">
                         <div class="add-contact-input-field">
-                            <input id="new-contact-name" class="conact-name-form contacts-input"
-                            type="text" placeholder="Name" required>
+                            <input id="new-contact-name" class="conact-name-form contacts-input" type="text"
+                                placeholder="Name" required>
                             <img src="/assets/img/Input_Name.png">
                         </div>
                         <div class="add-contact-input-field">
-                            <input id="new-contact-name" class="conact-name-form contacts-input"
-                            type="email" placeholder="Email" required>
+                            <input id="new-contact-email" class="conact-name-form contacts-input" type="email"
+                                placeholder="Email" required>
                             <img src="/assets/img/Input_Email.png">
                         </div>
                         <div class="add-contact-input-field">
-                            <input id="new-contact-name" class="conact-name-form contacts-input"
-                            type="number" placeholder="Phone" required>
+                            <input id="new-contact-phone" class="conact-name-form contacts-input" type="number"
+                                placeholder="Phone" required>
                             <img src="/assets/img/Input_Phone.png">
                         </div>
                         <button class="creat-contact">Create Contact<img src="/assets/img/new.contact.png"></button>

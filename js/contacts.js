@@ -47,6 +47,7 @@ function showContacts() {
         let contactName = contacts[i]['name'];
         let bothFirstLetter = splitName(contactName);
         contactContainer.innerHTML += `
+        
         <div class="over-div-letter-name-email">
          <div style="background-color: ${color}" class="letter-circle">${bothFirstLetter}</div>
           <div>
@@ -60,6 +61,23 @@ function showContacts() {
 }
 
 
+function AddNewContact() {
+    let name = document.getElementById('new-contact-name');
+    let email = document.getElementById('new-contact-email');
+    let phone = document.getElementById('new-contact-phone');
+    contacts.push({name: name.value, email: email.value, phone: phone.value});
+    showContacts();
+    clearInputFields();
+}
+
+
+function clearInputFields() {
+    document.getElementById('new-contact-name').value = '';
+    document.getElementById('new-contact-email').value = '';
+    document.getElementById('new-contact-phone').value = '';
+}
+
+
 function creatSingleLetters() {
     filterFirstLetter();
     renderBigLetter();
@@ -70,7 +88,7 @@ function splitName(fullName) {
     let namePara = fullName.split(" ");
     let firstName = namePara[0];
     let lastName = namePara[namePara.length - 1];
-    let bothFirstLetter = firstName.charAt(0) + lastName.charAt(0);
+    let bothFirstLetter = firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase();
     return bothFirstLetter
 }
 
@@ -120,4 +138,26 @@ function randomColor() {
     let b = Math.floor(Math.random() * 256);
 
     return `rgb(${r} ,${g} , ${b})`;
+}
+
+
+function closeAddContact() {
+    document.getElementById('addcontactlayout').classList.add('d-nones');
+    document.getElementById('add-contact-layout-2').classList.remove('slide-in');
+}
+
+
+function openAddContact() {
+    document.getElementById('addcontactlayout').classList.remove('d-nones');
+    document.getElementById('add-contact-layout-2').classList.add('slide-in');
+}
+
+
+function doNotClose(event) {
+    event.stopPropagation();
+}
+
+
+function closeAddContact2() {
+    document.getElementById('addcontactlayout').classList.add('d-nones');
 }
