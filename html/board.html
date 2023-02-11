@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/board.css">
     <title>Board</title>
+    <link rel="stylesheet" href="/css/board.css">
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML(); renderTasks();" >
 
     <!-- Header Start -->
     <div class="navbar">
@@ -28,7 +28,8 @@
 
         <!-- Board Header Start-->
 
-        <div class="main-column">
+        <div class="main-column" id="main-column">
+
             <div class="board-header">
 
                 <div class="search-task">
@@ -106,6 +107,10 @@
                 <div class="stage-todo stage-general">
                     <div class="stage-header">
                         <h2>To do</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
+                        
+                    </div>
+                    <div id="stage-todo">
+
                     </div>
                 </div>
 
@@ -113,17 +118,26 @@
                     <div class="stage-header">
                         <h2>In progress</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
                     </div>
+                    <div id="stage-progress">
+
+                    </div>
                 </div>
 
                 <div class="stage-todo stage-general">
                     <div class="stage-header">
                         <h2>Await feedback</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
                     </div>
+                    <div id="stage-feedback">
+
+                    </div>
                 </div>
 
                 <div class="stage-todo stage-general">
                     <div class="stage-header">
                         <h2>Done</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
+                    </div>
+                    <div id="stage-done">
+
                     </div>
                 </div>
 
@@ -132,7 +146,15 @@
         <!-- Drag and Drop End -->
 
     </main>
-    <script src="../js/board.js"></script>
+    <script src="/js/data.js"></script>
+    <script src="/js/summary.js"></script>
+    <script src="/js/board.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/summary.js"></script>
+    <script src="/js/add-task.js"></script>
+    <script src="/js/contacts.js"></script>
+    <script src="/js/contacts.js"></script>
+    <script src="/js/login_registry.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task</title>
+    <link rel="stylesheet" href="../css/add-task.css">
+</head>
+<body>
+
+    <!-- Pop Up Start -->
+    <div id="popup" class="popup d-none hide">
+        <div class="popup-content">
+
+            <div class="popup-header">
+                <h2>Add Task</h2><button class="createtask-button">Create Task</button>
+            </div>
+
+            <div class="input-container">
+                <input class="popup-input" type="text" placeholder="Enter a title">
+            </div>
+
+            <form>
+                <select class="select-contact cursor">
+                    <option value="" disabled selected hidden>Select contacts to assign </option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                    <option value="option4">Option 4</option>
+                </select>
+            </form>
+            <h2 class="date-header">Due date</h2>
+            <label for="appointment">
+                <div class="date">
+                    <input class="cursor" placeholder="dd/mm/yyyy" type="date" id="appointment" name="appointment">
+                </div>
+            </label>
+            <form>
+                <select class="select-contact cursor">
+                    <option value="" disabled selected hidden>Select task category</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                    <option value="option4">Option 4</option>
+                </select>
+            </form>
+
+            <div class="priority">
+                <div class="priority-levels cursor" id="urgent" onclick="changeUrgentColor()">Urgent<img id="img" src="../assets/icons/urgent.png" alt=""></div>
+                <div class="priority-levels cursor" id="medium" onclick="changeMediumColor()">Medium <img id="img" src="../assets/icons/medium.png" alt=""></div>
+                <div class="priority-levels cursor" id="low" onclick="changeLowColor()">Low <img id="img" src="../assets/icons/low.png" alt=""></div>
+            </div>
+
+            <div class="description">
+                <h2>Description</h2>
+                <textarea placeholder="Enter a description"></textarea>
+            </div>
+
+            <div class="subtasks">
+                <h2>Subtask</h2>
+                <div class="subtasks-input"><input placeholder="Add new subtask" type="text"><button class="cursor">+</button></div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Pop Up End -->
+    
+</body>
+</html>

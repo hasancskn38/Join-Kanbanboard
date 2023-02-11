@@ -1,3 +1,10 @@
+/* General Styling Start */
+a {
+    text-decoration: none;
+   display: inline-block;
+}
+/* General Styling End */
+
 .side-bar {
     display: flex;
     flex-direction: column;

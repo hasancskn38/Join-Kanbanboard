@@ -84,3 +84,63 @@ function hideHelpMeSection() {
     document.getElementById('help-me-container').classList.add('d-none');
     document.querySelector('main').classList.remove('d-none');
 }
+
+
+let initials = usersBoard[1].name
+console.log(initals)
+// Render Content of data.js
+function renderTasks() {
+    let stageToDo = document.getElementById('stage-todo')
+    stageToDo.innerHTML = '';
+    for (let i = 0; i < tasks.length; i++) {
+        const task = tasks[i];
+        stageToDo.innerHTML += /*html*/`
+        <h3 id="category">${task[i].cat}</h3>
+        <h4 class="blue">${task[i].title}</h4>
+        <p class="grey">${task[i].desc}</p>
+        <div id="progress-bar" style="width: 50%; height: 10px; background-color: lightgrey;"> 
+        <div id="progress" style="background-color: blue; height: 100%; width: 0%;"></div>
+        </div>
+        `
+        renderColors();
+                for (let j = 0; j < usersBoard.length; j++) {
+                    stageToDo.innerHTML += /*html*/`
+                    <div class="user-initials">${usersBoard[1].name}</div>
+             `
+                }
+            }
+            
+        }
+
+
+// var progressBar = document.getElementById("progress-bar");
+// var progress = document.getElementById("progress");
+// var width = 1;
+
+// function updateProgress() {
+//   if (width >= 100) {
+//     clearInterval(id);
+//   } else {
+//     width++;
+//     progress.style.width = width + "%";
+//   }
+// }
+
+// var id = setInterval(updateProgress, 10);
+
+
+function renderColors() {
+    let category = document.getElementById('category');
+    if(category.innerHTML == 'Design') {
+        category.classList.add('design')
+    }
+    if(category.innerHTML == 'Media') {
+        category.classList.add('media')
+    }
+    if(category.innerHTML == 'Backooffice') {
+        category.classList.add('backoffice')
+    }
+    if(category.innerHTML == 'Sales') {
+        category.classList.add('sales')
+    }
+}

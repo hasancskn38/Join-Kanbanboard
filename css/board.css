@@ -439,3 +439,50 @@ textarea::placeholder {
 }
 }
 /* Responsive End */ 
+
+/* Styling of the Content that is created or rendered with Javascript Start */
+#stage-todo {
+    height: 200px;
+    box-shadow: 1px 1px rgb(0 0 0 / 10%), -1px 1px rgb(0 0 0 / 10%), 1px -1px rgb(0 0 0 / 10%), -1px -1px rgb(0 0 0 / 10%);
+    border-radius: 30px;
+    margin: 20px 0;
+    padding: 20px;
+}
+#stage-todo > h3 {
+    display: inline-block;
+    font-weight: 100;
+    color: #fff;
+    padding: 5px 30px;
+    border-radius: 10px;
+    margin: 0 0 10px 0;
+}
+
+/* To give every single child element the exact same stylings */
+#stage-todo > * {
+    margin: 0 0 10px 0;
+} 
+
+.blue {
+    color: #4589FF;
+}
+
+.grey {
+    color: rgb(196, 196, 196);
+}
+
+.design {
+    background-color: orange;
+}
+
+.sales {
+    background-color: purple;
+}
+
+.backoffice {
+    background-color: turquoise;
+}
+
+.media {
+    background-color: yellow;
+}
+/* Styling of the Content that is created or rendered with Javascript End*/
