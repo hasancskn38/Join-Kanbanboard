@@ -42,18 +42,19 @@ function showContacts() {
     let contactContainer = document.getElementById('contactList');
     contactContainer.innerHTML = '';
     for (let i = 0; i < contacts.length; i++) {
-        let contact = contacts[i];
         let color = randomColor();
         let contactName = contacts[i]['name'];
+        let contactEmail = contacts[i]['email'];
         let bothFirstLetter = splitName(contactName);
         contactContainer.innerHTML += `
-        
+        <div class="over" onclick="openDetailContact(color, bothFirstLetter, contactName, contactEmail)">
         <div class="over-div-letter-name-email">
          <div style="background-color: ${color}" class="letter-circle">${bothFirstLetter}</div>
           <div>
-            <div class="single-name">${contact.name}</div>
-            <span class="contact-email">${contact.email}</span>
+            <div class="single-name">${contactName}</div>
+            <span class="contact-email">${contactEmail}</span>
            </div>
+        </div>
         </div>
         `;
     }
@@ -65,9 +66,27 @@ function AddNewContact() {
     let name = document.getElementById('new-contact-name');
     let email = document.getElementById('new-contact-email');
     let phone = document.getElementById('new-contact-phone');
-    contacts.push({name: name.value, email: email.value, phone: phone.value});
+    contacts.push({ name: name.value, email: email.value, phone: phone.value });
     showContacts();
     clearInputFields();
+}
+
+
+function openDetailContact(color, bothFirstLetter, contactName, contactEmail) {
+    let contactDetail = document.getElementById('layout-contact3');
+    contactDetail.innerHTML = '';
+    contactDetail.innerHTML = `
+        <div class="contact-detail-header">
+            <div style="background-color: ${color} class="big-letters">${bothFirstLetter}</div>
+            <div>
+                <div class="contact-detail-header-right">
+                 <div class="contact-detail-name">${contactName}</div>
+                 <div onlick="addTask()" class="add-task-link">
+                  <img class="plus-img" src="/assets/img/plus-8-24.png"> Add Task</div>
+                </div>
+            </div>
+        </div>
+    `;
 }
 
 
@@ -81,6 +100,7 @@ function clearInputFields() {
 function creatSingleLetters() {
     filterFirstLetter();
     renderBigLetter();
+
 }
 
 
@@ -113,7 +133,7 @@ function renderBigLetter() {
         bigLetter.innerHTML += `
         <span>${letterBig}</span>
         <div class="border-for-contacts"></div>
-        `; 
+        `;
     }
 }
 
@@ -133,9 +153,9 @@ function sortContacts(contacts) {
  * Generating random bg-color
  */
 function randomColor() {
-    let r = Math.floor(Math.random() * 256);
-    let g = Math.floor(Math.random() * 256);
-    let b = Math.floor(Math.random() * 256);
+    let r = Math.floor(Math.random() * 246);
+    let g = Math.floor(Math.random() * 246);
+    let b = Math.floor(Math.random() * 246);
 
     return `rgb(${r} ,${g} , ${b})`;
 }

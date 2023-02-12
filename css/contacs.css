@@ -8,19 +8,24 @@
 
 .layout-contact1 {
     display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
     width: 100%;
+    min-height: calc(100vh - 100px);
 }
 
 .layout-contact2 {
     width: 430px;
-    height: 750px;
+    height: 746px;
     box-shadow: 4px 0px 6px rgb(0 0 0 / 8%);
     margin-left: 30px;
 }
 
 .layout-contact3 {
-    /* width: calc(100% - 232px);*/
-    display: flex;
+    margin: 50px;
+    width: 100%;
+    transform: translateX(100vw);
+    transition: all 225ms ease-in-out;
 }
 
 .new-contact {
@@ -35,8 +40,7 @@
     align-items: center;
     height: 55px;
     cursor: pointer;
-    margin-top: 625px;
-    margin-left: 430px;
+    margin-top: 560px;
     font-size: 23px;
     transition: all 125ms ease-in-out;
 }
@@ -54,7 +58,7 @@
 }
 
 .single-name {
-    margin-top: 30px;
+    margin-top: 8px;
 }
 
 .contact-email {
@@ -67,6 +71,7 @@
     width: 35px;
     border-radius: 100%;
     margin-right: 10px;
+    margin-left: 20px;
     color: white;
     display: flex;
     justify-content: center;
@@ -75,7 +80,20 @@
 
 .over-div-letter-name-email {
     display: flex;
-    align-items: end;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 15px;
+    width: 275px;
+    height: 77px;
+}
+
+.over {
+    width: 260px;
+}
+
+.over:hover {
+    background-color: #d2e3ff;
+    border-radius: 15px;
 }
 
 .add-contact-layout {
@@ -258,4 +276,55 @@
 
 .d-nones {
     display: none;
+}
+
+.contact-detail-header {
+    display: flex;
+    /*flex-direction: row;*/
+    gap: 30px;
+    align-items: center;
+}
+
+.big-letters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 0px;
+    margin-right: 10px;
+    min-width: 90px;
+    min-height: 90px;
+    border: 3px solid #ffffff;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
+    border-radius: 100%;
+    font-size: 38px;
+}
+
+.contact-detail-header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.contact-detail-name {
+    font-size: 46px;
+    font-weight: 600;
+    line-height: 120%;
+}
+
+.add-task-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    color: #005dff;
+    margin-top: 13px;
+    cursor: pointer;
+    padding-inline: 5px;
+}
+
+.plus-img {
+    height: 18px;
+    width: 18px;
 }
