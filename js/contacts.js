@@ -45,9 +45,10 @@ function showContacts() {
         let color = randomColor();
         let contactName = contacts[i]['name'];
         let contactEmail = contacts[i]['email'];
+        let contactPhone = contacts[i]['phone']
         let bothFirstLetter = splitName(contactName);
         contactContainer.innerHTML += `
-        <div class="over" onclick="openDetailContact(color, bothFirstLetter, contactName, contactEmail)">
+        <div class="over" onclick="openDetailContact('${bothFirstLetter}', '${color}', '${contactName}', '${contactEmail}', '${contactPhone}')">
         <div class="over-div-letter-name-email">
          <div style="background-color: ${color}" class="letter-circle">${bothFirstLetter}</div>
           <div>
@@ -72,20 +73,35 @@ function AddNewContact() {
 }
 
 
-function openDetailContact(color, bothFirstLetter, contactName, contactEmail) {
+function openDetailContact(bothFirstLetter, color, contactName, contactEmail, contactPhone) {
     let contactDetail = document.getElementById('layout-contact3');
     contactDetail.innerHTML = '';
     contactDetail.innerHTML = `
         <div class="contact-detail-header">
-            <div style="background-color: ${color} class="big-letters">${bothFirstLetter}</div>
+            <div style="background-color: ${color}" class="big-letters">${bothFirstLetter}</div>
             <div>
                 <div class="contact-detail-header-right">
                  <div class="contact-detail-name">${contactName}</div>
                  <div onlick="addTask()" class="add-task-link">
-                  <img class="plus-img" src="/assets/img/plus-8-24.png"> Add Task</div>
+                  <img class="plus-img" src="/assets/img/plus.small.png">Add Task</div>
                 </div>
             </div>
         </div>
+        <div class="contact-detail-body">
+            <div class="contact-detail-body-top">
+                <div class="detail-information">Contact Information</div>
+                <div class="contact-detail-edit" onlick="openEdit()">
+                    <img class="pencil-img" src="/assets/img/pencil.small.png">
+                    Edit Contact
+                </div>
+            </div>
+            <div class="contact-detail-bottom">Email</div>
+            <a class="contact-detail-email" href="mailto:${contactEmail}">${contactEmail}</a>
+            <div class="contact-detail-bottom">Phone</div>
+            <a class="contact-detail-phone" href="tel:${contactPhone}">${contactPhone}</a>
+        </div>
+        <button onclick="openAddContact()" class="new-contact-detail">New Contact<img
+                        src="/assets/img/new.contact.png"></button>
     `;
 }
 
