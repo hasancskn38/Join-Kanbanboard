@@ -63,48 +63,37 @@ let tasks = [
             "title": "Website redsign",
             "desc": "Modify the content of the main website",
             "date": "2023-02-15",
+            "status": "to-do",
             "assignees": ['jmay@company.com', 'hmueller@company.com', 'smaier@company.com', 'mmutschler@company.com'] // mail-address
         }
     ],
-    // [ // In Progress
-    //     {
-    //         "title": "Task B",
-    //         "desc": "Do this and that",
-    //         "cat": "Sales",
-    //         "date": "2023-01-13",
-    //         "assignees": ['aalles@company.com', 'rzufall@company.com'] // mail-address
-    //     },
-    //     {
-    //         "title": "Task E",
-    //         "desc": "Improve the code",
-    //         "cat": "Developement",
-    //         "date": "2023-03-13",
-    //         "assignees": ['aalles@company.com', 'hmueller@company.com']
-    //     }
-    // ],
-    // [ // Awaiting Feedback
-    //     {
-    //         "title": "Task C",
-    //         "desc": "Do more stuff",
-    //         "cat": "Marketing",
-    //         "date": "2023-01-22",
-    //         "prio": 2,
-    //         "subtasks": [
+    [ // In Progress
+        {
+            "title": "Task E",
+            "desc": "Improve the code",
+            "cat": "Development",
+            "date": "2023-03-13",
+            "status": "inprogress",
+            "assignees": ['aalles@company.com', 'hmueller@company.com']
+        }
+    ],
+    [ // Awaiting Feedback
+        {
+            "title": "Task C",
+            "desc": "Do more stuff",
+            "cat": "Marketing",
+            "date": "2023-01-22",
+            "status": "feedback",
+            "prio": 2,
+            "subtasks": [
 
-    //         ],
-    //         "assignees": ['jmay@company.com']
-    //     },
-    //     {
-    //         "title": "Task D",
-    //         "desc": "Sell some stuff",
-    //         "cat": "Sales",
-    //         "date": "2023-03-14",
-    //         "assignees": ['rzufall@company.com', 'smaier@company.com']
-    //     }
-    // ],
-    // [ // Done
+            ],
+            "assignees": ['jmay@company.com']
+        },
+    ],
+    [ // Done
 
-    // ]
+    ]
 ];
 
 // 'color' refers to CSS classes

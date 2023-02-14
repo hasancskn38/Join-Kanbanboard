@@ -485,4 +485,24 @@ textarea::placeholder {
 .media {
     background-color: yellow;
 }
+
+.development {
+    background-color: brown;
+}
+
+.contact-initials {
+    display: flex;
+    
+}
+
+.contact-initials > p {
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    border-radius: 50% 50%;
+    background-color: orange;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+}
 /* Styling of the Content that is created or rendered with Javascript End*/
