@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/board.css">
 </head>
 
-<body onload="includeHTML(); renderTasks();">
+<body onload="includeHTML(); renderData();">
 
     <!-- Header Start -->
     <div class="navbar">
@@ -46,42 +46,45 @@
             <div id="overlay" class="overlay d-none"></div>
             <div id="popup" class="popup d-none hide">
                 <button class="cursor" onclick=" closeAddTaskPopUp()">X</button>
+
+                <form id="createtask-form" onsubmit="handleSubmit(event)">
+
                 <div class="popup-content">
 
-                    
                         <div class="popup-header">
                             <h2>Add Task</h2><button id="submit-button" type="submit" class="createtask-button">Create Task</button>
                         </div>
 
                         <div class="input-container">
-                            <input id="task-title" class="popup-input" type="text" placeholder="Enter a title">
+                                <input  id="task-title" class="popup-input" type="text" placeholder="Enter a title">
                         </div>
 
-                        <form>
-                            <select class="select-contact cursor">
+                        
+                            <select id="select-category" class="cursor">
                                 <option value="" disabled selected hidden>Select task category</option>
-                                <option value="option1">Sales</option>
-                                <option value="option2">Media</option>
-                                <option value="option3">Backoffice</option>
-                                <option value="option4">Development</option>
+                                <option value="Sales">Sales</option>
+                                <option value="Media">Media</option>
+                                <option value="Backoffice">Backoffice</option>
+                                <option value="Development">Development</option>
                             </select>
-                        </form>
+                        
+
                         <h2 class="date-header">Due date</h2>
                         <label for="appointment">
                             <div class="date">
-                                <input id="task-date" class="cursor" placeholder="dd/mm/yyyy" type="date" id="appointment"
+                                <input  id="task-date" class="cursor" placeholder="dd/mm/yyyy" type="date" id="appointment"
                                     name="appointment">
                             </div>
                         </label>
-                        <form>
-                            <select class="select-contact cursor">
+                        
+                            <select id="select-contact" class="select-contact cursor">
                                 <option value="" disabled selected hidden>Select contacts to assign</option>
                                 <option value="option1">Option 1</option>
                                 <option value="option2">Option 2</option>
                                 <option value="option3">Option 3</option>
                                 <option value="option4">Option 4</option>
                             </select>
-                        </form>
+                        
 
                         <div class="priority">
                             <div class="priority-levels cursor" id="urgent" onclick="changeUrgentColor()">Urgent<img
@@ -94,7 +97,7 @@
 
                         <div class="description">
                             <h2>Description</h2>
-                            <textarea id="task-description" placeholder="Enter a description"></textarea>
+                            <textarea  maxlength="50" id="task-description" placeholder="Enter a description"></textarea>
                         </div>
 
                         <div class="subtasks">
@@ -102,6 +105,10 @@
                             <div class="subtasks-input"><input id="task-subtask" placeholder="Add new subtask" type="text"><button
                                     class="cursor">+</button></div>
                             </div>
+
+                    </form>
+
+
                 </div>
             </div>
             <!-- Pop Up End -->
@@ -152,8 +159,9 @@
 
     </main>
     <script src="/js/data.js"></script>
-    <script src="/js/summary.js"></script>
     <script src="/js/board.js"></script>
+    <script src="/js/template.js"></script>
+    <script src="/js/summary.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/summary.js"></script>
     <script src="/js/add-task.js"></script>

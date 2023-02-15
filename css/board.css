@@ -11,8 +11,12 @@
     color: #fff;
 }
 
+.overflow-hidden {
+    overflow-y: hidden;
+}
+
 body {
-    overflow: hidden;
+    height: 100%;
 }
 
 .navbar div {
@@ -69,7 +73,13 @@ input:active{
 
 /* Main Column Start */
 .main-column {
-    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80vw;
+
 }
 /* Main Column End */
 
@@ -82,7 +92,7 @@ input:active{
 /* Board Header Start */
 .board-header {
     display: flex;
-    margin: 50px;
+    margin: 50px 0;
 }
 
 .board-header button {
@@ -122,15 +132,16 @@ input:active{
 
 /* Pop Up Start */
 .overlay {
-    z-index: 1;
     position: absolute;
     top: 0;
-    right: 0;
-    left: 0;
     bottom: 0;
     width: 100vw;
-    height: 100vh;
-    background-color: rgba(190, 190, 190, 0.3);
+    right: 0;
+    background-color: rgba(211, 211, 211, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
 }
 
 .popup {
@@ -382,18 +393,23 @@ textarea::placeholder {
 .stages-container {
     display: flex;
     flex-wrap: wrap;
-    margin: 50px;
 }
 
 .stage-general {
-    width: 25%;
+    width: 20%;
+    margin: 0 30px 0 0;
 }
 
 .stage-header {
     display: flex;
-    justify-content: space-around;
-    margin-right: 50px;
-    gap: 50px;
+    justify-content: space-between;
+    margin: 0 0 20px;
+    /* Stylings to Stick Stage-header */
+    /* position: sticky;
+    background: #fff;
+    z-index: 5;
+    padding: 20px;
+    top: 0; */
 }
 
 .stage-header button {
@@ -422,33 +438,46 @@ textarea::placeholder {
     display: none;
 }
 
-.stages-container {
+.main-column {
     display: flex;
     flex-direction: column;
+    position: static;
+    width: 100vw;
+}
+
+.board-header {
+    margin: 50px 50px 0;
+}
+
+.stages-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 50px;
 }
 
 .stage-general {
     width: 100%;
+    margin: 0 auto;
 }
 
 .stage-header {
     display: flex;
     justify-content: space-between;
-    /* margin-right: 50px; 
-    gap: 50px; */
+    margin: 20px;
 }
 }
 /* Responsive End */ 
 
 /* Styling of the Content that is created or rendered with Javascript Start */
-#stage-todo {
+.test {
     height: 200px;
-    box-shadow: 1px 1px rgb(0 0 0 / 10%), -1px 1px rgb(0 0 0 / 10%), 1px -1px rgb(0 0 0 / 10%), -1px -1px rgb(0 0 0 / 10%);
+    box-shadow: 0 0 7px 0 rgb(0 0 0 / 15%) !important;
     border-radius: 30px;
     margin: 20px 0;
     padding: 20px;
 }
-#stage-todo > h3 {
+
+.test > h3 {
     display: inline-block;
     font-weight: 100;
     color: #fff;
@@ -458,7 +487,7 @@ textarea::placeholder {
 }
 
 /* To give every single child element the exact same stylings */
-#stage-todo > * {
+#stage-todo > *, #stage-progress > *, #stage-done > *, #stage-feedback > * {
     margin: 0 0 10px 0;
 } 
 
@@ -483,7 +512,7 @@ textarea::placeholder {
 }
 
 .media {
-    background-color: yellow;
+    background-color: rgb(138, 138, 1);
 }
 
 .development {
@@ -506,3 +535,10 @@ textarea::placeholder {
     font-size: 14px;
 }
 /* Styling of the Content that is created or rendered with Javascript End*/
+.test {
+    height: 200px;
+    box-shadow: 1px 1px rgb(0 0 0 / 10%), -1px 1px rgb(0 0 0 / 10%), 1px -1px rgb(0 0 0 / 10%), -1px -1px rgb(0 0 0 / 10%);
+    border-radius: 30px;
+    margin: 20px 0;
+    padding: 20px;
+}

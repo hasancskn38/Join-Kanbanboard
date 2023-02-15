@@ -1,44 +1,89 @@
-// Render Content of data.js
-function renderTasks() {
-    let stageToDo = document.getElementById('stage-todo')
-    stageToDo.innerHTML = '';
-    
-        stageToDo.innerHTML += /*html*/`
-        <h3 id="category">${tasks[1][0]['cat']}</h3>
-        <h4 class="blue">${tasks[1][0]['title']}</h4>
-        <p class="grey">${tasks[1][0]['desc']}</p>
-        <div id="progress-bar" style="width: 50%; height: 10px; background-color: lightgrey;"> 
-        <div id="progress" style="background-color: blue; height: 100%; width: 0%;"></div>
-        </div>
-        <div class="contact-initials">
-        <p>${usersBoard[0]['short_name']}</p>
-        <p>${usersBoard[1]['short_name']}</p>
-        </div>
-        `
-        renderColors();    
+function createNewTask() {
+    let contact = document.getElementById('select-contact').value;
+    let date = document.getElementById('task-date').value;
+    let title = document.getElementById('task-title').value;
+    let category = document.getElementById('select-category').value;
+    let taskDescription = document.getElementById('task-description').value;
+    let newItem = { 
+    "title": title,
+    "cat": category,
+    "description": taskDescription,
+    "status": 'todo'
+    };
+    testData.push(newItem);
+    // Clear Input Fields
+    title = '';
+    category = '';
+    taskDescription = '';
+    renderData();
 }
 
-document.getElementById("submit-button").addEventListener("click", function() {
-        let title = document.getElementById('task-title').value;
-        let date = document.getElementById('task-date').value;
-        let urgent = document.getElementById('urgent').innerHTML
-        let medium = document.getElementById('medium').innerHTML
-        let low = document.getElementById('low').innerHTML
-        let taskDescription = document.getElementById('task-description').value;
-        let subtask = document.getElementById('task-subtask').value
-        console.log(title, date,taskDescription, subtask, urgent ,medium , low);
-        
-});
+function resetInputs() {
+    let title = document.getElementById('task-title').value;
+    let category = document.getElementById('select-category').value;
+    let taskDescription = document.getElementById('task-description').value;
+    title = '';
+    category = '';
+    taskDescription = '';
+}
 
-function renderColors() {
-    let category = document.getElementById('category');
+
+// Render Content of data.js
+function renderData() {
+    let stageToDo = document.getElementById('stage-todo')
+    stageToDo.innerHTML = '';
+    let stageProgress = document.getElementById('stage-progress')
+    stageProgress.innerHTML = '';
+    let stageFeedBack = document.getElementById('stage-feedback')
+    stageFeedBack.innerHTML = '';
+    let stageDone = document.getElementById('stage-done')
+    stageDone.innerHTML = '';
+
+    for (let i = 0; i < testData.length; i++) {
+        const test = testData[i];
+        if(test.status === 'todo') {
+            stageToDo.innerHTML += toDoTemplate(i, test)
+        }
+        else if(test.status === 'inprogress') {
+            stageProgress.innerHTML += progressTemplate(i, test)
+        }
+        else if(test.status === 'feedback') {
+            stageFeedBack.innerHTML += feedBackTemplate(i ,test)
+        } else {
+            stageDone.innerHTML += doneTemplate(i, test)
+    }
+    renderColors(i);
+    }
+}
+
+
+function handleSubmit(event) {
+    let title = document.getElementById('task-title').value;
+    let category = document.getElementById('select-category').value;
+    let contact = document.getElementById('select-contact').value;
+    let date = document.getElementById('task-date').value;
+    let taskDescription = document.getElementById('task-description').value;
+        event.preventDefault()
+        if(!title || !date || !taskDescription || !category || !contact) {
+            alert('Please fill in all required fields');
+        return;
+        } else {
+            createNewTask();
+            closeAddTaskPopUp();
+            resetInputs();
+            renderData();
+        }
+}
+
+function renderColors(i) {
+    let category = document.getElementById(`category-${i}`);
     if(category.innerHTML == 'Design') {
         category.classList.add('design')
     }
     if(category.innerHTML == 'Media') {
         category.classList.add('media')
     }
-    if(category.innerHTML == 'Backooffice') {
+    if(category.innerHTML == 'Backoffice') {
         category.classList.add('backoffice')
     }
     if(category.innerHTML == 'Sales') {
@@ -50,9 +95,23 @@ function renderColors() {
     
 }
 
-function createTask() {
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Implement Templates
 async function includeHTML() {
@@ -75,6 +134,7 @@ function openAddTaskPopUp() {
     document.getElementById('popup').classList.remove('hide');
     document.getElementById('popup').classList.add('show');
     document.getElementById('popup').classList.remove('d-none');
+    document.querySelector('body').classList.add('overflow-hidden')
 
 }
 
@@ -82,7 +142,19 @@ function closeAddTaskPopUp() {
     document.getElementById('overlay').classList.add('d-none');
     document.getElementById('popup').classList.add('hide');
     document.getElementById('popup').classList.remove('show');
+    document.querySelector('body').classList.remove('overflow-hidden')
 }
+
+
+function openExistingTaskPopUp() {
+    
+}
+
+
+function closeExistingTaskPopUp() {
+
+}
+
 
 let priorityImg = document.getElementById('img')
 let urgent = document.getElementById('urgent')
@@ -126,7 +198,6 @@ function changeLowColor() {
         medium.classList.remove('medium')
         priorityImg.classList.add('white');
     }
-    
 }
 
 // Show Help me Container
@@ -140,19 +211,3 @@ function hideHelpMeSection() {
     document.getElementById('help-me-container').classList.add('d-none');
     document.querySelector('main').classList.remove('d-none');
 }
-
-
-// var progressBar = document.getElementById("progress-bar");
-// var progress = document.getElementById("progress");
-// var width = 1;
-
-// function updateProgress() {
-//   if (width >= 100) {
-//     clearInterval(id);
-//   } else {
-//     width++;
-//     progress.style.width = width + "%";
-//   }
-// }
-
-// var id = setInterval(updateProgress, 10);
