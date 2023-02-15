@@ -13,7 +13,7 @@ body {
 .login_head img {
     width: 80px;
     object-fit: contain;
-    animation: go_small 2.5s;
+    animation: go_small 1.5s;
     z-index: 1;
     object-fit: contain;
 }
@@ -64,7 +64,7 @@ body {
     width: 350px;
     height: 280px;
     border-radius: 10px;
-    animation: fade_in 3.5s;
+    animation: fade_in 1.5s;
     background-color: rgb(247, 247, 247);
 }
 

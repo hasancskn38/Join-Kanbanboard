@@ -1,13 +1,17 @@
-let users = [
-    {'name': 'guest', 'email': 'guest@gmail.com', 'password': 'guest123'},
-    {'name': 'Marcel', 'email': 'marcel@gmail.com', 'password': 'marcel123'}
-];
+let users = [];
 
-function registerUser() {
+async function init() {
+    setURL('https://marcel-herzog.developerakademie.net/smallest_backend_ever');
+    await downloadFromServer();
+    users = JSON.parse(backend.getItem('users')) || [];
+}
+
+async function registerUser() {
     let name = document.getElementById('register_name');
     let email = document.getElementById('register_email');
     let password = document.getElementById('register_password');
-    users.push({name: name.value, email: email.value, password: password.value})
+    users.push({name: name.value, email: email.value, password: password.value});
+    await backend.setItem('users', JSON.stringify(users));
     window.location.href = 'login.html?msg=Du hast dich erfolgreich registriert';
 }
 
