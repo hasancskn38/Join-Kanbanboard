@@ -15,17 +15,16 @@
 }
 
 .layout-contact2 {
-    width: 430px;
+    width: 493px;
     height: 746px;
     box-shadow: 4px 0px 6px rgb(0 0 0 / 8%);
     margin-left: 30px;
+    overflow-y: auto;
 }
 
 .layout-contact3 {
     margin: 50px;
     width: 100%;
-    transform: translateX(100vw);
-    transition: all 225ms ease-in-out;
 }
 
 .new-contact {
@@ -108,7 +107,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: all 250ms ease-in-out;
 }
 
 .add-contact-layout-2 {
@@ -125,13 +123,31 @@
     height: 100vh;
     width: 552px;
     left: 0px;
-    transform: translateX(-580px);
-    transition: all 225ms ease-in-out;
+    animation: newContact 225ms;
 }
 
-.slide-in {
-    transition: transform 500ms ease-in-out;
-    transform: translateX(0px);
+@keyframes newContact {
+    from {
+        transform: translateX(-580px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.add-contact-layout-2-2 {
+    animation: newContact2 225ms;
+}
+
+@keyframes newContact2 {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-580px);
+    }
 }
 
 .add-contact-top {
@@ -275,7 +291,7 @@
 }
 
 .d-nones {
-    display: none;
+    display: none !important;
 }
 
 .contact-detail-header {
@@ -351,7 +367,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
     color: #005dff;
     cursor: pointer;
     padding-inline: 5px;
@@ -393,9 +408,9 @@
     border-radius: 10px;
     color: white;
     width: 216px;
+    gap: 15px;
     display: flex;
     justify-content: center;
-    gap: 15px;
     align-items: center;
     height: 55px;
     cursor: pointer;
@@ -404,8 +419,57 @@
     transition: all 125ms ease-in-out;
 }
 
-.new-contact-detail:hover{
+.new-contact-detail:hover {
     transition: all 125ms ease-in-out;
     background: #4e85e5;
     box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.283);
+}
+
+.detail-main {
+    animation: contatDetail 225ms;
+}
+
+@keyframes contatDetail {
+    from {
+        transform: translateX(580px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #a8a8a8;
+    border-radius: 4px;
+}
+
+.edit-contact-layout {
+    background-color: rgba(255, 255, 255, 0.6);
+    position: fixed;
+    z-index: 11;
+    left: 0px;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.big-letter-user {
+    font-weight: 400;
+    font-size: 38px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
 }

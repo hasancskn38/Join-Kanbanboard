@@ -70,6 +70,7 @@ function AddNewContact() {
     contacts.push({ name: name.value, email: email.value, phone: phone.value });
     showContacts();
     clearInputFields();
+    document.getElementById('addcontactlayout').classList.add('d-nones');
 }
 
 
@@ -77,12 +78,13 @@ function openDetailContact(bothFirstLetter, color, contactName, contactEmail, co
     let contactDetail = document.getElementById('layout-contact3');
     contactDetail.innerHTML = '';
     contactDetail.innerHTML = `
+    <div class="detail-main">
         <div class="contact-detail-header">
             <div style="background-color: ${color}" class="big-letters">${bothFirstLetter}</div>
             <div>
                 <div class="contact-detail-header-right">
                  <div class="contact-detail-name">${contactName}</div>
-                 <div onlick="addTask()" class="add-task-link">
+                 <div onclick="openAddTaskPopUp()" class="add-task-link">
                   <img class="plus-img" src="/assets/img/plus.small.png">Add Task</div>
                 </div>
             </div>
@@ -90,7 +92,7 @@ function openDetailContact(bothFirstLetter, color, contactName, contactEmail, co
         <div class="contact-detail-body">
             <div class="contact-detail-body-top">
                 <div class="detail-information">Contact Information</div>
-                <div class="contact-detail-edit" onlick="openEdit()">
+                <div class="contact-detail-edit" onclick="openEdit('${contactName}', '${contactEmail}', '${contactPhone}', '${color}', '${bothFirstLetter}')">
                     <img class="pencil-img" src="/assets/img/pencil.small.png">
                     Edit Contact
                 </div>
@@ -102,6 +104,7 @@ function openDetailContact(bothFirstLetter, color, contactName, contactEmail, co
         </div>
         <button onclick="openAddContact()" class="new-contact-detail">New Contact<img
                         src="/assets/img/new.contact.png"></button>
+    </div>
     `;
 }
 
@@ -179,13 +182,14 @@ function randomColor() {
 
 function closeAddContact() {
     document.getElementById('addcontactlayout').classList.add('d-nones');
-    document.getElementById('add-contact-layout-2').classList.remove('slide-in');
+    document.getElementById('editContactLayout').classList.add('d-nones');
 }
 
 
+
 function openAddContact() {
+    renderAddNewContactTemp();
     document.getElementById('addcontactlayout').classList.remove('d-nones');
-    document.getElementById('add-contact-layout-2').classList.add('slide-in');
 }
 
 
@@ -196,4 +200,114 @@ function doNotClose(event) {
 
 function closeAddContact2() {
     document.getElementById('addcontactlayout').classList.add('d-nones');
+    document.getElementById('editContactLayout').classList.add('d-nones');
+}
+
+
+function renderAddNewContactTemp() {
+    let newContact = document.getElementById('addcontactlayout');
+    newContact.innerHTML = '';
+    newContact.innerHTML = `
+    <div onclick="doNotClose(event)" id="add-contact-layout-2" class="add-contact-layout-2">
+    <div class="add-contact-top">
+        <img class="close-Img" src="/assets/img/close_icon.png" onclick="closeAddContact()">
+        <img class="join-logo-contact" src="/assets/img/logo-white.png">
+        <h2 class="add-contact-title">Add contact</h2>
+        <h4 class="add-contact-info">Tasks are better with a team</h4>
+    </div>
+    <div class="add-contact-middle">
+        <div class="user-img">
+            <img class="user" src="/assets/img/Vector.png">
+        </div>
+        <div class="form">
+            <form class="add-contact-form" onsubmit="AddNewContact(); return false;">
+                <div class="add-contact-input-field">
+                    <input id="new-contact-name" class="conact-name-form contacts-input" type="text"
+                        placeholder="Name" required>
+                    <img src="/assets/img/Input_Name.png">
+                </div>
+                <div class="add-contact-input-field">
+                    <input id="new-contact-email" class="conact-name-form contacts-input" type="email"
+                        placeholder="Email" required>
+                    <img src="/assets/img/Input_Email.png">
+                </div>
+                <div class="add-contact-input-field">
+                    <input id="new-contact-phone" class="conact-name-form contacts-input" type="number"
+                        placeholder="Phone" required>
+                    <img src="/assets/img/Input_Phone.png">
+                </div>
+                <button class="creat-contact">Create Contact<img src="/assets/img/new.contact.png"></button>
+            </form>
+        </div>
+    </div>
+</div>
+    `;
+}
+
+
+function openEdit(contactName, contactEmail, contactPhone, color, bothFirstLetter) {
+    document.getElementById('editContactLayout').classList.remove('d-nones');
+    let editContact = document.getElementById('editContactLayout');
+    editContact.innerHTML = '';
+    editContact.innerHTML = `
+    <div onclick="doNotClose(event)" id="add-contact-layout-2" class="add-contact-layout-2">
+    <div class="add-contact-top">
+        <img class="close-Img" src="/assets/img/close_icon.png" onclick="closeAddContact()">
+        <img class="join-logo-contact" src="/assets/img/logo-white.png">
+        <h2 class="add-contact-title">Edit contact</h2>
+    </div>
+    <div class="add-contact-middle">
+        <div style="background-color: ${color}" class="big-letter-user">${bothFirstLetter}
+        </div>
+        <div class="form">
+            <form class="add-contact-form" onsubmit="editContactSave('${contactName}', '${contactEmail}', '${contactPhone}', '${color}', '${bothFirstLetter}'); return false;">
+                <div class="add-contact-input-field">
+                    <input id="new-contact-name" class="conact-name-form contacts-input" type="text"
+                        placeholder="Name" required value="${contactName}">
+                    <img src="/assets/img/Input_Name.png">
+                </div>
+                <div class="add-contact-input-field">
+                    <input id="new-contact-email" class="conact-name-form contacts-input" type="email"
+                        placeholder="Email" required value="${contactEmail}">
+                    <img src="/assets/img/Input_Email.png">
+                </div>
+                <div class="add-contact-input-field">
+                    <input id="new-contact-phone" class="conact-name-form contacts-input" type="number"
+                        placeholder="Phone" required value="${contactPhone}">
+                    <img src="/assets/img/Input_Phone.png">
+                </div>
+                <button class="creat-contact">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+    `;
+}
+
+
+function editContactSave(contactName, contactEmail, contactPhone, color, bothFirstLetter) {
+    let newName = document.getElementById('new-contact-name').value;
+    let newMail = document.getElementById('new-contact-email').value;
+    let newPhone = document.getElementById('new-contact-phone').value;
+    let index = findCurrentContact(contactName, contactEmail, contactPhone);
+    contacts[index]['name'] = newName;
+    contacts[index]['email'] = newMail;
+    contacts[index]['phone'] = newPhone;
+    showContacts();
+    openDetailContact(bothFirstLetter, color, newName, newMail, newPhone);
+    document.getElementById('editContactLayout').classList.add('d-nones');
+
+}
+
+
+function findCurrentContact(contactName, contactEmail, contactPhone) {
+    let index = -1;
+    for (let i = 0; i < contacts.length; i++) {
+        if (contacts[i].name === contactName && contacts[i].email === contactEmail && contacts[i].phone === contactPhone) {
+            index = i;
+            break;
+        }
+    }
+    return index;
+
 }
