@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board</title>
-    <link rel="stylesheet" href="/css/board.css">
+    <link rel="stylesheet" href="../css/board.css">
 </head>
 
 <body onload="includeHTML(); renderData();">
@@ -52,7 +52,7 @@
                 <div class="popup-content">
 
                         <div class="popup-header">
-                            <h2>Add Task</h2><button id="submit-button" type="submit" class="createtask-button">Create Task</button>
+                            <h2>Add Task</h2><button id="submit-button" type="submit" class="createtask-button cursor">Create Task</button>
                         </div>
 
                         <div class="input-container">
@@ -113,6 +113,21 @@
             </div>
             <!-- Pop Up End -->
 
+            <!-- Exisiting Task Pop Up Start-->
+            <div id="existing-tasks-popup" class="d-none">
+                <div id="stage-container-${i}" class="test cursor">
+                    <h3 id="category-${i}">${test.cat}</h3>
+                    <h4 class="blue">${test.description}</h4>
+                    <p class="grey">${test.title}</p>
+                    <div id="progress-bar" style="width: 50%; height: 10px; background-color: lightgrey;"> 
+                    <div id="progress" style="background-color: blue; height: 100%; width: 0%;"></div>
+                    </div>
+                    <div class="contact-initials">
+                    </div>
+                    </div>
+            </div>
+            <!-- Exisiting Task Pop Up End-->
+
             <!-- Drag and Drop Start -->
             <div class="stages-container">
 
@@ -121,7 +136,7 @@
                         <h2>To do</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
 
                     </div>
-                    <div id="stage-todo">
+                    <div onclick="openExistingTaskPopUp(i)" id="stage-todo">
 
                     </div>
                 </div>

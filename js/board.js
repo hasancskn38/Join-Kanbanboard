@@ -96,23 +96,6 @@ function renderColors(i) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Implement Templates
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
@@ -128,6 +111,7 @@ async function includeHTML() {
     }
 }
 
+
 // openAddTaskPopUp Function
 function openAddTaskPopUp() {
     document.getElementById('overlay').classList.remove('d-none');
@@ -138,6 +122,7 @@ function openAddTaskPopUp() {
 
 }
 
+
 function closeAddTaskPopUp() {
     document.getElementById('overlay').classList.add('d-none');
     document.getElementById('popup').classList.add('hide');
@@ -146,8 +131,11 @@ function closeAddTaskPopUp() {
 }
 
 
-function openExistingTaskPopUp() {
-    
+function openExistingTaskPopUp(i) {
+    const test = testData[i];
+    let existingTasksPopUp = document.getElementById('existing-tasks-popup');
+    existingTasksPopUp.remove.classList('d-none');
+    existingTasksPopUp.innerHTML = ``;
 }
 
 

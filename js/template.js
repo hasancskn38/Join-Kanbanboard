@@ -1,6 +1,6 @@
 function toDoTemplate(i, test) {
     return `
-    <div id="stage-container-${i}" class="test">
+    <div id="stage-container-${i}" class="test cursor">
     <h3 id="category-${i}">${test.cat}</h3>
     <h4 class="blue">${test.description}</h4>
     <p class="grey">${test.title}</p>
@@ -14,7 +14,7 @@ function toDoTemplate(i, test) {
 }
 
 function progressTemplate(i, test) {
-    return `<div id="stage-container-${i}" class="test">
+    return `<div id="stage-container-${i}" class="test cursor">
     <h3 id="category-${i}">${test.cat}</h3>
     <h4 class="blue">${test.description}</h4>
     <p class="grey">${test.title}</p>
@@ -26,7 +26,7 @@ function progressTemplate(i, test) {
 }
 
 function feedBackTemplate(i, test) {
-    return `<div id="stage-container-${i}" class="test">
+    return `<div id="stage-container-${i}" class="test cursor">
     <h3 id="category-${i}">${test.cat}</h3>
     <h4 class="blue">${test.description}</h4>
     <p class="grey">${test.title}</p>
@@ -38,7 +38,7 @@ function feedBackTemplate(i, test) {
 }
 
 function doneTemplate(i, test) {
-    return`<div id="stage-container-${i}" class="test">
+    return`<div id="stage-container-${i}" class="test cursor">
     <h3 id="category-${i}">${test.cat}</h3>
     <h4 class="blue">${test.title}</h4>
     <p class="grey">${test.description}</p>

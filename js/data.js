@@ -91,31 +91,6 @@ let testData = [
     description: 'This is a Task Description',
     status: 'done'
     },
-    {
-    title: 'Call with Steven',
-    cat: 'Sales',
-    description: 'This is a Task Description',
-    status: 'done'
-    },
-    {
-    title: 'Call with Steven',
-    cat: 'Sales',
-    description: 'This is a Task Description',
-    status: 'done'
-    },
-    {
-    title: 'Call with Steven',
-    cat: 'Sales',
-    description: 'This is a Task Description',
-    status: 'done'
-    },
-    {
-    title: 'Call with Steven',
-    cat: 'Sales',
-    description: 'This is a Task Description',
-    status: 'done'
-    },
-
 ]
 
 // 'color' refers to CSS classes
