@@ -52,7 +52,6 @@
 }
 
 .border-for-contacts {
-    margin-top: 34px;
     border: 1px solid #D1D1D1;
 }
 
@@ -75,6 +74,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.first-great-letter {
+    margin-top: 34px;
 }
 
 .over-div-letter-name-email {

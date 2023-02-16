@@ -31,6 +31,7 @@ let contacts = [
     }
 ];
 let letters = [];
+load();
 
 
 /**
@@ -47,15 +48,20 @@ function showContacts() {
         let contactEmail = contacts[i]['email'];
         let contactPhone = contacts[i]['phone']
         let bothFirstLetter = splitName(contactName);
+        let greatLetter = renderBigLetter(contactName)
         contactContainer.innerHTML += `
-        <div class="over" onclick="openDetailContact('${bothFirstLetter}', '${color}', '${contactName}', '${contactEmail}', '${contactPhone}')">
-        <div class="over-div-letter-name-email">
-         <div style="background-color: ${color}" class="letter-circle">${bothFirstLetter}</div>
+        <div class="main-show-contact">
+        <div class="first-great-letter" id="first-great-letter">${greatLetter}</div>
+        <div class="border-for-contacts"></div>
+         <div class="over" onclick="openDetailContact('${bothFirstLetter}', '${color}', '${contactName}', '${contactEmail}', '${contactPhone}')">
+          <div class="over-div-letter-name-email">
+          <div style="background-color: ${color}" class="letter-circle">${bothFirstLetter}</div>
           <div>
             <div class="single-name">${contactName}</div>
             <span class="contact-email">${contactEmail}</span>
            </div>
-        </div>
+           </div>
+           </div>
         </div>
         `;
     }
@@ -70,6 +76,7 @@ function AddNewContact() {
     contacts.push({ name: name.value, email: email.value, phone: phone.value });
     showContacts();
     clearInputFields();
+    editSave();
     document.getElementById('addcontactlayout').classList.add('d-nones');
 }
 
@@ -118,7 +125,7 @@ function clearInputFields() {
 
 function creatSingleLetters() {
     filterFirstLetter();
-    renderBigLetter();
+    /*renderBigLetter();*/
 
 }
 
@@ -143,17 +150,12 @@ function filterFirstLetter() {
 }
 
 
-function renderBigLetter() {
-    let bigLetter = document.getElementById('first-big-letter');
-    bigLetter.innerHTML = '';
-    for (let i = 0; i < letters.length; i++) {
-        let letter = letters[i];
-        let letterBig = letter.charAt(0).toUpperCase();
-        bigLetter.innerHTML += `
-        <span>${letterBig}</span>
-        <div class="border-for-contacts"></div>
-        `;
-    }
+function renderBigLetter(contactName) {
+        let letter = contactName
+        let greatLetter = letter.charAt(0).toUpperCase();
+        return greatLetter
+        
+
 }
 
 
@@ -260,7 +262,7 @@ function openEdit(contactName, contactEmail, contactPhone, color, bothFirstLette
         <div style="background-color: ${color}" class="big-letter-user">${bothFirstLetter}
         </div>
         <div class="form">
-            <form class="add-contact-form" onsubmit="editContactSave('${contactName}', '${contactEmail}', '${contactPhone}', '${color}', '${bothFirstLetter}'); return false;">
+            <form class="add-contact-form" onsubmit="editContactSave('${contactName}', '${contactEmail}', '${contactPhone}'); return false;">
                 <div class="add-contact-input-field">
                     <input id="new-contact-name" class="conact-name-form contacts-input" type="text"
                         placeholder="Name" required value="${contactName}">
@@ -285,7 +287,7 @@ function openEdit(contactName, contactEmail, contactPhone, color, bothFirstLette
 }
 
 
-function editContactSave(contactName, contactEmail, contactPhone, color, bothFirstLetter) {
+function editContactSave(contactName, contactEmail, contactPhone) {
     let newName = document.getElementById('new-contact-name').value;
     let newMail = document.getElementById('new-contact-email').value;
     let newPhone = document.getElementById('new-contact-phone').value;
@@ -294,8 +296,9 @@ function editContactSave(contactName, contactEmail, contactPhone, color, bothFir
     contacts[index]['email'] = newMail;
     contacts[index]['phone'] = newPhone;
     showContacts();
-    openDetailContact(bothFirstLetter, color, newName, newMail, newPhone);
+    document.getElementById('layout-contact3').innerHTML = '';
     document.getElementById('editContactLayout').classList.add('d-nones');
+    editSave();
 
 }
 
@@ -311,3 +314,40 @@ function findCurrentContact(contactName, contactEmail, contactPhone) {
     return index;
 
 }
+
+
+function editSave() {
+    let asContacts = JSON.stringify(contacts);
+    localStorage.setItem('contacts', asContacts);
+
+    let asletters = JSON.stringify(letters);
+    localStorage.setItem('letters', asletters);
+}
+
+
+function load() {
+    let asContacts = localStorage.getItem('contacts');
+    let asletters = localStorage.getItem('letters');
+
+    if (asContacts && asletters) {
+        contacts = JSON.parse(asContacts);
+        letters = JSON.parse(asletters);
+    }
+}
+
+
+
+
+
+/*function renderBigLetter() {
+    let bigLetter = document.getElementById('first-big-letter');
+    bigLetter.innerHTML = '';
+    for (let i = 0; i < letters.length; i++) {
+        let letter = letters[i];
+        let letterBig = letter.charAt(0).toUpperCase();
+        bigLetter.innerHTML += `
+        <span>${letterBig}</span>
+        <div class="border-for-contacts"></div>
+        `;
+    }
+}*/
