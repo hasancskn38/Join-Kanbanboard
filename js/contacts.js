@@ -3,31 +3,36 @@ let contacts = [
         'email': 'chris.fuchs@web.de',
         'passwort': 'test432',
         'name': 'Chris Fuchs',
-        'phone': '34445'
+        'phone': '34445',
+        'randomColors': 'rgb(126 ,56 , 230)'
     },
     {
         'email': 'alex.luchs@web.de',
         'passwort': 'test432',
         'name': 'Alex Luchs',
-        'phone': '34445'
+        'phone': '34445',
+        'randomColors': 'rgb(220 ,200 , 9)'
     },
     {
         'email': 'peter.vogel@web.de',
         'passwort': 'test432',
         'name': 'Peter Vogel',
-        'phone': '34445'
+        'phone': '34445',
+        'randomColors': 'rgb(210 ,0 , 77)'
     },
     {
         'email': 'karin.berg@web.de',
         'passwort': 'test432',
         'name': 'Karin Berg',
-        'phone': '34445'
+        'phone': '34445',
+        'randomColors': 'rgb(70 ,88 , 220)'
     },
     {
         'email': 'marina.bohle@web.de',
         'passwort': 'test432',
         'name': 'Marina Bohle',
-        'phone': '34445'
+        'phone': '34445',
+        'randomColors': 'rgb(42 ,156 , 210)'
     }
 ];
 let letters = [];
@@ -43,19 +48,20 @@ function showContacts() {
     let contactContainer = document.getElementById('contactList');
     contactContainer.innerHTML = '';
     for (let i = 0; i < contacts.length; i++) {
-        let color = randomColor();
+        
         let contactName = contacts[i]['name'];
         let contactEmail = contacts[i]['email'];
-        let contactPhone = contacts[i]['phone']
+        let contactPhone = contacts[i]['phone'];
+        let contactColor = contacts[i]['randomColors'];
         let bothFirstLetter = splitName(contactName);
         let greatLetter = renderBigLetter(contactName)
         contactContainer.innerHTML += `
         <div class="main-show-contact">
         <div class="first-great-letter" id="first-great-letter">${greatLetter}</div>
         <div class="border-for-contacts"></div>
-         <div class="over" onclick="openDetailContact('${bothFirstLetter}', '${color}', '${contactName}', '${contactEmail}', '${contactPhone}')">
+         <div class="over" onclick="openDetailContact('${bothFirstLetter}', '${contactColor}', '${contactName}', '${contactEmail}', '${contactPhone}')">
           <div class="over-div-letter-name-email">
-          <div style="background-color: ${color}" class="letter-circle">${bothFirstLetter}</div>
+          <div style="background-color: ${contactColor}" class="letter-circle">${bothFirstLetter}</div>
           <div>
             <div class="single-name">${contactName}</div>
             <span class="contact-email">${contactEmail}</span>
@@ -73,7 +79,8 @@ function AddNewContact() {
     let name = document.getElementById('new-contact-name');
     let email = document.getElementById('new-contact-email');
     let phone = document.getElementById('new-contact-phone');
-    contacts.push({ name: name.value, email: email.value, phone: phone.value });
+    let color = randomColor();
+    contacts.push({ name: name.value, email: email.value, phone: phone.value, randomColors: color });
     showContacts();
     clearInputFields();
     editSave();
@@ -81,13 +88,13 @@ function AddNewContact() {
 }
 
 
-function openDetailContact(bothFirstLetter, color, contactName, contactEmail, contactPhone) {
+function openDetailContact(bothFirstLetter, contactColor, contactName, contactEmail, contactPhone) {
     let contactDetail = document.getElementById('layout-contact3');
     contactDetail.innerHTML = '';
     contactDetail.innerHTML = `
     <div class="detail-main">
         <div class="contact-detail-header">
-            <div style="background-color: ${color}" class="big-letters">${bothFirstLetter}</div>
+            <div style="background-color: ${contactColor}" class="big-letters">${bothFirstLetter}</div>
             <div>
                 <div class="contact-detail-header-right">
                  <div class="contact-detail-name">${contactName}</div>
@@ -99,7 +106,7 @@ function openDetailContact(bothFirstLetter, color, contactName, contactEmail, co
         <div class="contact-detail-body">
             <div class="contact-detail-body-top">
                 <div class="detail-information">Contact Information</div>
-                <div class="contact-detail-edit" onclick="openEdit('${contactName}', '${contactEmail}', '${contactPhone}', '${color}', '${bothFirstLetter}')">
+                <div class="contact-detail-edit" onclick="openEdit('${contactName}', '${contactEmail}', '${contactPhone}', '${contactColor}', '${bothFirstLetter}')">
                     <img class="pencil-img" src="/assets/img/pencil.small.png">
                     Edit Contact
                 </div>
@@ -177,7 +184,7 @@ function randomColor() {
     let r = Math.floor(Math.random() * 246);
     let g = Math.floor(Math.random() * 246);
     let b = Math.floor(Math.random() * 246);
-
+    
     return `rgb(${r} ,${g} , ${b})`;
 }
 
@@ -247,7 +254,7 @@ function renderAddNewContactTemp() {
 }
 
 
-function openEdit(contactName, contactEmail, contactPhone, color, bothFirstLetter) {
+function openEdit(contactName, contactEmail, contactPhone, contactColor, bothFirstLetter) {
     document.getElementById('editContactLayout').classList.remove('d-nones');
     let editContact = document.getElementById('editContactLayout');
     editContact.innerHTML = '';
@@ -259,7 +266,7 @@ function openEdit(contactName, contactEmail, contactPhone, color, bothFirstLette
         <h2 class="add-contact-title">Edit contact</h2>
     </div>
     <div class="add-contact-middle">
-        <div style="background-color: ${color}" class="big-letter-user">${bothFirstLetter}
+        <div style="background-color: ${contactColor}" class="big-letter-user">${bothFirstLetter}
         </div>
         <div class="form">
             <form class="add-contact-form" onsubmit="editContactSave('${contactName}', '${contactEmail}', '${contactPhone}'); return false;">
