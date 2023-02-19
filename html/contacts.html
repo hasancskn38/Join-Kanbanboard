@@ -8,8 +8,14 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/contacs.css">
     <link rel="stylesheet" href="/css/summary.css">
+    <link rel="stylesheet" href="/css/board.css">
     <script src="/js/summary.js"></script>
     <script src="/js/contacts.js"></script>
+    <script src="/js/board.js"></script>
+    <script src="/js/data.js"></script>
+    <script src="/js/login_registry.js"></script>
+    <script src="/js/add-task.js"></script>
+    <script src="/js/script.js"></script>
     <title>Contacts</title>
 </head>
 
@@ -26,47 +32,73 @@
             <div id="first-big-letter"></div>
             <div id="contactList" class="layout-contact2">
             </div>
-            <div id="layout-contact3" class="layout-contact3 slide-in">
+            <div id="layout-contact3" class="layout-contact3">
                 <button onclick="openAddContact()" class="new-contact">New Contact<img
                         src="/assets/img/new.contact.png"></button>
             </div>
         </div>
     </main>
     <div onclick="closeAddContact2()" id="addcontactlayout" class="add-contact-layout d-nones">
-        <div onclick="doNotClose(event)" id="add-contact-layout-2" class="add-contact-layout-2 slide-in">
-            <div class="add-contact-top">
-                <img class="close-Img" src="/assets/img/close_icon.png" onclick="closeAddContact()">
-                <img class="join-logo-contact" src="/assets/img/logo-white.png">
-                <h2 class="add-contact-title">Add contact</h2>
-                <h4 class="add-contact-info">Tasks are better with a team</h4>
-            </div>
-            <div class="add-contact-middle">
-                <div class="user-img">
-                    <img class="user" src="/assets/img/Vector.png">
-                </div>
-                <div class="form">
-                    <form class="add-contact-form" onsubmit="AddNewContact(); return false;">
-                        <div class="add-contact-input-field">
-                            <input id="new-contact-name" class="conact-name-form contacts-input" type="text"
-                                placeholder="Name" required>
-                            <img src="/assets/img/Input_Name.png">
-                        </div>
-                        <div class="add-contact-input-field">
-                            <input id="new-contact-email" class="conact-name-form contacts-input" type="email"
-                                placeholder="Email" required>
-                            <img src="/assets/img/Input_Email.png">
-                        </div>
-                        <div class="add-contact-input-field">
-                            <input id="new-contact-phone" class="conact-name-form contacts-input" type="number"
-                                placeholder="Phone" required>
-                            <img src="/assets/img/Input_Phone.png">
-                        </div>
-                        <button class="creat-contact">Create Contact<img src="/assets/img/new.contact.png"></button>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
+    <div onclick="closeAddContact2()" id="editContactLayout" class="edit-contact-layout d-nones">
+    </div>
+
+    <div id="overlay" class="overlay d-none"></div>
+            <div id="popup" class="popup d-none hide">
+                <button class="cursor" onclick=" closeAddTaskPopUp()">X</button>
+                <div class="popup-content">
+
+                    <div class="popup-header">
+                        <h2>Add Task</h2><button class="createtask-button">Create Task</button>
+                    </div>
+
+                    <div class="input-container">
+                        <input class="popup-input" type="text" placeholder="Enter a title">
+                    </div>
+
+                    <form>
+                        <select class="select-contact cursor">
+                            <option value="" disabled selected hidden>Select contacts to assign </option>
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                            <option value="option3">Option 3</option>
+                            <option value="option4">Option 4</option>
+                        </select>
+                    </form>
+                    <h2 class="date-header">Due date</h2>
+                    <label for="appointment">
+                        <div class="date">
+                            <input class="cursor" placeholder="dd/mm/yyyy" type="date" id="appointment" name="appointment">
+                        </div>
+                    </label>
+                    <form>
+                        <select class="select-contact cursor">
+                            <option value="" disabled selected hidden>Select task category</option>
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                            <option value="option3">Option 3</option>
+                            <option value="option4">Option 4</option>
+                        </select>
+                    </form>
+
+                    <div class="priority">
+                        <div class="priority-levels cursor" id="urgent" onclick="changeUrgentColor()">Urgent<img id="img" src="../assets/icons/urgent.png" alt=""></div>
+                        <div class="priority-levels cursor" id="medium" onclick="changeMediumColor()">Medium <img id="img" src="../assets/icons/medium.png" alt=""></div>
+                        <div class="priority-levels cursor" id="low" onclick="changeLowColor()">Low <img id="img" src="../assets/icons/low.png" alt=""></div>
+                    </div>
+
+                    <div class="description">
+                        <h2>Description</h2>
+                        <textarea placeholder="Enter a description"></textarea>
+                    </div>
+
+                    <div class="subtasks">
+                        <h2>Subtask</h2>
+                        <div class="subtasks-input"><input placeholder="Add new subtask" type="text"><button class="cursor">+</button></div>
+                    </div>
+
+                </div>
+            </div>
 
 </body>
 
