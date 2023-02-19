@@ -116,7 +116,6 @@ function clearInputFields() {
 function creatSingleLetters() {
     filterFirstLetter();
     renderBigLetter();
-
 }
 
 
