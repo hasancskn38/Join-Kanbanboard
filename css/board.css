@@ -41,7 +41,7 @@ button, button:focus{
   
 button:active{
     outline: none;
-    border: 1px solid grey;
+    /* border: none; */
 }
 
 select, select:focus{
@@ -84,6 +84,15 @@ input:active{
 
 }
 /* Main Column End */
+
+.kanbanboard-description {
+    margin: 50px 0 0 0;
+}
+
+.kanbanboard-description h1 {
+    font-size: 38px;
+    color: #14466B;
+}
 
 
 /* Main Start */
@@ -213,6 +222,7 @@ input:active{
 .createtask-button {
     color: #fff;
     background-color: #4589FF;
+    padding: 10px;
     border-radius: 10px;
     font-size: 20px;
     font-weight:lighter;
@@ -244,11 +254,17 @@ form {
 
 select {
     width: 90%;
-    font-size: 18px;
+    font-size: 24px;
     border-bottom: 1px solid lightgray;
     margin: 20px;
     padding:5px;
     color: #4589FF;
+}
+
+.option-circle {
+    height: 30px;
+    width: 30px;
+    color: red;
 }
 
 select option {
@@ -273,7 +289,7 @@ select option {
 }
 
 .date > input {
-    font-size: 18px;
+    font-size: 24px;
     width: 100%;
     border-bottom: 0;
 }
@@ -371,7 +387,7 @@ textarea {
 }
 
 textarea::placeholder {
-    font-size: 16px;
+    font-size: 24px;
 }
 
 .subtasks {
@@ -396,7 +412,7 @@ textarea::placeholder {
 }
 
 .subtasks input {
-    font-size: 18px;
+    font-size: 24px;
     margin: 15px 0;
     border-bottom: 0;
 }
@@ -416,6 +432,27 @@ textarea::placeholder {
     display: flex;
     flex-wrap: wrap;
 }
+
+/* Styling of stages when they are empty */
+.empty-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed gray;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 1.2rem;
+    color: gray;
+    background-color: lightgrey;
+  }
+  
+  .empty-container h2 {
+    text-align: center;
+    margin-top: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
 
 .stage-general {
     width: 20%;
@@ -456,19 +493,21 @@ textarea::placeholder {
 /* Responsive Start */
 @media only screen and (max-width: 1450px) {
 
-.sidebar {
-    display: none;
-}
-
 .main-column {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     position: static;
-    width: 100vw;
+    width: 100vw; */
+}
+
+.stage-general {
+    width: 40% !important;
+    margin: 0 30px 0 0;
 }
 
 .board-header {
     margin: 50px 50px 0;
+    justify-content: center;
 }
 
 .stages-container {
@@ -476,6 +515,7 @@ textarea::placeholder {
     flex-wrap: wrap;
     margin: 50px;
 }
+
 
 .stage-general {
     width: 100%;
@@ -487,6 +527,39 @@ textarea::placeholder {
     justify-content: space-between;
     margin: 20px;
 }
+}
+
+
+@media only screen and (max-width: 770px) {
+    .sidebar {
+        display: none;
+    }
+
+    .main-column {
+        width: 90vw;
+    }
+
+    .open-add-task > span {
+        display: none;
+    }
+
+    .stage-general {
+        width: 100% !important;
+        margin: 0 30px 0 0;
+    }
+
+    .popup {
+        border-radius: 0;
+    }
+
+    .popup-content {
+        height: 100vh;
+        width: 100vw;
+        padding: 30px;
+        margin: 0;
+        border-radius: 0px;
+    }
+
 }
 /* Responsive End */ 
 

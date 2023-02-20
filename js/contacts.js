@@ -4,35 +4,40 @@ let contacts = [
         'passwort': 'test432',
         'name': 'Chris Fuchs',
         'phone': '34445',
-        'randomColors': 'rgb(126 ,56 , 230)'
+        'randomColors': 'rgb(126 ,56 , 230)',
+        'id': '1'
     },
     {
         'email': 'alex.luchs@web.de',
         'passwort': 'test432',
         'name': 'Alex Luchs',
         'phone': '34445',
-        'randomColors': 'rgb(220 ,200 , 9)'
+        'randomColors': 'rgb(220 ,200 , 9)',
+        'id': '2'
     },
     {
         'email': 'peter.vogel@web.de',
         'passwort': 'test432',
         'name': 'Peter Vogel',
         'phone': '34445',
-        'randomColors': 'rgb(210 ,0 , 77)'
+        'randomColors': 'rgb(210 ,0 , 77)',
+        'id': '3'
     },
     {
         'email': 'karin.berg@web.de',
         'passwort': 'test432',
         'name': 'Karin Berg',
         'phone': '34445',
-        'randomColors': 'rgb(70 ,88 , 220)'
+        'randomColors': 'rgb(70 ,88 , 220)',
+        'id': '4'
     },
     {
         'email': 'marina.bohle@web.de',
         'passwort': 'test432',
         'name': 'Marina Bohle',
         'phone': '34445',
-        'randomColors': 'rgb(42 ,156 , 210)'
+        'randomColors': 'rgb(42 ,156 , 210)',
+        'id': '5'
     }
 ];
 let letters = [];

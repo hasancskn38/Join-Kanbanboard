@@ -33,12 +33,14 @@
 
         <div class="main-column" id="main-column">
 
-            <div class="board-header">
+            <div class="kanbanboard-description">
+                <h1>Move your tasks through different stages of your project</h1>
+            </div>
 
-                <div class="search-task">
+            <div class="board-header">
+                <div class="search-task">    
                     <input id="search-input" onkeyup="searchTask()" type="text" placeholder="Find Task">
                     <!-- <hr class="vertical-line" width="2" color="grey" size="20"/> -->
-                    <button class="search-button cursor" onclick="searchTask()">Search</button>
                 </div>
                 <button class="cursor open-add-task" onclick="openAddTaskPopUp()">Add task <span>+</span></button>
             </div>
@@ -66,12 +68,9 @@
                         <select id="select-category" class="cursor">
                             <option value="" disabled selected hidden>Select task category</option>
                             <option value="Sales">Sales</option>
-                            <option value="Media">Media <div class="option-circle">a</div>
-                            </option>
-                            <option value="Backoffice">Backoffice <div class="option-circle"></div>
-                            </option>
-                            <option value="Development">Marketing <div class="option-circle"></div>
-                            </option>
+                            <option value="Media">Media</option>
+                            <option value="Backoffice">Backoffice</option>
+                            <option value="Development">Marketing</option>
                         </select>
 
 
@@ -85,10 +84,7 @@
 
                         <select id="select-contact" class="select-contact cursor">
                             <option value="" disabled selected hidden>Select contacts to assign</option>
-                            <option value="option1">Option 1</option>
-                            <option value="option2">Option 2</option>
-                            <option value="option3">Option 3</option>
-                            <option value="option4">Option 4</option>
+
                         </select>
 
 
@@ -139,12 +135,12 @@
 
             <div ondrop="dropItem('todo')" ondragover="allowDrop(event)" class="stage-todo stage-general">
                 <div class="stage-header">
+                    
                     <h2>To do</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
-
                 </div>
 
                 <div class="container" id="stage-todo">
-
+                    
                 </div>
             </div>
 
@@ -153,7 +149,6 @@
                     <h2>In progress</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
                 </div>
                 <div class="container" id="stage-progress">
-
                 </div>
             </div>
 
@@ -161,7 +156,7 @@
                 <div class="stage-header">
                     <h2>Await feedback</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
                 </div>
-                <div class="container" id="stage-feedback" ond>
+                <div class="container" id="stage-feedback">
 
                 </div>
             </div>
@@ -170,8 +165,7 @@
                 <div class="stage-header">
                     <h2>Done</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
                 </div>
-                <div class="container" id="stage-done" ond>
-
+                <div class="container" id="stage-done">
                 </div>
             </div>
 
@@ -180,6 +174,7 @@
         <!-- Drag and Drop End -->
 
     </main>
+    <script defer src="../js/contacts.js"></script>
     <script defer src="../js/data.js"></script>
     <script defer src="../js/board.js"></script>
     <script defer src="../js/template.js"></script>
@@ -187,8 +182,6 @@
     <script defer src="../js/script.js"></script>
     <script defer src="../js/summary.js"></script>
     <script defer src="../js/add-task.js"></script>
-    <script defer src="../js/contacts.js"></script>
-    <script defer src="../js/contacts.js"></script>
     <script defer src="../js/login_registry.js"></script>
 </body>
 

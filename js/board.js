@@ -24,8 +24,47 @@ function renderData() {
     }
     renderColors(i);
     }
+    stagesContentWhenEmpty()
+    renderContactsSelect()
 }
 
+
+function stagesContentWhenEmpty() {
+    let stageToDo = document.getElementById('stage-todo')
+    let stageProgress = document.getElementById('stage-progress')
+    // stageProgress.innerHTML = '';
+    let stageFeedBack = document.getElementById('stage-feedback')
+    // stageFeedBack.innerHTML = '';
+    let stageDone = document.getElementById('stage-done')
+    // stageDone.innerHTML = '';
+    if(stageToDo.innerHTML == '') {
+        stageToDo.innerHTML += /*html*/`<div class="empty-container">
+        <h2>There are no todos</h2>
+    </div>`
+    } if(stageProgress.innerHTML == '') {
+        stageProgress.innerHTML += /*html*/`<div class="empty-container">
+        <h2>There are no tasks in progress</h2>
+    </div>`
+    } if(stageFeedBack.innerHTML == '') {
+        stageFeedBack.innerHTML += /*html*/`<div class="empty-container">
+        <h2>There are no tasks that need feedback</h2>
+    </div>`
+    } if(stageDone.innerHTML == '') {
+        stageDone.innerHTML += /*html*/`<div class="empty-container">
+        <h2>There are no tasks that are done</h2>
+    </div>`
+    }
+}
+
+function renderContactsSelect() {
+    let contactList = document.getElementById('select-contact')
+    contacts.forEach(contact => {
+        const option = document.createElement("option");
+        option.value = contact.id;
+        option.text = `${contact.name}`;
+        contactList.appendChild(option);
+      });
+}
 
 // Search Task 
 function searchTask() {
@@ -35,7 +74,7 @@ function searchTask() {
     container.innerHTML = '';
     for (let i = 0; i < testData.length; i++) {
         let taskName = testData[i]['cat'];
-        console.log(testData[i]['cat'])
+        // console.log(testData[i]['cat'])
         if(taskName.toLowerCase().includes(input)) {
             container.innerHTML += renderData();
         } 
@@ -50,16 +89,14 @@ function createNewTask() {
     let title = document.getElementById('task-title').value;
     let category = document.getElementById('select-category').value;
     let taskDescription = document.getElementById('task-description').value;
-    let lastItem = testData[testData.length - 1];
-    let lastId = lastItem.Id
-    console.log(lastId);
+    const lastItem = testData[testData.length - 1];
+    const newId = Number(lastItem.id) + 1;
     let newItem = { 
     "title": title,
     "cat": category,
     "description": taskDescription,
     "status": 'todo',
-    // TODO: Increase the number of the next Item in the JSON Array by One to make it also draggable and droppable
-    // "id": parseInt(lastId) + 1
+    "id": newId.toString(),
     };
     testData.push(newItem);
     // Clear Input Fields
@@ -138,7 +175,8 @@ function openAddTaskPopUp() {
     document.getElementById('popup').classList.remove('hide');
     document.getElementById('popup').classList.add('show');
     document.getElementById('popup').classList.remove('d-none');
-    document.querySelector('body').classList.add('overflow-hidden')
+    document.querySelector('body').classList.add('overflow-hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 
@@ -146,8 +184,9 @@ function closeAddTaskPopUp() {
     document.getElementById('overlay').classList.add('d-none');
     document.getElementById('popup').classList.add('hide');
     document.getElementById('popup').classList.remove('show');
-    document.querySelector('body').classList.remove('overflow-hidden')
+    document.querySelector('body').classList.remove('overflow-hidden');
 }
+
 
 // Drag and Drop Function
 let currentDraggedItem
@@ -155,14 +194,17 @@ function startDragging(id) {
     currentDraggedItem = id
 }
 
+
 function allowDrop(ev) {
     ev.preventDefault();
   }
+
 
 function dropItem(status) {
     testData[currentDraggedItem]['status'] = status
     renderData();
 }
+
 
 // Change the Color of the different Priority Levels
 let priorityImg1 = document.getElementById('img1')
@@ -171,6 +213,7 @@ let priorityImg3 = document.getElementById('img3')
 let urgent = document.getElementById('urgent')
 let medium = document.getElementById('medium')
 let low = document.getElementById('low')
+
 
 function changeUrgentColor() {
     if(urgent.classList.contains('urgent')) {
@@ -209,7 +252,6 @@ function changeLowColor() {
     if(low.classList.contains('low')) {
         low.classList.remove('low')
         priorityImg3.classList.remove('white');
-        
     } else {
         low.classList.add('low')
         urgent.classList.remove('urgent')
