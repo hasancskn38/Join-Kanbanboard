@@ -20,11 +20,13 @@
     box-shadow: 4px 0px 6px rgb(0 0 0 / 8%);
     margin-left: 30px;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .layout-contact3 {
     margin: 50px;
     width: 100%;
+    overflow: hidden;
 }
 
 .new-contact {
@@ -39,7 +41,9 @@
     align-items: center;
     height: 55px;
     cursor: pointer;
-    margin-top: 560px;
+    position: absolute;
+    bottom: 35px;
+    right: 35px;
     font-size: 23px;
     transition: all 125ms ease-in-out;
 }
@@ -429,16 +433,30 @@
 }
 
 .detail-main {
-    animation: contatDetail 225ms;
+    animation: contatDetail 0.3s forwards;
 }
 
 @keyframes contatDetail {
     from {
-        transform: translateX(580px);
+        transform: translateX(100%);
     }
 
     to {
         transform: translateX(0);
+    }
+}
+
+.detail-main-slide-back {
+    animation: contatDetailBack 0.3s forwards;
+}
+
+@keyframes contatDetailBack {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100%);
     }
 }
 
@@ -475,4 +493,39 @@
     width: 120px;
     height: 120px;
     border-radius: 100%;
+}
+
+.arrow-div {
+    display: flex;
+    justify-content: end;
+}
+
+.arrow-img {
+    cursor: pointer;
+}
+
+
+@media (max-width:1200px) {
+    .side-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        padding: 66px 20px;
+        width: 232px;
+        height: 100%;
+        margin-top: 80px;
+        left: 0px;
+        background: #FFFFFF;
+        box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
+        border-radius: 0px;
+        height: auto;
+        width: 100%;
+        top: unset;
+        bottom: 0px;
+        padding: unset;
+        background-color: white;
+        z-index: 10;
+    }
 }

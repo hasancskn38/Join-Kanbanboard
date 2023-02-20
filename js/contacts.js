@@ -54,7 +54,7 @@ function showContacts() {
         let contactPhone = contacts[i]['phone'];
         let contactColor = contacts[i]['randomColors'];
         let bothFirstLetter = splitName(contactName);
-        let greatLetter = renderBigLetter(contactName)
+        let greatLetter = renderBigLetter(contactName);
         contactContainer.innerHTML += `
         <div class="main-show-contact">
         <div class="first-great-letter" id="first-great-letter">${greatLetter}</div>
@@ -89,10 +89,11 @@ function AddNewContact() {
 
 
 function openDetailContact(bothFirstLetter, contactColor, contactName, contactEmail, contactPhone) {
-    let contactDetail = document.getElementById('layout-contact3');
+    let contactDetail = document.getElementById('layout-contact4');
     contactDetail.innerHTML = '';
     contactDetail.innerHTML = `
-    <div class="detail-main">
+    <div id="detail-main" class="detail-main">
+    <div onclick="slideBack()" class="arrow-div"><img class="arrow-img" src="/assets/img/arrowBlue.png"></div>
         <div class="contact-detail-header">
             <div style="background-color: ${contactColor}" class="big-letters">${bothFirstLetter}</div>
             <div>
@@ -116,10 +117,14 @@ function openDetailContact(bothFirstLetter, contactColor, contactName, contactEm
             <div class="contact-detail-bottom">Phone</div>
             <a class="contact-detail-phone" href="tel:${contactPhone}">${contactPhone}</a>
         </div>
-        <button onclick="openAddContact()" class="new-contact-detail">New Contact<img
-                        src="/assets/img/new.contact.png"></button>
     </div>
     `;
+}
+
+
+function slideBack() {
+    document.getElementById('detail-main').classList.add('detail-main-slide-back');
+    document.getElementById('detail-main').classList.add('d-nones');
 }
 
 
@@ -193,7 +198,6 @@ function closeAddContact() {
     document.getElementById('addcontactlayout').classList.add('d-nones');
     document.getElementById('editContactLayout').classList.add('d-nones');
 }
-
 
 
 function openAddContact() {
