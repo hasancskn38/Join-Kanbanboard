@@ -1,33 +1,3 @@
-function createNewTask() {
-    let contact = document.getElementById('select-contact').value;
-    let date = document.getElementById('task-date').value;
-    let title = document.getElementById('task-title').value;
-    let category = document.getElementById('select-category').value;
-    let taskDescription = document.getElementById('task-description').value;
-    let newItem = { 
-    "title": title,
-    "cat": category,
-    "description": taskDescription,
-    "status": 'todo'
-    };
-    testData.push(newItem);
-    // Clear Input Fields
-    title = '';
-    category = '';
-    taskDescription = '';
-    renderData();
-}
-
-function resetInputs() {
-    let title = document.getElementById('task-title').value;
-    let category = document.getElementById('select-category').value;
-    let taskDescription = document.getElementById('task-description').value;
-    title = '';
-    category = '';
-    taskDescription = '';
-}
-
-
 // Render Content of data.js
 function renderData() {
     let stageToDo = document.getElementById('stage-todo')
@@ -54,6 +24,96 @@ function renderData() {
     }
     renderColors(i);
     }
+    stagesContentWhenEmpty()
+    renderContactsSelect()
+}
+
+
+function stagesContentWhenEmpty() {
+    let stageToDo = document.getElementById('stage-todo')
+    let stageProgress = document.getElementById('stage-progress')
+    // stageProgress.innerHTML = '';
+    let stageFeedBack = document.getElementById('stage-feedback')
+    // stageFeedBack.innerHTML = '';
+    let stageDone = document.getElementById('stage-done')
+    // stageDone.innerHTML = '';
+    if(stageToDo.innerHTML == '') {
+        stageToDo.innerHTML += /*html*/`<div class="empty-container">
+        <h2>There are no todos</h2>
+    </div>`
+    } if(stageProgress.innerHTML == '') {
+        stageProgress.innerHTML += /*html*/`<div class="empty-container">
+        <h2>There are no tasks in progress</h2>
+    </div>`
+    } if(stageFeedBack.innerHTML == '') {
+        stageFeedBack.innerHTML += /*html*/`<div class="empty-container">
+        <h2>There are no tasks that need feedback</h2>
+    </div>`
+    } if(stageDone.innerHTML == '') {
+        stageDone.innerHTML += /*html*/`<div class="empty-container">
+        <h2>There are no tasks that are done</h2>
+    </div>`
+    }
+}
+
+function renderContactsSelect() {
+    let contactList = document.getElementById('select-contact')
+    contacts.forEach(contact => {
+        const option = document.createElement("option");
+        option.value = contact.id;
+        option.text = `${contact.name}`;
+        contactList.appendChild(option);
+      });
+}
+
+// Search Task 
+function searchTask() {
+    let input = document.getElementById('search-input').value
+    let container = document.querySelectorAll('test')
+    input = input.toLowerCase().trim();
+    container.innerHTML = '';
+    for (let i = 0; i < testData.length; i++) {
+        let taskName = testData[i]['cat'];
+        // console.log(testData[i]['cat'])
+        if(taskName.toLowerCase().includes(input)) {
+            container.innerHTML += renderData();
+        } 
+    }
+}
+
+
+// Create New Task Function
+function createNewTask() {
+    let contact = document.getElementById('select-contact').value;
+    let date = document.getElementById('task-date').value;
+    let title = document.getElementById('task-title').value;
+    let category = document.getElementById('select-category').value;
+    let taskDescription = document.getElementById('task-description').value;
+    const lastItem = testData[testData.length - 1];
+    const newId = Number(lastItem.id) + 1;
+    let newItem = { 
+    "title": title,
+    "cat": category,
+    "description": taskDescription,
+    "status": 'todo',
+    "id": newId.toString(),
+    };
+    testData.push(newItem);
+    // Clear Input Fields
+    title = '';
+    category = '';
+    taskDescription = '';
+    renderData();
+}
+
+
+function resetInputs() {
+    let title = document.getElementById('task-title').value;
+    let category = document.getElementById('select-category').value;
+    let taskDescription = document.getElementById('task-description').value;
+    title = '';
+    category = '';
+    taskDescription = '';
 }
 
 
@@ -75,13 +135,11 @@ function handleSubmit(event) {
         }
 }
 
+
 function renderColors(i) {
     let category = document.getElementById(`category-${i}`);
     if(category.innerHTML == 'Design') {
         category.classList.add('design')
-    }
-    if(category.innerHTML == 'Media') {
-        category.classList.add('media')
     }
     if(category.innerHTML == 'Backoffice') {
         category.classList.add('backoffice')
@@ -89,10 +147,9 @@ function renderColors(i) {
     if(category.innerHTML == 'Sales') {
         category.classList.add('sales')
     }
-    if(category.innerHTML == 'Development') {
-        category.classList.add('development')
+    if(category.innerHTML == 'Marketing') {
+        category.classList.add('marketing')
     }
-    
 }
 
 
@@ -118,8 +175,8 @@ function openAddTaskPopUp() {
     document.getElementById('popup').classList.remove('hide');
     document.getElementById('popup').classList.add('show');
     document.getElementById('popup').classList.remove('d-none');
-    document.querySelector('body').classList.add('overflow-hidden')
-
+    document.querySelector('body').classList.add('overflow-hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 
@@ -127,72 +184,91 @@ function closeAddTaskPopUp() {
     document.getElementById('overlay').classList.add('d-none');
     document.getElementById('popup').classList.add('hide');
     document.getElementById('popup').classList.remove('show');
-    document.querySelector('body').classList.remove('overflow-hidden')
+    document.querySelector('body').classList.remove('overflow-hidden');
 }
 
 
-function openExistingTaskPopUp(i) {
-    const test = testData[i];
-    let existingTasksPopUp = document.getElementById('existing-tasks-popup');
-    existingTasksPopUp.remove.classList('d-none');
-    existingTasksPopUp.innerHTML = ``;
+// Drag and Drop Function
+let currentDraggedItem
+function startDragging(id) {
+    currentDraggedItem = id
 }
 
 
-function closeExistingTaskPopUp() {
+function allowDrop(ev) {
+    ev.preventDefault();
+  }
 
+
+function dropItem(status) {
+    testData[currentDraggedItem]['status'] = status
+    renderData();
 }
 
 
-let priorityImg = document.getElementById('img')
+// Change the Color of the different Priority Levels
+let priorityImg1 = document.getElementById('img1')
+let priorityImg2 = document.getElementById('img2')
+let priorityImg3 = document.getElementById('img3')
 let urgent = document.getElementById('urgent')
 let medium = document.getElementById('medium')
 let low = document.getElementById('low')
-// Change the Color of the different Priority Levels
+
+
 function changeUrgentColor() {
     if(urgent.classList.contains('urgent')) {
         urgent.classList.remove('urgent') 
-        priorityImg.classList.add('white');
+        priorityImg1.classList.remove('white');
         
     } else {
+        // if not add urgent 
         urgent.classList.add('urgent')
         low.classList.remove('low')
         medium.classList.remove('medium')
-        priorityImg.classList.add('white');
+        priorityImg1.classList.add('white');
+        priorityImg2.classList.remove('white');
+        priorityImg3.classList.remove('white');
     }
 }
+
 
 function changeMediumColor() {
     if(medium.classList.contains('medium')) {
         medium.classList.remove('medium') 
-        priorityImg.classList.add('white');
+        priorityImg2.classList.remove('white');
         
     } else {
         medium.classList.add('medium')
         urgent.classList.remove('urgent')
         low.classList.remove('low')
-        priorityImg.classList.add('white');
+        priorityImg1.classList.remove('white');
+        priorityImg2.classList.add('white');
+        priorityImg3.classList.remove('white');
     }
 }
+
 
 function changeLowColor() {
     if(low.classList.contains('low')) {
         low.classList.remove('low')
-        priorityImg.classList.add('white');
-        
+        priorityImg3.classList.remove('white');
     } else {
         low.classList.add('low')
         urgent.classList.remove('urgent')
         medium.classList.remove('medium')
-        priorityImg.classList.add('white');
+        priorityImg1.classList.remove('white');
+        priorityImg2.classList.remove('white');
+        priorityImg3.classList.add('white');
     }
 }
+
 
 // Show Help me Container
 function showHelpMeSection() {
     document.getElementById('help-me-container').classList.remove('d-none');
     document.querySelector('main').classList.add('d-none');
 }
+
 
 // Hide Help me Container
 function hideHelpMeSection() {

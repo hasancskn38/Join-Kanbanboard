@@ -7,13 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board</title>
     <link rel="stylesheet" href="../css/board.css">
+    <link rel="stylesheet" href="../css/header-template.css">
+    <link rel="stylesheet" href="../css/style.css">
+
 </head>
 
 <body onload="includeHTML(); renderData();">
 
     <!-- Header Start -->
     <div class="navbar">
-        <div w3-include-html="/assets/templates/header-template.html"></div>
+        <div w3-include-html="../assets/templates/header-template.html"></div>
     </div>
     <!-- Header End -->
 
@@ -22,7 +25,7 @@
 
         <!-- Sidebar Start -->
         <div class="sidebar">
-            <div w3-include-html="/assets/templates/sidebar-template.html"></div>
+            <div w3-include-html="../assets/templates/sidebar-template.html"></div>
         </div>
         <!-- Sidebar End -->
 
@@ -30,16 +33,17 @@
 
         <div class="main-column" id="main-column">
 
-            <div class="board-header">
+            <div class="kanbanboard-description">
+                <h1>Move your tasks through different stages of your project</h1>
+            </div>
 
-                <div class="search-task">
-                    <input type="text" placeholder="Find Task">
+            <div class="board-header">
+                <div class="search-task">    
+                    <input id="search-input" onkeyup="searchTask()" type="text" placeholder="Find Task">
                     <!-- <hr class="vertical-line" width="2" color="grey" size="20"/> -->
-                    <button class="search-button cursor" onclick="searchTask()">Search</button>
                 </div>
                 <button class="cursor open-add-task" onclick="openAddTaskPopUp()">Add task <span>+</span></button>
             </div>
-
             <!-- Board Header End-->
 
             <!-- Pop Up Start -->
@@ -49,140 +53,136 @@
 
                 <form id="createtask-form" onsubmit="handleSubmit(event)">
 
-                <div class="popup-content">
+                    <div class="popup-content">
 
                         <div class="popup-header">
-                            <h2>Add Task</h2><button id="submit-button" type="submit" class="createtask-button cursor">Create Task</button>
+                            <h2>Add Task</h2><button id="submit-button" type="submit"
+                                class="createtask-button cursor">Create Task</button>
                         </div>
 
                         <div class="input-container">
-                                <input  id="task-title" class="popup-input" type="text" placeholder="Enter a title">
+                            <input id="task-title" class="popup-input" type="text" placeholder="Enter a title">
                         </div>
 
-                        
-                            <select id="select-category" class="cursor">
-                                <option value="" disabled selected hidden>Select task category</option>
-                                <option value="Sales">Sales</option>
-                                <option value="Media">Media</option>
-                                <option value="Backoffice">Backoffice</option>
-                                <option value="Development">Development</option>
-                            </select>
-                        
+
+                        <select id="select-category" class="cursor">
+                            <option value="" disabled selected hidden>Select task category</option>
+                            <option value="Sales">Sales</option>
+                            <option value="Media">Media</option>
+                            <option value="Backoffice">Backoffice</option>
+                            <option value="Development">Marketing</option>
+                        </select>
+
 
                         <h2 class="date-header">Due date</h2>
                         <label for="appointment">
                             <div class="date">
-                                <input  id="task-date" class="cursor" placeholder="dd/mm/yyyy" type="date" id="appointment"
-                                    name="appointment">
+                                <input id="task-date" class="cursor" placeholder="dd/mm/yyyy" type="date"
+                                    id="appointment" name="appointment">
                             </div>
                         </label>
-                        
-                            <select id="select-contact" class="select-contact cursor">
-                                <option value="" disabled selected hidden>Select contacts to assign</option>
-                                <option value="option1">Option 1</option>
-                                <option value="option2">Option 2</option>
-                                <option value="option3">Option 3</option>
-                                <option value="option4">Option 4</option>
-                            </select>
-                        
+
+                        <select id="select-contact" class="select-contact cursor">
+                            <option value="" disabled selected hidden>Select contacts to assign</option>
+
+                        </select>
+
 
                         <div class="priority">
-                            <div class="priority-levels cursor" id="urgent" onclick="changeUrgentColor()">Urgent<img
-                                    id="img" src="../assets/icons/urgent.png" alt=""></div>
-                            <div class="priority-levels cursor" id="medium" onclick="changeMediumColor()">Medium <img
-                                    id="img" src="../assets/icons/medium.png" alt=""></div>
-                            <div class="priority-levels cursor" id="low" onclick="changeLowColor()">Low <img id="img"
-                                    src="../assets/icons/low.png" alt=""></div>
+                            <div class="priority-levels cursor" id="urgent" onclick="changeUrgentColor()"><span
+                                    id="urgent-inner">Urgent</span><img id="img1" src="../assets/icons/urgent.png"
+                                    alt=""></div>
+                            <div class="priority-levels cursor" id="medium" onclick="changeMediumColor()"><span
+                                    id="medium-inner">Medium</span> <img id="img2" src="../assets/icons/medium.png"
+                                    alt=""></div>
+                            <div class="priority-levels cursor" id="low" onclick="changeLowColor()"><span
+                                    id="low-inner">Low</span><img id="img3" src="../assets/icons/low.png" alt=""></div>
                         </div>
 
                         <div class="description">
                             <h2>Description</h2>
-                            <textarea  maxlength="50" id="task-description" placeholder="Enter a description"></textarea>
+                            <textarea maxlength="50" id="task-description" placeholder="Enter a description"></textarea>
                         </div>
 
                         <div class="subtasks">
                             <h2>Subtask</h2>
-                            <div class="subtasks-input"><input id="task-subtask" placeholder="Add new subtask" type="text"><button
-                                    class="cursor">+</button></div>
-                            </div>
+                            <div class="subtasks-input"><input id="task-subtask" placeholder="Add new subtask"
+                                    type="text"><button class="cursor">+</button></div>
+                        </div>
 
-                    </form>
-
-
-                </div>
+                </form>
             </div>
-            <!-- Pop Up End -->
+        </div>
+        <!-- Pop Up End -->
 
-            <!-- Exisiting Task Pop Up Start-->
-            <div id="existing-tasks-popup" class="d-none">
-                <div id="stage-container-${i}" class="test cursor">
-                    <h3 id="category-${i}">${test.cat}</h3>
-                    <h4 class="blue">${test.description}</h4>
-                    <p class="grey">${test.title}</p>
-                    <div id="progress-bar" style="width: 50%; height: 10px; background-color: lightgrey;"> 
+        <!-- Exisiting Task Pop Up Start-->
+        <div class="d-none">
+            <div id="stage-container-${i}" class="test cursor">
+                <h3 id="category-${i}">${test.cat}</h3>
+                <h4 class="blue">${test.description}</h4>
+                <p class="grey">${test.title}</p>
+                <div id="progress-bar" style="width: 50%; height: 10px; background-color: lightgrey;">
                     <div id="progress" style="background-color: blue; height: 100%; width: 0%;"></div>
-                    </div>
-                    <div class="contact-initials">
-                    </div>
-                    </div>
+                </div>
+                <div class="contact-initials">
+                </div>
             </div>
-            <!-- Exisiting Task Pop Up End-->
+        </div>
+        <!-- Exisiting Task Pop Up End-->
 
-            <!-- Drag and Drop Start -->
-            <div class="stages-container">
+        <!-- Drag and Drop Start -->
+        <div class="stages-container">
 
-                <div class="stage-todo stage-general">
-                    <div class="stage-header">
-                        <h2>To do</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
-
-                    </div>
-                    <div onclick="openExistingTaskPopUp(i)" id="stage-todo">
-
-                    </div>
+            <div ondrop="dropItem('todo')" ondragover="allowDrop(event)" class="stage-todo stage-general">
+                <div class="stage-header">
+                    
+                    <h2>To do</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
                 </div>
 
-                <div class="stage-todo stage-general">
-                    <div class="stage-header">
-                        <h2>In progress</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
-                    </div>
-                    <div id="stage-progress">
-
-                    </div>
+                <div class="container" id="stage-todo">
+                    
                 </div>
-
-                <div class="stage-todo stage-general">
-                    <div class="stage-header">
-                        <h2>Await feedback</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
-                    </div>
-                    <div id="stage-feedback">
-
-                    </div>
-                </div>
-
-                <div class="stage-todo stage-general">
-                    <div class="stage-header">
-                        <h2>Done</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
-                    </div>
-                    <div id="stage-done">
-
-                    </div>
-                </div>
-
             </div>
+
+            <div ondrop="dropItem('inprogress')" ondragover="allowDrop(event)" class="stage-todo stage-general">
+                <div class="stage-header">
+                    <h2>In progress</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
+                </div>
+                <div class="container" id="stage-progress">
+                </div>
+            </div>
+
+            <div ondrop="dropItem('feedback')" ondragover="allowDrop(event)" class="stage-todo stage-general">
+                <div class="stage-header">
+                    <h2>Await feedback</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
+                </div>
+                <div class="container" id="stage-feedback">
+
+                </div>
+            </div>
+
+            <div ondrop="dropItem('done')" ondragover="allowDrop(event)" class="stage-todo stage-general">
+                <div class="stage-header">
+                    <h2>Done</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
+                </div>
+                <div class="container" id="stage-done">
+                </div>
+            </div>
+
+        </div>
         </div>
         <!-- Drag and Drop End -->
 
     </main>
-    <script src="../js/data.js"></script>
-    <script src="../js/board.js"></script>
-    <script src="../js/template.js"></script>
-    <script src="../js/summary.js"></script>
-    <script src="../js/script.js"></script>
-    <script src="../js/summary.js"></script>
-    <script src="../js/add-task.js"></script>
-    <script src="../js/contacts.js"></script>
-    <script src="../js/contacts.js"></script>
-    <script src="../js/login_registry.js"></script>
+    <script defer src="../js/contacts.js"></script>
+    <script defer src="../js/data.js"></script>
+    <script defer src="../js/board.js"></script>
+    <script defer src="../js/template.js"></script>
+    <script defer src="../js/summary.js"></script>
+    <script defer src="../js/script.js"></script>
+    <script defer src="../js/summary.js"></script>
+    <script defer src="../js/add-task.js"></script>
+    <script defer src="../js/login_registry.js"></script>
 </body>
 
 </html>
