@@ -74,16 +74,28 @@ function searchTask() {
     container.innerHTML = '';
     for (let i = 0; i < testData.length; i++) {
         let taskName = testData[i]['cat'];
-        // console.log(testData[i]['cat'])
         if(taskName.toLowerCase().includes(input)) {
             container.innerHTML += renderData();
         } 
     }
 }
 
+function openTaskPopUp(i) {
+    let taskPopUp = document.getElementById(`task-popup-${i}`)
+    taskPopUp.classList.remove('d-none');
+    document.getElementById('overlay').classList.remove('d-none');
+    // document.querySelector('body').classList.add('overflow-hidden');
+
+}
+
+function closeTaskPopUp() {
+    document.getElementById('task-popup').classList.add('d-none');
+    document.getElementById('overlay').classList.add('d-none');
+    // document.querySelector('body').classList.remove('overflow-hidden');
+}
 
 // Create New Task Function
-function createNewTask() {
+function createTask() {
     let contact = document.getElementById('select-contact').value;
     let date = document.getElementById('task-date').value;
     let title = document.getElementById('task-title').value;
@@ -107,6 +119,15 @@ function createNewTask() {
 }
 
 
+function deleteTask(i) {
+    setTimeout(
+      function() {
+        testData.splice(i ,1)
+    renderData();
+      }, 100);
+  }
+
+
 function resetInputs() {
     let title = document.getElementById('task-title').value;
     let category = document.getElementById('select-category').value;
@@ -128,7 +149,7 @@ function handleSubmit(event) {
             alert('Please fill in all required fields');
         return;
         } else {
-            createNewTask();
+            createTask();
             closeAddTaskPopUp();
             resetInputs();
             renderData();
@@ -172,10 +193,11 @@ async function includeHTML() {
 // openAddTaskPopUp Function
 function openAddTaskPopUp() {
     document.getElementById('overlay').classList.remove('d-none');
+    document.querySelector('body').classList.add('overflow-hidden');
     document.getElementById('popup').classList.remove('hide');
     document.getElementById('popup').classList.add('show');
     document.getElementById('popup').classList.remove('d-none');
-    document.querySelector('body').classList.add('overflow-hidden');
+    
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -187,11 +209,27 @@ function closeAddTaskPopUp() {
     document.querySelector('body').classList.remove('overflow-hidden');
 }
 
+// let bin = document.getElementById('remove-task')
+
+// function showRemoveTaskBin() {
+//     setTimeout(
+//       function() {
+//         bin.classList.remove('d-none')
+//       }, 100);
+//   }
+
+// function hideRemoveTaskBin() {
+//     setTimeout(
+//       function() {
+//         bin.classList.add('d-none')
+//       }, 100);
+//   }
 
 // Drag and Drop Function
 let currentDraggedItem
 function startDragging(id) {
     currentDraggedItem = id
+    // showRemoveTaskBin()
 }
 
 
@@ -203,6 +241,7 @@ function allowDrop(ev) {
 function dropItem(status) {
     testData[currentDraggedItem]['status'] = status
     renderData();
+    // hideRemoveTaskBin()
 }
 
 
