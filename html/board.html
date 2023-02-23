@@ -42,9 +42,33 @@
                     <input id="search-input" onkeyup="searchTask()" type="text" placeholder="Find Task">
                     <!-- <hr class="vertical-line" width="2" color="grey" size="20"/> -->
                 </div>
-                <button class="cursor open-add-task" onclick="openAddTaskPopUp()">Add task <span>+</span></button>
+                <div class="add-remove-container">
+                    <button class="cursor open-add-task" onclick="openAddTaskPopUp()">Add task <span>+</span></button>
+                    <!-- <img id="remove-task" class="d-none" ondragleave="deleteTask()" src="../assets/icons/recycle-bin.png" alt=""> -->
+                </div>
             </div>
             <!-- Board Header End-->
+
+            <!-- Task Pop Up Start -->
+            <div class="d-none" id="task-popup">
+                <div class="task-popup-container">
+                    <button onclick="closeTaskPopUp()" >X</button>
+                    <h3>${test.cat}</h3>
+                    <h1>${test.title}</h1>
+                    <p>${test.description}</p>
+                    <ul>
+                        <li>Due Date:</li>
+                        <li>priority</li>
+                        <li>Assigned To:
+                            <ul>Lorem Domy</ul>
+                            <ul>Lorem Domy</ul>
+                            <ul>Lorem Domy</ul>
+                            <ul>Lorem Domy</ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Task Pop Up End -->
 
             <!-- Pop Up Start -->
             <div id="overlay" class="overlay d-none"></div>
@@ -70,7 +94,7 @@
                             <option value="Sales">Sales</option>
                             <option value="Media">Media</option>
                             <option value="Backoffice">Backoffice</option>
-                            <option value="Development">Marketing</option>
+                            <option value="Marketing">Marketing</option>
                         </select>
 
 
@@ -101,7 +125,7 @@
 
                         <div class="description">
                             <h2>Description</h2>
-                            <textarea maxlength="50" id="task-description" placeholder="Enter a description"></textarea>
+                            <textarea maxlength="30" id="task-description" placeholder="Enter a description"></textarea>
                         </div>
 
                         <div class="subtasks">

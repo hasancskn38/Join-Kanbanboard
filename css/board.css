@@ -130,6 +130,12 @@ input:active{
     color:rgb(196, 196, 196);
 }
 
+.add-remove-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .open-add-task {
     color:#fff;
     background-color: #4589FF;
@@ -143,7 +149,26 @@ input:active{
     padding-right:20px;
 }
 
+.board-header img {
+    height: 45px;
+    margin: 0 0 0 20px
+}
+
 /* Board Header End */
+
+/* Pop Up Task Start*/
+#task-popup {
+    position: absolute;
+    z-index: 5;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 500px;
+    border: 1px solid red;
+}
+/* Pop Up Task End*/
 
 /* Pop Up Start */
 .overlay {
@@ -492,12 +517,17 @@ textarea::placeholder {
 
 /* Responsive Start */
 @media only screen and (max-width: 1450px) {
+.kanbanboard-description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-.main-column {
-    /* display: flex;
-    flex-direction: column;
-    position: static;
-    width: 100vw; */
+.kanbanboard-description h1 {
+        font-size: 38px;
+        color: #14466B;
+        text-align: center;
+        max-width: 70vw;
 }
 
 .stage-general {
@@ -579,7 +609,11 @@ textarea::placeholder {
     color: #fff;
     padding: 5px 30px;
     border-radius: 10px;
-    margin: 0 0 10px 0;
+    margin: 0 0 20px 0;
+}
+
+.test > h4 {
+    word-wrap: break-word;
 }
 
 /* To give every single child element the exact same stylings */
@@ -593,6 +627,8 @@ textarea::placeholder {
 
 .grey {
     color: rgb(196, 196, 196);
+    word-wrap: break-word;
+    padding: 10px 0;
 }
 
 .design {
