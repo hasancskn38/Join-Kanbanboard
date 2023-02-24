@@ -41,8 +41,8 @@ function feedBackTemplate(i, test) {
 function doneTemplate(i, test) {
     return`<div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging((${test['id']}))"  id="stage-container" class="test cursor">
     <h3 id="category-${i}">${test.cat}</h3>
-    <h4 class="blue">${test.title}</h4>
-    <p class="grey">${test.description}</p>
+    <h4 class="blue">${test.description}</h4>
+    <p class="grey">${test.title}</p>
     <div id="progress-bar" style="width: 50%; height: 10px; background-color: lightgrey;"> 
     <div id="progress" style="background-color: blue; height: 100%; width: 0%;"></div>
     </div>

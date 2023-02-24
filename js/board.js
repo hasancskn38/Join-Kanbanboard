@@ -56,6 +56,7 @@ function stagesContentWhenEmpty() {
     }
 }
 
+
 function renderContactsSelect() {
     let contactList = document.getElementById('select-contact')
     contacts.forEach(contact => {
@@ -65,6 +66,7 @@ function renderContactsSelect() {
         contactList.appendChild(option);
       });
 }
+
 
 // Search Task 
 function searchTask() {
@@ -80,51 +82,169 @@ function searchTask() {
     }
 }
 
+
 function openTaskPopUp(i) {
-    let taskPopUp = document.getElementById(`task-popup-${i}`)
+    let test = testData[i]
+    let contact = contacts[i]
+    let date = document.getElementById('task-date').value;
+    document.querySelector('body').classList.add('overflow-hidden');
+    let taskPopUp = document.getElementById(`task-popup`)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     taskPopUp.classList.remove('d-none');
     document.getElementById('overlay').classList.remove('d-none');
-    // document.querySelector('body').classList.add('overflow-hidden');
-
+    taskPopUp.innerHTML = /*html*/`
+    <div class="task-popup-container">
+                    <button class="cursor" onclick="closeTaskPopUp()">X</button>
+                    <h3 id="category-${i}">${test.cat}</h3>
+                    <h1 class="grey">${test.title}</h1>
+                    <p class="blue">${test.description}</p>
+                    <ul>
+                        <li><b>Due Date:</b> ${test.date}</li>
+                        <li><b>Priority:</b><span id="priority-popup">${test.priority}</span> </li>
+                        <li><b>Assigned to:</b>
+                            <ul>
+                                <li class="contact-container"><span>DD</span>${contact.name}</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <img onclick="openEditTask(${i})" class="edit-button cursor" src="../assets/icons/editbutton.png" alt="">
+                </div>
+    `
+    renderColors(i);
+    changePriorityColorPopUp()
 }
+
 
 function closeTaskPopUp() {
     document.getElementById('task-popup').classList.add('d-none');
     document.getElementById('overlay').classList.add('d-none');
-    // document.querySelector('body').classList.remove('overflow-hidden');
+    document.querySelector('body').classList.remove('overflow-hidden');
 }
+
+let subtaskArray = []
+function renderSubtasks() {
+    let subtasks = document.getElementById('subtasks')
+    subtasks.innerHTML = '';
+    for (let i = 0; i < subtaskArray.length; i++) {
+        const subtask = subtaskArray[i];
+        subtasks.innerHTML += /*html*/`
+            <li>${subtask}<button class="cursor" onclick="deleteSubtask(${i})">X</button></li>
+        `
+    }
+    renderData();
+}
+
+function addSubtask() {
+    let subtaskInput = document.getElementById('task-subtask').value
+    subtaskArray.push(subtaskInput);
+    renderSubtasks();
+    renderData();
+    document.getElementById('task-subtask').value = '';
+}
+
+function deleteSubtask(i) {
+    subtaskArray.splice(i, 1)
+    renderSubtasks();
+    renderData();
+}
+
+// Function to prevent that add subtask button submits form
+let preventButton = document.getElementById('add-subtask')
+preventButton.addEventListener('click', function(event) {
+    // Prevent the form from being submitted
+    event.preventDefault();
+  });
+
+function openEditTask(i) {
+    let test = testData[i]
+    let contact = contacts[i]
+    let editTask = document.getElementById('edit-task-popup')
+    let taskPopUp = document.getElementById(`task-popup`).classList.add('d-none')
+    editTask.classList.remove('d-none')
+    editTask.innerHTML = /*html*/ `<div class="edit-task-container">
+        <button class="cursor" onclick="closeTaskPopUp() closeEditTask()">X</button>
+        <h1>${test.title}</h1>
+        <h2>Description</h2>
+        <textarea>${test.description}</textarea>
+        <h2 class="date-header">Due date</h2>
+        <label for="appointment">
+            <div class="date">
+                <input id="task-date" class="cursor" placeholder="dd/mm/yyyy" type="date"
+                    id="appointment" name="appointment">
+            </div>
+        </label>
+        <div class="priority">
+        <div class="priority-levels cursor" id="urgent" onclick="changeUrgentColor()"><span
+                id="urgent-inner">Urgent</span><img id="img1" src="../assets/icons/urgent.png"
+                alt=""></div>
+        <div class="priority-levels cursor" id="medium" onclick="changeMediumColor()"><span
+                id="medium-inner">Medium</span> <img id="img2" src="../assets/icons/medium.png"
+                alt=""></div>
+        <div class="priority-levels cursor" id="low" onclick="changeLowColor()"><span
+                id="low-inner">Low</span><img id="img3" src="../assets/icons/low.png" alt=""></div>
+    </div>
+    <select id="select-contact" class="select-contact cursor">
+        <option value="" disabled selected hidden>Select contacts to assign</option>
+    </select>
+    </div>`
+}
+
+
+function closeEditTask() {
+    document.getElementById(`task-popup`).classList.remove('d-none')
+    document.getElementById('edit-task-popup').classList.add('d-none')
+}
+
+
+function changePriorityColorPopUp() {
+    let priority = document.getElementById('priority-popup')
+    if(priority.innerHTML == 'Urgent') {
+        priority.classList.add('urgent-popup')
+    } else if(priority.innerHTML == 'Medium') {
+        priority.classList.add('medium-popup')
+    } if(priority.innerHTML == 'Low') {
+        priority.classList.add('low-popup')
+    }
+}
+
 
 // Create New Task Function
 function createTask() {
-    let contact = document.getElementById('select-contact').value;
-    let date = document.getElementById('task-date').value;
     let title = document.getElementById('task-title').value;
     let category = document.getElementById('select-category').value;
     let taskDescription = document.getElementById('task-description').value;
     const lastItem = testData[testData.length - 1];
-    const newId = Number(lastItem.id) + 1;
-    let newItem = { 
-    "title": title,
-    "cat": category,
-    "description": taskDescription,
-    "status": 'todo',
-    "id": newId.toString(),
-    };
-    testData.push(newItem);
+    if(testData.length == 0) {
+        let newItem = { 
+            "title": title,
+            "cat": category,
+            "description": taskDescription,
+            "status": 'todo',
+            "id":  0,
+            }; 
+            testData.push(newItem);
+    } else {
+        const newId = Number(lastItem.id) + 1;
+        let newItem = { 
+            "title": title,
+            "cat": category,
+            "description": taskDescription,
+            "status": 'todo',
+            "id": newId.toString(),
+            }; 
+            testData.push(newItem);
+    }
+    renderData();
     // Clear Input Fields
     title = '';
     category = '';
     taskDescription = '';
-    renderData();
 }
 
 
 function deleteTask(i) {
-    setTimeout(
-      function() {
-        testData.splice(i ,1)
+    testData.splice(i ,1)
     renderData();
-      }, 100);
   }
 
 
@@ -139,21 +259,11 @@ function resetInputs() {
 
 
 function handleSubmit(event) {
-    let title = document.getElementById('task-title').value;
-    let category = document.getElementById('select-category').value;
-    let contact = document.getElementById('select-contact').value;
-    let date = document.getElementById('task-date').value;
-    let taskDescription = document.getElementById('task-description').value;
         event.preventDefault()
-        if(!title || !date || !taskDescription || !category || !contact) {
-            alert('Please fill in all required fields');
-        return;
-        } else {
             createTask();
             closeAddTaskPopUp();
             resetInputs();
             renderData();
-        }
 }
 
 
@@ -197,7 +307,6 @@ function openAddTaskPopUp() {
     document.getElementById('popup').classList.remove('hide');
     document.getElementById('popup').classList.add('show');
     document.getElementById('popup').classList.remove('d-none');
-    
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -209,38 +318,26 @@ function closeAddTaskPopUp() {
     document.querySelector('body').classList.remove('overflow-hidden');
 }
 
-// let bin = document.getElementById('remove-task')
-
-// function showRemoveTaskBin() {
-//     setTimeout(
-//       function() {
-//         bin.classList.remove('d-none')
-//       }, 100);
-//   }
-
-// function hideRemoveTaskBin() {
-//     setTimeout(
-//       function() {
-//         bin.classList.add('d-none')
-//       }, 100);
-//   }
 
 // Drag and Drop Function
 let currentDraggedItem
-function startDragging(id) {
+function startDragging(id, i) {
     currentDraggedItem = id
+    renderColors(i);
     // showRemoveTaskBin()
 }
 
 
-function allowDrop(ev) {
+function allowDrop(ev, i) {
     ev.preventDefault();
+    renderColors(i);
   }
 
 
-function dropItem(status) {
+function dropItem(status, i) {
     testData[currentDraggedItem]['status'] = status
     renderData();
+    renderColors(i);
     // hideRemoveTaskBin()
 }
 

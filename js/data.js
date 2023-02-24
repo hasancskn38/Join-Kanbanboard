@@ -4,6 +4,10 @@ let testData = [
     cat: 'Design',
     description: 'This is a Task Description',
     status: 'todo',
+    date:'05-08-2022',
+    priority:'Urgent',
+    renderContact:'Hasan Coskun',
+    shortcut: 'HC',
     id: '0'
     }, 
 
@@ -12,6 +16,10 @@ let testData = [
     cat: 'Marketing',
     description: 'This is a Task Description',
     status: 'inprogress',
+    date:'05-08-2022',
+    priority:'Urgent',
+    renderContact:'Hasan Coskun',
+    shortcut: 'HC',
     id: '1'
     }, 
 
@@ -20,6 +28,10 @@ let testData = [
     cat: 'Backoffice',
     description: 'This is a Task Description',
     status: 'feedback',
+    date:'05-08-2022',
+    priority:'Urgent',
+    renderContact:'Hasan Coskun',
+    shortcut: 'HC',
     id: '2'
     }, 
 
@@ -28,6 +40,10 @@ let testData = [
     cat: 'Sales',
     description: 'This is a Task Description',
     status: 'done',
+    date:'05-08-2022',
+    priority:'Medium',
+    renderContact:'Hasan Coskun',
+    shortcut: 'HC',
     id: '3'
     },
     
@@ -36,6 +52,10 @@ let testData = [
     cat: 'Sales',
     description: 'This is a Task Description',
     status: 'done',
+    date:'05-08-2022',
+    priority:'Low',
+    renderContact:'Hasan Coskun',
+    shortcut: 'HC',
     id: '4'
     },
 ]

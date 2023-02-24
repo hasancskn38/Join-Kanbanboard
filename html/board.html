@@ -9,10 +9,12 @@
     <link rel="stylesheet" href="../css/board.css">
     <link rel="stylesheet" href="../css/header-template.css">
     <link rel="stylesheet" href="../css/style.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
 </head>
 
-<body onload="includeHTML(); renderData();">
+<body onload="includeHTML(); renderData(); renderSubtasks();">
 
     <!-- Header Start -->
     <div class="navbar">
@@ -44,6 +46,7 @@
                 </div>
                 <div class="add-remove-container">
                     <button class="cursor open-add-task" onclick="openAddTaskPopUp()">Add task <span>+</span></button>
+                    <button onclick="deleteTask()" class="cursor">-</button>
                     <!-- <img id="remove-task" class="d-none" ondragleave="deleteTask()" src="../assets/icons/recycle-bin.png" alt=""> -->
                 </div>
             </div>
@@ -51,24 +54,15 @@
 
             <!-- Task Pop Up Start -->
             <div class="d-none" id="task-popup">
-                <div class="task-popup-container">
-                    <button onclick="closeTaskPopUp()" >X</button>
-                    <h3>${test.cat}</h3>
-                    <h1>${test.title}</h1>
-                    <p>${test.description}</p>
-                    <ul>
-                        <li>Due Date:</li>
-                        <li>priority</li>
-                        <li>Assigned To:
-                            <ul>Lorem Domy</ul>
-                            <ul>Lorem Domy</ul>
-                            <ul>Lorem Domy</ul>
-                            <ul>Lorem Domy</ul>
-                        </li>
-                    </ul>
-                </div>
+                
             </div>
             <!-- Task Pop Up End -->
+
+            <!-- Edit Task Pop Up Start -->
+            <div class="d-none" id="edit-task-popup">
+
+            </div>
+            <!-- Edit Task Pop Up End -->
 
             <!-- Pop Up Start -->
             <div id="overlay" class="overlay d-none"></div>
@@ -85,11 +79,11 @@
                         </div>
 
                         <div class="input-container">
-                            <input id="task-title" class="popup-input" type="text" placeholder="Enter a title">
+                            <input required id="task-title" class="popup-input" type="text" placeholder="Enter a title">
                         </div>
 
 
-                        <select id="select-category" class="cursor">
+                        <select required id="select-category" class="cursor">
                             <option value="" disabled selected hidden>Select task category</option>
                             <option value="Sales">Sales</option>
                             <option value="Media">Media</option>
@@ -98,19 +92,18 @@
                         </select>
 
 
-                        <h2 class="date-header">Due date</h2>
+                        
                         <label for="appointment">
+                            <h2 class="date-header">Due date</h2>
                             <div class="date">
-                                <input id="task-date" class="cursor" placeholder="dd/mm/yyyy" type="date"
-                                    id="appointment" name="appointment">
+                                
+                                <input id="task-date" required="" type="text" class="form-control" placeholder="dd/mm/yyyy" onfocus="(this.type='date')"/>
                             </div>
                         </label>
 
-                        <select id="select-contact" class="select-contact cursor">
+                        <select required id="select-contact" class="select-contact cursor">
                             <option value="" disabled selected hidden>Select contacts to assign</option>
-
                         </select>
-
 
                         <div class="priority">
                             <div class="priority-levels cursor" id="urgent" onclick="changeUrgentColor()"><span
@@ -125,34 +118,26 @@
 
                         <div class="description">
                             <h2>Description</h2>
-                            <textarea maxlength="30" id="task-description" placeholder="Enter a description"></textarea>
+                            <textarea required maxlength="30" id="task-description" placeholder="Enter a description"></textarea>
                         </div>
 
                         <div class="subtasks">
                             <h2>Subtask</h2>
-                            <div class="subtasks-input"><input id="task-subtask" placeholder="Add new subtask"
-                                    type="text"><button class="cursor">+</button></div>
+                            <div class="subtasks-input"><input required id="task-subtask" placeholder="Add new subtask"
+                                    type="text">
+                                    <button id="add-subtask" onclick="addSubtask()" class="cursor">+</button>
+                                </div>
+                                
                         </div>
+                        <ul id="subtasks">
+
+                        </ul>
+                        
 
                 </form>
             </div>
         </div>
         <!-- Pop Up End -->
-
-        <!-- Exisiting Task Pop Up Start-->
-        <div class="d-none">
-            <div id="stage-container-${i}" class="test cursor">
-                <h3 id="category-${i}">${test.cat}</h3>
-                <h4 class="blue">${test.description}</h4>
-                <p class="grey">${test.title}</p>
-                <div id="progress-bar" style="width: 50%; height: 10px; background-color: lightgrey;">
-                    <div id="progress" style="background-color: blue; height: 100%; width: 0%;"></div>
-                </div>
-                <div class="contact-initials">
-                </div>
-            </div>
-        </div>
-        <!-- Exisiting Task Pop Up End-->
 
         <!-- Drag and Drop Start -->
         <div class="stages-container">

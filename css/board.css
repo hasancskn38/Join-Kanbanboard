@@ -3,11 +3,13 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: 'PT Sans', sans-serif !important;
     scroll-behavior: smooth;
 }
 
-
+li {
+    list-style-type: none;
+}
 
 .white {
     filter: brightness(0) saturate(100%) invert(100%) grayscale(100%);
@@ -157,17 +159,7 @@ input:active{
 /* Board Header End */
 
 /* Pop Up Task Start*/
-#task-popup {
-    position: absolute;
-    z-index: 5;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    height: 500px;
-    border: 1px solid red;
-}
+
 /* Pop Up Task End*/
 
 /* Pop Up Start */
@@ -182,7 +174,7 @@ input:active{
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    z-index: 1;
 }
 
 .popup {
@@ -286,22 +278,9 @@ select {
     color: #4589FF;
 }
 
-.option-circle {
-    height: 30px;
-    width: 30px;
-    color: red;
-}
-
 select option {
     color: #000;
 }
-
-.option-circle {
-    height: 20px;
-    width: 20px;
-    color: #ff7a00 !important;
-    border: 1px solid black;
-} 
 
 .date {
     display: flex;
@@ -309,7 +288,7 @@ select option {
     align-items: center;
     border-bottom: 1px solid lightgray;
     width: 90%;
-    margin: 20px;
+    margin: 15px;
     padding: 5px;
 }
 
@@ -329,8 +308,7 @@ label > input {
 }
 
 .date-header {
-    margin:0 20px;
-    padding:5px;
+    margin-left:30px;
 }
 
 .priority {
@@ -393,7 +371,17 @@ label > input {
     color: #fff;
 }
 
+.urgent-popup {
+    background-color: #FFD2D2;
+}
 
+.medium-popup {
+    background-color: #FFEBB9;
+}
+
+.low-popup {
+    background-color: #d0eeb9;
+}
 
 .description {
     margin:0 20px;
@@ -430,8 +418,7 @@ textarea::placeholder {
 }
 
 .subtasks-input button {
-    height: 25px;
-    width: 25px;
+    font-size: 30px;
     background-color: #fff;
     color: #4589FF;
 }
@@ -440,6 +427,10 @@ textarea::placeholder {
     font-size: 24px;
     margin: 15px 0;
     border-bottom: 0;
+}
+
+#subtasks {
+    margin: 15px !important;
 }
 
 /* To only style the first child of an container */
@@ -451,6 +442,104 @@ textarea::placeholder {
     font-size: 20px;
 }
 /* Pop Up End */
+
+/* Opened Task Pop Up Start */
+#task-popup {
+    z-index: 2;
+    background-color: #fff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    min-width: 40vw;
+    min-height: 50vh;
+    margin: auto;
+    border-radius: 10px;
+}
+
+#task-popup button {
+    position: absolute;
+    right: 2%;
+    top: .5%;
+    background: none;
+    font-size: 20px;
+}
+
+#task-popup li {
+    list-style-type: none;
+}
+
+#task-popup h3 {
+    color: #fff;
+    display: inline-block;
+    font-weight: 100;
+    padding: 5px 30px;
+    border-radius: 10px;
+    margin: 0 0 20px 0;
+}
+
+#task-popup ul li {
+    padding: 5px 0 ;
+}
+
+#task-popup span {
+    padding: 5px 20px;
+    margin-left: 10px;
+    border-radius: 10px;
+    color: #000;
+}
+
+.short-cut {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    font-size: 14px;
+    padding: 0 !important;
+    background-color: #0038FF;
+    color: #fff !important;
+    border-radius: 50% !important;
+    margin-right:20px;
+}
+
+.edit-button {
+    position: absolute !important;
+    right: 0;
+    bottom: 4.5% !important;
+    background: none;
+    font-size: 20px;
+    transition: all 125ms ease-in-out;
+}
+
+.edit-button:hover {
+    opacity: .8;
+}
+
+.contact-container {
+    display: flex;
+    align-items: center;
+}
+/* Opened Task Pop Up End */
+
+/* Edit Task Start */
+#edit-task-popup {
+    z-index: 2;
+    background-color: #fff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    min-width: 40vw;
+    min-height: 50vh;
+    margin: auto;
+    border-radius: 10px;
+} 
+
+
+/* Edit Task End */
 
 /* Stages Container Start */
 .stages-container {
@@ -504,7 +593,7 @@ textarea::placeholder {
     color: #4589FF;
     border: 1px solid #4589FF;
     border-radius: 10px;
-    transition: all 225ms ease-in-out;
+    transition: all 125ms ease-in-out;
 }
 
 .stage-header button:hover {
