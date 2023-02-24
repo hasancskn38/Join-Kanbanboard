@@ -1,7 +1,8 @@
 let users = [];
+setURL('https://gruppe-447.developerakademie.net/join/smallest_backend_ever');
 
 async function init() {
-    setURL('https://marcel-herzog.developerakademie.net/smallest_backend_ever');
+
     await downloadFromServer();
     users = JSON.parse(backend.getItem('users')) || [];
 }
@@ -18,10 +19,10 @@ async function registerUser() {
 function loginUser() {
     let email = document.getElementById('login_email');
     let password = document.getElementById('login_password');
-    let user = users.find(u => u.email == email.value && u.password == password.value);
+    let user = users.find(u => u.email.toLowerCase() == email.value.toLowerCase() && u.password == password.value);
     if(user) {
         console.log('User gefunden');
-        window.location.href = `board.html?msg=Du hast dich erfolgreich eingelogt ${user.name}`;
+        window.location.href = `board.html?msg=Du hast dich erfolgreich eingelogt${user.name}`;
     }
 }
 
