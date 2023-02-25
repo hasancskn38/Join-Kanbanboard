@@ -451,17 +451,17 @@ textarea::placeholder {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 20px;
-    min-width: 40vw;
-    min-height: 50vh;
+    padding: 45px;
+    min-width: 50vw;
+    min-height: 60vh;
     margin: auto;
     border-radius: 10px;
 }
 
 #task-popup button {
     position: absolute;
-    right: 2%;
-    top: .5%;
+    right: 7%;
+    top: 3.5%;
     background: none;
     font-size: 20px;
 }
@@ -470,17 +470,20 @@ textarea::placeholder {
     list-style-type: none;
 }
 
+.task-popup-header {
+    font-size: 50px;
+}
+
 #task-popup h3 {
     color: #fff;
     display: inline-block;
     font-weight: 100;
     padding: 5px 30px;
     border-radius: 10px;
-    margin: 0 0 20px 0;
 }
 
 #task-popup ul li {
-    padding: 5px 0 ;
+    padding: 15px 0 ;
 }
 
 #task-popup span {
@@ -531,13 +534,46 @@ textarea::placeholder {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 20px;
-    min-width: 40vw;
-    min-height: 50vh;
+    padding: 45px;
+    min-width: 50vw;
+    min-height: 60vh;
     margin: auto;
     border-radius: 10px;
 } 
 
+.close-edit-task {
+    position: absolute;
+    right: 7%;
+    top: 3.5%;
+    background: none;
+    font-size: 20px;
+}
+
+.input-container-edit {
+    border-bottom: 1px solid lightgray;
+    width: 70%;
+    margin-bottom: 30px;
+}
+
+.input-container-edit input {
+    font-size: 50px;
+}
+
+.date-edit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+    width: 90%;
+    margin: 15px;
+    padding: 5px;
+}
+
+.date-edit input {
+    font-size: 24px;
+    width: 100%;
+    border-bottom: 0;
+}
 
 /* Edit Task End */
 

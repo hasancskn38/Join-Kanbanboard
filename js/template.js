@@ -180,3 +180,86 @@ function renderOpenEdit(contactName, contactEmail, contactPhone, contactColor, b
 </div>
     `;
 }
+
+
+function emptyTodoTemplate() {
+    return `<div class="empty-container">
+    <h2>There are no todos</h2>
+</div>`
+}
+function emptyProgressTemplate() {
+    return `<div class="empty-container">
+        <h2>There are no tasks in progress</h2>
+    </div>`
+}
+function emptyFeedbackTemplate() {
+    return `<div class="empty-container">
+    <h2>There are no tasks that need feedback</h2>
+</div>`
+}
+function emptyDoneTemplate() {
+    return `<div class="empty-container">
+    <h2>There are no tasks that are done</h2>
+</div>`
+}
+
+
+function openTaskPopUpTemplate(test, i, contact) {
+    return `
+    <div class="task-popup-container">
+                    <button class="cursor" onclick="closeTaskPopUp()">X</button>
+                    <h3 id="category-${i}">${test.cat}</h3>
+                    <h1 class="grey task-popup-header">${test.title}</h1>
+                    <p class="blue">${test.description}</p>
+                    <ul>
+                        <li><b>Due Date:</b> ${test.date}</li>
+                        <li><b>Priority:</b><span id="priority-popup">${test.priority}</span> </li>
+                        <li><b>Assigned to:</b>
+                            <ul>
+                                <li class="contact-container"><span>DD</span>${contact.name}</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <img onclick="openEditTask(${i})" class="edit-button cursor" src="../assets/icons/editbutton.png" alt="">
+                </div>
+    `
+}
+
+
+function renderSubtasksTemplate(subtask, i) {
+    return `
+    <li>${subtask}<button class="cursor" onclick="deleteSubtask(${i})">X</button></li>`
+}
+
+
+function openEditTaskPopUp(test, i) {
+    return `<div class="edit-task-container">
+    <button class="cursor close-edit-task" onclick="closeEditTask()">X</button>
+    <div class="input-container-edit">
+    <input id="input-edit-${i}" type="text" value="${test.title}">
+    </div>
+    <h2>Description</h2>
+    <textarea>${test.description}</textarea>
+    <h2 class="date-header-edit">Due date</h2>
+    <label for="appointment">
+        <div class="date-edit">
+        <input id="task-date" required="" type="text" class="form-control" placeholder="dd/mm/yyyy" onfocus="(this.type='date')"/>
+        </div>
+    </label>
+    <div class="priority">
+    <div class="priority-levels cursor" id="urgent" onclick="changeUrgentColor()"><span
+            id="urgent-inner">Urgent</span><img id="img1" src="../assets/icons/urgent.png"
+            alt=""></div>
+    <div class="priority-levels cursor" id="medium" onclick="changeMediumColor()"><span
+            id="medium-inner">Medium</span> <img id="img2" src="../assets/icons/medium.png"
+            alt=""></div>
+    <div class="priority-levels cursor" id="low" onclick="changeLowColor()"><span
+            id="low-inner">Low</span><img id="img3" src="../assets/icons/low.png" alt=""></div>
+</div>
+<select required id="select-contact" class="select-contact cursor">
+<option value="" disabled selected hidden>Select contacts to assign</option>
+</select>
+</div>
+<button onclick="submitChanges()">Submit Changes</button>
+`
+}

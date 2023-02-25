@@ -1,3 +1,19 @@
+// Implement Templates
+async function includeHTML() {
+    let includeElements = document.querySelectorAll('[w3-include-html]');
+    for (let i = 0; i < includeElements.length; i++) {
+        const element = includeElements[i];
+        file = element.getAttribute("w3-include-html"); 
+        let resp = await fetch(file);
+        if (resp.ok) {
+            element.innerHTML = await resp.text();
+        } else {
+            element.innerHTML = 'Page not found';
+        }
+    }
+}
+
+
 // Render Content of data.js
 function renderData() {
     let stageToDo = document.getElementById('stage-todo')
@@ -8,7 +24,6 @@ function renderData() {
     stageFeedBack.innerHTML = '';
     let stageDone = document.getElementById('stage-done')
     stageDone.innerHTML = '';
-
     for (let i = 0; i < testData.length; i++) {
         const test = testData[i];
         if(test.status === 'todo') {
@@ -24,39 +39,28 @@ function renderData() {
     }
     renderColors(i);
     }
-    stagesContentWhenEmpty()
-    renderContactsSelect()
+    stagesContentWhenEmpty();
+    renderContactsSelect();
 }
 
 
 function stagesContentWhenEmpty() {
     let stageToDo = document.getElementById('stage-todo')
     let stageProgress = document.getElementById('stage-progress')
-    // stageProgress.innerHTML = '';
     let stageFeedBack = document.getElementById('stage-feedback')
-    // stageFeedBack.innerHTML = '';
     let stageDone = document.getElementById('stage-done')
-    // stageDone.innerHTML = '';
     if(stageToDo.innerHTML == '') {
-        stageToDo.innerHTML += /*html*/`<div class="empty-container">
-        <h2>There are no todos</h2>
-    </div>`
+        stageToDo.innerHTML += emptyTodoTemplate()
     } if(stageProgress.innerHTML == '') {
-        stageProgress.innerHTML += /*html*/`<div class="empty-container">
-        <h2>There are no tasks in progress</h2>
-    </div>`
+        stageProgress.innerHTML += emptyProgressTemplate()
     } if(stageFeedBack.innerHTML == '') {
-        stageFeedBack.innerHTML += /*html*/`<div class="empty-container">
-        <h2>There are no tasks that need feedback</h2>
-    </div>`
+        stageFeedBack.innerHTML += emptyFeedbackTemplate()
     } if(stageDone.innerHTML == '') {
-        stageDone.innerHTML += /*html*/`<div class="empty-container">
-        <h2>There are no tasks that are done</h2>
-    </div>`
+        stageDone.innerHTML += emptyDoneTemplate();
     }
 }
 
-
+// Render Contacts from Contact JSON Array
 function renderContactsSelect() {
     let contactList = document.getElementById('select-contact')
     contacts.forEach(contact => {
@@ -68,19 +72,19 @@ function renderContactsSelect() {
 }
 
 
-// Search Task 
-function searchTask() {
-    let input = document.getElementById('search-input').value
-    let container = document.querySelectorAll('test')
-    input = input.toLowerCase().trim();
-    container.innerHTML = '';
-    for (let i = 0; i < testData.length; i++) {
-        let taskName = testData[i]['cat'];
-        if(taskName.toLowerCase().includes(input)) {
-            container.innerHTML += renderData();
-        } 
-    }
-}
+//TODO: Finish Search Task Function
+// function searchTask() {
+//     let input = document.getElementById('search-input').value
+//     let container = document.querySelectorAll('test')
+//     input = input.toLowerCase().trim();
+//     container.innerHTML = '';
+//     for (let i = 0; i < testData.length; i++) {
+//         let taskName = testData[i]['cat'];
+//         if(taskName.toLowerCase().includes(input)) {
+//             container.innerHTML += renderData();
+//         } 
+//     }
+// }
 
 
 function openTaskPopUp(i) {
@@ -92,26 +96,9 @@ function openTaskPopUp(i) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     taskPopUp.classList.remove('d-none');
     document.getElementById('overlay').classList.remove('d-none');
-    taskPopUp.innerHTML = /*html*/`
-    <div class="task-popup-container">
-                    <button class="cursor" onclick="closeTaskPopUp()">X</button>
-                    <h3 id="category-${i}">${test.cat}</h3>
-                    <h1 class="grey">${test.title}</h1>
-                    <p class="blue">${test.description}</p>
-                    <ul>
-                        <li><b>Due Date:</b> ${test.date}</li>
-                        <li><b>Priority:</b><span id="priority-popup">${test.priority}</span> </li>
-                        <li><b>Assigned to:</b>
-                            <ul>
-                                <li class="contact-container"><span>DD</span>${contact.name}</li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <img onclick="openEditTask(${i})" class="edit-button cursor" src="../assets/icons/editbutton.png" alt="">
-                </div>
-    `
+    taskPopUp.innerHTML = openTaskPopUpTemplate(test, i, contact)
     renderColors(i);
-    changePriorityColorPopUp()
+    changePriorityColorPopUp();
 }
 
 
@@ -121,39 +108,44 @@ function closeTaskPopUp() {
     document.querySelector('body').classList.remove('overflow-hidden');
 }
 
-let subtaskArray = []
-function renderSubtasks() {
-    let subtasks = document.getElementById('subtasks')
-    subtasks.innerHTML = '';
-    for (let i = 0; i < subtaskArray.length; i++) {
-        const subtask = subtaskArray[i];
-        subtasks.innerHTML += /*html*/`
-            <li>${subtask}<button class="cursor" onclick="deleteSubtask(${i})">X</button></li>
-        `
-    }
-    renderData();
-}
 
-function addSubtask() {
-    let subtaskInput = document.getElementById('task-subtask').value
-    subtaskArray.push(subtaskInput);
-    renderSubtasks();
-    renderData();
-    document.getElementById('task-subtask').value = '';
-}
+// let subtaskArray = []
+// function renderSubtasks(i) {
+//     let subtasks = document.getElementById('subtasks')
+//     subtasks.innerHTML = '';
+//     for (let i = 0; i < subtaskArray.length; i++) {
+//         const subtask = subtaskArray[i];
+//         subtasks.innerHTML += renderSubtasksTemplate(subtask, i)
+//     }
+//     renderData();
+//     renderColors(i)
+// }
 
-function deleteSubtask(i) {
-    subtaskArray.splice(i, 1)
-    renderSubtasks();
-    renderData();
-}
+
+// function addSubtask(i) {
+//     let subtaskInput = document.getElementById('task-subtask').value;
+//     subtaskArray.push(subtaskInput);
+//     renderSubtasks();
+//     renderData();
+//     document.getElementById('task-subtask').value = '';
+//     renderColors(i)
+// }
+
+
+// function deleteSubtask(i) {
+//     subtaskArray.splice(i, 1)
+//     renderSubtasks();
+//     renderData();
+//     renderColors(i)
+// }
+
 
 // Function to prevent that add subtask button submits form
-let preventButton = document.getElementById('add-subtask')
-preventButton.addEventListener('click', function(event) {
-    // Prevent the form from being submitted
-    event.preventDefault();
-  });
+// let preventButton = document.getElementById('add-subtask')
+// preventButton.addEventListener('click', function(event) {
+//     // Prevent the form from being submitted
+//     event.preventDefault();
+//   });
 
 function openEditTask(i) {
     let test = testData[i]
@@ -161,32 +153,14 @@ function openEditTask(i) {
     let editTask = document.getElementById('edit-task-popup')
     let taskPopUp = document.getElementById(`task-popup`).classList.add('d-none')
     editTask.classList.remove('d-none')
-    editTask.innerHTML = /*html*/ `<div class="edit-task-container">
-        <button class="cursor" onclick="closeTaskPopUp() closeEditTask()">X</button>
-        <h1>${test.title}</h1>
-        <h2>Description</h2>
-        <textarea>${test.description}</textarea>
-        <h2 class="date-header">Due date</h2>
-        <label for="appointment">
-            <div class="date">
-                <input id="task-date" class="cursor" placeholder="dd/mm/yyyy" type="date"
-                    id="appointment" name="appointment">
-            </div>
-        </label>
-        <div class="priority">
-        <div class="priority-levels cursor" id="urgent" onclick="changeUrgentColor()"><span
-                id="urgent-inner">Urgent</span><img id="img1" src="../assets/icons/urgent.png"
-                alt=""></div>
-        <div class="priority-levels cursor" id="medium" onclick="changeMediumColor()"><span
-                id="medium-inner">Medium</span> <img id="img2" src="../assets/icons/medium.png"
-                alt=""></div>
-        <div class="priority-levels cursor" id="low" onclick="changeLowColor()"><span
-                id="low-inner">Low</span><img id="img3" src="../assets/icons/low.png" alt=""></div>
-    </div>
-    <select id="select-contact" class="select-contact cursor">
-        <option value="" disabled selected hidden>Select contacts to assign</option>
-    </select>
-    </div>`
+    editTask.innerHTML = openEditTaskPopUp(test, i)
+    renderContactsSelect();
+}
+
+
+function submitChanges(i) {
+    let newInput = document.getElementById(`input-edit-${i}`)
+    newInput.innerHTML = newInput.value
 }
 
 
@@ -208,65 +182,6 @@ function changePriorityColorPopUp() {
 }
 
 
-// Create New Task Function
-function createTask() {
-    let title = document.getElementById('task-title').value;
-    let category = document.getElementById('select-category').value;
-    let taskDescription = document.getElementById('task-description').value;
-    const lastItem = testData[testData.length - 1];
-    if(testData.length == 0) {
-        let newItem = { 
-            "title": title,
-            "cat": category,
-            "description": taskDescription,
-            "status": 'todo',
-            "id":  0,
-            }; 
-            testData.push(newItem);
-    } else {
-        const newId = Number(lastItem.id) + 1;
-        let newItem = { 
-            "title": title,
-            "cat": category,
-            "description": taskDescription,
-            "status": 'todo',
-            "id": newId.toString(),
-            }; 
-            testData.push(newItem);
-    }
-    renderData();
-    // Clear Input Fields
-    title = '';
-    category = '';
-    taskDescription = '';
-}
-
-
-function deleteTask(i) {
-    testData.splice(i ,1)
-    renderData();
-  }
-
-
-function resetInputs() {
-    let title = document.getElementById('task-title').value;
-    let category = document.getElementById('select-category').value;
-    let taskDescription = document.getElementById('task-description').value;
-    title = '';
-    category = '';
-    taskDescription = '';
-}
-
-
-function handleSubmit(event) {
-        event.preventDefault()
-            createTask();
-            closeAddTaskPopUp();
-            resetInputs();
-            renderData();
-}
-
-
 function renderColors(i) {
     let category = document.getElementById(`category-${i}`);
     if(category.innerHTML == 'Design') {
@@ -284,20 +199,60 @@ function renderColors(i) {
 }
 
 
-// Implement Templates
-async function includeHTML() {
-    let includeElements = document.querySelectorAll('[w3-include-html]');
-    for (let i = 0; i < includeElements.length; i++) {
-        const element = includeElements[i];
-        file = element.getAttribute("w3-include-html"); 
-        let resp = await fetch(file);
-        if (resp.ok) {
-            element.innerHTML = await resp.text();
-        } else {
-            element.innerHTML = 'Page not found';
-        }
+// Create New Task Function
+function createTask(i) {
+    let title = document.getElementById('task-title').value;
+    let category = document.getElementById('select-category').value;
+    console.log(category)
+    let taskDescription = document.getElementById('task-description').value;
+    const lastItem = testData[testData.length - 1];
+    if(testData.length == 0) {
+        let newItem = { 
+            "title": title,
+            "cat": category,
+            "description": taskDescription,
+            "status": 'todo',
+            "id":  0,
+            }; 
+            testData.push(newItem);
+
+    } else {
+        const newId = Number(lastItem.id) + 1;
+        let newItem = { 
+            "title": title,
+            "cat": category,
+            "description": taskDescription,
+            "status": 'todo',
+            "id": newId.toString(),
+            }; 
+            testData.push(newItem);
     }
+    renderColors(i);
+    renderData();
+    closeAddTaskPopUp();
 }
+
+
+function handleSubmit(event, i) {
+    event.preventDefault();
+    createTask(i);
+    renderColors(i);
+    renderData();
+        // closeAddTaskPopUp();
+}
+
+
+function deleteTask(i) {
+    testData.splice(i ,1)
+    renderData();
+  }
+
+
+//TODO:Finish the resetInputs Function
+// function resetInputs() {
+
+// }
+
 
 
 // openAddTaskPopUp Function

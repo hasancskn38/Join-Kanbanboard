@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
 </head>
 
-<body onload="includeHTML(); renderData(); renderSubtasks();">
+<body onload="includeHTML(); renderData();">
 
     <!-- Header Start -->
     <div class="navbar">
@@ -85,8 +85,8 @@
 
                         <select required id="select-category" class="cursor">
                             <option value="" disabled selected hidden>Select task category</option>
+                            <option value="Design">Design</option>
                             <option value="Sales">Sales</option>
-                            <option value="Media">Media</option>
                             <option value="Backoffice">Backoffice</option>
                             <option value="Marketing">Marketing</option>
                         </select>
@@ -96,7 +96,6 @@
                         <label for="appointment">
                             <h2 class="date-header">Due date</h2>
                             <div class="date">
-                                
                                 <input id="task-date" required="" type="text" class="form-control" placeholder="dd/mm/yyyy" onfocus="(this.type='date')"/>
                             </div>
                         </label>
@@ -123,7 +122,7 @@
 
                         <div class="subtasks">
                             <h2>Subtask</h2>
-                            <div class="subtasks-input"><input required id="task-subtask" placeholder="Add new subtask"
+                            <div class="subtasks-input"><input id="task-subtask" minlength="8" placeholder="Add new subtask"
                                     type="text">
                                     <button id="add-subtask" onclick="addSubtask()" class="cursor">+</button>
                                 </div>
