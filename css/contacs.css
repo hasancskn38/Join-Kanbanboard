@@ -21,12 +21,14 @@
     margin-left: 30px;
     overflow-y: auto;
     overflow-x: hidden;
+    margin-top: 82px;
 }
 
 .layout-contact3 {
     margin: 50px;
     width: 100%;
     overflow: hidden;
+    margin-top: 100px;
 }
 
 .new-contact {

@@ -9,7 +9,8 @@
     font-size: 28px;
 }
 
-.popup-header h2, .createtask-button {
+.popup-header h2,
+.createtask-button {
     margin: 20px;
     padding: 0 5px;
 }
@@ -19,7 +20,7 @@
     background-color: #4589FF;
     border-radius: 10px;
     font-size: 20px;
-    font-weight:lighter;
+    font-weight: lighter;
 }
 
 .input-container {
@@ -32,7 +33,7 @@
 .popup-input {
     width: 90%;
     font-size: 28px;
-    padding:5px;
+    padding: 5px;
 }
 
 form {
@@ -45,7 +46,7 @@ select {
     font-size: 18px;
     border-bottom: 1px solid lightgray;
     margin: 20px;
-    padding:5px;
+    padding: 5px;
     color: #4589FF;
 }
 
@@ -63,7 +64,7 @@ select option {
     padding: 5px;
 }
 
-.date > input {
+.date>input {
     font-size: 18px;
     width: 100%;
     border-bottom: 0;
@@ -72,17 +73,17 @@ select option {
 
 
 
-label > input {
+label>input {
     width: 90%;
     border-bottom: 1px solid lightgray;
     font-size: 28px;
-    padding:5px;
+    padding: 5px;
     margin: 0 20px;
 }
 
 .date-header {
-    margin:0 20px;
-    padding:5px;
+    margin: 0 20px;
+    padding: 5px;
 }
 
 .priority {
@@ -103,7 +104,7 @@ label > input {
     justify-content: space-around;
 }
 
-.priority-levels > img {
+.priority-levels>img {
     padding: 0 0 0 5px;
 }
 
@@ -147,8 +148,8 @@ label > input {
 
 
 .description {
-    margin:0 20px;
-    padding:5px;
+    margin: 0 20px;
+    padding: 5px;
 }
 
 textarea {
@@ -192,11 +193,78 @@ textarea::placeholder {
 }
 
 /* To only style the first child of an container */
-.popup > *:first-child {
+.popup>*:first-child {
     position: absolute;
     right: 2%;
     top: .5%;
     background: none;
     font-size: 20px;
 }
+
 /* Pop Up End */
+
+.popup2 {
+    margin-top: 70px;
+    background-color: #fff;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.navbar {
+    position: fixed;
+    width: 100%;
+}
+
+.createtask-button-clear {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 1px solid #647188;
+    border-radius: 10px;
+    width: 136px;
+    height: 61px;
+    font-size: 21px;
+    transition: all 125ms ease-in-out;
+}
+
+.createtask-button-clear:hover {
+    border: 1px solid #4589FF;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.283);
+    transition: all 125ms ease-in-out;
+    color: #4589FF;
+}
+
+.createtask-button-2 {
+    color: #fff;
+    background-color: #4589FF;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+    border: 1px solid #647188;
+    border-radius: 10px;
+    width: 136px;
+    height: 61px;
+    font-size: 21px;
+    transition: all 125ms ease-in-out;
+}
+
+.createtask-button-2:hover {
+    transition: all 125ms ease-in-out;
+    background: #4e85e5;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.283);
+}
+
+.two-button {
+    position: absolute;
+    right: 50px;
+    bottom: -100px;
+    display: flex;
+    gap: 30px;
+}
