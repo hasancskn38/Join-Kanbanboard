@@ -41,6 +41,7 @@ function renderData() {
     }
     stagesContentWhenEmpty();
     renderContactsSelect();
+    hideOrShowPriorityLevels();
 }
 
 
@@ -90,9 +91,8 @@ function renderContactsSelect() {
 function openTaskPopUp(i) {
     let test = testData[i]
     let contact = contacts[i]
-    let date = document.getElementById('task-date').value;
-    document.querySelector('body').classList.add('overflow-hidden');
     let taskPopUp = document.getElementById(`task-popup`)
+    document.querySelector('body').classList.add('overflow-hidden');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     taskPopUp.classList.remove('d-none');
     document.getElementById('overlay').classList.remove('d-none');
@@ -200,10 +200,10 @@ function renderColors(i) {
 
 
 // Create New Task Function
-function createTask(i) {
+function createTask() {
     let title = document.getElementById('task-title').value;
     let category = document.getElementById('select-category').value;
-    console.log(category)
+    let date = document.getElementById('task-date').value
     let taskDescription = document.getElementById('task-description').value;
     const lastItem = testData[testData.length - 1];
     if(testData.length == 0) {
@@ -212,6 +212,7 @@ function createTask(i) {
             "cat": category,
             "description": taskDescription,
             "status": 'todo',
+            "date": date,
             "id":  0,
             }; 
             testData.push(newItem);
@@ -223,37 +224,46 @@ function createTask(i) {
             "cat": category,
             "description": taskDescription,
             "status": 'todo',
+            "date": date,
             "id": newId.toString(),
             }; 
             testData.push(newItem);
     }
-    renderColors(i);
-    renderData();
     closeAddTaskPopUp();
+    clearInputFields();
+    removePrioritys();
+    renderData();
+}
+
+
+function deleteTask(i) {
+    testData.splice(i ,1);
+    closeEditTask();
+    closeTaskPopUp();
+    renderData();
+}
+
+
+function clearInputFields() {
+    let input = document.getElementById('task-title')
+    let selectCategory = document.getElementById('select-category')
+    let selectContacts = document.getElementById('select-contact')
+    let taskDate = document.getElementById('task-date')
+    let taskDescription = document.getElementById('task-description')
+    input.value = "";
+    selectCategory.value = "";
+    selectContacts.value = "";
+    taskDate.value = "";
+    taskDescription.value = "";
 }
 
 
 function handleSubmit(event, i) {
     event.preventDefault();
     createTask(i);
-    renderColors(i);
     renderData();
-        // closeAddTaskPopUp();
+    closeAddTaskPopUp();
 }
-
-
-function deleteTask(i) {
-    testData.splice(i ,1)
-    renderData();
-  }
-
-
-//TODO:Finish the resetInputs Function
-// function resetInputs() {
-
-// }
-
-
 
 // openAddTaskPopUp Function
 function openAddTaskPopUp() {
@@ -275,27 +285,31 @@ function closeAddTaskPopUp() {
 
 
 // Drag and Drop Function
-let currentDraggedItem
-function startDragging(id, i) {
-    currentDraggedItem = id
-    renderColors(i);
-    // showRemoveTaskBin()
+let currentDraggedItemId
+function startDragging(id) {
+    currentDraggedItemId = id
 }
 
 
-function allowDrop(ev, i) {
+function allowDrop(ev) {
     ev.preventDefault();
-    renderColors(i);
   }
 
 
-function dropItem(status, i) {
-    testData[currentDraggedItem]['status'] = status
+function dropItem(status) {
+    testData[currentDraggedItemId]['status'] = status
     renderData();
-    renderColors(i);
-    // hideRemoveTaskBin()
 }
 
+// Remove any priority levels
+function removePrioritys() {
+urgent.classList.remove('urgent')
+priorityImg1.classList.remove('white')
+medium.classList.remove('medium')
+priorityImg2.classList.remove('white')
+low.classList.remove('low')
+priorityImg3.classList.remove('white')
+}
 
 // Change the Color of the different Priority Levels
 let priorityImg1 = document.getElementById('img1')
@@ -353,6 +367,20 @@ function changeLowColor() {
     }
 }
 
+//TODO Finish hideorshowpriority levels
+// Function to show or hide the Priority Levels on drag and drop
+function hideOrShowPriorityLevels() {
+    let lowMain = document.getElementById('low-main')
+    let lowUrgent = document.getElementById('urgent-main')
+    let lowMedium = document.getElementById('medium-main')
+    for (let i = 0; i < testData.length; i++) {
+        const test = testData[i];
+        if(test.priority == 'Urgent') {
+            lowUrgent.classList.remove('d-none')
+        }
+    }
+    
+}
 
 // Show Help me Container
 function showHelpMeSection() {

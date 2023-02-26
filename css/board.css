@@ -575,6 +575,18 @@ textarea::placeholder {
     border-bottom: 0;
 }
 
+.edit-task-button-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.edit-task-button-container button {
+    color: #fff;
+    background-color: #4589FF;
+    border-radius: 10px;
+    padding: 15px 30px;
+}
+
 /* Edit Task End */
 
 /* Stages Container Start */
@@ -613,12 +625,6 @@ textarea::placeholder {
     display: flex;
     justify-content: space-between;
     margin: 0 0 20px;
-    /* Stylings to Stick Stage-header */
-    /* position: sticky;
-    background: #fff;
-    z-index: 5;
-    padding: 20px;
-    top: 0; */
 }
 
 .stage-header button {
@@ -634,7 +640,6 @@ textarea::placeholder {
 
 .stage-header button:hover {
     opacity: .7;
-    transform: scale(1.1);
 }
 /* Stages Container End */
 
@@ -642,6 +647,7 @@ textarea::placeholder {
 
 /* Responsive Start */
 @media only screen and (max-width: 1450px) {
+
 .kanbanboard-description {
     display: flex;
     justify-content: center;
@@ -671,7 +677,6 @@ textarea::placeholder {
     margin: 50px;
 }
 
-
 .stage-general {
     width: 100%;
     margin: 0 auto;
@@ -683,7 +688,6 @@ textarea::placeholder {
     margin: 20px;
 }
 }
-
 
 @media only screen and (max-width: 770px) {
     .sidebar {
@@ -743,7 +747,7 @@ textarea::placeholder {
 
 /* To give every single child element the exact same stylings */
 #stage-todo > *, #stage-progress > *, #stage-done > *, #stage-feedback > * {
-    margin: 0 0 10px 0;
+    margin: 0 0 20px 0;
 } 
 
 .blue {
@@ -755,6 +759,21 @@ textarea::placeholder {
     word-wrap: break-word;
     padding: 10px 0;
 }
+
+.progress-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact.priority-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.subtasks-done {
+    margin-right: 15px;
+}
+
 
 .design {
     background-color: #ff7a00;
