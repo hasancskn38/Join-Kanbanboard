@@ -5,9 +5,8 @@ let testData = [
     description: 'This is a Task Description',
     status: 'todo',
     date:'05-08-2022',
-    priority:'Urgent',
-    renderContact:'Hasan Coskun',
-    shortcut: 'HC',
+    priority:'urgent',
+    assignedContact: 'Hasan Coskun',
     id: '0'
     }, 
 
@@ -17,9 +16,8 @@ let testData = [
     description: 'This is a Task Description',
     status: 'inprogress',
     date:'05-08-2022',
-    priority:'Urgent',
-    renderContact:'Hasan Coskun',
-    shortcut: 'HC',
+    priority:'urgent',
+    assignedContact: 'Hasan Coskun',
     id: '1'
     }, 
 
@@ -29,10 +27,9 @@ let testData = [
     description: 'This is a Task Description',
     status: 'feedback',
     date:'05-08-2022',
-    priority:'Urgent',
-    renderContact:'Hasan Coskun',
-    shortcut: 'HC',
-    id: '2'
+    priority:'urgent',
+    assignedContact: 'Hasan Coskun',
+    id:'2'
     }, 
 
     {
@@ -41,9 +38,8 @@ let testData = [
     description: 'This is a Task Description',
     status: 'done',
     date:'05-08-2022',
-    priority:'Medium',
-    renderContact:'Hasan Coskun',
-    shortcut: 'HC',
+    priority:'medium',
+    assignedContact: 'Hasan Coskun',
     id: '3'
     },
     
@@ -53,9 +49,8 @@ let testData = [
     description: 'This is a Task Description',
     status: 'done',
     date:'05-08-2022',
-    priority:'Low',
-    renderContact:'Hasan Coskun',
-    shortcut: 'HC',
+    priority:'low',
+    assignedContact: 'Hasan Coskun',
     id: '4'
     },
 ]

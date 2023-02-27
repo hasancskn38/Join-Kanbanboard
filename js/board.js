@@ -40,7 +40,6 @@ function renderData() {
     renderColors(i);
     }
     stagesContentWhenEmpty();
-    renderContactsSelect();
     hideOrShowPriorityLevels();
 }
 
@@ -62,30 +61,72 @@ function stagesContentWhenEmpty() {
 }
 
 // Render Contacts from Contact JSON Array
-function renderContactsSelect() {
-    let contactList = document.getElementById('select-contact')
-    contacts.forEach(contact => {
-        const option = document.createElement("option");
-        option.value = contact.id;
-        option.text = `${contact.name}`;
-        contactList.appendChild(option);
-      });
+const selectElement = document.getElementById('select-contact');
+const initialsDiv = document.getElementById('initials-div');
+
+// Set the select element to allow multiple selections
+selectElement.setAttribute('multiple', true);
+
+// Populate the select element with options for each contact name
+contacts.forEach(contact => {
+    const optionElement = document.createElement('option');
+    optionElement.value = contact.name;
+    optionElement.textContent = contact.name;
+    selectElement.appendChild(optionElement);
+});
+
+// Function to create a single initial span element
+function createInitial(name, randomColor) {
+    const span = document.createElement('span');
+    span.textContent = name.charAt(0).toUpperCase();
+    span.style.backgroundColor = randomColor;
+    return span;
 }
 
+// Function to get the initials of a name
+function getInitials(name, randomColor) {
+    const names = name.split(' ');
+    const initials = [];
+    for (let i = 0; i < names.length; i += 2) {
+      const span = document.createElement('span');
+      let initialsPair = names[i].charAt(0).toUpperCase();
+      if (i + 1 < names.length) {
+        initialsPair += names[i + 1].charAt(0).toUpperCase();
+        i++;
+      }
+      span.textContent = initialsPair;
+      span.style.backgroundColor = randomColor;
+      initials.push(span);
+    }
+    return initials;
+  }
+  
 
-//TODO: Finish Search Task Function
-// function searchTask() {
-//     let input = document.getElementById('search-input').value
-//     let container = document.querySelectorAll('test')
-//     input = input.toLowerCase().trim();
-//     container.innerHTML = '';
-//     for (let i = 0; i < testData.length; i++) {
-//         let taskName = testData[i]['cat'];
-//         if(taskName.toLowerCase().includes(input)) {
-//             container.innerHTML += renderData();
-//         } 
-//     }
-// }
+// Function to set the background color of the initialsDiv
+function setBackgroundColors(selectedContacts) {
+    const backgroundColors = selectedContacts.map(contact => contact.randomColors);
+}
+
+// Event listener for the select element
+selectElement.addEventListener('change', function() {
+    // Get the selected contact objects
+    const selectedContacts = Array.from(this.selectedOptions).map(option => {
+        return contacts.find(contact => contact.name === option.value);
+    });
+    // Get the initials of the selected contacts
+    const initials = selectedContacts.flatMap(contact => getInitials(contact.name, contact.randomColors));
+    // Remove any existing children from the initials div
+    initialsDiv.innerHTML = '';
+    // Add the new initials spans to the initials div
+    initials.forEach(span => {
+        initialsDiv.appendChild(span);
+        // Add a space between the initials
+        const space = document.createTextNode(' ');
+        initialsDiv.appendChild(space);
+    });
+    // Set the background color of the initialsDiv
+    setBackgroundColors(selectedContacts);
+});
 
 
 function openTaskPopUp(i) {
@@ -154,7 +195,6 @@ function openEditTask(i) {
     let taskPopUp = document.getElementById(`task-popup`).classList.add('d-none')
     editTask.classList.remove('d-none')
     editTask.innerHTML = openEditTaskPopUp(test, i)
-    renderContactsSelect();
 }
 
 
@@ -198,36 +238,63 @@ function renderColors(i) {
     }
 }
 
+let priority = 'urgent';
+function setPriority(value) {
+    priority = value;
+}
+
+document.getElementById('urgent').addEventListener('click', function() {
+    setPriority('urgent');
+});
+
+document.getElementById('medium').addEventListener('click', function() {
+    setPriority('medium');
+});
+
+document.getElementById('low').addEventListener('click', function() {
+    setPriority('low');
+});
 
 // Create New Task Function
 function createTask() {
     let title = document.getElementById('task-title').value;
     let category = document.getElementById('select-category').value;
-    let date = document.getElementById('task-date').value
+    let date = document.getElementById('task-date').value;
     let taskDescription = document.getElementById('task-description').value;
+    let assignedContacts = Array.from(document.getElementById('select-contact').selectedOptions)
+        .map(option => {
+            const fullName = option.value;
+            const nameArr = fullName.split(' ');
+            const initials = nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
+            return initials.toUpperCase();
+        });
     const lastItem = testData[testData.length - 1];
-    if(testData.length == 0) {
-        let newItem = { 
+    if (testData.length == 0) {
+        let newItem = {
             "title": title,
             "cat": category,
             "description": taskDescription,
             "status": 'todo',
+            "priority": priority,
             "date": date,
-            "id":  0,
-            }; 
-            testData.push(newItem);
+            "contact": assignedContacts,
+            "id": 0,
+        };
+        testData.push(newItem);
 
     } else {
         const newId = Number(lastItem.id) + 1;
-        let newItem = { 
+        let newItem = {
             "title": title,
             "cat": category,
             "description": taskDescription,
             "status": 'todo',
+            "priority": priority,
             "date": date,
+            "assignedContact": assignedContacts,
             "id": newId.toString(),
-            }; 
-            testData.push(newItem);
+        };
+        testData.push(newItem);
     }
     closeAddTaskPopUp();
     clearInputFields();
@@ -245,11 +312,11 @@ function deleteTask(i) {
 
 
 function clearInputFields() {
-    let input = document.getElementById('task-title')
-    let selectCategory = document.getElementById('select-category')
-    let selectContacts = document.getElementById('select-contact')
-    let taskDate = document.getElementById('task-date')
-    let taskDescription = document.getElementById('task-description')
+    let input = document.getElementById('task-title');
+    let selectCategory = document.getElementById('select-category');
+    let selectContacts = document.getElementById('select-contact');
+    let taskDate = document.getElementById('task-date');
+    let taskDescription = document.getElementById('task-description');
     input.value = "";
     selectCategory.value = "";
     selectContacts.value = "";
@@ -286,14 +353,20 @@ function closeAddTaskPopUp() {
 
 // Drag and Drop Function
 let currentDraggedItemId
+
 function startDragging(id) {
-    currentDraggedItemId = id
+    for (let i = 0; i < testData.length; i++) {
+        let index = testData[i]['id']
+        if(index == id) {
+            currentDraggedItemId = i;
+        }
+    }
 }
 
 
 function allowDrop(ev) {
     ev.preventDefault();
-  }
+}
 
 
 function dropItem(status) {
@@ -326,7 +399,6 @@ function changeUrgentColor() {
         priorityImg1.classList.remove('white');
         
     } else {
-        // if not add urgent 
         urgent.classList.add('urgent')
         low.classList.remove('low')
         medium.classList.remove('medium')
@@ -367,20 +439,31 @@ function changeLowColor() {
     }
 }
 
-//TODO Finish hideorshowpriority levels
+
 // Function to show or hide the Priority Levels on drag and drop
 function hideOrShowPriorityLevels() {
-    let lowMain = document.getElementById('low-main')
-    let lowUrgent = document.getElementById('urgent-main')
-    let lowMedium = document.getElementById('medium-main')
     for (let i = 0; i < testData.length; i++) {
-        const test = testData[i];
-        if(test.priority == 'Urgent') {
-            lowUrgent.classList.remove('d-none')
-        }
+    let lowMain = document.getElementById(`low-main-${i}`);
+    let urgentMain = document.getElementById(`urgent-main-${i}`);
+    let mediumMain = document.getElementById(`medium-main-${i}`);
+      const test = testData[i];
+      if (test.priority == 'urgent') {
+        urgentMain.classList.remove('d-none');
+        mediumMain.classList.add('d-none');
+        lowMain.classList.add('d-none');
+      } else if (test.priority == 'medium') {
+        urgentMain.classList.add('d-none');
+        mediumMain.classList.remove('d-none');
+        lowMain.classList.add('d-none');
+      } else if (test.priority == 'low') {
+        urgentMain.classList.add('d-none');
+        mediumMain.classList.add('d-none');
+        lowMain.classList.remove('d-none');
+      }
     }
-    
 }
+
+
 
 // Show Help me Container
 function showHelpMeSection() {

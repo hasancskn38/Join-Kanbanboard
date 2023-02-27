@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
 </head>
 
-<body onload="includeHTML(); renderData(); hideOrShowPriorityLevels();">
+<body onload="includeHTML(); renderData();">
 
     <!-- Header Start -->
     <div class="navbar">
@@ -40,7 +40,7 @@
             </div>
 
             <div class="board-header">
-                <div class="search-task">    
+                <div class="search-task">
                     <input id="search-input" onkeyup="searchTask()" type="text" placeholder="Find Task">
                     <!-- <hr class="vertical-line" width="2" color="grey" size="20"/> -->
                 </div>
@@ -53,7 +53,7 @@
 
             <!-- Task Pop Up Start -->
             <div class="d-none" id="task-popup">
-                
+
             </div>
             <!-- Task Pop Up End -->
 
@@ -94,42 +94,51 @@
                         <label for="appointment">
                             <h2 class="date-header">Due date</h2>
                             <div class="date">
-                                <input id="task-date" required="" type="text" class="form-control" placeholder="dd/mm/yyyy" onfocus="(this.type='date')"/>
+                                <input id="task-date" required="" type="text" class="form-control"
+                                    placeholder="dd/mm/yyyy" onfocus="(this.type='date')" />
                             </div>
                         </label>
 
                         <select required id="select-contact" class="select-contact cursor">
                             <option value="" disabled selected hidden>Select contacts to assign</option>
                         </select>
+                        <div id="initials-div">
+                            
+                        </div>
 
                         <div class="priority">
+
                             <div class="priority-levels cursor" id="urgent" onclick="changeUrgentColor()"><span
                                     id="urgent-inner">Urgent</span><img id="img1" src="../assets/icons/urgent.png"
                                     alt=""></div>
+
                             <div class="priority-levels cursor" id="medium" onclick="changeMediumColor()"><span
                                     id="medium-inner">Medium</span> <img id="img2" src="../assets/icons/medium.png"
                                     alt=""></div>
+
                             <div class="priority-levels cursor" id="low" onclick="changeLowColor()"><span
-                                    id="low-inner">Low</span><img id="img3" src="../assets/icons/low.png" alt=""></div>
+                                    id="low-inner">Low</span><img id="img3" src="../assets/icons/low.png" alt="">
+                            </div>
                         </div>
 
                         <div class="description">
                             <h2>Description</h2>
-                            <textarea required maxlength="30" id="task-description" placeholder="Enter a description"></textarea>
+                            <textarea required maxlength="30" id="task-description"
+                                placeholder="Enter a description"></textarea>
                         </div>
 
                         <div class="subtasks">
                             <h2>Subtask</h2>
-                            <div class="subtasks-input"><input id="task-subtask" minlength="8" placeholder="Add new subtask"
-                                    type="text">
-                                    <button id="add-subtask" onclick="addSubtask()" class="cursor">+</button>
-                                </div>
-                                
+                            <div class="subtasks-input"><input id="task-subtask" minlength="8"
+                                    placeholder="Add new subtask" type="text">
+                                <button id="add-subtask" onclick="addSubtask()" class="cursor">+</button>
+                            </div>
+
                         </div>
                         <ul id="subtasks">
 
                         </ul>
-                        
+
 
                 </form>
             </div>
@@ -141,12 +150,12 @@
 
             <div ondrop="dropItem('todo')" ondragover="allowDrop(event)" class="stage-todo stage-general">
                 <div class="stage-header">
-                    
+
                     <h2>To do</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
                 </div>
 
                 <div class="container" id="stage-todo">
-                    
+
                 </div>
             </div>
 

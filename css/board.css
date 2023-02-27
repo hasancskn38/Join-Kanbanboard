@@ -282,6 +282,12 @@ select option {
     color: #000;
 }
 
+#initials-div {
+    margin: 15px;
+    padding: 5px;
+    width: 90%;
+}
+
 .date {
     display: flex;
     justify-content: space-between;
@@ -796,7 +802,16 @@ textarea::placeholder {
     
 }
 
-.contact-initials > p {
+
+.contact-priority-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0 10px 0;
+    padding-bottom: 20px !important;
+}
+
+.contact-priority-container p {
     height: 30px;
     width: 30px;
     line-height: 30px;
@@ -805,5 +820,18 @@ textarea::placeholder {
     color: #fff;
     text-align: center;
     font-size: 14px;
+}
+
+.assigned-contact {
+    display: flex;
+}
+
+#initials-div span {
+    border-radius: 50%;
+    padding: 5px;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    color: #fff;
 }
 /* Styling of the Content that is created or rendered with Javascript End*/
