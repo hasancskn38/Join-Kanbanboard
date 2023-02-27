@@ -1,0 +1,88 @@
+.main-legal-notice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 350px;
+    top: 211px;
+    flex-direction: column;
+    z-index: -1;
+}
+
+.img-arrow-left {
+    cursor: pointer;
+    margin-right: 50px;
+}
+
+.main-div {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.h1-header {
+    font-size: 50px;
+    color: #4589FF;
+}
+
+.impressum-h1 {
+    color: #4589FF;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.impressum-h2 {
+    font-size: 28px;
+    text-align: start;
+    margin-bottom: 10px;
+}
+
+.impressum-p {
+    font-size: 20px;
+    text-align: start;
+    margin-bottom: 10px;
+}
+
+.impressum-div {
+    width: 100%;
+}
+
+.datenschutz-div {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: 40px;
+}
+
+.datenschutz-div h1 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #4589FF;
+    word-break: break-word;
+}
+
+.datenschutz-div h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    word-break: break-word;
+}
+
+.datenschutz-div h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    word-break: break-word;
+}
+
+.datenschutz-div p {
+    margin-bottom: 5px;
+}
+
+.datenschutz-div a {
+    word-break: break-word;
+}
+
+@media (max-width:770px) {
+    .main-legal-notice {
+        left: 31px;
+    }
+    
+}

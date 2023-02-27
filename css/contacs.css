@@ -536,6 +536,10 @@
         height: calc(100vh - 260px);
     }
 
+    .contact-detail-header-right {
+        margin-left: -26px;
+    }
+
     .new-contact {
         display: none;
     }
