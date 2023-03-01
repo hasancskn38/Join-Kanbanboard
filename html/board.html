@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,9 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
 </head>
-
-<body onload="includeHTML(); renderData();">
-
+<body onload="includeHTML(); renderData(); spanForEachInitial()">
     <!-- Header Start -->
     <div class="navbar">
         <div w3-include-html="../assets/templates/header-template.html"></div>
@@ -98,10 +95,9 @@
                                     placeholder="dd/mm/yyyy" onfocus="(this.type='date')" />
                             </div>
                         </label>
-
-                        <select required id="select-contact" class="select-contact cursor">
-                            <option value="" disabled selected hidden>Select contacts to assign</option>
-                        </select>
+                            <select multiple required id="select-contact" class="select-contact cursor">
+                                <option value="" disabled selected hidden>Select contacts to assign</option>
+                            </select>
                         <div id="initials-div">
                             
                         </div>
@@ -135,6 +131,7 @@
                             </div>
 
                         </div>
+                        
                         <ul id="subtasks">
 
                         </ul>
@@ -197,6 +194,7 @@
     <script defer src="../js/script.js"></script>
     <script defer src="../js/summary.js"></script>
     <script defer src="../js/add-task.js"></script>
+    <script defer src="../js/board-priority.js"></script>
     <script defer src="../js/login_registry.js"></script>
 </body>
 

@@ -45,6 +45,7 @@ load();
 
 
 /**
+
  * Creating contanctlist
  */
 function showContacts() {

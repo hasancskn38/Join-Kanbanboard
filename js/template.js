@@ -4,16 +4,17 @@ function toDoTemplate(i, test) {
     <h3 id="category-${i}">${test.cat}</h3>
     <h4 class="blue">${test.description}</h4>
     <p class="grey">${test.title}</p>
-    <p class="contact-test">${test.assignedContact}</p>
     <div class="progress-container">
     <!-- <div class="progress"><progress></div> -->
     <div class="subtasks-done">1/2 Done</div>
     </div>
    
     <div class="contact-priority-container">
-    <div class="assigned-contact">
+
+    <div id="assigned-contacts-${i}" class="assigned-contact">
     
     </div>
+
     <div class="priority-level">
     <img id="urgent-main-${i}" class="" src="../assets/icons/urgent.png">
     <img id="medium-main-${i}" class="" src="../assets/icons/medium.png">
@@ -34,7 +35,7 @@ function progressTemplate(i, test) {
     </div>
 
     <div class="contact-priority-container">
-    <div class="assigned-contact">
+    <div id="assigned-contacts-${i}" class="assigned-contact">
     
     </div>
     <div class"priority-level"">
@@ -56,8 +57,7 @@ function feedBackTemplate(i, test) {
     </div>
 
     <div class="contact-priority-container">
-    <div class="assigned-contact">
-    
+    <div id="assigned-contacts-${i}" class="assigned-contact">
     </div>
     <div class="priority-level">
     <img id="urgent-main-${i}" src="../assets/icons/urgent.png">
@@ -78,7 +78,7 @@ function doneTemplate(i, test) {
     </div>
 
     <div class="contact-priority-container">
-    <div class="assigned-contact">
+    <div id="assigned-contacts-${i}" class="assigned-contact">
     
     </div>
     <div class="priority-level">
@@ -253,13 +253,18 @@ function openTaskPopUpTemplate(test, i, contact) {
                     <p class="blue">${test.description}</p>
                     <ul>
                         <li><b>Due Date:</b> ${test.date}</li>
-                        <li><b>Priority:</b><span id="priority-popup">${test.priority}</span> </li>
+                        <li><b>Priority:</b><span id="test-priority">${test.priority}</span> </li>
                         <li><b>Assigned to:</b>
-                            <ul>
-                            </ul>
+                        <div id="assigned-contacts-${i}" class="assigned-contacts-popup">
+                        
+                        </div>
                         </li>
                     </ul>
+
+                    <div id="subtasks-container"></div>
+
                     <img onclick="openEditTask(${i})" class="edit-button cursor" src="../assets/icons/editbutton.png" alt="">
+                    
                 </div>
     `
 }

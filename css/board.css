@@ -811,7 +811,7 @@ textarea::placeholder {
     padding-bottom: 20px !important;
 }
 
-.contact-priority-container p {
+.contact-priority-container span {
     height: 30px;
     width: 30px;
     line-height: 30px;
@@ -820,6 +820,7 @@ textarea::placeholder {
     color: #fff;
     text-align: center;
     font-size: 14px;
+    display: inline-block;
 }
 
 .assigned-contact {
@@ -833,5 +834,21 @@ textarea::placeholder {
     height: 30px;
     width: 30px;
     color: #fff;
+}
+
+.assigned-contacts-popup {
+   padding: 20px 0;
+}
+
+.assigned-contacts-popup span {
+    background-color: #ffa800;
+    height: 35px;
+    width: 35px;
+    line-height: 35px;
+    text-align: center;
+    display: inline-block;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 50% !important;
 }
 /* Styling of the Content that is created or rendered with Javascript End*/
