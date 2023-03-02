@@ -39,7 +39,9 @@ let contacts = [
         'randomColors': 'rgb(42 ,156 , 210)',
         'id': '5'
     }
+    
 ];
+setURL('https://gruppe-447.developerakademie.net/join/smallest_backend_ever');
 let letters = [];
 load();
 
@@ -48,7 +50,9 @@ load();
 
  * Creating contanctlist
  */
-function showContacts() {
+async function showContacts() {
+    await downloadFromServer();
+    contacts = JSON.parse(backend.getItem('contacts')) || [];
     sortContacts(contacts);
     includeHTML();
     let contactContainer = document.getElementById('contactList');
@@ -66,14 +70,15 @@ function showContacts() {
 }
 
 
-function AddNewContact() {
+async function AddNewContact() {
     let name = document.getElementById('new-contact-name');
     let email = document.getElementById('new-contact-email');
     let phone = document.getElementById('new-contact-phone');
     let color = randomColor();
     contacts.push({ name: name.value, email: email.value, phone: phone.value, randomColors: color });
+    await backend.setItem('contacts', JSON.stringify(contacts));
     showContacts();
-    clearInputFields();
+    clearInputs();
     editSave();
     document.getElementById('addcontactlayout').classList.add('d-nones');
 }
@@ -92,7 +97,7 @@ function slideBack() {
 }
 
 
-function clearInputFields() {
+function clearInputs() {
     document.getElementById('new-contact-name').value = '';
     document.getElementById('new-contact-email').value = '';
     document.getElementById('new-contact-phone').value = '';
@@ -110,7 +115,7 @@ function splitName(fullName) {
     let firstName = namePara[0];
     let lastName = namePara[namePara.length - 1];
     let bothFirstLetter = firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase();
-    return bothFirstLetter
+    return bothFirstLetter;
 }
 
 
@@ -126,11 +131,9 @@ function filterFirstLetter() {
 
 
 function renderBigLetter(contactName) {
-        let letter = contactName
-        let greatLetter = letter.charAt(0).toUpperCase();
-        return greatLetter
-        
-
+    let letter = contactName;
+    let greatLetter = letter.charAt(0).toUpperCase();
+    return greatLetter;
 }
 
 
@@ -152,7 +155,7 @@ function randomColor() {
     let r = Math.floor(Math.random() * 246);
     let g = Math.floor(Math.random() * 246);
     let b = Math.floor(Math.random() * 246);
-    
+
     return `rgb(${r} ,${g} , ${b})`;
 }
 
@@ -207,7 +210,6 @@ function editContactSave(contactName, contactEmail, contactPhone) {
     document.getElementById('editContactLayout').classList.add('d-nones');
     editSave();
     showContacts();
-    
 }
 
 
@@ -220,26 +222,25 @@ function findCurrentContact(contactName, contactEmail, contactPhone) {
         }
     }
     return index;
-
 }
 
 
-function editSave() {
+async function editSave() {
     let asContacts = JSON.stringify(contacts);
-    localStorage.setItem('contacts', asContacts);
+    await backend.setItem('contacts', asContacts);
 
     let asletters = JSON.stringify(letters);
-    localStorage.setItem('letters', asletters);
+    await backend.setItem('letters', asletters);
     showContacts();
 }
 
 
 function load() {
-    let asContacts = localStorage.getItem('contacts');
-    let asletters = localStorage.getItem('letters');
+    let asContacts = backend.getItem('contacts');
+    let asletters = backend.getItem('letters');
 
     if (asContacts && asletters) {
-        contacts = JSON.parse(asContacts);
-        letters = JSON.parse(asletters);
+        contacts = JSON.parse(backend.getItem(asContacts));
+        letters = JSON.parse(backend.getItem(asletters));
     }
 }
