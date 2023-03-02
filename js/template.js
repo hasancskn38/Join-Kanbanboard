@@ -3,7 +3,7 @@ function toDoTemplate(i, test) {
     <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
     <h3 id="category-${i}">${test.cat}</h3>
     <h4 class="blue">${test.description}</h4>
-    <p class="grey">${test.title}</p>
+    <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
     <!-- <div class="progress"><progress></div> -->
     <div class="subtasks-done">1/2 Done</div>
@@ -248,7 +248,7 @@ function openTaskPopUpTemplate(test, i, contact) {
     <div class="task-popup-container">
                     <button class="cursor" onclick="closeTaskPopUp()">X</button>
                     <h3 id="category-${i}">${test.cat}</h3>
-                    <h1 class="grey task-popup-header">${test.title}</h1>
+                    <h1 id="task-popup-header" class="grey task-popup-header">${test.title}</h1>
                     <p class="blue">${test.description}</p>
                     <ul>
                         <li><b>Due Date:</b> ${test.date}</li>
@@ -282,11 +282,11 @@ function openEditTaskPopUp(test, i) {
     <input id="input-edit-${i}" type="text" value="${test.title}">
     </div>
     <h2>Description</h2>
-    <textarea>${test.description}</textarea>
+    <textarea id="edit-description">${test.description}</textarea>
     <h2 class="date-header-edit">Due date</h2>
     <label for="appointment">
         <div class="date-edit">
-        <input id="task-date" required="" type="text" class="form-control" placeholder="dd/mm/yyyy" onfocus="(this.type='date')"/>
+        <input id="task-date-edit" required="" type="text" class="form-control" placeholder="dd/mm/yyyy" onfocus="(this.type='date')"/>
         </div>
     </label>
     <div class="priority">
