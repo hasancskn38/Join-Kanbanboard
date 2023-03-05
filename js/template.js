@@ -68,7 +68,7 @@ function feedBackTemplate(i, test) {
 }
 
 function doneTemplate(i, test) {
-    return`<div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
+    return `<div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
     <h3 id="category-${i}">${test.cat}</h3>
     <h4 class="blue">${test.description}</h4>
     <p class="grey">${test.title}</p>
@@ -90,7 +90,8 @@ function doneTemplate(i, test) {
 }
 
 
-function renderShowContacts(greatLetter, contactColor, bothFirstLetter, contactName, contactEmail, contactPhone, i) {
+
+ function renderShowContacts(greatLetter, contactColor, bothFirstLetter, contactName, contactEmail, contactPhone, i) {
     return `
     <div class="main-show-contact">
     <div class="first-great-letter" id="first-great-letter">${greatLetter}</div>
@@ -109,6 +110,12 @@ function renderShowContacts(greatLetter, contactColor, bothFirstLetter, contactN
                 src="../assets/img/new.contact.png"></button>
     `;
 }
+
+
+
+
+
+
 
 
 function renderOpenDetailContact(bothFirstLetter, contactColor, contactName, contactEmail, contactPhone, i) {

@@ -13,6 +13,7 @@ async function showContacts() {
     contacts = JSON.parse(backend.getItem('contacts')) || [];
     sortContacts(contacts);
     includeHTML();
+    let i;
     let contactContainer = document.getElementById('contactList');
     contactContainer.innerHTML = '';
     for (let i = 0; i < contacts.length; i++) {
@@ -23,9 +24,16 @@ async function showContacts() {
         let bothFirstLetter = splitName(contactName);
         let greatLetter = renderBigLetter(contactName);
         contactContainer.innerHTML += renderShowContacts(greatLetter, contactColor, bothFirstLetter, contactName, contactEmail, contactPhone, i);
+
     }
+
     creatSingleLetters();
+
 }
+
+
+
+
 
 
 async function AddNewContact() {
