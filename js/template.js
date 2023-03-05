@@ -129,7 +129,7 @@ function renderOpenDetailContact(bothFirstLetter, contactColor, contactName, con
         <div class="contact-detail-body">
             <div class="contact-detail-body-top">
                 <div class="detail-information">Contact Information</div>
-                <div class="contact-detail-edit" onclick="openEdit('${contactName}', '${contactEmail}', '${contactPhone}', '${contactColor}', '${bothFirstLetter}')">
+                <div class="contact-detail-edit" onclick="openEdit('${contactName}', '${contactEmail}', '${contactPhone}', '${contactColor}', '${bothFirstLetter}', '${i}')">
                     <img class="pencil-img" src="../assets/img/pencil.small.png">
                     Edit Contact
                 </div>
@@ -187,7 +187,7 @@ function redenderAddNewContactTemp2() {
 }
 
 
-function renderOpenEdit(contactName, contactEmail, contactPhone, contactColor, bothFirstLetter) {
+function renderOpenEdit(contactName, contactEmail, contactPhone, contactColor, bothFirstLetter, i) {
     return `
     <div onclick="doNotClose(event)" id="add-contact-layout-2" class="add-contact-layout-2">
     <div class="add-contact-top">
@@ -199,7 +199,7 @@ function renderOpenEdit(contactName, contactEmail, contactPhone, contactColor, b
         <div style="background-color: ${contactColor}" class="big-letter-user">${bothFirstLetter}
         </div>
         <div class="form">
-            <form class="add-contact-form" onsubmit="editContactSave('${contactName}', '${contactEmail}', '${contactPhone}'); return false;">
+            <form class="add-contact-form" onsubmit="editContactSave('${contactName}', '${contactEmail}', '${contactPhone}', '${i}'); return false;">
                 <div class="add-contact-input-field">
                     <input id="new-contact-name" class="conact-name-form contacts-input" type="text"
                         placeholder="Name" required value="${contactName}">

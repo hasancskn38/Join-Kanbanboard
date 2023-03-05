@@ -1,49 +1,7 @@
-let contacts = [
-    {
-        'email': 'chris.fuchs@web.de',
-        'passwort': 'test432',
-        'name': 'Chris Fuchs',
-        'phone': '34445',
-        'randomColors': 'rgb(126 ,56 , 230)',
-        'id': '1'
-    },
-    {
-        'email': 'alex.luchs@web.de',
-        'passwort': 'test432',
-        'name': 'Alex Luchs',
-        'phone': '34445',
-        'randomColors': 'rgb(220 ,200 , 9)',
-        'id': '2'
-    },
-    {
-        'email': 'peter.vogel@web.de',
-        'passwort': 'test432',
-        'name': 'Peter Vogel',
-        'phone': '34445',
-        'randomColors': 'rgb(210 ,0 , 77)',
-        'id': '3'
-    },
-    {
-        'email': 'karin.berg@web.de',
-        'passwort': 'test432',
-        'name': 'Karin Berg',
-        'phone': '34445',
-        'randomColors': 'rgb(70 ,88 , 220)',
-        'id': '4'
-    },
-    {
-        'email': 'marina.bohle@web.de',
-        'passwort': 'test432',
-        'name': 'Marina Bohle',
-        'phone': '34445',
-        'randomColors': 'rgb(42 ,156 , 210)',
-        'id': '5'
-    }
-
-];
 setURL('https://gruppe-447.developerakademie.net/join/smallest_backend_ever');
+
+let contacts = [];
 let letters = [];
-load();
 
 
 /**
@@ -76,11 +34,10 @@ async function AddNewContact() {
     let phone = document.getElementById('new-contact-phone');
     let color = randomColor();
     contacts.push({ name: name.value, email: email.value, phone: phone.value, randomColors: color });
-    await backend.setItem('contacts', JSON.stringify(contacts));
-    clearInputs();
-    editSave();
+    await editSave();
     document.getElementById('addcontactlayout').classList.add('d-nones');
-    showContacts();
+    await showContacts();
+    location.reload();
 }
 
 
@@ -190,45 +147,33 @@ function renderAddNewContactTemp() {
 }
 
 
-function openEdit(contactName, contactEmail, contactPhone, contactColor, bothFirstLetter) {
+function openEdit(contactName, contactEmail, contactPhone, contactColor, bothFirstLetter, i) {
+
     document.getElementById('editContactLayout').classList.remove('d-nones');
     let editContact = document.getElementById('editContactLayout');
     editContact.innerHTML = '';
-    editContact.innerHTML = renderOpenEdit(contactName, contactEmail, contactPhone, contactColor, bothFirstLetter);
+    editContact.innerHTML = renderOpenEdit(contactName, contactEmail, contactPhone, contactColor, bothFirstLetter, i);
 }
 
 
-function editContactSave(contactName, contactEmail, contactPhone) {
-    showContacts();
+async function editContactSave(contactName, contactEmail, contactPhone, i) {
     let newName = document.getElementById('new-contact-name').value;
     let newMail = document.getElementById('new-contact-email').value;
     let newPhone = document.getElementById('new-contact-phone').value;
-    let index = findCurrentContact(contactName, contactEmail, contactPhone);
-    contacts[index]['name'] = newName;
-    contacts[index]['email'] = newMail;
-    contacts[index]['phone'] = newPhone;
+    contacts[i].name = newName;
+    contacts[i].email = newMail;
+    contacts[i].phone = newPhone;
+    await backend.setItem('contacts', JSON.stringify(contacts));
+    editSave();
     document.getElementById('layout-contact4').innerHTML = '';
     document.getElementById('editContactLayout').classList.add('d-nones');
-    editSave();
-    showContacts();
+    await showContacts();
 }
 
-
-function findCurrentContact(contactName, contactEmail, contactPhone) {
-    let index = -1;
-    for (let i = 0; i < contacts.length; i++) {
-        if (contacts[i].name === contactName && contacts[i].email === contactEmail && contacts[i].phone === contactPhone) {
-            index = i;
-            break;
-        }
-    }
-    return index;
-}
 
 
 async function editSave() {
     await backend.setItem('contacts', JSON.stringify(contacts));
-
     await backend.setItem('letters', JSON.stringify(letters));
     showContacts();
 }
@@ -240,6 +185,5 @@ async function deleteContact(i) {
     slideBack();
     editSave();
     showContacts();
-
 }
 
