@@ -93,6 +93,7 @@ main h2 {
     justify-content: center;
     flex-direction: column;
     margin-left: 150px;
+    margin-top: 45px;
 }
 
 .main-right-top {
