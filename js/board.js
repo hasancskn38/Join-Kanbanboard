@@ -158,14 +158,14 @@ selectElement.addEventListener('change', function() {
 
 
 function openTaskPopUp(i) {
-    let test = testData[i];
-    let contact = contacts[i];
-    let taskPopUp = document.getElementById(`task-popup`);
+    let test = testData[i]
+    let contact = contacts[i]
+    let taskPopUp = document.getElementById(`task-popup`)
     document.querySelector('body').classList.add('overflow-hidden');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     taskPopUp.classList.remove('d-none');
     document.getElementById('overlay').classList.remove('d-none');
-    taskPopUp.innerHTML = openTaskPopUpTemplate(test, i, contact);
+    taskPopUp.innerHTML = openTaskPopUpTemplate(test, i, contact)
     renderColors(i);
     renderContactInitials(i, test);
     changePriorityColorPopUp();
@@ -181,14 +181,14 @@ function closeTaskPopUp() {
 
 let subtaskArray = []
 function renderSubtasks(i) {
-    let subtasks = document.getElementById('subtasks');
+    let subtasks = document.getElementById('subtasks')
     subtasks.innerHTML = '';
     for (let i = 0; i < subtaskArray.length; i++) {
         const subtask = subtaskArray[i];
         subtasks.innerHTML += renderSubtasksTemplate(subtask, i)
     }
     renderData();
-    renderColors(i);
+    renderColors(i)
 }
 
 
@@ -198,19 +198,19 @@ function addSubtask(i) {
     renderSubtasks();
     renderData();
     document.getElementById('task-subtask').value = '';
-    renderColors(i);
+    renderColors(i)
 }
 
 function renderSubtasksInPopUp() {
-    let subTasks = document.getElementById('subtask');
+    let subTasks = document.getElementById('subtask')
 }
 
 
 function deleteSubtask(i) {
-    subtaskArray.splice(i, 1);
+    subtaskArray.splice(i, 1)
     renderSubtasks();
     renderData();
-    renderColors(i);
+    renderColors(i)
 }
 
 
@@ -222,25 +222,25 @@ preventButton.addEventListener('click', function(event) {
   });
 
 function openEditTask(i) {
-    let test = testData[i];
-    let contact = contacts[i];
-    let editTask = document.getElementById('edit-task-popup');
-    let taskPopUp = document.getElementById(`task-popup`).classList.add('d-none');
-    editTask.classList.remove('d-none');
-    editTask.innerHTML = openEditTaskPopUp(test, i);
+    let test = testData[i]
+    let contact = contacts[i]
+    let editTask = document.getElementById('edit-task-popup')
+    let taskPopUp = document.getElementById(`task-popup`).classList.add('d-none')
+    editTask.classList.remove('d-none')
+    editTask.innerHTML = openEditTaskPopUp(test, i)
 }
 
 
 // TODO Finish the function to change Tasks
 function submitChanges(i) {
-    let newInput = document.getElementById(`input-edit-${i}`);
-    newInput.innerHTML = newInput.value;
+    let newInput = document.getElementById(`input-edit-${i}`)
+    newInput.innerHTML = newInput.value
 }
 
 
 function closeEditTask() {
-    document.getElementById(`task-popup`).classList.remove('d-none');
-    document.getElementById('edit-task-popup').classList.add('d-none');
+    document.getElementById(`task-popup`).classList.remove('d-none')
+    document.getElementById('edit-task-popup').classList.add('d-none')
 }
 
 
