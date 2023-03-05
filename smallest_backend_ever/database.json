@@ -1,1 +1,1 @@
-{"users":"[{\"name\":\"Guest\",\"email\":\"guest@gmail.com\",\"password\":\"guest123\"}]","contacts":"[{\"name\":\"Christopher\",\"email\":\"Christopher@gmail.com\",\"phone\":\"123\",\"randomColors\":\"rgb(215 ,219 , 134)\"},{\"name\":\"Hasan\",\"email\":\"Hasan@gmail.com\",\"phone\":\"123\",\"randomColors\":\"rgb(142 ,236 , 134)\"},{\"name\":\"Marcel\",\"email\":\"Marcel@gmail.com\",\"phone\":\"123\",\"randomColors\":\"rgb(245 ,34 , 37)\"}]","letters":"[\"c\",\"h\",\"m\"]"}
+{"users":"[{\"name\":\"Guest\",\"email\":\"guest@gmail.com\",\"password\":\"guest123\"}]"}
