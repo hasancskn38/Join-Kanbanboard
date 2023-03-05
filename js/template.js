@@ -90,12 +90,12 @@ function doneTemplate(i, test) {
 }
 
 
-function renderShowContacts(greatLetter, contactColor, bothFirstLetter, contactName, contactEmail, contactPhone) {
+function renderShowContacts(greatLetter, contactColor, bothFirstLetter, contactName, contactEmail, contactPhone, i) {
     return `
     <div class="main-show-contact">
     <div class="first-great-letter" id="first-great-letter">${greatLetter}</div>
     <div class="border-for-contacts"></div>
-     <div class="over" onclick="openDetailContact('${bothFirstLetter}', '${contactColor}', '${contactName}', '${contactEmail}', '${contactPhone}')">
+     <div class="over" onclick="openDetailContact('${bothFirstLetter}', '${contactColor}', '${contactName}', '${contactEmail}', '${contactPhone}', ${i})">
       <div class="over-div-letter-name-email">
       <div style="background-color: ${contactColor}" class="letter-circle">${bothFirstLetter}</div>
       <div>
@@ -111,7 +111,7 @@ function renderShowContacts(greatLetter, contactColor, bothFirstLetter, contactN
 }
 
 
-function renderOpenDetailContact(bothFirstLetter, contactColor, contactName, contactEmail, contactPhone) {
+function renderOpenDetailContact(bothFirstLetter, contactColor, contactName, contactEmail, contactPhone, i) {
     return `
     <div id="detail-main" class="detail-main">
     <span class="span-display-none">Kanban Project Management Tool</span>
@@ -132,6 +132,9 @@ function renderOpenDetailContact(bothFirstLetter, contactColor, contactName, con
                 <div class="contact-detail-edit" onclick="openEdit('${contactName}', '${contactEmail}', '${contactPhone}', '${contactColor}', '${bothFirstLetter}')">
                     <img class="pencil-img" src="../assets/img/pencil.small.png">
                     Edit Contact
+                </div>
+                <div class="contact-detail-edit" onclick="deleteContact(${i})">
+                    Delete Contact
                 </div>
             </div>
             <div class="contact-detail-bottom">Email</div>
