@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> parent of 7c201d2 (worked on summary)
 // Generate Greeting Based on real world time
 // setInterval(function() {
 //     let date = new Date();
