@@ -7,7 +7,7 @@ async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
         const element = includeElements[i];
-        file = element.getAttribute("w3-include-html");
+        file = element.getAttribute("w3-include-html"); 
         let resp = await fetch(file);
         if (resp.ok) {
             element.innerHTML = await resp.text();
@@ -32,22 +32,22 @@ function renderData() {
     stageDone.innerHTML = '';
     for (let i = 0; i < testData.length; i++) {
         const test = testData[i];
-        if (test.status === 'todo') {
+        if(test.status === 'todo') {
             stageToDo.innerHTML += toDoTemplate(i, test)
             renderContactInitials(i, test);
         }
-        else if (test.status === 'inprogress') {
+        else if(test.status === 'inprogress') {
             stageProgress.innerHTML += progressTemplate(i, test)
             renderContactInitials(i, test);
         }
-        else if (test.status === 'feedback') {
-            stageFeedBack.innerHTML += feedBackTemplate(i, test)
+        else if(test.status === 'feedback') {
+            stageFeedBack.innerHTML += feedBackTemplate(i ,test)
             renderContactInitials(i, test);
-        } else if (test.status === 'done') {
+        } else if(test.status === 'done') {
             stageDone.innerHTML += doneTemplate(i, test)
             renderContactInitials(i, test);
-        }
-        renderColors(i);
+    }
+    renderColors(i);
     }
     stagesContentWhenEmpty();
     hideOrShowPriorityLevels();
@@ -63,8 +63,8 @@ function renderContactInitials(i, test, selectedContacts) {
     let assignedContactsContainer = document.getElementById(`assigned-contacts-${i}`);
     assignedContactsContainer.innerHTML = '';
     for (let i = 0; i < test.assignedContacts.length; i++) {
-        assignedContactsContainer.innerHTML +=
-            `<span>${test.assignedContacts[i]}</span>`
+        assignedContactsContainer.innerHTML += 
+        `<span>${test.assignedContacts[i]}</span>`
     }
 }
 
@@ -77,13 +77,13 @@ function stagesContentWhenEmpty() {
     let stageProgress = document.getElementById('stage-progress')
     let stageFeedBack = document.getElementById('stage-feedback')
     let stageDone = document.getElementById('stage-done')
-    if (stageToDo.innerHTML == '') {
+    if(stageToDo.innerHTML == '') {
         stageToDo.innerHTML += emptyTodoTemplate()
-    } if (stageProgress.innerHTML == '') {
+    } if(stageProgress.innerHTML == '') {
         stageProgress.innerHTML += emptyProgressTemplate()
-    } if (stageFeedBack.innerHTML == '') {
+    } if(stageFeedBack.innerHTML == '') {
         stageFeedBack.innerHTML += emptyFeedbackTemplate()
-    } if (stageDone.innerHTML == '') {
+    } if(stageDone.innerHTML == '') {
         stageDone.innerHTML += emptyDoneTemplate();
     }
 }
@@ -101,7 +101,7 @@ function createTask() {
             const nameArr = fullName.split(' ');
             const initials = nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
             return initials.toUpperCase();
-        });
+    });
 
     const lastItem = testData[testData.length - 1];
     if (testData.length == 0) {
@@ -146,7 +146,7 @@ function handleSubmit(event) {
 
 
 function deleteTask(i) {
-    testData.splice(i, 1);
+    testData.splice(i ,1);
     closeEditTask();
     closeTaskPopUp();
     renderData();
@@ -192,19 +192,19 @@ function getInitials(name, randomColor) {
     const names = name.split(' ');
     const initials = [];
     for (let i = 0; i < names.length; i += 2) {
-        const span = document.createElement('span');
-        let initialsPair = names[i].charAt(0).toUpperCase();
-        if (i + 1 < names.length) {
-            initialsPair += names[i + 1].charAt(0).toUpperCase();
-            i++;
-        }
-        span.textContent = initialsPair;
-        span.style.backgroundColor = randomColor;
-        initials.push(span);
+      const span = document.createElement('span');
+      let initialsPair = names[i].charAt(0).toUpperCase();
+      if (i + 1 < names.length) {
+        initialsPair += names[i + 1].charAt(0).toUpperCase();
+        i++;
+      }
+      span.textContent = initialsPair;
+      span.style.backgroundColor = randomColor;
+      initials.push(span);
     }
     return initials;
-}
-
+  }
+  
 
 /**
  * sets the background-color of the selected contacts to each of their randomColors
@@ -215,7 +215,7 @@ function setBackgroundColors(selectedContacts) {
 }
 
 // Eventlistener for each select item, which has the function to create a span for each initals of a contact
-selectElement.addEventListener('change', function () {
+selectElement.addEventListener('change', function() {
     // Get the selected contact objects
     const selectedContacts = Array.from(this.selectedOptions).map(option => {
         return contacts.find(contact => contact.name === option.value);
@@ -312,16 +312,16 @@ function deleteSubtask(i) {
 
 // Function to prevent that add subtask button submits form
 let preventButton = document.getElementById('add-subtask')
-preventButton.addEventListener('click', function (event) {
+preventButton.addEventListener('click', function(event) {
     // Prevent the form from being submitted
     event.preventDefault();
-});
+  });
 
 
-/**
- * opens the popup where someone change specific aspects of each task
- * @param {*} i used to specify the index of the element from the testData JSON
- */
+  /**
+   * opens the popup where someone change specific aspects of each task
+   * @param {*} i used to specify the index of the element from the testData JSON
+   */
 function openEditTask(i) {
     let test = testData[i];
     let contact = contacts[i];
@@ -361,16 +361,16 @@ function closeEditTask() {
 function renderColors(i) {
     let test = testData[i];
     let category = document.getElementById(`category-${i}`);
-    if (test.cat == 'Design') {
+    if(test.cat == 'Design') {
         category.classList.add('design')
     }
-    if (test.cat == 'Backoffice') {
+    if(test.cat == 'Backoffice') {
         category.classList.add('backoffice')
     }
-    if (test.cat == 'Sales') {
+    if(test.cat == 'Sales') {
         category.classList.add('sales')
     }
-    if (test.cat == 'Marketing') {
+    if(test.cat == 'Marketing') {
         category.classList.add('marketing')
     }
 }
@@ -382,15 +382,15 @@ function setPriority(value) {
     priority = value;
 }
 
-document.getElementById('urgent').addEventListener('click', function () {
+document.getElementById('urgent').addEventListener('click', function() {
     setPriority('Urgent');
 });
 
-document.getElementById('medium').addEventListener('click', function () {
+document.getElementById('medium').addEventListener('click', function() {
     setPriority('Medium');
 });
 
-document.getElementById('low').addEventListener('click', function () {
+document.getElementById('low').addEventListener('click', function() {
     setPriority('Low');
 });
 
@@ -424,10 +424,12 @@ function removePrioritys() {
 
 
 // Drag and Drop Function Start
+
+
 function startDragging(id) {
     for (let i = 0; i < testData.length; i++) {
         let index = testData[i]['id'];
-        if (index == id) {
+        if(index == id) {
             currentDraggedItemId = i;
         }
     }
