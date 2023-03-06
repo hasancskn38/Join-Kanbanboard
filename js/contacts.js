@@ -18,7 +18,8 @@ async function showContacts() {
     let greatLetter;
     renderLetterGroups(contactContainer, greatLetter);
     renderContact();
-}
+
+} 
 
 function renderLetterGroups(contactContainer, greatLetter) {
     for (let i = 0; i < letters.length; i++) {
