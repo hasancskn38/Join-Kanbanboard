@@ -11,8 +11,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+    <script src="../smallest_backend_ever/mini_backend.js"></script>
+    <script defer src="../js/contacts.js"></script>
+    <script defer src="../js/template.js"></script>
+    <script defer src="../js/board.js"></script>
+    <script defer src="../js/summary.js"></script>
+    <script defer src="../js/script.js"></script>
+    <script defer src="../js/add-task.js"></script>
+    <script defer src="../js/board-priority.js"></script>
 </head>
-<body onload="includeHTML(); renderData(); spanForEachInitial()">
+<body onload="showContacts(); includeHTML(); renderData(); spanForEachInitial()">
     <!-- Header Start -->
     <div class="navbar">
         <div w3-include-html="../assets/templates/header-template.html"></div>
@@ -185,15 +193,7 @@
         <!-- Drag and Drop End -->
 
     </main>
-    
-    <script defer src="../js/contacts.js"></script>
-    <script defer src="../js/board.js"></script>
-    <script defer src="../js/template.js"></script>
-    <script defer src="../js/summary.js"></script>
-    <script defer src="../js/script.js"></script>
-    <script defer src="../js/summary.js"></script>
-    <script defer src="../js/add-task.js"></script>
-    <script defer src="../js/board-priority.js"></script>
+
 
 </body>
 
