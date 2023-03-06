@@ -91,10 +91,8 @@ function doneTemplate(i, test) {
 
 
 
- function renderShowContacts(greatLetter, contactColor, bothFirstLetter, contactName, contactEmail, contactPhone, i) {
+ function renderShowContactsHTML(contactColor, bothFirstLetter, contactName, contactEmail, contactPhone, i) {
     return `
-    <div class="main-show-contact">
-    <div class="first-great-letter" id="first-great-letter">${greatLetter}</div>
     <div class="border-for-contacts"></div>
      <div class="over" onclick="openDetailContact('${bothFirstLetter}', '${contactColor}', '${contactName}', '${contactEmail}', '${contactPhone}', ${i})">
       <div class="over-div-letter-name-email">
@@ -110,6 +108,32 @@ function doneTemplate(i, test) {
                 src="../assets/img/new.contact.png"></button>
     `;
 }
+
+
+function renderLetterContainerHTML(letter, i) {
+    return `
+    <div class="main-show-contact">
+    <div class="first-great-letter" id="first-great-letter">${letter}</div>
+    <div id="contactLetter${i}"></div>
+    `;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
