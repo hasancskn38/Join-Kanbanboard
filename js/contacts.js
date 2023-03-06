@@ -46,8 +46,6 @@ function renderContact() {
         let bothFirstLetter = splitName(contactName);
         let greatLetter = renderBigLetter(contactName);
         let result = firstLetter(contactFirstLetter.toLowerCase());
-        console.log(result.letter);
-        console.log(result.index);
         if (contactFirstLetter.toLowerCase() === result.letter) {
             let contactPerson = document.getElementById(`contactLetter${result.index}`);
             contactPerson.innerHTML += renderShowContactsHTML(contactColor, bothFirstLetter, contactName, contactEmail, contactPhone, j);
@@ -58,6 +56,7 @@ function renderContact() {
 function firstLetter(contactFirstLetter) {
     let index = letters.indexOf(contactFirstLetter);
     return { letter: contactFirstLetter, index: index };
+
 }
 
 
