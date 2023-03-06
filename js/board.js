@@ -1,4 +1,4 @@
-
+let currentDraggedItemId;
 
 /**
  * This function implements the template.html
@@ -424,7 +424,7 @@ function removePrioritys() {
 
 
 // Drag and Drop Function Start
-let currentDraggedItemId
+
 
 function startDragging(id) {
     for (let i = 0; i < testData.length; i++) {
