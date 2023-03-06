@@ -53,7 +53,7 @@ let testData = [
     assignedContacts: ['CF'],
     id: '4'
     },
-]
+];
 
 
 let currentDraggedItemId;
