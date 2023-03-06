@@ -198,7 +198,7 @@ async function editContactSave(contactName, contactEmail, contactPhone, i) {
     contacts[i].email = newMail;
     contacts[i].phone = newPhone;
     await backend.setItem('contacts', JSON.stringify(contacts));
-    editSave();
+    await editSave();
     document.getElementById('layout-contact4').innerHTML = '';
     document.getElementById('editContactLayout').classList.add('d-nones');
     showContacts();
@@ -218,7 +218,7 @@ async function deleteContact(i) {
     contacts.splice(i, 1);
     await backend.setItem('contacts', JSON.stringify(contacts));
     slideBack();
-    editSave();
+    await editSave();
     location.reload();
 }
 
