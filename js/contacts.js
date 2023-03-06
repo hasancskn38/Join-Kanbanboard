@@ -3,7 +3,6 @@ let contacts = [];
 let letters = [];
 
 /**
-
  * Creating contanctlist
  */
 
