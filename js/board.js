@@ -55,7 +55,6 @@ let testData = [
     },
 ];
 
-
 let currentDraggedItemId;
 const selectElement = document.getElementById('select-contact');
 const initialsDiv = document.getElementById('initials-div');
