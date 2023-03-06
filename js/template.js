@@ -76,10 +76,8 @@ function doneTemplate(i, test) {
     <!-- <div class="progress"><progress></div> -->
     <div class="subtasks-done">1/2 Done</div>
     </div>
-
     <div class="contact-priority-container">
     <div id="assigned-contacts-${i}" class="assigned-contact">
-    
     </div>
     <div class="priority-level">
     <img id="urgent-main-${i}" src="../assets/icons/urgent.png">
@@ -91,7 +89,7 @@ function doneTemplate(i, test) {
 
 
 
- function renderShowContactsHTML(contactColor, bothFirstLetter, contactName, contactEmail, contactPhone, i) {
+function renderShowContactsHTML(contactColor, bothFirstLetter, contactName, contactEmail, contactPhone, i) {
     return `
     <div class="border-for-contacts"></div>
      <div class="over" onclick="openDetailContact('${bothFirstLetter}', '${contactColor}', '${contactName}', '${contactEmail}', '${contactPhone}', ${i})">
