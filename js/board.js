@@ -384,6 +384,7 @@ function openEditTask(i) {
     let taskPopUp = document.getElementById(`task-popup`).classList.add('d-none');
     editTask.classList.remove('d-none');
     editTask.innerHTML = openEditTaskPopUp(test, i);
+    assignContactsToTask('edit');
 }
 
 
@@ -511,8 +512,19 @@ function openAddTaskPopUp() {
     document.getElementById('popup').classList.add('show');
     document.getElementById('popup').classList.remove('d-none');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    assignContactsToTask('add');
 }
 
+
+function assignContactsToTask(value) {
+    let contactList = document.getElementById(`select-contact-${value}`);
+    contactList.innerHTML = '';
+    contactList.innerHTML = `<option value="" disabled="" selected="" hidden="">Select contacts to assign</option>`;
+    for (let i = 0; i < contacts.length; i++) {
+      let contact = contacts[i];
+      contactList.innerHTML += `<option value="${contact['name']}">${contact['name']}</option>`;
+    }
+  }
 
 function closeAddTaskPopUp() {
     document.getElementById('overlay').classList.add('d-none');
