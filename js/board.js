@@ -56,6 +56,7 @@ let testData = [
 ]
 
 let currentDraggedItemId;
+let priority = 'Urgent';
 const selectElement = document.getElementById('select-contact');
 const initialsDiv = document.getElementById('initials-div');
 
@@ -430,8 +431,6 @@ function renderColors(i) {
     }
 }
 
-
-let priority = 'Urgent';
 
 function setPriority(value) {
     priority = value;

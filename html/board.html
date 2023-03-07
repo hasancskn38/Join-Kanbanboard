@@ -43,6 +43,11 @@
                 </div>
                 <div class="add-remove-container">
                     <button class="cursor open-add-task" onclick="openAddTaskPopUp()">Add task <span>+</span></button>
+
+                   <!-- just for tests -->
+                   <button class="cursor open-add-task" onclick="deleteTask()">Remove task <span>-</span></button>
+                   <!-- just for tests -->
+
                     <!-- <img id="remove-task" class="d-none" ondragleave="deleteTask()" src="../assets/icons/recycle-bin.png" alt=""> -->
                 </div>
             </div>
@@ -81,10 +86,10 @@
 
                         <select required id="select-category" class="cursor">
                             <option value="" disabled selected hidden>Select task category</option>
-                            <option value="Design">Design</option>
-                            <option value="Sales">Sales</option>
-                            <option value="Backoffice">Backoffice</option>
-                            <option value="Marketing">Marketing</option>
+                            <option class="design-option" value="Design">Design</option>
+                            <option class="sales-option" value="Sales">Sales</option>
+                            <option class="backoffice-option" value="Backoffice">Backoffice</option>
+                            <option class="marketing-option" value="Marketing">Marketing</option>
                         </select>
 
 

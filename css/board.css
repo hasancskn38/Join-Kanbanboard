@@ -269,6 +269,8 @@ form {
     justify-content: center;
 }
 
+
+
 select {
     width: 90%;
     font-size: 24px;
@@ -780,13 +782,12 @@ textarea::placeholder {
     margin-right: 15px;
 }
 
-
 .design {
     background-color: #ff7a00;
 }
 
 .sales {
-    background: #FC71FF;
+    background-color: #FC71FF;
 }
 
 .backoffice {
@@ -797,10 +798,29 @@ textarea::placeholder {
     background-color: #0038FF;
 }
 
+
+.design-option {
+    color: #ff7a00 !important;
+}
+
+.sales-option {
+    color: #FC71FF !important;
+}
+
+.backoffice-option {
+    color: #1FD7C1 !important;
+}
+
+.marketing-option {
+    color: #0038FF !important;
+}
+
+
 .contact-initials {
     display: flex;
     
 }
+
 
 
 .contact-priority-container {
