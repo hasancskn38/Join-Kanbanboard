@@ -511,19 +511,8 @@ function openAddTaskPopUp() {
     document.getElementById('popup').classList.add('show');
     document.getElementById('popup').classList.remove('d-none');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    assignContactsToTask();
 }
 
-function assignContactsToTask() {
-    let contactList = document.getElementById('select-contact');
-    contactList.innerHTML = '';
-    let contactOptions;
-    for (let i = 0; i < contacts.length; i++) {
-      let contact = contacts[i];
-      contactOptions += `<option value="${contact['name']}">${contact['name']}</option>`;
-    }
-    contactList.innerHTML = contactOptions;
-  }
 
 function closeAddTaskPopUp() {
     document.getElementById('overlay').classList.add('d-none');
