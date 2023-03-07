@@ -332,7 +332,7 @@ function openEditTaskPopUp(test, i) {
             id="low-inner">Low</span><img id="img3" src="../assets/icons/low.png" alt=""></div>
 </div>
 <select required id="select-contact" class="select-contact cursor">
-<option value="" disabled selected hidden>Select contacts to assign</option>
+<option value="">Select contacts to assign</option>
 </select>
 </div>
 <div class="edit-task-button-container">
