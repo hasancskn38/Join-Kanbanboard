@@ -22,7 +22,7 @@ function loginUser() {
     let user = users.find(u => u.email.toLowerCase() == email.value.toLowerCase() && u.password == password.value);
     if(user) {
         console.log('User gefunden');
-        window.location.href = `board.html?msg=Du hast dich erfolgreich eingelogt${user.name}`;
+        window.location.href = `summary.html?msg=Du hast dich erfolgreich eingelogt${user.name}`;
     }
 }
 
@@ -30,6 +30,6 @@ function guestLogin() {
     let user = users.find(u => u.email == 'guest@gmail.com' && u.password == 'guest123');
     if(user) {
         console.log('User gefunden');
-        window.location.href = `board.html?msg=Du hast dich erfolgreich eingelogt ${user.name}`;
+        window.location.href = `summary.html?msg=Du hast dich erfolgreich eingelogt ${user.name}`;
     }
 }
