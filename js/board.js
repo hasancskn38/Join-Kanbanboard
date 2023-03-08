@@ -96,33 +96,54 @@ function renderData() {
     stageDone.innerHTML = '';
 
     if (searchedTaskArray.length === 0) {
-        console.log('leer')
+        for (let i = 0; i < testData.length; i++) {
+            const test = testData[i];
+            if (test.status === 'todo') {
+                stageToDo.innerHTML += toDoTemplate(i, test);
+                renderContactInitials(i, test);
+            }
+            else if (test.status === 'inprogress') {
+                stageProgress.innerHTML += progressTemplate(i, test);
+                renderContactInitials(i, test);
+            }
+            else if (test.status === 'feedback') {
+                stageFeedBack.innerHTML += feedBackTemplate(i, test);
+                renderContactInitials(i, test);
+            } else if (test.status === 'done') {
+                stageDone.innerHTML += doneTemplate(i, test);
+                renderContactInitials(i, test);
+            }
+            renderColors(i);
+
+        }
     }
-
-    for (let i = 0; i < testData.length; i++) {
-        const test = testData[i];
-        if (test.status === 'todo') {
-            stageToDo.innerHTML += toDoTemplate(i, test);
-            renderContactInitials(i, test);
+    else {
+        for (let i = 0; i < searchedTaskArray.length; i++) {
+            let task = searchedTaskArray[i];
+            if (task.status === 'todo') {
+                stageToDo.innerHTML += toDoTemplate(i, task);
+                renderContactInitials(i, task);
+            }
+            else if (task.status === 'inprogress') {
+                stageProgress.innerHTML += progressTemplate(i, task);
+                renderContactInitials(i, task);
+            }
+            else if (task.status === 'feedback') {
+                stageFeedBack.innerHTML += feedBackTemplate(i, task);
+                renderContactInitials(i, task);
+            } else if (task.status === 'done') {
+                stageDone.innerHTML += doneTemplate(i, task);
+                renderContactInitials(i, task);
+            }
+            renderColors(i);
         }
-        else if (test.status === 'inprogress') {
-            stageProgress.innerHTML += progressTemplate(i, test);
-            renderContactInitials(i, test);
-        }
-        else if (test.status === 'feedback') {
-            stageFeedBack.innerHTML += feedBackTemplate(i, test);
-            renderContactInitials(i, test);
-        } else if (test.status === 'done') {
-            stageDone.innerHTML += doneTemplate(i, test);
-            renderContactInitials(i, test);
-        }
-        renderColors(i);
-
     }
     stagesContentWhenEmpty();
     hideOrShowPriorityLevels();
     changePriorityColorPopUp();
 }
+
+
 
 
 /**
@@ -559,6 +580,7 @@ function hideHelpMeSection() {
 
 function searchTask() {
     let input = document.getElementById('search-input').value.toLowerCase();
+    searchedTaskArray = [];
     for (let j = 0; j < testData.length; j++) {
         let task = testData[j]['title'].toLowerCase();
         let searchedTask = testData[j];
@@ -568,9 +590,8 @@ function searchTask() {
             break;
         }
         if (task.includes(input)) {
-            searchedTaskArray = [];
             searchedTaskArray.push(searchedTask);
-            console.log(searchedTaskArray);
+            renderData();
         }
     }
 } 
