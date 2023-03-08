@@ -153,3 +153,14 @@ body {
     transition: all .2s ease-in-out;
     background-color: rgb(238, 238, 238);
 }
+
+@media (max-width:500px) {
+    .login_head img {
+        position: absolute;
+        left: 35px;
+    }
+    .login_div {
+        position: absolute;
+        bottom: 60px;
+    }
+}
