@@ -58,6 +58,7 @@ let testData = [
 
 let currentDraggedItemId;
 let priority = 'Urgent';
+let searchedTaskArray = [];
 
 const selectElement = document.getElementById('select-contact');
 const initialsDiv = document.getElementById('initials-div');
@@ -93,10 +94,15 @@ function renderData() {
     stageFeedBack.innerHTML = '';
     let stageDone = document.getElementById('stage-done');
     stageDone.innerHTML = '';
+
+    if (searchedTaskArray.length === 0) {
+        console.log('leer')
+    }
+
     for (let i = 0; i < testData.length; i++) {
         const test = testData[i];
         if (test.status === 'todo') {
-            stageToDo.innerHTML += toDoTemplate(i, test)
+            stageToDo.innerHTML += toDoTemplate(i, test);
             renderContactInitials(i, test);
         }
         else if (test.status === 'inprogress') {
@@ -111,6 +117,7 @@ function renderData() {
             renderContactInitials(i, test);
         }
         renderColors(i);
+
     }
     stagesContentWhenEmpty();
     hideOrShowPriorityLevels();
@@ -525,10 +532,10 @@ function assignContactsToTask(value) {
     contactList.innerHTML = '';
     contactList.innerHTML = `<option value="" disabled="" selected="" hidden="">Select contacts to assign</option>`;
     for (let i = 0; i < contacts.length; i++) {
-      let contact = contacts[i];
-      contactList.innerHTML += `<option value="${contact['name']}">${contact['name']}</option>`;
+        let contact = contacts[i];
+        contactList.innerHTML += `<option value="${contact['name']}">${contact['name']}</option>`;
     }
-  }
+}
 
 function closeAddTaskPopUp() {
     document.getElementById('overlay').classList.add('d-none');
@@ -549,3 +556,21 @@ function hideHelpMeSection() {
     document.getElementById('help-me-container').classList.add('d-none');
     document.querySelector('main').classList.remove('d-none');
 }
+
+function searchTask() {
+    let input = document.getElementById('search-input').value.toLowerCase();
+    for (let j = 0; j < testData.length; j++) {
+        let task = testData[j]['title'].toLowerCase();
+        let searchedTask = testData[j];
+        if (input == '') {
+            searchedTaskArray = [];
+            renderData();
+            break;
+        }
+        if (task.includes(input)) {
+            searchedTaskArray = [];
+            searchedTaskArray.push(searchedTask);
+            console.log(searchedTaskArray);
+        }
+    }
+} 
