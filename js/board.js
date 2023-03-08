@@ -55,8 +55,10 @@ let testData = [
     }
 ];
 
+
 let currentDraggedItemId;
 let priority = 'Urgent';
+
 const selectElement = document.getElementById('select-contact');
 const initialsDiv = document.getElementById('initials-div');
 
@@ -114,6 +116,7 @@ function renderData() {
     hideOrShowPriorityLevels();
     changePriorityColorPopUp();
 }
+
 
 /**
  * render contact initials after a task has been assigned to a contact
@@ -393,18 +396,20 @@ function openEditTask(i) {
 function submitChanges(i) {
     const test = testData[i];
     let newTaskName = document.getElementById(`input-edit-${i}`).value;
-    let taskName = document.getElementById('task-popup-header');
+    // let taskName = document.getElementById('task-popup-header');
     let newDescription = document.getElementById('edit-description').value;
     let newDate = document.getElementById('task-date-edit').value;
-    let taskTitle = document.getElementById('task-title');
-    for (let i = 0; i < testData.length; i++) {
-        // const test = testData[i];
-        taskName.innerHTML = newTaskName;
-        taskTitle.innerHTML = newTaskName;
-    }
+    // let taskTitle = document.getElementById('task-title');
+    let newCategory = document.getElementById('select-category-edit').value
+    let newCategoryPopUp = document.getElementById(`category-${i}`)
+    test.title = newTaskName
+    test.description = newDescription
+    test.cat = newCategory
+    test.date = newDate
+    newCategoryPopUp = newCategory
+    renderData();
     closeEditTask();
-    // renderData();
-    // closeAddTaskPopUp();
+    closeTaskPopUp();
 }
 
 

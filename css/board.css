@@ -270,13 +270,21 @@ form {
 }
 
 
-
 select {
     width: 90%;
     font-size: 24px;
     border-bottom: 1px solid lightgray;
     margin: 20px;
     padding:5px;
+    color: #4589FF;
+}
+
+#select-contact-edit, #select-category-edit {
+    width: 90%;
+    font-size: 24px;
+    border-bottom: 1px solid lightgray;
+    margin: 20px 0;
+    padding: 5px;
     color: #4589FF;
 }
 

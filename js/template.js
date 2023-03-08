@@ -313,23 +313,31 @@ function openEditTaskPopUp(test, i) {
     <div class="input-container-edit">
     <input id="input-edit-${i}" type="text" value="${test.title}">
     </div>
+    <select required id="select-category-edit" class="cursor">
+                            <option value="${test.cat}" selected hidden>${test.cat}</option>
+                            <option class="design-option" value="Design">Design</option>
+                            <option class="sales-option" value="Sales">Sales</option>
+                            <option class="backoffice-option" value="Backoffice">Backoffice</option>
+                            <option class="marketing-option" value="Marketing">Marketing</option>
+                        </select>
+
     <h2>Description</h2>
     <textarea id="edit-description">${test.description}</textarea>
     <h2 class="date-header-edit">Due date</h2>
     <label for="appointment">
         <div class="date-edit">
-        <input id="task-date-edit" required="" type="text" class="form-control" placeholder="dd/mm/yyyy" onfocus="(this.type='date')"/>
+        <input id="task-date-edit" value="${test.date}" required="" type="text" class="form-control" placeholder="dd/mm/yyyy" onfocus="(this.type='date')"/>
         </div>
     </label>
     <div class="priority">
-    <div class="priority-levels cursor" id="urgent" onclick="changeUrgentColor()"><span
-            id="urgent-inner">Urgent</span><img id="img1" src="../assets/icons/urgent.png"
+    <div class="priority-levels cursor priority-edit" id="urgent-edit" onclick="changeUrgentColorEdit()"><span
+            id="urgent-inner-edi">Urgent</span><img id="img1" src="../assets/icons/urgent.png"
             alt=""></div>
-    <div class="priority-levels cursor" id="medium" onclick="changeMediumColor()"><span
-            id="medium-inner">Medium</span> <img id="img2" src="../assets/icons/medium.png"
+    <div class="priority-levels cursor priority-edit" id="medium-edit" onclick="changeMediumColorEdit()"><span
+            id="medium-inner-edi">Medium</span> <img id="img2" src="../assets/icons/medium.png"
             alt=""></div>
-    <div class="priority-levels cursor" id="low" onclick="changeLowColor()"><span
-            id="low-inner">Low</span><img id="img3" src="../assets/icons/low.png" alt=""></div>
+    <div class="priority-levels cursor priority-edit" id="low-edit" onclick="changeLowColorEdit()"><span
+            id="low-inner-edi">Low</span><img id="img3" src="../assets/icons/low.png" alt=""></div>
 </div>
 <select required id="select-contact-edit" class="select-contact cursor">
 <option value="" disabled selected hidden>Select contacts to assign</option>
@@ -339,7 +347,5 @@ function openEditTaskPopUp(test, i) {
 <button class="submit-change cursor" onclick="submitChanges(${i})">Submit Changes</button>
 <button class="delete-task cursor" onclick="deleteTask(${i})" class="cursor">Delete Task</button>
 </div>
-
-
 `
 }
