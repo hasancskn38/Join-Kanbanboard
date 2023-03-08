@@ -200,9 +200,6 @@ main h2 {
 
 /* Responsive Start */
 @media only screen and (max-width: 1200px) {
-    .sidebar {
-        display: none;
-    }
 
     main p {
         font-size: 18px;
@@ -232,7 +229,7 @@ main h2 {
     }
 
     .task-general {
-        width: 38%;
+        width: 92%;
     }
 
     .task-todo {

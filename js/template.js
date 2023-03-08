@@ -331,7 +331,7 @@ function openEditTaskPopUp(test, i) {
     <div class="priority-levels cursor" id="low" onclick="changeLowColor()"><span
             id="low-inner">Low</span><img id="img3" src="../assets/icons/low.png" alt=""></div>
 </div>
-<select required id="select-contact" class="select-contact cursor">
+<select required id="select-contact-edit" class="select-contact cursor">
 <option value="" disabled selected hidden>Select contacts to assign</option>
 </select>
 </div>
