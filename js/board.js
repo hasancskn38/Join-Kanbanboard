@@ -104,6 +104,7 @@ function renderData() {
     stagesContentWhenEmpty();
     hideOrShowPriorityLevels();
     changePriorityColorPopUp();
+    includeHTML();
 }
 
 function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone) {
@@ -144,7 +145,8 @@ function renderSearchedTaskArray(stageToDo, stageProgress, stageFeedBack, stageD
         else if (task.status === 'feedback') {
             stageFeedBack.innerHTML += feedBackTemplate(i, task);
             renderContactInitials(i, task);
-        } else if (task.status === 'done') {
+        } 
+        else if (task.status === 'done') {
             stageDone.innerHTML += doneTemplate(i, task);
             renderContactInitials(i, task);
         }
