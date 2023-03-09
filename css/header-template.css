@@ -15,13 +15,14 @@
 }
 
 h1 {
-    color:#2A3647;
+    color: #2A3647;
 }
+
 /* General Stylings End*/
 
 /* Header Start */
 nav {
-    height:80px;
+    height: 80px;
     background: #4589FF;
     position: sticky;
     top: 0;
@@ -51,14 +52,16 @@ nav {
     color: #fff;
 }
 
-.nav-container-right p, img {
+.nav-container-right p,
+img {
     padding: 0 22px 0 0;
 }
+
 /* Header End */
 
 /* Help Me Section Start */
 .help-me-container {
-    background-color:#fff;
+    background-color: #fff;
     height: 50vh;
     position: absolute;
     margin: 150px 100px;
@@ -68,7 +71,8 @@ nav {
     font-size: 36px;
 }
 
-.help-me-container h1, .help-me-container h2 {
+.help-me-container h1,
+.help-me-container h2 {
     color: #4589FF;
 }
 
@@ -92,10 +96,16 @@ li {
     border: none;
     outline: none;
     cursor: pointer;
-    transition:all 225ms ease-in-out;
-  }
+    transition: all 225ms ease-in-out;
+}
 
 .help-me-header button:hover {
     transform: scale(1.05) rotate(180deg);
     opacity: .6;
+}
+
+@media (max-width:375px) {
+    .nav-container {
+        padding: 5px 14px;
+    }
 }

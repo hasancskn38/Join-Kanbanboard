@@ -500,6 +500,7 @@
 .arrow-div {
     display: flex;
     justify-content: end;
+    margin-right: 81px;
 }
 
 .arrow-img {
@@ -534,13 +535,16 @@
         background-color: white;
         /* z-index: 10;*/
     }
+
     .side-bar-legal {
         display: none;
     }
+
     .side-links-div {
         flex-direction: row;
         align-items: center;
     }
+
     .side-bar a {
         display: flex;
         flex-direction: column;
@@ -550,6 +554,7 @@
         padding-inline: 8px;
         height: 100px;
     }
+
     .side-bar a:hover {
         border: 1px solid #42526e;
         box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
@@ -632,7 +637,7 @@
 
     .edit-contact-responsive {
         display: block;
-        right: 40px;
+        right: 81px;
         bottom: 114px;
         position: absolute;
         cursor: pointer;
@@ -649,7 +654,7 @@
 
 }
 
-@media (max-width:449px) {
+@media (max-width:450px) {
     nav {
         width: 102%;
     }
@@ -675,6 +680,20 @@
 
     .popup-content {
         overflow-x: hidden !important;
+    }
+
+    .layout-contact2 {
+        margin-top: 168px;
+    }
+}
+
+@media (max-width:397px) {
+    .edit-contact-responsive {
+        right: 100px;
+    }
+
+    .arrow-div {
+        margin-right: 100px;
     }
 }
 
@@ -712,12 +731,25 @@
     .add-contact-layout-2 {
         width: 365px;
     }
+
+    .navbar div {
+        width: 110%;
+    }
 }
 
 @media (max-width:375px) {
+
+    .edit-contact-responsive {
+        right: 120px;
+    }
+
+    .arrow-div {
+        margin-right: 110px;
+    }
+
     .layout-contact2 {
         height: calc(80vh) !important;
-        margin-top: -2px;
+        margin-top: 120px;
     }
 
     .priority {

@@ -80,13 +80,16 @@ a {
         background-color: white;
         /* z-index: 10;*/
     }
+
     .side-bar-legal {
         display: none;
     }
+
     .side-links-div {
         flex-direction: row;
         align-items: center;
     }
+
     .side-bar a {
         display: flex;
         flex-direction: column;
@@ -96,9 +99,16 @@ a {
         padding-inline: 8px;
         height: 100px;
     }
+
     .side-bar a:hover {
         border: 1px solid #42526e;
         box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
         height: 100px;
+    }
+}
+
+@media (max-width:375px) {
+    .side-bar a {
+        min-width: 75px;
     }
 }
