@@ -96,54 +96,60 @@ function renderData() {
     stageDone.innerHTML = '';
 
     if (searchedTaskArray.length === 0) {
-        for (let i = 0; i < testData.length; i++) {
-            const test = testData[i];
-            if (test.status === 'todo') {
-                stageToDo.innerHTML += toDoTemplate(i, test);
-                renderContactInitials(i, test);
-            }
-            else if (test.status === 'inprogress') {
-                stageProgress.innerHTML += progressTemplate(i, test);
-                renderContactInitials(i, test);
-            }
-            else if (test.status === 'feedback') {
-                stageFeedBack.innerHTML += feedBackTemplate(i, test);
-                renderContactInitials(i, test);
-            } else if (test.status === 'done') {
-                stageDone.innerHTML += doneTemplate(i, test);
-                renderContactInitials(i, test);
-            }
-            renderColors(i);
-
-        }
+        renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone);
     }
     else {
-        for (let i = 0; i < searchedTaskArray.length; i++) {
-            let task = searchedTaskArray[i];
-            if (task.status === 'todo') {
-                stageToDo.innerHTML += toDoTemplate(i, task);
-                renderContactInitials(i, task);
-            }
-            else if (task.status === 'inprogress') {
-                stageProgress.innerHTML += progressTemplate(i, task);
-                renderContactInitials(i, task);
-            }
-            else if (task.status === 'feedback') {
-                stageFeedBack.innerHTML += feedBackTemplate(i, task);
-                renderContactInitials(i, task);
-            } else if (task.status === 'done') {
-                stageDone.innerHTML += doneTemplate(i, task);
-                renderContactInitials(i, task);
-            }
-            renderColors(i);
-        }
+        renderSearchedTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone);
     }
     stagesContentWhenEmpty();
     hideOrShowPriorityLevels();
     changePriorityColorPopUp();
 }
 
+function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone) {
+    for (let i = 0; i < testData.length; i++) {
+        const test = testData[i];
+        if (test.status === 'todo') {
+            stageToDo.innerHTML += toDoTemplate(i, test);
+            renderContactInitials(i, test);
+        }
+        else if (test.status === 'inprogress') {
+            stageProgress.innerHTML += progressTemplate(i, test);
+            renderContactInitials(i, test);
+        }
+        else if (test.status === 'feedback') {
+            stageFeedBack.innerHTML += feedBackTemplate(i, test);
+            renderContactInitials(i, test);
+        } else if (test.status === 'done') {
+            stageDone.innerHTML += doneTemplate(i, test);
+            renderContactInitials(i, test);
+        }
+        renderColors(i);
+    }
+}
 
+
+function renderSearchedTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone) {
+    for (let i = 0; i < searchedTaskArray.length; i++) {
+        let task = searchedTaskArray[i];
+        if (task.status === 'todo') {
+            stageToDo.innerHTML += toDoTemplate(i, task);
+            renderContactInitials(i, task);
+        }
+        else if (task.status === 'inprogress') {
+            stageProgress.innerHTML += progressTemplate(i, task);
+            renderContactInitials(i, task);
+        }
+        else if (task.status === 'feedback') {
+            stageFeedBack.innerHTML += feedBackTemplate(i, task);
+            renderContactInitials(i, task);
+        } else if (task.status === 'done') {
+            stageDone.innerHTML += doneTemplate(i, task);
+            renderContactInitials(i, task);
+        }
+        renderColors(i);
+    }
+}
 
 
 /**
@@ -187,7 +193,7 @@ function createTask() {
     let category = document.getElementById('select-category').value;
     let date = document.getElementById('task-date').value;
     let taskDescription = document.getElementById('task-description').value;
-    let assignedContacts = Array.from(document.getElementById('select-contact').selectedOptions)
+    let assignedContacts = Array.from(document.getElementById('select-contact-add').selectedOptions)
         .map(option => {
             const fullName = option.value;
             const nameArr = fullName.split(' ');
@@ -222,10 +228,11 @@ function createTask() {
         };
         testData.push(newItem);
     }
+
     closeAddTaskPopUp();
+    renderData();
     clearInputFields();
     removePrioritys();
-    renderData();
 }
 
 
@@ -492,11 +499,11 @@ function clearInputFields() {
     let taskDate = document.getElementById('task-date');
     let taskDescription = document.getElementById('task-description');
     document.getElementById('initials-div').innerHTML = '';
-    input.value = "";
-    selectCategory.value = "";
-    selectContacts.value = "";
-    taskDate.value = "";
-    taskDescription.value = "";
+    input.value = '';
+    selectCategory.value = '';
+    selectContacts.value = '';
+    taskDate.value = '';
+    taskDescription.value = '';
 }
 
 
