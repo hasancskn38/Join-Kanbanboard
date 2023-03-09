@@ -365,7 +365,7 @@ let subtaskArray = [];
  * render subtasks from subtaskArray
  */
 function renderSubtasks() {
-    let subtasks = document.getElementById('subtasks')
+    let subtasks = document.getElementById('subtasks');
     subtasks.innerHTML = '';
     for (let i = 0; i < subtaskArray.length; i++) {
         const subtask = subtaskArray[i];
@@ -538,7 +538,7 @@ function allowDrop(ev) {
 
 
 function dropItem(status) {
-    testData[currentDraggedItemId]['status'] = status
+    testData[currentDraggedItemId]['status'] = status;
     renderData();
 }
 // Drag and Drop Function End
@@ -595,11 +595,10 @@ function searchTask() {
         if (input == '') {
             searchedTaskArray = [];
             renderData();
-            break;
         }
         if (task.includes(input)) {
             searchedTaskArray.push(searchedTask);
-            renderData();
         }
     }
+    renderData();
 } 
