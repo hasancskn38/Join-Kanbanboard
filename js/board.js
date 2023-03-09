@@ -196,13 +196,13 @@ function createTask() {
     let taskDescription = document.getElementById('task-description').value;
     let assignedContacts = Array.from(document.getElementById('select-contact-add').selectedOptions)
         .map(option => {
-            const fullName = option.value;
-            const nameArr = fullName.split(' ');
-            const initials = nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
+            let fullName = option.value;
+            let nameArr = fullName.split(' ');
+            let initials = nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
             return initials.toUpperCase();
         });
 
-    const lastItem = testData[testData.length - 1];
+    let lastItem = testData[testData.length - 1];
     if (testData.length == 0) {
         let newItem = {
             "title": title,
@@ -216,7 +216,7 @@ function createTask() {
         };
         testData.push(newItem);
     } else {
-        const newId = Number(lastItem.id) + 1;
+        let newId = Number(lastItem.id) + 1;
         let newItem = {
             "title": title,
             "cat": category,
@@ -256,7 +256,7 @@ function deleteTask(i) {
 
 // Populate select element with options for each contact name by iterating through the contacts JSON
 contacts.forEach(contact => {
-    const optionElement = document.createElement('option');
+    let optionElement = document.createElement('option');
     optionElement.value = contact.name;
     optionElement.textContent = contact.name;
     selectElement.appendChild(optionElement);
@@ -270,7 +270,7 @@ contacts.forEach(contact => {
  * @returns 
  */
 function createInitial(name, randomColor) {
-    const span = document.createElement('span');
+    let span = document.createElement('span');
     span.textContent = name.charAt(0).toUpperCase();
     span.style.backgroundColor = randomColor;
     return span;
@@ -284,10 +284,10 @@ function createInitial(name, randomColor) {
  * @returns 
  */
 function getInitials(name, randomColor) {
-    const names = name.split(' ');
-    const initials = [];
+    let names = name.split(' ');
+    let initials = [];
     for (let i = 0; i < names.length; i += 2) {
-        const span = document.createElement('span');
+        let span = document.createElement('span');
         let initialsPair = names[i].charAt(0).toUpperCase();
         if (i + 1 < names.length) {
             initialsPair += names[i + 1].charAt(0).toUpperCase();
@@ -306,24 +306,24 @@ function getInitials(name, randomColor) {
  * @param {*} selectedContacts is a const that is declared which is an array of the selected items from the select field
  */
 function setBackgroundColors(selectedContacts) {
-    const backgroundColors = selectedContacts.map(contact => contact.randomColors);
+    let backgroundColors = selectedContacts.map(contact => contact.randomColors);
 }
 
 // Eventlistener for each select item, which has the function to create a span for each initals of a contact
 selectElement.addEventListener('change', function () {
     // Get the selected contact objects
-    const selectedContacts = Array.from(this.selectedOptions).map(option => {
+    let selectedContacts = Array.from(this.selectedOptions).map(option => {
         return contacts.find(contact => contact.name === option.value);
     });
     // Get the initials of the selected contacts
-    const initials = selectedContacts.flatMap(contact => getInitials(contact.name, contact.randomColors));
+    let initials = selectedContacts.flatMap(contact => getInitials(contact.name, contact.randomColors));
     // Remove any existing children from the initials div
     initialsDiv.innerHTML = '';
     // Add the new initials spans to the initials div
     initials.forEach(span => {
         initialsDiv.appendChild(span);
         // Add a space between the initials
-        const space = document.createTextNode('');
+        let space = document.createTextNode('');
         initialsDiv.appendChild(space);
     });
     // Set the background color of the initialsDiv
@@ -368,7 +368,7 @@ function renderSubtasks() {
     let subtasks = document.getElementById('subtasks');
     subtasks.innerHTML = '';
     for (let i = 0; i < subtaskArray.length; i++) {
-        const subtask = subtaskArray[i];
+        let subtask = subtaskArray[i];
         subtasks.innerHTML += renderSubtasksTemplate(subtask, i);
     }
     renderData();
@@ -430,7 +430,7 @@ function openEditTask(i) {
 
 // TODO Finish the function to change Tasks
 function submitChanges(i) {
-    const test = testData[i];
+    let test = testData[i];
     let newTaskName = document.getElementById(`input-edit-${i}`).value;
     // let taskName = document.getElementById('task-popup-header');
     let newDescription = document.getElementById('edit-description').value;
