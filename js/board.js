@@ -345,7 +345,6 @@ function addSubtask() {
     let subtaskInput = document.getElementById('task-subtask').value;
     subtaskArray.push(subtaskInput);
     renderSubtasks();
-    // renderData();
     document.getElementById('task-subtask').value = '';
 }
 
@@ -370,7 +369,7 @@ function deleteSubtask(i) {
 
 
 // Function to prevent that add subtask button submits form
-let preventButton = document.getElementById('add-subtask')
+let preventButton = document.getElementById('add-subtask');
 preventButton.addEventListener('click', function (event) {
     // Prevent the form from being submitted
     event.preventDefault();
@@ -396,10 +395,8 @@ function openEditTask(i) {
 function submitChanges(i) {
     const test = testData[i];
     let newTaskName = document.getElementById(`input-edit-${i}`).value;
-    // let taskName = document.getElementById('task-popup-header');
     let newDescription = document.getElementById('edit-description').value;
     let newDate = document.getElementById('task-date-edit').value;
-    // let taskTitle = document.getElementById('task-title');
     let newCategory = document.getElementById('select-category-edit').value
     let newCategoryPopUp = document.getElementById(`category-${i}`)
     test.title = newTaskName
