@@ -345,7 +345,7 @@ function openEditTaskPopUp(test, i) {
 </div>
 <div class="edit-task-button-container">
 <button class="submit-change cursor" onclick="submitChanges(${i})">Submit Changes</button>
-<button class="delete-task cursor" onclick="deleteTask(${i})" class="cursor">Delete Task</button>
+<button class="delete-task cursor" onclick="deleteTask(${i})" class="cursor">Deletee Task</button>
 </div>
 `
 }

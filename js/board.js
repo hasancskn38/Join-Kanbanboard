@@ -58,6 +58,7 @@ let testData = [
 
 let currentDraggedItemId;
 let priority = 'Urgent';
+let searchedTaskArray = [];
 
 const selectElement = document.getElementById('select-contact');
 const initialsDiv = document.getElementById('initials-div');
@@ -93,10 +94,23 @@ function renderData() {
     stageFeedBack.innerHTML = '';
     let stageDone = document.getElementById('stage-done');
     stageDone.innerHTML = '';
+
+    if (searchedTaskArray.length === 0) {
+        renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone);
+    }
+    else {
+        renderSearchedTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone);
+    }
+    stagesContentWhenEmpty();
+    hideOrShowPriorityLevels();
+    changePriorityColorPopUp();
+}
+
+function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone) {
     for (let i = 0; i < testData.length; i++) {
         const test = testData[i];
         if (test.status === 'todo') {
-            stageToDo.innerHTML += toDoTemplate(i, test)
+            stageToDo.innerHTML += toDoTemplate(i, test);
             renderContactInitials(i, test);
         }
         else if (test.status === 'inprogress') {
@@ -112,9 +126,29 @@ function renderData() {
         }
         renderColors(i);
     }
-    stagesContentWhenEmpty();
-    hideOrShowPriorityLevels();
-    changePriorityColorPopUp();
+}
+
+
+function renderSearchedTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone) {
+    for (let i = 0; i < searchedTaskArray.length; i++) {
+        let task = searchedTaskArray[i];
+        if (task.status === 'todo') {
+            stageToDo.innerHTML += toDoTemplate(i, task);
+            renderContactInitials(i, task);
+        }
+        else if (task.status === 'inprogress') {
+            stageProgress.innerHTML += progressTemplate(i, task);
+            renderContactInitials(i, task);
+        }
+        else if (task.status === 'feedback') {
+            stageFeedBack.innerHTML += feedBackTemplate(i, task);
+            renderContactInitials(i, task);
+        } else if (task.status === 'done') {
+            stageDone.innerHTML += doneTemplate(i, task);
+            renderContactInitials(i, task);
+        }
+        renderColors(i);
+    }
 }
 
 
@@ -159,7 +193,7 @@ function createTask() {
     let category = document.getElementById('select-category').value;
     let date = document.getElementById('task-date').value;
     let taskDescription = document.getElementById('task-description').value;
-    let assignedContacts = Array.from(document.getElementById('select-contact').selectedOptions)
+    let assignedContacts = Array.from(document.getElementById('select-contact-add').selectedOptions)
         .map(option => {
             const fullName = option.value;
             const nameArr = fullName.split(' ');
@@ -194,10 +228,11 @@ function createTask() {
         };
         testData.push(newItem);
     }
+
     closeAddTaskPopUp();
+    renderData();
     clearInputFields();
     removePrioritys();
-    renderData();
 }
 
 
@@ -461,11 +496,11 @@ function clearInputFields() {
     let taskDate = document.getElementById('task-date');
     let taskDescription = document.getElementById('task-description');
     document.getElementById('initials-div').innerHTML = '';
-    input.value = "";
-    selectCategory.value = "";
-    selectContacts.value = "";
-    taskDate.value = "";
-    taskDescription.value = "";
+    input.value = '';
+    selectCategory.value = '';
+    selectContacts.value = '';
+    taskDate.value = '';
+    taskDescription.value = '';
 }
 
 
@@ -522,10 +557,10 @@ function assignContactsToTask(value) {
     contactList.innerHTML = '';
     contactList.innerHTML = `<option value="" disabled="" selected="" hidden="">Select contacts to assign</option>`;
     for (let i = 0; i < contacts.length; i++) {
-      let contact = contacts[i];
-      contactList.innerHTML += `<option value="${contact['name']}">${contact['name']}</option>`;
+        let contact = contacts[i];
+        contactList.innerHTML += `<option value="${contact['name']}">${contact['name']}</option>`;
     }
-  }
+}
 
 function closeAddTaskPopUp() {
     document.getElementById('overlay').classList.add('d-none');
@@ -546,3 +581,21 @@ function hideHelpMeSection() {
     document.getElementById('help-me-container').classList.add('d-none');
     document.querySelector('main').classList.remove('d-none');
 }
+
+function searchTask() {
+    let input = document.getElementById('search-input').value.toLowerCase();
+    searchedTaskArray = [];
+    for (let j = 0; j < testData.length; j++) {
+        let task = testData[j]['title'].toLowerCase();
+        let searchedTask = testData[j];
+        if (input == '') {
+            searchedTaskArray = [];
+            renderData();
+            break;
+        }
+        if (task.includes(input)) {
+            searchedTaskArray.push(searchedTask);
+            renderData();
+        }
+    }
+} 
