@@ -60,8 +60,8 @@ let currentDraggedItemId;
 let priority = 'Urgent';
 let searchedTaskArray = [];
 
-const selectElement = document.getElementById('select-contact');
-const initialsDiv = document.getElementById('initials-div');
+let selectElement = document.getElementById('select-contact');
+let initialsDiv = document.getElementById('initials-div');
 
 
 /**
@@ -70,7 +70,7 @@ const initialsDiv = document.getElementById('initials-div');
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
-        const element = includeElements[i];
+        let element = includeElements[i];
         file = element.getAttribute("w3-include-html");
         let resp = await fetch(file);
         if (resp.ok) {
@@ -108,7 +108,7 @@ function renderData() {
 
 function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone) {
     for (let i = 0; i < testData.length; i++) {
-        const test = testData[i];
+        let test = testData[i];
         if (test.status === 'todo') {
             stageToDo.innerHTML += toDoTemplate(i, test);
             renderContactInitials(i, test);
@@ -120,7 +120,8 @@ function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDo
         else if (test.status === 'feedback') {
             stageFeedBack.innerHTML += feedBackTemplate(i, test);
             renderContactInitials(i, test);
-        } else if (test.status === 'done') {
+        } 
+        else if (test.status === 'done') {
             stageDone.innerHTML += doneTemplate(i, test);
             renderContactInitials(i, test);
         }
@@ -404,7 +405,7 @@ function deleteSubtask(i) {
 }
 
 
-// Function to prevent that add subtask button submits form
+// Function to prevent that add subtask button submitslet
 let preventButton = document.getElementById('add-subtask')
 preventButton.addEventListener('click', function (event) {
     // Prevent the form from being submitted
@@ -435,13 +436,13 @@ function submitChanges(i) {
     let newDescription = document.getElementById('edit-description').value;
     let newDate = document.getElementById('task-date-edit').value;
     // let taskTitle = document.getElementById('task-title');
-    let newCategory = document.getElementById('select-category-edit').value
-    let newCategoryPopUp = document.getElementById(`category-${i}`)
-    test.title = newTaskName
-    test.description = newDescription
-    test.cat = newCategory
-    test.date = newDate
-    newCategoryPopUp = newCategory
+    let newCategory = document.getElementById('select-category-edit').value;
+    let newCategoryPopUp = document.getElementById(`category-${i}`);
+    test.title = newTaskName;
+    test.description = newDescription;
+    test.cat = newCategory;
+    test.date = newDate;
+    newCategoryPopUp = newCategory;
     renderData();
     closeEditTask();
     closeTaskPopUp();
