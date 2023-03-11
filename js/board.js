@@ -59,8 +59,9 @@ let priority;
 let currentDraggedItemId;
 let newPriority; 
 let searchedTaskArray = [];
-let selectElement;
-let initialsDiv
+
+const selectElement = document.getElementById('select-contact');
+const initialsDiv = document.getElementById('initials-div');
 
 
 /**
@@ -69,7 +70,7 @@ let initialsDiv
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
-        const element = includeElements[i];
+        let element = includeElements[i];
         file = element.getAttribute("w3-include-html");
         let resp = await fetch(file);
         if (resp.ok) {
@@ -103,11 +104,12 @@ function renderData() {
     stagesContentWhenEmpty();
     hideOrShowPriorityLevels();
     changePriorityColorPopUp();
+    includeHTML();
 }
 
 function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone) {
     for (let i = 0; i < testData.length; i++) {
-        const test = testData[i];
+        let test = testData[i];
         if (test.status === 'todo') {
             stageToDo.innerHTML += toDoTemplate(i, test);
             renderContactInitials(i, test);
@@ -119,7 +121,8 @@ function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDo
         else if (test.status === 'feedback') {
             stageFeedBack.innerHTML += feedBackTemplate(i, test);
             renderContactInitials(i, test);
-        } else if (test.status === 'done') {
+        } 
+        else if (test.status === 'done') {
             stageDone.innerHTML += doneTemplate(i, test);
             renderContactInitials(i, test);
         }
@@ -142,7 +145,8 @@ function renderSearchedTaskArray(stageToDo, stageProgress, stageFeedBack, stageD
         else if (task.status === 'feedback') {
             stageFeedBack.innerHTML += feedBackTemplate(i, task);
             renderContactInitials(i, task);
-        } else if (task.status === 'done') {
+        } 
+        else if (task.status === 'done') {
             stageDone.innerHTML += doneTemplate(i, task);
             renderContactInitials(i, task);
         }
@@ -209,13 +213,13 @@ function createTask() {
     let taskDescription = document.getElementById('task-description').value;
     let assignedContacts = Array.from(document.getElementById('select-contact-add').selectedOptions)
         .map(option => {
-            const fullName = option.value;
-            const nameArr = fullName.split(' ');
-            const initials = nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
+            let fullName = option.value;
+            let nameArr = fullName.split(' ');
+            let initials = nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
             return initials.toUpperCase();
         });
 
-    const lastItem = testData[testData.length - 1];
+    let lastItem = testData[testData.length - 1];
     if (testData.length == 0) {
         let newItem = {
             "title": title,
@@ -229,7 +233,7 @@ function createTask() {
         };
         testData.push(newItem);
     } else {
-        const newId = Number(lastItem.id) + 1;
+        let newId = Number(lastItem.id) + 1;
         let newItem = {
             "title": title,
             "cat": category,
@@ -276,7 +280,6 @@ function deleteTask(i) {
 // });
 
 
-
 /**
  * create initials of a contact
  * @param {*} name is each name of the contacts from JSON Array
@@ -284,7 +287,7 @@ function deleteTask(i) {
  * @returns 
  */
 function createInitial(name, randomColor) {
-    const span = document.createElement('span');
+    let span = document.createElement('span');
     span.textContent = name.charAt(0).toUpperCase();
     span.style.backgroundColor = randomColor;
     return span;
@@ -298,10 +301,10 @@ function createInitial(name, randomColor) {
  * @returns 
  */
 function getInitials(name, randomColor) {
-    const names = name.split(' ');
-    const initials = [];
+    let names = name.split(' ');
+    let initials = [];
     for (let i = 0; i < names.length; i += 2) {
-        const span = document.createElement('span');
+        let span = document.createElement('span');
         let initialsPair = names[i].charAt(0).toUpperCase();
         if (i + 1 < names.length) {
             initialsPair += names[i + 1].charAt(0).toUpperCase();
@@ -320,11 +323,11 @@ function getInitials(name, randomColor) {
  * @param {*} selectedContacts is a const that is declared which is an array of the selected items from the select field
  */
 function setBackgroundColors(selectedContacts) {
-    const backgroundColors = selectedContacts.map(contact => contact.randomColors);
+    let backgroundColors = selectedContacts.map(contact => contact.randomColors);
 }
 
-//TODO Remove commenting after contacts JSON Array problem is solved
-// // Eventlistener for each select item, which has the function to create a span for each initals of a contact
+//TODO Remove commenting after problem with contacts json array is solved
+// Eventlistener for each select item, which has the function to create a span for each initals of a contact
 // selectElement.addEventListener('change', function () {
 //     // Get the selected contact objects
 //     const selectedContacts = Array.from(this.selectedOptions).map(option => {
@@ -393,10 +396,10 @@ let subtaskArray = [];
  * render subtasks from subtaskArray
  */
 function renderSubtasks() {
-    let subtasks = document.getElementById('subtasks')
+    let subtasks = document.getElementById('subtasks');
     subtasks.innerHTML = '';
     for (let i = 0; i < subtaskArray.length; i++) {
-        const subtask = subtaskArray[i];
+        let subtask = subtaskArray[i];
         subtasks.innerHTML += renderSubtasksTemplate(subtask, i);
     }
     renderData();
@@ -433,7 +436,7 @@ function deleteSubtask(i) {
 
 
 // Function to prevent that add subtask button submits form
-let preventButton = document.getElementById('add-subtask');
+let preventButton = document.getElementById('add-subtask')
 preventButton.addEventListener('click', function (event) {
     // Prevent the form from being submitted
     event.preventDefault();
@@ -547,16 +550,17 @@ function editPriority(value) {
 
 function submitChanges(i) {
     const test = testData[i];
-    let newTaskName = document.getElementById(`input-edit-${i}`).value
-    let newDescription = document.getElementById('edit-description').value
-    let newDate = document.getElementById('task-date-edit').value
+    let newTaskName = document.getElementById(`input-edit-${i}`).value;
+    // let taskName = document.getElementById('task-popup-header');
+    let newDescription = document.getElementById('edit-description').value;
+    let newDate = document.getElementById('task-date-edit').value;
+    // let taskTitle = document.getElementById('task-title');
     let newCategory = document.getElementById('select-category-edit').value
     let newCategoryPopUp = document.getElementById(`category-${i}`)
     test.title = newTaskName
     test.description = newDescription
     test.cat = newCategory
     test.date = newDate
-    test.priority = newPriority
     newCategoryPopUp = newCategory
     renderData();
     closeEditTask();
@@ -645,7 +649,7 @@ function allowDrop(ev) {
 
 
 function dropItem(status) {
-    testData[currentDraggedItemId]['status'] = status
+    testData[currentDraggedItemId]['status'] = status;
     renderData();
 }
 // Drag and Drop Function End
@@ -702,11 +706,10 @@ function searchTask() {
         if (input == '') {
             searchedTaskArray = [];
             renderData();
-            break;
         }
         if (task.includes(input)) {
             searchedTaskArray.push(searchedTask);
-            renderData();
         }
     }
+    renderData();
 } 
