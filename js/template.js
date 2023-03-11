@@ -295,6 +295,8 @@ function openTaskPopUpTemplate(test, i, contact) {
                     <div id="subtasks-container"></div>
 
                     <img onclick="openEditTask(${i})" class="edit-button cursor" src="../assets/icons/editbutton.png" alt="">
+                    <button onclick="openEditTask(${i})">Edit Button</button>
+        
                     
                 </div>
     `
@@ -331,13 +333,13 @@ function openEditTaskPopUp(test, i) {
     </label>
     <div class="priority">
     <div class="priority-levels cursor priority-edit" id="urgent-edit" onclick="changeUrgentColorEdit()"><span
-            id="urgent-inner-edi">Urgent</span><img id="img1" src="../assets/icons/urgent.png"
+            id="urgent-inner-edit">Urgent</span><img id="img1-edit" src="../assets/icons/urgent.png"
             alt=""></div>
     <div class="priority-levels cursor priority-edit" id="medium-edit" onclick="changeMediumColorEdit()"><span
-            id="medium-inner-edi">Medium</span> <img id="img2" src="../assets/icons/medium.png"
+            id="medium-inner-edit">Medium</span> <img id="img2-edit" src="../assets/icons/medium.png"
             alt=""></div>
     <div class="priority-levels cursor priority-edit" id="low-edit" onclick="changeLowColorEdit()"><span
-            id="low-inner-edi">Low</span><img id="img3" src="../assets/icons/low.png" alt=""></div>
+            id="low-inner-edit">Low</span><img id="img3-edit" src="../assets/icons/low.png" alt=""></div>
 </div>
 <select required id="select-contact-edit" class="select-contact cursor">
 <option value="" disabled selected hidden>Select contacts to assign</option>
@@ -345,7 +347,7 @@ function openEditTaskPopUp(test, i) {
 </div>
 <div class="edit-task-button-container">
 <button class="submit-change cursor" onclick="submitChanges(${i})">Submit Changes</button>
-<button class="delete-task cursor" onclick="deleteTask(${i})" class="cursor">Deletee Task</button>
+<button class="delete-task cursor" onclick="deleteTask(${i})" class="cursor">Delete Task</button>
 </div>
 `
 }

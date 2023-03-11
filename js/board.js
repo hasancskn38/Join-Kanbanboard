@@ -55,13 +55,12 @@ let testData = [
     }
 ];
 
-
+let priority;
 let currentDraggedItemId;
-let priority = 'Urgent';
+let newPriority; 
 let searchedTaskArray = [];
-
-const selectElement = document.getElementById('select-contact');
-const initialsDiv = document.getElementById('initials-div');
+let selectElement;
+let initialsDiv
 
 
 /**
@@ -166,7 +165,6 @@ function renderContactInitials(i, test, selectedContacts) {
     }
 }
 
-
 /**
  * render the content of a stage when it is empty
  */
@@ -184,6 +182,22 @@ function stagesContentWhenEmpty() {
     } if (stageDone.innerHTML == '') {
         stageDone.innerHTML += emptyDoneTemplate();
     }
+}
+
+document.getElementById('urgent').addEventListener('click', function () {
+    setPriority('Urgent');
+});
+
+document.getElementById('medium').addEventListener('click', function () {
+    setPriority('Medium');
+});
+
+document.getElementById('low').addEventListener('click', function () {
+    setPriority('Low');
+});
+
+function setPriority(value) {
+    priority = value;
 }
 
 
@@ -249,17 +263,18 @@ function deleteTask(i) {
     closeEditTask();
     closeTaskPopUp();
     renderData();
-    renderColors(i);
 }
 
 
+//TODO Remove commenting after contacts JSON Array problem is solved
 // Populate select element with options for each contact name by iterating through the contacts JSON
-contacts.forEach(contact => {
-    const optionElement = document.createElement('option');
-    optionElement.value = contact.name;
-    optionElement.textContent = contact.name;
-    selectElement.appendChild(optionElement);
-});
+// contacts.forEach(contact => {
+//     const optionElement = document.createElement('option');
+//     optionElement.value = contact.name;
+//     optionElement.textContent = contact.name;
+//     selectElement.appendChild(optionElement);
+// });
+
 
 
 /**
@@ -308,26 +323,27 @@ function setBackgroundColors(selectedContacts) {
     const backgroundColors = selectedContacts.map(contact => contact.randomColors);
 }
 
-// Eventlistener for each select item, which has the function to create a span for each initals of a contact
-selectElement.addEventListener('change', function () {
-    // Get the selected contact objects
-    const selectedContacts = Array.from(this.selectedOptions).map(option => {
-        return contacts.find(contact => contact.name === option.value);
-    });
-    // Get the initials of the selected contacts
-    const initials = selectedContacts.flatMap(contact => getInitials(contact.name, contact.randomColors));
-    // Remove any existing children from the initials div
-    initialsDiv.innerHTML = '';
-    // Add the new initials spans to the initials div
-    initials.forEach(span => {
-        initialsDiv.appendChild(span);
-        // Add a space between the initials
-        const space = document.createTextNode('');
-        initialsDiv.appendChild(space);
-    });
-    // Set the background color of the initialsDiv
-    setBackgroundColors(selectedContacts);
-});
+//TODO Remove commenting after contacts JSON Array problem is solved
+// // Eventlistener for each select item, which has the function to create a span for each initals of a contact
+// selectElement.addEventListener('change', function () {
+//     // Get the selected contact objects
+//     const selectedContacts = Array.from(this.selectedOptions).map(option => {
+//         return contacts.find(contact => contact.name === option.value);
+//     });
+//     // Get the initials of the selected contacts
+//     const initials = selectedContacts.flatMap(contact => getInitials(contact.name, contact.randomColors));
+//     // Remove any existing children from the initials div
+//     initialsDiv.innerHTML = '';
+//     // Add the new initials spans to the initials div
+//     initials.forEach(span => {
+//         initialsDiv.appendChild(span);
+//         // Add a space between the initials
+//         const space = document.createTextNode('');
+//         initialsDiv.appendChild(space);
+//     });
+//     // Set the background color of the initialsDiv
+//     setBackgroundColors(selectedContacts);
+// });
 
 
 /**
@@ -348,6 +364,19 @@ function openTaskPopUp(i) {
     changePriorityColorPopUp();
 }
 
+
+function changePriorityColorPopUp() {
+    priorityColor = document.getElementById(`test-priority`)
+    if (priorityColor.innerHTML == 'Urgent') {
+        priorityColor.classList.add('urgent-popup')
+    } 
+    if (priorityColor.innerHTML == 'Medium') {
+        priorityColor.classList.add('medium-popup')
+    } 
+    if (priorityColor.innerHTML == 'Low') {
+        priorityColor.classList.add('low-popup')
+    }
+}
 
 /**
  * close popup and return to the main page
@@ -426,18 +455,108 @@ function openEditTask(i) {
 }
 
 
-// TODO Finish the function to change Tasks
+function changeUrgentColorEdit() {
+    let priorityImg1Edit = document.getElementById(`img1-edit`);
+    let priorityImg2Edit = document.getElementById(`img2-edit`);
+    let priorityImg3Edit = document.getElementById(`img3-edit`);
+    let urgentEdit = document.getElementById(`urgent-edit`);
+    let mediumEdit = document.getElementById(`medium-edit`);
+    let lowEdit = document.getElementById(`low-edit`);
+    console.log(urgentEdit)
+    if (urgentEdit.classList.contains('urgent')) {
+        urgentEdit.classList.remove('urgent');
+        priorityImg1Edit.classList.remove('white');
+
+    } else {
+        urgentEdit.classList.add('urgent');
+        lowEdit.classList.remove('low');
+        mediumEdit.classList.remove('medium');
+        priorityImg1Edit.classList.add('white');
+        priorityImg2Edit.classList.remove('white');
+        priorityImg3Edit.classList.remove('white');
+    }
+}
+
+
+function changeMediumColorEdit() {
+    let priorityImg1Edit = document.getElementById(`img1-edit`);
+    let priorityImg2Edit = document.getElementById(`img2-edit`);
+    let priorityImg3Edit = document.getElementById(`img3-edit`);
+    let urgentEdit = document.getElementById(`urgent-edit`);
+    let mediumEdit = document.getElementById(`medium-edit`);
+    let lowEdit = document.getElementById(`low-edit`);
+    if (mediumEdit.classList.contains('medium')) {
+        mediumEdit.classList.remove('medium')
+        priorityImg2Edit.classList.remove('white');
+
+    } else {
+        mediumEdit.classList.add('medium')
+        urgentEdit.classList.remove('urgent')
+        lowEdit.classList.remove('low')
+        priorityImg1Edit.classList.remove('white');
+        priorityImg2Edit.classList.add('white');
+        priorityImg3Edit.classList.remove('white');
+    }
+}
+
+
+function changeLowColorEdit() {
+    let priorityImg1Edit = document.getElementById(`img1-edit`);
+    let priorityImg2Edit = document.getElementById(`img2-edit`);
+    let priorityImg3Edit = document.getElementById(`img3-edit`);
+    let urgentEdit = document.getElementById(`urgent-edit`);
+    let mediumEdit = document.getElementById(`medium-edit`);
+    let lowEdit = document.getElementById(`low-edit`);
+    if (lowEdit.classList.contains('low')) {
+        lowEdit.classList.remove('low')
+        priorityImg3Edit.classList.remove('white');
+    } else {
+        lowEdit.classList.add('low')
+        urgentEdit.classList.remove('urgent')
+        mediumEdit.classList.remove('medium')
+        priorityImg1Edit.classList.remove('white');
+        priorityImg2Edit.classList.remove('white');
+        priorityImg3Edit.classList.add('white');
+    }
+}
+
+let priorityImg1Edit = document.getElementById(`img1-edit`);
+let priorityImg2Edit = document.getElementById(`img2-edit`);
+let priorityImg3Edit = document.getElementById(`img3-edit`);
+let urgentEdit = document.getElementById(`urgent-edit`);
+let mediumEdit = document.getElementById(`medium-edit`);
+let lowEdit = document.getElementById(`low-edit`);
+
+
+urgentEdit.addEventListener('click', () => { 
+    editPriority('Urgent');
+});
+
+mediumEdit.addEventListener('click', () => {
+    editPriority('Medium');
+});
+
+lowEdit.addEventListener('click', () => {
+    editPriority('Low');
+});
+
+function editPriority(value) {
+    newPriority = value;
+}
+
+
 function submitChanges(i) {
     const test = testData[i];
-    let newTaskName = document.getElementById(`input-edit-${i}`).value;
-    let newDescription = document.getElementById('edit-description').value;
-    let newDate = document.getElementById('task-date-edit').value;
+    let newTaskName = document.getElementById(`input-edit-${i}`).value
+    let newDescription = document.getElementById('edit-description').value
+    let newDate = document.getElementById('task-date-edit').value
     let newCategory = document.getElementById('select-category-edit').value
     let newCategoryPopUp = document.getElementById(`category-${i}`)
     test.title = newTaskName
     test.description = newDescription
     test.cat = newCategory
     test.date = newDate
+    test.priority = newPriority
     newCategoryPopUp = newCategory
     renderData();
     closeEditTask();
@@ -452,39 +571,31 @@ function closeEditTask() {
 }
 
 
+
 function renderColors(i) {
-    let test = testData[i];
     let category = document.getElementById(`category-${i}`);
-    if (test.cat == 'Design') {
-        category.classList.add('design');
+    if (category.innerHTML == 'Design') {
+      category.classList.add('design');
     }
-    if (test.cat == 'Backoffice') {
-        category.classList.add('backoffice');
+    if (category.innerHTML == 'Backoffice') {
+      category.classList.add('backoffice');
     }
-    if (test.cat == 'Sales') {
-        category.classList.add('sales');
+    if (category.innerHTML == 'Sales') {
+      category.classList.add('sales');
     }
-    if (test.cat == 'Marketing') {
-        category.classList.add('marketing');
+    if (category.innerHTML == 'Marketing') {
+      category.classList.add('marketing');
     }
 }
 
 
-function setPriority(value) {
-    priority = value;
+function deleteTask(i) {
+    testData.splice(i, 1);
+    closeEditTask();
+    closeTaskPopUp();
+    renderData();
 }
 
-document.getElementById('urgent').addEventListener('click', function () {
-    setPriority('Urgent');
-});
-
-document.getElementById('medium').addEventListener('click', function () {
-    setPriority('Medium');
-});
-
-document.getElementById('low').addEventListener('click', function () {
-    setPriority('Low');
-});
 
 /**
  * clear the input fields 

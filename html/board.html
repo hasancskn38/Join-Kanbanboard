@@ -12,16 +12,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
     <script src="../smallest_backend_ever/mini_backend.js"></script>
-    <script defer src="../js/contacts.js"></script>
+    <script defer src="../js/board.js"></script>
     <script defer src="../js/template.js"></script>
     <script defer src="../js/board-priority.js"></script>
-    <script defer src="../js/board.js"></script>
+    <script defer src="../js/contacts.js"></script>
     <script defer src="../js/summary.js"></script>
     <script defer src="../js/script.js"></script>
     <script defer src="../js/add-task.js"></script>
+    
 
 </head>
-<body onload="showContacts(); includeHTML(); renderData(); spanForEachInitial(); changePriorityColorEdit();">
+<body onload="showContacts(); includeHTML(); renderData(); spanForEachInitial();">
     <!-- Header Start -->
     <div class="navbar">
         <div w3-include-html="../assets/templates/header-template.html"></div>
@@ -54,7 +55,7 @@
                     <button class="cursor open-add-task" onclick="openAddTaskPopUp()">Add task <span>+</span></button>
 
                    <!-- just for tests -->
-                   <button style="margin-left: 20px;" class="cursor open-add-task" onclick="deleteTask()">Remove task <span>-</span></button>
+                   <button style="margin-left: 20px;" class="cursor open-add-task" onclick="deleteTask(i)">Remove task <span>-</span></button>
                    <!-- just for tests -->
 
                     <!-- <img id="remove-task" class="d-none" ondragleave="deleteTask()" src="../assets/icons/recycle-bin.png" alt=""> -->
