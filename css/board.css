@@ -187,6 +187,7 @@ input:active{
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     right: 0;
+    overflow: auto;
 }
 
 /* Animation Start */
@@ -343,7 +344,7 @@ label > input {
     display: flex;
     align-items: center;
     justify-content: space-around;
-
+    border: 2px solid transparent;
     font-size: 20px;}
 
 .priority-levels > img {
