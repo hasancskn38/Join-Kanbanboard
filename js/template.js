@@ -332,13 +332,13 @@ function openEditTaskPopUp(test, i) {
         </div>
     </label>
     <div class="priority">
-    <div class="priority-levels cursor priority-edit" id="urgent-edit" onclick="changeUrgentColorEdit()"><span
+    <div class="priority-levels cursor priority-edit" id="urgent-edit" onclick="changeUrgentColorEdit(); editPriority('Urgent');"><span
             id="urgent-inner-edit">Urgent</span><img id="img1-edit" src="../assets/icons/urgent.png"
             alt=""></div>
-    <div class="priority-levels cursor priority-edit" id="medium-edit" onclick="changeMediumColorEdit()"><span
+    <div class="priority-levels cursor priority-edit" id="medium-edit" onclick="changeMediumColorEdit(); editPriority('Medium');"><span
             id="medium-inner-edit">Medium</span> <img id="img2-edit" src="../assets/icons/medium.png"
             alt=""></div>
-    <div class="priority-levels cursor priority-edit" id="low-edit" onclick="changeLowColorEdit()"><span
+    <div class="priority-levels cursor priority-edit" id="low-edit" onclick="changeLowColorEdit(); editPriority('Low');"><span
             id="low-inner-edit">Low</span><img id="img3-edit" src="../assets/icons/low.png" alt=""></div>
 </div>
 <select required id="select-contact-edit" class="select-contact cursor">

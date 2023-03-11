@@ -55,9 +55,10 @@ let testData = [
     }
 ];
 
+let priorityColor;
 let priority;
 let currentDraggedItemId;
-let newPriority; 
+let newPriority;
 let searchedTaskArray = [];
 
 const selectElement = document.getElementById('select-contact');
@@ -246,7 +247,6 @@ function createTask() {
         };
         testData.push(newItem);
     }
-
     closeAddTaskPopUp();
     renderData();
     clearInputFields();
@@ -257,7 +257,6 @@ function createTask() {
 function handleSubmit(event) {
     event.preventDefault();
     createTask();
-    renderData();
     closeAddTaskPopUp();
 }
 
@@ -455,6 +454,36 @@ function openEditTask(i) {
     editTask.classList.remove('d-none');
     editTask.innerHTML = openEditTaskPopUp(test, i);
     assignContactsToTask('edit');
+    renderEditPriorityColors();
+}
+
+function renderEditPriorityColors(i) {
+    test = testData[i]
+    let priority = document.getElementById('test-priority');
+    let urgentEdit = document.getElementById('urgent-edit');
+    let mediumEdit = document.getElementById('medium-edit');
+    let lowEdit = document.getElementById('low-edit');
+    let priorityImg1Edit = document.getElementById(`img1-edit`);
+    let priorityImg2Edit = document.getElementById(`img2-edit`);
+    let priorityImg3Edit = document.getElementById(`img3-edit`);
+    
+    if(priority.innerHTML == 'Urgent') {
+        urgentEdit.classList.add('urgent')
+        priorityImg1Edit.classList.add('white')
+    }
+    if(priority.innerHTML == 'Medium') {
+        mediumEdit.classList.add('medium')
+        priorityImg2Edit.classList.add('white')
+    }
+    if(priority.innerHTML == 'Low') {
+        lowEdit.classList.add('low')
+        priorityImg3Edit.classList.add('white')
+    }
+}
+
+
+function editPriority(value) {
+    newPriority = value;
 }
 
 
@@ -465,7 +494,6 @@ function changeUrgentColorEdit() {
     let urgentEdit = document.getElementById(`urgent-edit`);
     let mediumEdit = document.getElementById(`medium-edit`);
     let lowEdit = document.getElementById(`low-edit`);
-    console.log(urgentEdit)
     if (urgentEdit.classList.contains('urgent')) {
         urgentEdit.classList.remove('urgent');
         priorityImg1Edit.classList.remove('white');
@@ -523,30 +551,6 @@ function changeLowColorEdit() {
     }
 }
 
-let priorityImg1Edit = document.getElementById(`img1-edit`);
-let priorityImg2Edit = document.getElementById(`img2-edit`);
-let priorityImg3Edit = document.getElementById(`img3-edit`);
-let urgentEdit = document.getElementById(`urgent-edit`);
-let mediumEdit = document.getElementById(`medium-edit`);
-let lowEdit = document.getElementById(`low-edit`);
-
-
-urgentEdit.addEventListener('click', () => { 
-    editPriority('Urgent');
-});
-
-mediumEdit.addEventListener('click', () => {
-    editPriority('Medium');
-});
-
-lowEdit.addEventListener('click', () => {
-    editPriority('Low');
-});
-
-function editPriority(value) {
-    newPriority = value;
-}
-
 
 function submitChanges(i) {
     const test = testData[i];
@@ -557,15 +561,34 @@ function submitChanges(i) {
     // let taskTitle = document.getElementById('task-title');
     let newCategory = document.getElementById('select-category-edit').value
     let newCategoryPopUp = document.getElementById(`category-${i}`)
+    if(newPriority == undefined) {
     test.title = newTaskName
     test.description = newDescription
     test.cat = newCategory
+    test.priority 
     test.date = newDate
     newCategoryPopUp = newCategory
-    renderData();
+    }
+    else {
+    test.title = newTaskName
+    test.description = newDescription
+    test.cat = newCategory
+    test.priority = newPriority
+    test.date = newDate
+    newCategoryPopUp = newCategory
+    }
     closeEditTask();
     closeTaskPopUp();
+    hideOrShowPriorityLevels()
+    renderColors(i)
+   
 }
+
+// function checkIfPrioritySelected() {
+
+
+// }
+
 
 
 // close edit task popup
