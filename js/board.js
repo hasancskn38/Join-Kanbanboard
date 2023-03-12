@@ -517,13 +517,13 @@ function changeMediumColorEdit() {
     let mediumEdit = document.getElementById(`medium-edit`);
     let lowEdit = document.getElementById(`low-edit`);
     if (mediumEdit.classList.contains('medium')) {
-        mediumEdit.classList.remove('medium')
+        mediumEdit.classList.remove('medium');
         priorityImg2Edit.classList.remove('white');
 
     } else {
-        mediumEdit.classList.add('medium')
-        urgentEdit.classList.remove('urgent')
-        lowEdit.classList.remove('low')
+        mediumEdit.classList.add('medium');
+        urgentEdit.classList.remove('urgent');
+        lowEdit.classList.remove('low');
         priorityImg1Edit.classList.remove('white');
         priorityImg2Edit.classList.add('white');
         priorityImg3Edit.classList.remove('white');
@@ -539,12 +539,12 @@ function changeLowColorEdit() {
     let mediumEdit = document.getElementById(`medium-edit`);
     let lowEdit = document.getElementById(`low-edit`);
     if (lowEdit.classList.contains('low')) {
-        lowEdit.classList.remove('low')
+        lowEdit.classList.remove('low');
         priorityImg3Edit.classList.remove('white');
     } else {
-        lowEdit.classList.add('low')
-        urgentEdit.classList.remove('urgent')
-        mediumEdit.classList.remove('medium')
+        lowEdit.classList.add('low');
+        urgentEdit.classList.remove('urgent');
+        mediumEdit.classList.remove('medium');
         priorityImg1Edit.classList.remove('white');
         priorityImg2Edit.classList.remove('white');
         priorityImg3Edit.classList.add('white');
