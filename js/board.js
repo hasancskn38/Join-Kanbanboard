@@ -61,8 +61,8 @@ let currentDraggedItemId;
 let newPriority;
 let searchedTaskArray = [];
 
-const selectElement = document.getElementById('select-contact');
-const initialsDiv = document.getElementById('initials-div');
+let selectElement = document.getElementById('select-contact');
+let initialsDiv = document.getElementById('initials-div');
 
 
 /**
@@ -553,7 +553,7 @@ function changeLowColorEdit() {
 
 
 function submitChanges(i) {
-    const test = testData[i];
+    let test = testData[i];
     let newTaskName = document.getElementById(`input-edit-${i}`).value;
     // let taskName = document.getElementById('task-popup-header');
     let newDescription = document.getElementById('edit-description').value;
