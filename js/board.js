@@ -370,13 +370,13 @@ function openTaskPopUp(i) {
 function changePriorityColorPopUp() {
     priorityColor = document.getElementById(`test-priority`)
     if (priorityColor.innerHTML == 'Urgent') {
-        priorityColor.classList.add('urgent-popup')
+        priorityColor.classList.add('urgent-popup');
     } 
     if (priorityColor.innerHTML == 'Medium') {
-        priorityColor.classList.add('medium-popup')
+        priorityColor.classList.add('medium-popup');
     } 
     if (priorityColor.innerHTML == 'Low') {
-        priorityColor.classList.add('low-popup')
+        priorityColor.classList.add('low-popup');
     }
 }
 
@@ -468,16 +468,16 @@ function renderEditPriorityColors(i) {
     let priorityImg3Edit = document.getElementById(`img3-edit`);
     
     if(priority.innerHTML == 'Urgent') {
-        urgentEdit.classList.add('urgent')
-        priorityImg1Edit.classList.add('white')
+        urgentEdit.classList.add('urgent');
+        priorityImg1Edit.classList.add('white');
     }
     if(priority.innerHTML == 'Medium') {
-        mediumEdit.classList.add('medium')
-        priorityImg2Edit.classList.add('white')
+        mediumEdit.classList.add('medium');
+        priorityImg2Edit.classList.add('white');
     }
     if(priority.innerHTML == 'Low') {
-        lowEdit.classList.add('low')
-        priorityImg3Edit.classList.add('white')
+        lowEdit.classList.add('low');
+        priorityImg3Edit.classList.add('white');
     }
 }
 
@@ -559,28 +559,28 @@ function submitChanges(i) {
     let newDescription = document.getElementById('edit-description').value;
     let newDate = document.getElementById('task-date-edit').value;
     // let taskTitle = document.getElementById('task-title');
-    let newCategory = document.getElementById('select-category-edit').value
+    let newCategory = document.getElementById('select-category-edit').value;
     let newCategoryPopUp = document.getElementById(`category-${i}`)
     if(newPriority == undefined) {
-    test.title = newTaskName
-    test.description = newDescription
-    test.cat = newCategory
-    test.priority 
-    test.date = newDate
-    newCategoryPopUp = newCategory
+    test.title = newTaskName;
+    test.description = newDescription;
+    test.cat = newCategory;
+    test.priority ;
+    test.date = newDate;
+    newCategoryPopUp = newCategory;
     }
     else {
-    test.title = newTaskName
-    test.description = newDescription
-    test.cat = newCategory
-    test.priority = newPriority
-    test.date = newDate
-    newCategoryPopUp = newCategory
+    test.title = newTaskName;
+    test.description = newDescription;
+    test.cat = newCategory;
+    test.priority = newPriority;
+    test.date = newDate;
+    newCategoryPopUp = newCategory;
     }
     closeEditTask();
     closeTaskPopUp();
-    hideOrShowPriorityLevels()
-    renderColors(i)
+    hideOrShowPriorityLevels();
+    renderColors(i);
    
 }
 
