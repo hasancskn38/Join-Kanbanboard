@@ -22,7 +22,7 @@
     
 
 </head>
-<body onload="showContacts(); includeHTML(); renderData(); spanForEachInitial(); changePriorityColorEdit();">
+<body onload="showContacts();includeHTML();renderData();">
     <!-- Header Start -->
     <div class="navbar">
         <div w3-include-html="../assets/templates/header-template.html"></div>
@@ -53,8 +53,6 @@
                 </div>
                 <div class="add-remove-container">
                     <button class="cursor open-add-task" onclick="openAddTaskPopUp()">Add task <span>+</span></button>
-
-                    <!-- <img id="remove-task" class="d-none" ondragleave="deleteTask()" src="../assets/icons/recycle-bin.png" alt=""> -->
                 </div>
             </div>
             <!-- Board Header End-->

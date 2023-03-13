@@ -219,7 +219,6 @@ function createTask() {
             let initials = nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
             return initials.toUpperCase();
         });
-
     let lastItem = testData[testData.length - 1];
     if (testData.length == 0) {
         let newItem = {
@@ -271,12 +270,12 @@ function deleteTask(i) {
 
 //TODO Remove commenting after contacts JSON Array problem is solved
 // Populate select element with options for each contact name by iterating through the contacts JSON
-// contacts.forEach(contact => {
-//     const optionElement = document.createElement('option');
-//     optionElement.value = contact.name;
-//     optionElement.textContent = contact.name;
-//     selectElement.appendChild(optionElement);
-// });
+contacts.forEach(contact => {
+    const optionElement = document.createElement('option');
+    optionElement.value = contact.name;
+    optionElement.textContent = contact.name;
+    selectElement.appendChild(optionElement);
+});
 
 
 /**
@@ -327,25 +326,25 @@ function setBackgroundColors(selectedContacts) {
 
 //TODO Remove commenting after problem with contacts json array is solved
 // Eventlistener for each select item, which has the function to create a span for each initals of a contact
-// selectElement.addEventListener('change', function () {
-//     // Get the selected contact objects
-//     const selectedContacts = Array.from(this.selectedOptions).map(option => {
-//         return contacts.find(contact => contact.name === option.value);
-//     });
-//     // Get the initials of the selected contacts
-//     const initials = selectedContacts.flatMap(contact => getInitials(contact.name, contact.randomColors));
-//     // Remove any existing children from the initials div
-//     initialsDiv.innerHTML = '';
-//     // Add the new initials spans to the initials div
-//     initials.forEach(span => {
-//         initialsDiv.appendChild(span);
-//         // Add a space between the initials
-//         const space = document.createTextNode('');
-//         initialsDiv.appendChild(space);
-//     });
-//     // Set the background color of the initialsDiv
-//     setBackgroundColors(selectedContacts);
-// });
+selectElement.addEventListener('change', function () {
+    // Get the selected contact objects
+    const selectedContacts = Array.from(this.selectedOptions).map(option => {
+        return contacts.find(contact => contact.name === option.value);
+    });
+    // Get the initials of the selected contacts
+    const initials = selectedContacts.flatMap(contact => getInitials(contact.name, contact.randomColors));
+    // Remove any existing children from the initials div
+    initialsDiv.innerHTML = '';
+    // Add the new initials spans to the initials div
+    initials.forEach(span => {
+        initialsDiv.appendChild(span);
+        // Add a space between the initials
+        const space = document.createTextNode('');
+        initialsDiv.appendChild(space);
+    });
+    // Set the background color of the initialsDiv
+    setBackgroundColors(selectedContacts);
+});
 
 
 /**
@@ -555,33 +554,42 @@ function changeLowColorEdit() {
 function submitChanges(i) {
     let test = testData[i];
     let newTaskName = document.getElementById(`input-edit-${i}`).value;
-    // let taskName = document.getElementById('task-popup-header');
     let newDescription = document.getElementById('edit-description').value;
     let newDate = document.getElementById('task-date-edit').value;
-    // let taskTitle = document.getElementById('task-title');
-    let newCategory = document.getElementById('select-category-edit').value
-    let newCategoryPopUp = document.getElementById(`category-${i}`)
+    let newCategory = document.getElementById('select-category-edit').value;
+    let newCategoryPopUp = document.getElementById(`category-${i}`);
+    let urgentEdit = document.getElementById('urgent-edit')
+    let mediumEdit = document.getElementById('medium-edit')
+    let lowEdit = document.getElementById('low-edit')
     if(newPriority == undefined) {
-    test.title = newTaskName
-    test.description = newDescription
-    test.cat = newCategory
-    test.priority 
-    test.date = newDate
-    newCategoryPopUp = newCategory
-    }
-    else {
-    test.title = newTaskName
-    test.description = newDescription
-    test.cat = newCategory
-    test.priority = newPriority
-    test.date = newDate
-    newCategoryPopUp = newCategory
-    }
+    test.title = newTaskName;
+    test.description = newDescription;
+    test.cat = newCategory;
+    test.priority ;
+    test.date = newDate;
+    newCategoryPopUp = newCategory;
     closeEditTask();
     closeTaskPopUp();
     hideOrShowPriorityLevels();
     renderData();
     renderColors(i);
+    }
+    else if(!urgentEdit.classList.contains('urgent') & !mediumEdit.classList.contains('medium') & !lowEdit.classList.contains('low')) {
+        alert('Please choose a priority level for your task');
+    }
+    else {
+    test.title = newTaskName;
+    test.description = newDescription;
+    test.cat = newCategory;
+    test.priority = newPriority;
+    test.date = newDate;
+    newCategoryPopUp = newCategory;
+    closeEditTask();
+    closeTaskPopUp();
+    hideOrShowPriorityLevels();
+    renderData();
+    renderColors(i);
+    }
 }
 
 
@@ -590,7 +598,6 @@ function closeEditTask() {
     document.getElementById(`task-popup`).classList.remove('d-none');
     document.getElementById('edit-task-popup').classList.add('d-none');
 }
-
 
 
 function renderColors(i) {
@@ -648,8 +655,6 @@ function removePrioritys() {
 
 
 // Drag and Drop Function Start
-
-
 function startDragging(id) {
     for (let i = 0; i < testData.length; i++) {
         let index = testData[i]['id'];
