@@ -1,61 +1,7 @@
 setURL('https://gruppe-447.developerakademie.net/join/smallest_backend_ever');
 
-let testData = [
-    {
-        title: 'Finish UI',
-        cat: 'Design',
-        description: 'This is a Task Description',
-        status: 'todo',
-        date: '05-08-2022',
-        priority: 'Urgent',
-        assignedContacts: ['HC', 'CD'],
-        id: '0'
-    },
+let testData = [];
 
-    {
-        title: 'Finish Backend',
-        cat: 'Marketing',
-        description: 'This is a Task Description',
-        status: 'inprogress',
-        date: '05-08-2022',
-        priority: 'Urgent',
-        assignedContacts: ['HC', 'CD', 'CD'],
-        id: '1'
-    },
-
-    {
-        title: 'Look for Social Media Marketing Agency',
-        cat: 'Backoffice',
-        description: 'This is a Task Description',
-        status: 'feedback',
-        date: '05-08-2022',
-        priority: 'Urgent',
-        assignedContacts: ['CD', 'CD'],
-        id: '2'
-    },
-
-    {
-        title: 'Call with Steven',
-        cat: 'Sales',
-        description: 'This is a Task Description',
-        status: 'done',
-        date: '05-08-2022',
-        priority: 'Medium',
-        assignedContacts: ['HC', 'CD'],
-        id: '3'
-    },
-
-    {
-        title: 'Call with Test',
-        cat: 'Sales',
-        description: 'This is a Task Description',
-        status: 'done',
-        date: '05-08-2022',
-        priority: 'Low',
-        assignedContacts: ['CF'],
-        id: '4'
-    }
-];
 
 let contacts = [];
 let priorityColor;
@@ -115,7 +61,6 @@ function renderData() {
     }
     stagesContentWhenEmpty();
     hideOrShowPriorityLevels();
-    changePriorityColorPopUp();
 }
 
 function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone) {
@@ -217,7 +162,7 @@ function setPriority(value) {
 
 
 // Create New Task Function
-function createTask() {
+async function createTask() {
     let title = document.getElementById('task-title').value;
     let category = document.getElementById('select-category').value;
     let date = document.getElementById('task-date').value;
@@ -243,6 +188,7 @@ function createTask() {
             "id": 0,
         };
         testData.push(newItem);
+        await backend.setItem('testData', JSON.stringify(testData));
     } else {
         let newId = Number(lastItem.id) + 1;
         let newItem = {
@@ -256,26 +202,28 @@ function createTask() {
             "id": newId.toString(),
         };
         testData.push(newItem);
+        await backend.setItem('testData', JSON.stringify(testData));
     }
     closeAddTaskPopUp();
-    renderData();
+    await includeHTML();
     clearInputFields();
     removePrioritys();
 }
 
 
-function handleSubmit(event) {
+async function handleSubmit(event) {
     event.preventDefault();
-    createTask();
-    closeAddTaskPopUp();
+    await createTask();
 }
 
 
-function deleteTask(i) {
+async function deleteTask(i) {
     testData.splice(i, 1);
+    console.log('test');
+    await backend.setItem('testData', JSON.stringify(testData));
     closeEditTask();
     closeTaskPopUp();
-    renderData();
+    await includeHTML();
 }
 
 
@@ -378,7 +326,7 @@ function openTaskPopUp(i) {
 
 
 function changePriorityColorPopUp() {
-    priorityColor = document.getElementById(`test-priority`)
+    priorityColor = document.getElementById(`test-priority`);
     if (priorityColor.innerHTML == 'Urgent') {
         priorityColor.classList.add('urgent-popup');
     } 
@@ -445,7 +393,7 @@ function deleteSubtask(i) {
 
 
 // Function to prevent that add subtask button submits form
-let preventButton = document.getElementById('add-subtask')
+let preventButton = document.getElementById('add-subtask');
 preventButton.addEventListener('click', function (event) {
     // Prevent the form from being submitted
     event.preventDefault();
@@ -562,7 +510,7 @@ function changeLowColorEdit() {
 }
 
 
-function submitChanges(i) {
+async function submitChanges(i) {
     let test = testData[i];
     let newTaskName = document.getElementById(`input-edit-${i}`).value;
     // let taskName = document.getElementById('task-popup-header');
@@ -570,27 +518,28 @@ function submitChanges(i) {
     let newDate = document.getElementById('task-date-edit').value;
     // let taskTitle = document.getElementById('task-title');
     let newCategory = document.getElementById('select-category-edit').value
-    let newCategoryPopUp = document.getElementById(`category-${i}`)
+    let newCategoryPopUp = document.getElementById(`category-${i}`);
     if(newPriority == undefined) {
-    test.title = newTaskName
-    test.description = newDescription
-    test.cat = newCategory
-    test.priority 
-    test.date = newDate
-    newCategoryPopUp = newCategory
+    test.title = newTaskName;
+    test.description = newDescription;
+    test.cat = newCategory;
+    test.priority ;
+    test.date = newDate;
+    newCategoryPopUp = newCategory;
     }
     else {
-    test.title = newTaskName
-    test.description = newDescription
-    test.cat = newCategory
-    test.priority = newPriority
-    test.date = newDate
-    newCategoryPopUp = newCategory
+    test.title = newTaskName;
+    test.description = newDescription;
+    test.cat = newCategory;
+    test.priority = newPriority;
+    test.date = newDate;
+    newCategoryPopUp = newCategory;
     }
+    await backend.setItem('testData', JSON.stringify(testData));
     closeEditTask();
     closeTaskPopUp();
     hideOrShowPriorityLevels();
-    renderData();
+    includeHTML();
     renderColors(i);
 }
 
@@ -617,14 +566,6 @@ function renderColors(i) {
     if (category.innerHTML == 'Marketing') {
       category.classList.add('marketing');
     }
-}
-
-
-function deleteTask(i) {
-    testData.splice(i, 1);
-    closeEditTask();
-    closeTaskPopUp();
-    renderData();
 }
 
 
