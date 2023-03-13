@@ -579,9 +579,9 @@ function submitChanges(i) {
     }
     closeEditTask();
     closeTaskPopUp();
-    hideOrShowPriorityLevels()
-    renderColors(i)
-   
+    hideOrShowPriorityLevels();
+    renderData();
+    renderColors(i);
 }
 
 
