@@ -1,3 +1,5 @@
+setURL('https://gruppe-447.developerakademie.net/join/smallest_backend_ever');
+
 let testData = [
     {
         title: 'Finish UI',
@@ -55,6 +57,7 @@ let testData = [
     }
 ];
 
+let contacts = [];
 let priorityColor;
 let priority;
 let currentDraggedItemId;
@@ -69,6 +72,7 @@ let initialsDiv = document.getElementById('initials-div');
  * This function implements the template.html
  *  */
 async function includeHTML() {
+    await loadDataFromServer();
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
         let element = includeElements[i];
@@ -80,6 +84,13 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
+    renderData();
+}
+ 
+async function loadDataFromServer() {
+    await downloadFromServer();
+    contacts = await JSON.parse(backend.getItem('contacts')) || [];
+    testData = await JSON.parse(backend.getItem('testData')) || [];
 }
 
 
@@ -105,7 +116,6 @@ function renderData() {
     stagesContentWhenEmpty();
     hideOrShowPriorityLevels();
     changePriorityColorPopUp();
-    includeHTML();
 }
 
 function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone) {
@@ -271,12 +281,12 @@ function deleteTask(i) {
 
 //TODO Remove commenting after contacts JSON Array problem is solved
 // Populate select element with options for each contact name by iterating through the contacts JSON
-// contacts.forEach(contact => {
-//     const optionElement = document.createElement('option');
-//     optionElement.value = contact.name;
-//     optionElement.textContent = contact.name;
-//     selectElement.appendChild(optionElement);
-// });
+ contacts.forEach(contact => {
+    const optionElement = document.createElement('option');
+     optionElement.value = contact.name;
+     optionElement.textContent = contact.name;
+     selectElement.appendChild(optionElement);
+ });
 
 
 /**
@@ -327,25 +337,25 @@ function setBackgroundColors(selectedContacts) {
 
 //TODO Remove commenting after problem with contacts json array is solved
 // Eventlistener for each select item, which has the function to create a span for each initals of a contact
-// selectElement.addEventListener('change', function () {
-//     // Get the selected contact objects
-//     const selectedContacts = Array.from(this.selectedOptions).map(option => {
-//         return contacts.find(contact => contact.name === option.value);
-//     });
-//     // Get the initials of the selected contacts
-//     const initials = selectedContacts.flatMap(contact => getInitials(contact.name, contact.randomColors));
-//     // Remove any existing children from the initials div
-//     initialsDiv.innerHTML = '';
-//     // Add the new initials spans to the initials div
-//     initials.forEach(span => {
-//         initialsDiv.appendChild(span);
-//         // Add a space between the initials
-//         const space = document.createTextNode('');
-//         initialsDiv.appendChild(space);
-//     });
-//     // Set the background color of the initialsDiv
-//     setBackgroundColors(selectedContacts);
-// });
+ selectElement.addEventListener('change', function () {
+     // Get the selected contact objects
+     const selectedContacts = Array.from(this.selectedOptions).map(option => {
+         return contacts.find(contact => contact.name === option.value);
+     });
+     // Get the initials of the selected contacts
+     const initials = selectedContacts.flatMap(contact => getInitials(contact.name, contact.randomColors));
+     // Remove any existing children from the initials div
+     initialsDiv.innerHTML = '';
+     // Add the new initials spans to the initials div
+     initials.forEach(span => {
+         initialsDiv.appendChild(span);
+         // Add a space between the initials
+         const space = document.createTextNode('');
+         initialsDiv.appendChild(space);
+     });
+     // Set the background color of the initialsDiv
+     setBackgroundColors(selectedContacts);
+ });
 
 
 /**
