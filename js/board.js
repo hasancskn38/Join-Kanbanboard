@@ -61,8 +61,8 @@ let currentDraggedItemId;
 let newPriority;
 let searchedTaskArray = [];
 
-const selectElement = document.getElementById('select-contact');
-const initialsDiv = document.getElementById('initials-div');
+let selectElement = document.getElementById('select-contact');
+let initialsDiv = document.getElementById('initials-div');
 
 
 /**
@@ -558,37 +558,33 @@ function submitChanges(i) {
     // let taskName = document.getElementById('task-popup-header');
     let newDescription = document.getElementById('edit-description').value;
     let newDate = document.getElementById('task-date-edit').value;
-    // let taskTitle = document.getElementById('task-title');
-    let newCategory = document.getElementById('select-category-edit').value
-    let newCategoryPopUp = document.getElementById(`category-${i}`)
+    let taskTitle = document.getElementById('task-title');
+    let newCategory = document.getElementById('select-category-edit').value;
+    let newCategoryPopUp = document.getElementById(`category-${i}`);
     if(newPriority == undefined) {
-    test.title = newTaskName
-    test.description = newDescription
-    test.cat = newCategory
-    test.priority 
-    test.date = newDate
-    newCategoryPopUp = newCategory
+    test.title = newTaskName;
+    test.description = newDescription;
+    test.cat = newCategory;
+    test.priority;
+    test.date = newDate;
+    newCategoryPopUp = newCategory;
     }
     else {
-    test.title = newTaskName
-    test.description = newDescription
-    test.cat = newCategory
-    test.priority = newPriority
-    test.date = newDate
-    newCategoryPopUp = newCategory
+    test.title = newTaskName;
+    test.description = newDescription;
+    test.cat = newCategory;
+    test.priority = newPriority;
+    test.date = newDate;
+    taskTitle = newTaskName;
+    newCategoryPopUp = newCategory;
     }
     closeEditTask();
     closeTaskPopUp();
-    hideOrShowPriorityLevels()
-    renderColors(i)
-   
+    hideOrShowPriorityLevels();
+    //TODO renderData might be responsible for the problems with the backgroundcolor of category
+    renderData();
+    renderColors(i);
 }
-
-// function checkIfPrioritySelected() {
-
-
-// }
-
 
 
 // close edit task popup
