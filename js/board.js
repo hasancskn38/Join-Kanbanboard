@@ -219,7 +219,6 @@ async function handleSubmit(event) {
 
 async function deleteTask(i) {
     testData.splice(i, 1);
-    console.log('test');
     await backend.setItem('testData', JSON.stringify(testData));
     closeEditTask();
     closeTaskPopUp();
@@ -539,8 +538,8 @@ async function submitChanges(i) {
     closeEditTask();
     closeTaskPopUp();
     hideOrShowPriorityLevels();
-    includeHTML();
     renderColors(i);
+    await includeHTML();
 }
 
 
