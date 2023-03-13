@@ -3,62 +3,7 @@ setURL('https://gruppe-447.developerakademie.net/join/smallest_backend_ever');
 
 let contacts = [];
 let priority;
-let testData = [
-    {
-        title: 'Finish UI',
-        cat: 'Design',
-        description: 'This is a Task Description',
-        status: 'todo',
-        date: '05-08-2022',
-        priority: 'Urgent',
-        assignedContacts: ['HC', 'CD'],
-        id: '0'
-    },
-
-    {
-        title: 'Finish Backend',
-        cat: 'Marketing',
-        description: 'This is a Task Description',
-        status: 'inprogress',
-        date: '05-08-2022',
-        priority: 'Urgent',
-        assignedContacts: ['HC', 'CD', 'CD'],
-        id: '1'
-    },
-
-    {
-        title: 'Look for Social Media Marketing Agency',
-        cat: 'Backoffice',
-        description: 'This is a Task Description',
-        status: 'feedback',
-        date: '05-08-2022',
-        priority: 'Urgent',
-        assignedContacts: ['CD', 'CD'],
-        id: '2'
-    },
-
-    {
-        title: 'Call with Steven',
-        cat: 'Sales',
-        description: 'This is a Task Description',
-        status: 'done',
-        date: '05-08-2022',
-        priority: 'Medium',
-        assignedContacts: ['HC', 'CD'],
-        id: '3'
-    },
-
-    {
-        title: 'Call with Test',
-        cat: 'Sales',
-        description: 'This is a Task Description',
-        status: 'done',
-        date: '05-08-2022',
-        priority: 'Low',
-        assignedContacts: ['CF'],
-        id: '4'
-    }
-];
+let testData = [];
 
 
 
@@ -82,6 +27,7 @@ async function includeHTML() {
 async function renderAllBackendData() {
     await downloadFromServer();
     contacts = JSON.parse(backend.getItem('contacts')) || [];
+    testData = JSON.parse(backend.getItem('testData')) || [];
     renderAllContacts();
 }
 
@@ -181,7 +127,7 @@ function changeLowColor() {
 
 
 
-function addTaskToBoard() {
+async function addTaskToBoard() {
     let title = document.getElementById('task-title').value;
     let category = document.getElementById('select-category').value;
     let date = document.getElementById('task-date').value;
@@ -207,6 +153,7 @@ function addTaskToBoard() {
             "id": 0,
         };
         testData.push(newItem);
+        await backend.setItem('testData', JSON.stringify(testData));
     } else {
         let newId = Number(lastItem.id) + 1;
         let newItem = {
@@ -220,6 +167,7 @@ function addTaskToBoard() {
             "id": newId.toString(),
         };
         testData.push(newItem);
+        await backend.setItem('testData', JSON.stringify(testData));
     }
     clearInputFields();
     userAddedSuccessfull(title);
