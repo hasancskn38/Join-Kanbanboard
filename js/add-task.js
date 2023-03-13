@@ -269,3 +269,8 @@ function clearInputFields() {
         changeLowColor();
     }
 }
+
+function resetForm() {
+    document.getElementById("createtask-form").reset();
+    clearInputFields();
+  }
