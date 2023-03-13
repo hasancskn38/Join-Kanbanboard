@@ -25,13 +25,13 @@ function changeUrgentColor() {
 
 function changeMediumColor() {
     if (medium.classList.contains('medium')) {
-        medium.classList.remove('medium')
+        medium.classList.remove('medium');
         priorityImg2.classList.remove('white');
 
     } else {
-        medium.classList.add('medium')
-        urgent.classList.remove('urgent')
-        low.classList.remove('low')
+        medium.classList.add('medium');
+        urgent.classList.remove('urgent');
+        low.classList.remove('low');
         priorityImg1.classList.remove('white');
         priorityImg2.classList.add('white');
         priorityImg3.classList.remove('white');

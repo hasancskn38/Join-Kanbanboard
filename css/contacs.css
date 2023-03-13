@@ -468,6 +468,7 @@
 
 ::-webkit-scrollbar-thumb {
     background: #a8a8a8;
+    background: #4589FF;;
     border-radius: 4px;
 }
 
@@ -685,6 +686,8 @@
     .layout-contact2 {
         margin-top: 168px;
     }
+
+
 }
 
 @media (max-width:397px) {

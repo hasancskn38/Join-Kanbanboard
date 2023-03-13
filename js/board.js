@@ -370,13 +370,13 @@ function openTaskPopUp(i) {
 function changePriorityColorPopUp() {
     priorityColor = document.getElementById(`test-priority`)
     if (priorityColor.innerHTML == 'Urgent') {
-        priorityColor.classList.add('urgent-popup')
+        priorityColor.classList.add('urgent-popup');
     } 
     if (priorityColor.innerHTML == 'Medium') {
-        priorityColor.classList.add('medium-popup')
+        priorityColor.classList.add('medium-popup');
     } 
     if (priorityColor.innerHTML == 'Low') {
-        priorityColor.classList.add('low-popup')
+        priorityColor.classList.add('low-popup');
     }
 }
 
@@ -468,16 +468,16 @@ function renderEditPriorityColors(i) {
     let priorityImg3Edit = document.getElementById(`img3-edit`);
     
     if(priority.innerHTML == 'Urgent') {
-        urgentEdit.classList.add('urgent')
-        priorityImg1Edit.classList.add('white')
+        urgentEdit.classList.add('urgent');
+        priorityImg1Edit.classList.add('white');
     }
     if(priority.innerHTML == 'Medium') {
-        mediumEdit.classList.add('medium')
-        priorityImg2Edit.classList.add('white')
+        mediumEdit.classList.add('medium');
+        priorityImg2Edit.classList.add('white');
     }
     if(priority.innerHTML == 'Low') {
-        lowEdit.classList.add('low')
-        priorityImg3Edit.classList.add('white')
+        lowEdit.classList.add('low');
+        priorityImg3Edit.classList.add('white');
     }
 }
 
@@ -517,13 +517,13 @@ function changeMediumColorEdit() {
     let mediumEdit = document.getElementById(`medium-edit`);
     let lowEdit = document.getElementById(`low-edit`);
     if (mediumEdit.classList.contains('medium')) {
-        mediumEdit.classList.remove('medium')
+        mediumEdit.classList.remove('medium');
         priorityImg2Edit.classList.remove('white');
 
     } else {
-        mediumEdit.classList.add('medium')
-        urgentEdit.classList.remove('urgent')
-        lowEdit.classList.remove('low')
+        mediumEdit.classList.add('medium');
+        urgentEdit.classList.remove('urgent');
+        lowEdit.classList.remove('low');
         priorityImg1Edit.classList.remove('white');
         priorityImg2Edit.classList.add('white');
         priorityImg3Edit.classList.remove('white');
@@ -539,12 +539,12 @@ function changeLowColorEdit() {
     let mediumEdit = document.getElementById(`medium-edit`);
     let lowEdit = document.getElementById(`low-edit`);
     if (lowEdit.classList.contains('low')) {
-        lowEdit.classList.remove('low')
+        lowEdit.classList.remove('low');
         priorityImg3Edit.classList.remove('white');
     } else {
-        lowEdit.classList.add('low')
-        urgentEdit.classList.remove('urgent')
-        mediumEdit.classList.remove('medium')
+        lowEdit.classList.add('low');
+        urgentEdit.classList.remove('urgent');
+        mediumEdit.classList.remove('medium');
         priorityImg1Edit.classList.remove('white');
         priorityImg2Edit.classList.remove('white');
         priorityImg3Edit.classList.add('white');
@@ -553,37 +553,35 @@ function changeLowColorEdit() {
 
 
 function submitChanges(i) {
-    const test = testData[i];
+    let test = testData[i];
     let newTaskName = document.getElementById(`input-edit-${i}`).value;
     // let taskName = document.getElementById('task-popup-header');
     let newDescription = document.getElementById('edit-description').value;
     let newDate = document.getElementById('task-date-edit').value;
-    let taskTitle = document.getElementById('task-title');
-    let newCategory = document.getElementById('select-category-edit').value;
-    let newCategoryPopUp = document.getElementById(`category-${i}`);
+    // let taskTitle = document.getElementById('task-title');
+    let newCategory = document.getElementById('select-category-edit').value
+    let newCategoryPopUp = document.getElementById(`category-${i}`)
     if(newPriority == undefined) {
-    test.title = newTaskName;
-    test.description = newDescription;
-    test.cat = newCategory;
-    test.priority;
-    test.date = newDate;
-    newCategoryPopUp = newCategory;
+    test.title = newTaskName
+    test.description = newDescription
+    test.cat = newCategory
+    test.priority 
+    test.date = newDate
+    newCategoryPopUp = newCategory
     }
     else {
-    test.title = newTaskName;
-    test.description = newDescription;
-    test.cat = newCategory;
-    test.priority = newPriority;
-    test.date = newDate;
-    taskTitle = newTaskName;
-    newCategoryPopUp = newCategory;
+    test.title = newTaskName
+    test.description = newDescription
+    test.cat = newCategory
+    test.priority = newPriority
+    test.date = newDate
+    newCategoryPopUp = newCategory
     }
     closeEditTask();
     closeTaskPopUp();
-    hideOrShowPriorityLevels();
-    //TODO renderData might be responsible for the problems with the backgroundcolor of category
-    renderData();
-    renderColors(i);
+    hideOrShowPriorityLevels()
+    renderColors(i)
+   
 }
 
 
