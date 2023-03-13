@@ -1,4 +1,7 @@
-
+setURL('https://gruppe-447.developerakademie.net/join/smallest_backend_ever');
+let contacts = [];
+let letters = [];
+let testData = [];
 // Generate Greeting Based on real world time
 // setInterval(function() {
 //     let date = new Date();
@@ -17,6 +20,7 @@
 
 // Implement Templates
 async function includeHTML() {
+    await loadDataFromServer();
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
         const element = includeElements[i];
@@ -28,10 +32,15 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
+    renderTasks();
 }
 
+async function loadDataFromServer() {
+    await downloadFromServer();
+    contacts = await JSON.parse(backend.getItem('contacts')) || [];
+    testData = await JSON.parse(backend.getItem('testData')) || [];
+}
 
-renderTasks();
 
 
 function renderTasks() {

@@ -616,9 +616,10 @@ function allowDrop(ev) {
 }
 
 
-function dropItem(status) {
+async function dropItem(status) {
     testData[currentDraggedItemId]['status'] = status;
-    renderData();
+    await backend.setItem('testData', JSON.stringify(testData));
+    await includeHTML();
 }
 // Drag and Drop Function End
 
