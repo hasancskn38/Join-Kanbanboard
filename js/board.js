@@ -63,7 +63,6 @@ let priority;
 let currentDraggedItemId;
 let newPriority;
 let searchedTaskArray = [];
-
 let selectElement = document.getElementById('select-contact');
 let initialsDiv = document.getElementById('initials-div');
 
