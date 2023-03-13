@@ -295,9 +295,6 @@ function openTaskPopUpTemplate(test, i, contact) {
                     <div id="subtasks-container"></div>
 
                     <img onclick="openEditTask(${i})" class="edit-button cursor" src="../assets/icons/editbutton.png" alt="">
-                    <button onclick="openEditTask(${i})">Edit Button</button>
-        
-                    
                 </div>
     `
 }
