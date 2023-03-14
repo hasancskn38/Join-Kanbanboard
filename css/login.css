@@ -10,8 +10,20 @@ body {
     margin-top: 50px;
 }
 
+.login_head div {
+font-size: 23px;
+font-family: 'open sans';
+}
+
+
+.login_head div a {
+    width: 112px;
+    height: 48px;
+}
+
 .login_head img {
-    width: 80px;
+    margin-right: 500px;
+    width: 100px;
     object-fit: contain;
     animation: go_small 1.5s;
     z-index: 1;
@@ -19,16 +31,27 @@ body {
 }
 
 @keyframes go_small {
-    from {
-        transform: scale(7);
-        margin-left: 770px;
-        margin-top: 450px;
+    0% {
+        transform: scale(4);
+        margin-left: 680px;
+        margin-top: 350px;
+        object-fit: cover;
+        background-color: white;
     }
 
-    to {
+    30% {
+        transform: scale(4);
+        margin-left: 680px;
+        margin-top: 350px;
+        object-fit: cover;
+        background-color: white;
+    }
+
+    100% {
         transform: scale(1);
         margin-left: 0px;
         margin-top: 0px;
+        object-fit: cover;
     }
 }
 
@@ -61,20 +84,33 @@ body {
     flex-direction: column;
     align-items: center;
     border: 2px solid rgba(128, 128, 128, 0.103);
-    width: 350px;
-    height: 280px;
-    border-radius: 10px;
+    width: 650px;
+    height: 457px;
+    border-radius: 30px;
     animation: fade_in 1.5s;
     background-color: rgb(247, 247, 247);
+    margin-top: -80px;
+}
+
+.login_inputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 150px;
 }
 
 @keyframes fade_in {
-    from {
+    0% {
         opacity: 0;
-        transform: scale(0.7);
+        transform: scale(0.5);
     }
 
-    to {
+    30% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    100% {
         opacity: 1;
         transform: scale(1);
     }
@@ -90,6 +126,7 @@ body {
     border: transparent;
     border-bottom: 2px solid rgba(128, 128, 128, 0.185);
     padding: 10px;
+    font-size: 19px;
 }
 
 .login_main_container form input::placeholder {
@@ -101,14 +138,22 @@ body {
 .log_in_headline {
     border-bottom: 2px solid rgb(69, 137, 255);
     padding-bottom: 10px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 120%;
 }
+
+
 
 .login_additionals {
     display: flex;
     justify-content: space-around;
-    width: 300px;
-    margin-top: 15px;
-    font-size: 15px;
+    width: 370px;
+    font-family: 'Open Sans';
+    margin-top: 25px;
+    font-size: 19px;
 }
 
 .forgot_my_password a {
@@ -119,21 +164,21 @@ body {
 
 .log_in_buttons {
     display: flex;
-    justify-content: space-around;
-}
-
-.log_in_buttons {
-    margin-top: 15px;
+    justify-content: space-between;
+    margin-top: 35px;
+    margin-left: 20px;
+    width: 340px;
 }
 
 .log_in_button {
-    margin-left: 25px;
+    margin-left: 5px;
     background-color: rgb(69, 137, 255);
     color: white;
     border: transparent;
-    height: 30px;
-    width: 60px;
+    height: 48px;
+    width: 135px;
     border-radius: 5px;
+    font-size: 23px;
 }
 
 .log_in_button:hover {
@@ -144,14 +189,24 @@ body {
 
 .guest_log_in_button {
     background-color: rgb(243, 243, 243);
-    border: 1px solid black;
+    border: 1px solid rgba(0, 0, 0, 0.24);
     border-radius: 5px;
+    width: 180px;
+    font-size: 23px;
 }
 
 .guest_log_in_button:hover {
     cursor: pointer;
     transition: all .2s ease-in-out;
     background-color: rgb(238, 238, 238);
+}
+
+.login_remember_me {
+    font-size: 19px;
+}
+
+.forgot_my_password a {
+    font-size: 19px;
 }
 
 @media (max-width:500px) {

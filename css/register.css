@@ -13,7 +13,7 @@ body {
 }
 
 .login_head img {
-    width: 80px;
+    width: 100px;
     object-fit: contain;
     z-index: 1;
     object-fit: contain;
@@ -39,7 +39,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 150px;
+    margin-top: 80px;
 
 }
 
@@ -48,8 +48,8 @@ body {
     flex-direction: column;
     align-items: center;
     border: 2px solid rgba(128, 128, 128, 0.103);
-    width: 350px;
-    height: 280px;
+    width: 650px;
+    height: 470px;
     border-radius: 10px;
     background-color: white;
 }
@@ -75,6 +75,11 @@ body {
     border-bottom: 2px solid rgb(69, 137, 255);
     padding-bottom: 10px;
     margin-right: 50px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 120%;
 }
 
 .login_additionals {
@@ -103,9 +108,15 @@ body {
     background-color: rgb(69, 137, 255);
     color: white;
     border: transparent;
-    height: 30px;
-    width: 60px;
-    border-radius: 5px;
+    height: 43px;
+    width: 106px;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 120%;
 }
 
 .log_in_button:hover {
@@ -118,8 +129,16 @@ body {
 .registry_input {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 300px;
+    justify-content: space-around;
+    height: 190px;
+    width: 400px;
+    margin-bottom: 20px;
+    font-size: 23px;
+}
+
+.registry_input input {
+
+    font-size: 19px;
 }
 
 .headline_fortgot_password {
