@@ -633,12 +633,14 @@ function searchTask() {
     for (let j = 0; j < testData.length; j++) {
         let task = testData[j]['title'].toLowerCase();
         let searchedTask = testData[j];
-        if (input == '') {
+        if (input.trim() === '') {
             searchedTaskArray = [];
             renderData();
+            break;
         }
         if (task.includes(input)) {
             searchedTaskArray.push(searchedTask);
+            
         }
     }
     renderData();
