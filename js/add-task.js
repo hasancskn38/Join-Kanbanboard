@@ -10,7 +10,6 @@ let testData = [];
 
 
 async function includeHTML() {
-    renderAllBackendData();
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
         let element = includeElements[i];
@@ -22,6 +21,15 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
+    renderAllBackendData();
+    
+}
+
+function parseLoggedOnUser() {
+    let loggedOnUser = JSON.parse(localStorage.getItem("loggedOnUser"));
+    let loggedOnUserFirstChart = loggedOnUser.charAt(0);
+    let loggedOnUserFirstChartToUpperCase = loggedOnUserFirstChart.toUpperCase();
+    document.getElementById('display_logged_on_user').innerHTML = `${loggedOnUserFirstChartToUpperCase}`;
 }
 
 async function renderAllBackendData() {
@@ -29,6 +37,7 @@ async function renderAllBackendData() {
     contacts = JSON.parse(backend.getItem('contacts')) || [];
     testData = JSON.parse(backend.getItem('testData')) || [];
     renderAllContacts();
+    parseLoggedOnUser();
 }
 
 function renderAllContacts() {
@@ -124,7 +133,19 @@ function changeLowColor() {
     }
 }
 
+function userLogout() {
+    if (!document.getElementById('log_out_button').classList.contains('dontShow')) {
+        document.getElementById('log_out_button').classList.add('dontShow');
+    }
+    else {
+        document.getElementById('log_out_button').classList.remove('dontShow');
+    }
+}
 
+function logOut() {
+    localStorage.removeItem("loggedOnUser");
+    window.location.href = `login.html?msg=Du hast dich erfolgreich ausgeloggt`;
+}
 
 async function addTaskToBoard() {
     let title = document.getElementById('task-title').value;

@@ -15,7 +15,7 @@ async function showContacts() {
     contacts = await JSON.parse(backend.getItem('contacts')) || [];
     testData = await JSON.parse(backend.getItem('testData')) || [];
     sortContacts(contacts);
-    includeHTML();
+    await includeHTML();
     sortContacts(contacts);
     creatSingleLetters();
     let contactContainer = document.getElementById('contactList');
@@ -23,7 +23,15 @@ async function showContacts() {
     let greatLetter;
     renderLetterGroups(contactContainer, greatLetter);
     renderContact();
+    parseLoggedOnUser()
 
+}
+
+function parseLoggedOnUser() {
+    let loggedOnUser = JSON.parse(localStorage.getItem("loggedOnUser"));
+    let loggedOnUserFirstChart = loggedOnUser.charAt(0);
+    let loggedOnUserFirstChartToUpperCase = loggedOnUserFirstChart.toUpperCase();
+    document.getElementById('display_logged_on_user').innerHTML = `${loggedOnUserFirstChartToUpperCase}`;
 }
 
 function renderLetterGroups(contactContainer, greatLetter) {
@@ -55,6 +63,7 @@ function renderContact() {
             contactPerson.innerHTML += renderShowContactsHTML(contactColor, bothFirstLetter, contactName, contactEmail, contactPhone, j);
         }
     }
+
 }
 
 function firstLetter(contactFirstLetter) {
@@ -89,6 +98,19 @@ function showHelpMeSection() {
     document.querySelector('main').classList.add('d-none');
 }
 
+function userLogout() {
+    if (!document.getElementById('log_out_button').classList.contains('dontShow')) {
+        document.getElementById('log_out_button').classList.add('dontShow');
+    }
+    else {
+        document.getElementById('log_out_button').classList.remove('dontShow');
+    }
+}
+
+function logOut() {
+    localStorage.removeItem("loggedOnUser");
+    window.location.href = `login.html?msg=Du hast dich erfolgreich ausgeloggt`;
+}
 
 // Hide Help me Container
 function hideHelpMeSection() {
