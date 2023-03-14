@@ -10,9 +10,10 @@ let testData = [];
 
 
 async function includeHTML() {
+    renderAllBackendData();
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
-        const element = includeElements[i];
+        let element = includeElements[i];
         file = element.getAttribute("w3-include-html");
         let resp = await fetch(file);
         if (resp.ok) {
@@ -21,7 +22,6 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
-    renderAllBackendData();
 }
 
 async function renderAllBackendData() {
@@ -55,7 +55,6 @@ function renderAllContacts() {
         priority = value;
     }
 }
-
 
 
 function changeUrgentColor() {

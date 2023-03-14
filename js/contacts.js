@@ -84,6 +84,17 @@ function openDetailContact(bothFirstLetter, contactColor, contactName, contactEm
     contactDetail.innerHTML = renderOpenDetailContact(bothFirstLetter, contactColor, contactName, contactEmail, contactPhone, i);
 }
 
+function showHelpMeSection() {
+    document.getElementById('help-me-container').classList.remove('d-none');
+    document.querySelector('main').classList.add('d-none');
+}
+
+
+// Hide Help me Container
+function hideHelpMeSection() {
+    document.getElementById('help-me-container').classList.add('d-none');
+    document.querySelector('main').classList.remove('d-none');
+}
 
 function openAddTaskPopUp() {
     document.getElementById('overlay').classList.remove('d-none');

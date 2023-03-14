@@ -41,7 +41,17 @@ async function loadDataFromServer() {
     testData = await JSON.parse(backend.getItem('testData')) || [];
 }
 
+function showHelpMeSection() {
+    document.getElementById('help-me-container').classList.remove('d-none');
+    document.querySelector('main').classList.add('d-none');
+}
 
+
+// Hide Help me Container
+function hideHelpMeSection() {
+    document.getElementById('help-me-container').classList.add('d-none');
+    document.querySelector('main').classList.remove('d-none');
+}
 
 function renderTasks() {
     let boardNum = document.getElementById('onBoardNum');
