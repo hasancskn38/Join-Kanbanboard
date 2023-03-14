@@ -9,7 +9,6 @@ let priority;
 let currentDraggedItemId;
 let newPriority;
 let searchedTaskArray = [];
-
 let selectElement = document.getElementById('select-contact');
 let initialsDiv = document.getElementById('initials-div');
 
@@ -166,6 +165,8 @@ async function createTask() {
     let title = document.getElementById('task-title').value;
     let category = document.getElementById('select-category').value;
     let date = document.getElementById('task-date').value;
+    let currentDate = new Date();
+    let userDate = new Date(date);
     let taskDescription = document.getElementById('task-description').value;
     let assignedContacts = Array.from(document.getElementById('select-contact-add').selectedOptions)
         .map(option => {
@@ -174,7 +175,6 @@ async function createTask() {
             let initials = nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
             return initials.toUpperCase();
         });
-
     let lastItem = testData[testData.length - 1];
     if (testData.length == 0) {
         let newItem = {
@@ -187,9 +187,17 @@ async function createTask() {
             "assignedContacts": assignedContacts,
             "id": 0,
         };
+        closeAddTaskPopUp();
+        await includeHTML();
+        clearInputFields();
+        removePrioritys();
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
-    } else {
+        // Condition to check if the selected item is already passed
+    } else if(userDate < currentDate) {
+        alert('The date you selected is already passed, please select a date in the future')
+    } 
+    else {
         let newId = Number(lastItem.id) + 1;
         let newItem = {
             "title": title,
@@ -203,11 +211,12 @@ async function createTask() {
         };
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
+        closeAddTaskPopUp();
+        await includeHTML();
+        clearInputFields();
+        removePrioritys();
     }
-    closeAddTaskPopUp();
-    await includeHTML();
-    clearInputFields();
-    removePrioritys();
+    
 }
 
 
@@ -224,87 +233,6 @@ async function deleteTask(i) {
     closeTaskPopUp();
     await includeHTML();
 }
-
-
-//TODO Remove commenting after contacts JSON Array problem is solved
-// Populate select element with options for each contact name by iterating through the contacts JSON
- contacts.forEach(contact => {
-    const optionElement = document.createElement('option');
-     optionElement.value = contact.name;
-     optionElement.textContent = contact.name;
-     selectElement.appendChild(optionElement);
- });
-
-
-/**
- * create initials of a contact
- * @param {*} name is each name of the contacts from JSON Array
- * @param {*} randomColor is the randomColor from each contact
- * @returns 
- */
-function createInitial(name, randomColor) {
-    let span = document.createElement('span');
-    span.textContent = name.charAt(0).toUpperCase();
-    span.style.backgroundColor = randomColor;
-    return span;
-}
-
-
-/**
- * get initials of a contact
- * @param {*} name is each name of the contacts from JSON Array
- * @param {*} randomColor is the randomColor from each contact
- * @returns 
- */
-function getInitials(name, randomColor) {
-    let names = name.split(' ');
-    let initials = [];
-    for (let i = 0; i < names.length; i += 2) {
-        let span = document.createElement('span');
-        let initialsPair = names[i].charAt(0).toUpperCase();
-        if (i + 1 < names.length) {
-            initialsPair += names[i + 1].charAt(0).toUpperCase();
-            i++;
-        }
-        span.textContent = initialsPair;
-        span.style.backgroundColor = randomColor;
-        initials.push(span);
-    }
-    return initials;
-}
-
-
-/**
- * sets the background-color of the selected contacts to each of their randomColors
- * @param {*} selectedContacts is a const that is declared which is an array of the selected items from the select field
- */
-function setBackgroundColors(selectedContacts) {
-    let backgroundColors = selectedContacts.map(contact => contact.randomColors);
-}
-
-//TODO Remove commenting after problem with contacts json array is solved
-// Eventlistener for each select item, which has the function to create a span for each initals of a contact
- selectElement.addEventListener('change', function () {
-     // Get the selected contact objects
-     const selectedContacts = Array.from(this.selectedOptions).map(option => {
-         return contacts.find(contact => contact.name === option.value);
-     });
-     // Get the initials of the selected contacts
-     const initials = selectedContacts.flatMap(contact => getInitials(contact.name, contact.randomColors));
-     // Remove any existing children from the initials div
-     initialsDiv.innerHTML = '';
-     // Add the new initials spans to the initials div
-     initials.forEach(span => {
-         initialsDiv.appendChild(span);
-         // Add a space between the initials
-         const space = document.createTextNode('');
-         initialsDiv.appendChild(space);
-     });
-     // Set the background color of the initialsDiv
-     setBackgroundColors(selectedContacts);
- });
-
-
 /**
  * open popup for more information on a task
  * @param {*} i is each element from testData JSON array
@@ -512,34 +440,47 @@ function changeLowColorEdit() {
 async function submitChanges(i) {
     let test = testData[i];
     let newTaskName = document.getElementById(`input-edit-${i}`).value;
-    // let taskName = document.getElementById('task-popup-header');
     let newDescription = document.getElementById('edit-description').value;
     let newDate = document.getElementById('task-date-edit').value;
-    // let taskTitle = document.getElementById('task-title');
-    let newCategory = document.getElementById('select-category-edit').value
+    let newCategory = document.getElementById('select-category-edit').value;
+    let newAssignedContact = document.getElementById('select-contact-edit').value
     let newCategoryPopUp = document.getElementById(`category-${i}`);
+    let urgentEdit = document.getElementById('urgent-edit')
+    let mediumEdit = document.getElementById('medium-edit')
+    let lowEdit = document.getElementById('low-edit')
     if(newPriority == undefined) {
     test.title = newTaskName;
     test.description = newDescription;
     test.cat = newCategory;
-    test.priority ;
-    test.date = newDate;
-    newCategoryPopUp = newCategory;
-    }
-    else {
-    test.title = newTaskName;
-    test.description = newDescription;
-    test.cat = newCategory;
+    test.assignedContacts = newAssignedContact;
     test.priority = newPriority;
     test.date = newDate;
     newCategoryPopUp = newCategory;
-    }
     await backend.setItem('testData', JSON.stringify(testData));
     closeEditTask();
     closeTaskPopUp();
     hideOrShowPriorityLevels();
     renderColors(i);
     await includeHTML();
+    }
+    else if(!urgentEdit.classList.contains('urgent') & !mediumEdit.classList.contains('medium') & !lowEdit.classList.contains('low') ) {
+        alert('Please choose a priority level for your task')
+    }
+    else {
+    test.title = newTaskName;
+    test.description = newDescription;
+    test.cat = newCategory;
+    test.assignedContacts = newAssignedContact;
+    test.priority = newPriority;
+    test.date = newDate;
+    newCategoryPopUp = newCategory;
+    await backend.setItem('testData', JSON.stringify(testData));
+    closeEditTask();
+    closeTaskPopUp();
+    hideOrShowPriorityLevels();
+    renderColors(i);
+    await includeHTML();
+    }
 }
 
 
