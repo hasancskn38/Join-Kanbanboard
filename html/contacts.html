@@ -51,8 +51,8 @@
             <div class="popup-content">
 
                 <div class="popup-header">
-                    <h2>Add Task</h2><button id="submit-button" type="submit"
-                        class="createtask-button cursor">Create Task</button>
+                    <h2>Add Task</h2><button id="submit-button" type="submit" class="createtask-button cursor">Create
+                        Task</button>
                 </div>
 
                 <div class="input-container">
@@ -72,26 +72,25 @@
                 <label for="appointment">
                     <h2 class="date-header">Due date</h2>
                     <div class="date">
-                        <input id="task-date" required="" type="text" class="form-control"
-                            placeholder="dd/mm/yyyy" onfocus="(this.type='date')" />
+                        <input id="task-date" required="" type="text" class="form-control" placeholder="dd/mm/yyyy"
+                            onfocus="(this.type='date')" />
                     </div>
                 </label>
-                    <select multiple required id="select-contact-add" class="select-contact cursor">
-                        <option value="" disabled selected hidden>Select contacts to assign</option>
-                    </select>
+                <select multiple required id="select-contact-add" class="select-contact cursor">
+                    <option value="" disabled selected hidden>Select contacts to assign</option>
+                </select>
                 <div id="initials-div">
-                    
+
                 </div>
 
                 <div class="priority">
 
                     <div class="priority-levels cursor" id="urgent" onclick="changeUrgentColor()"><span
-                            id="urgent-inner">Urgent</span><img id="img1" src="../assets/icons/urgent.png"
-                            alt=""></div>
+                            id="urgent-inner">Urgent</span><img id="img1" src="../assets/icons/urgent.png" alt=""></div>
 
                     <div class="priority-levels cursor" id="medium" onclick="changeMediumColor()"><span
-                            id="medium-inner">Medium</span> <img id="img2" src="../assets/icons/medium.png"
-                            alt=""></div>
+                            id="medium-inner">Medium</span> <img id="img2" src="../assets/icons/medium.png" alt="">
+                    </div>
 
                     <div class="priority-levels cursor" id="low" onclick="changeLowColor()"><span
                             id="low-inner">Low</span><img id="img3" src="../assets/icons/low.png" alt="">
@@ -103,24 +102,20 @@
                     <textarea required maxlength="30" id="task-description"
                         placeholder="Enter a description"></textarea>
                 </div>
-
-                <div class="subtasks">
-                    <h2>Subtask</h2>
-                    <div class="subtasks-input"><input id="task-subtask" minlength="8"
-                            placeholder="Add new subtask" type="text">
-                        <button id="add-subtask" onclick="addSubtask()" class="cursor">+</button>
-                    </div>
-
-                </div>
-                
-                <ul id="subtasks">
-
-                </ul>
-
-
         </form>
+
+    </div>
+    <div class="subtasks">
+        <h2>Subtask</h2>
+        <div class="subtasks-input"><input required id="task-subtask" minlength="8" placeholder="Add new subtask" type="text">
+            <button id="add-subtask" onclick="addSubtask()" class="cursor">+</button>
+        </div>
+
     </div>
 
+    <div id="subtask" class="task-div">
+
+    </div>
 </body>
 
 </html>

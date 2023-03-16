@@ -3,6 +3,7 @@ let contacts = [];
 let letters = [];
 let testData = [];
 let priority;
+let subtaskArray = [];
 
 
 
@@ -184,6 +185,12 @@ async function createTask() {
 
 
 function removePrioritys() {
+    let priorityImg1 = document.getElementById('img1');
+    let priorityImg2 = document.getElementById('img2');
+    let priorityImg3 = document.getElementById('img3');
+    let urgent = document.getElementById('urgent');
+    let medium = document.getElementById('medium');
+    let low = document.getElementById('low');
     urgent.classList.remove('urgent');
     priorityImg1.classList.remove('white');
     medium.classList.remove('medium');
@@ -208,15 +215,15 @@ function clearInputs() {
 function clearInputFields() {
     let input = document.getElementById('task-title');
     let selectCategory = document.getElementById('select-category');
-    let selectContacts = document.getElementById('select-contact');
     let taskDate = document.getElementById('task-date');
     let taskDescription = document.getElementById('task-description');
+    let subtaskdiv = document.getElementById('subtask');
     document.getElementById('initials-div').innerHTML = '';
     input.value = '';
     selectCategory.value = '';
-    selectContacts.value = '';
     taskDate.value = '';
     taskDescription.value = '';
+    subtaskdiv.innerHTML = '';
 }
 
 function creatSingleLetters() {
@@ -411,3 +418,18 @@ async function deleteContact(i) {
 }
 
 
+function addSubtask() {
+    let subtaskInput = document.getElementById('task-subtask').value;
+    renderSubtasksInPopUp(subtaskInput);
+    subtaskArray.push(subtaskInput);
+    document.getElementById('task-subtask').value = '';
+}
+
+
+/**
+ * render subtasks in popup 
+ */
+function renderSubtasksInPopUp(subtaskInput) {
+    let subTasks = document.getElementById('subtask');
+    subTasks.innerHTML += `<ul class="subtask-list">${subtaskInput}</ul>`;
+}

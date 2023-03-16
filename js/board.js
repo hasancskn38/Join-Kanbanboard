@@ -295,7 +295,7 @@ function renderSubtasks() {
 function addSubtask() {
     let subtaskInput = document.getElementById('task-subtask').value;
     subtaskArray.push(subtaskInput);
-    renderSubtasks();
+    renderSubtasks(subtaskInput);
     document.getElementById('task-subtask').value = '';
 }
 
@@ -303,8 +303,9 @@ function addSubtask() {
 /**
  * render subtasks in popup 
  */
-function renderSubtasksInPopUp() {
+function renderSubtasksInPopUp(subtaskInput) {
     let subTasks = document.getElementById('subtask');
+    subTasks.innerHTML += `${subtaskInput}`
 }
 
 
