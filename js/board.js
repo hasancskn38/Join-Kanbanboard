@@ -514,6 +514,8 @@ async function submitChanges(i) {
     let mediumEdit = document.getElementById('medium-edit')
     let lowEdit = document.getElementById('low-edit')
     if (newPriority == undefined) {
+        newPriority = checkForPrio();
+        console.log(newPriority);
         test.title = newTaskName;
         test.description = newDescription;
         test.cat = newCategory;
@@ -548,6 +550,21 @@ async function submitChanges(i) {
         renderColors(i);
         await includeHTML();
     }
+}
+
+function checkForPrio() {
+    let urgent = document.getElementById('urgent-edit');
+    if (urgent.classList.contains('urgent')) {
+        return 'urgent';
+      }
+    let medium = document.getElementById('medium-edit');
+    if (medium.classList.contains('medium')) {
+        return 'medium';
+    }
+    let low = document.getElementById('low-edit');
+    if (low.classList.contains('low')) {
+        return 'low';
+      }
 }
 
 
