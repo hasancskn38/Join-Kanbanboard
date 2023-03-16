@@ -338,9 +338,11 @@ function openEditTaskPopUp(test, i) {
     <div class="priority-levels cursor priority-edit" id="low-edit" onclick="changeLowColorEdit(); editPriority('Low');"><span
             id="low-inner-edit">Low</span><img id="img3-edit" src="../assets/icons/low.png" alt=""></div>
 </div>
-<select multiple required id="select-contact-edit" class="select-contact cursor">
+<select required id="select-contact-edit" class="select-contact cursor">
 <option value="" disabled selected hidden>Select contacts to assign</option>
 </select>
+</div>
+<div class="show_subtasks" id="show_subtasks">
 </div>
 <div class="edit-task-button-container">
 <button class="submit-change cursor" onclick="submitChanges(${i})">Submit Changes</button>

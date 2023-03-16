@@ -15,7 +15,7 @@ let initialsDiv = document.getElementById('initials-div');
  * This function implements the template.html
  *  */
 async function includeHTML() {
-    
+
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
         let element = includeElements[i];
@@ -29,7 +29,7 @@ async function includeHTML() {
     }
     await loadDataFromServer();
 }
- 
+
 async function loadDataFromServer() {
     await downloadFromServer();
     contacts = await JSON.parse(backend.getItem('contacts')) || [];
@@ -83,7 +83,7 @@ function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDo
         else if (test.status === 'feedback') {
             stageFeedBack.innerHTML += feedBackTemplate(i, test);
             renderContactInitials(i, test);
-        } 
+        }
         else if (test.status === 'done') {
             stageDone.innerHTML += doneTemplate(i, test);
             renderContactInitials(i, test);
@@ -107,7 +107,7 @@ function renderSearchedTaskArray(stageToDo, stageProgress, stageFeedBack, stageD
         else if (task.status === 'feedback') {
             stageFeedBack.innerHTML += feedBackTemplate(i, task);
             renderContactInitials(i, task);
-        } 
+        }
         else if (task.status === 'done') {
             stageDone.innerHTML += doneTemplate(i, task);
             renderContactInitials(i, task);
@@ -197,9 +197,9 @@ async function createTask() {
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
         // Condition to check if the selected item is already passed
-    } else if(userDate < currentDate) {
+    } else if (userDate < currentDate) {
         alert('The date you selected is already passed, please select a date in the future')
-    } 
+    }
     else {
         let newId = Number(lastItem.id) + 1;
         let newItem = {
@@ -234,6 +234,7 @@ async function deleteTask(i) {
     closeEditTask();
     closeTaskPopUp();
     await includeHTML();
+    location.reload();
 }
 /**
  * open popup for more information on a task
@@ -258,10 +259,10 @@ function changePriorityColorPopUp() {
     priorityColor = document.getElementById(`test-priority`);
     if (priorityColor.innerHTML == 'Urgent') {
         priorityColor.classList.add('urgent-popup');
-    } 
+    }
     if (priorityColor.innerHTML == 'Medium') {
         priorityColor.classList.add('medium-popup');
-    } 
+    }
     if (priorityColor.innerHTML == 'Low') {
         priorityColor.classList.add('low-popup');
     }
@@ -343,10 +344,49 @@ function openEditTask(i) {
     editTask.innerHTML = openEditTaskPopUp(test, i);
     assignContactsToTask('edit');
     renderEditPriorityColors();
+    showSubtasks(i);
+}
+
+function showSubtasks(i) {
+    let subTasks = testData[i]['assignedContacts'];
+    let container = document.getElementById('show_subtasks');
+    container.innerHTML = '';
+    for (let j = 0; j < subTasks.length; j++) {
+        let subTask = subTasks[j];
+        if (subTask['status'] === 'finished') {
+            container.innerHTML += `
+            <div class="subtask">
+            <div>${subTask}</div>
+            <div>
+            <button onclick="openSubtask(${i},${j})">✔️</button>
+            </div>
+            </div>
+            `;
+        }
+        container.innerHTML += `
+        <div class="subtask">
+        <div>${subTask}</div>
+        <div>
+        <button onclick="openSubtask(${i},${j})">❌</button>
+        </div>
+        </div>
+        `;
+    }
+
+}
+
+function openSubtask(i, j) {
+    let container = document.getElementById('show_subtasks');
+    console.log(i, j);
+}
+
+function finishSubtask(i, j) {
+    let container = document.getElementById('show_subtasks');
+    console.log(i, j);
 }
 
 function renderEditPriorityColors(i) {
-    test = testData[i]
+    test = testData[i];
     let priority = document.getElementById('test-priority');
     let urgentEdit = document.getElementById('urgent-edit');
     let mediumEdit = document.getElementById('medium-edit');
@@ -354,16 +394,16 @@ function renderEditPriorityColors(i) {
     let priorityImg1Edit = document.getElementById(`img1-edit`);
     let priorityImg2Edit = document.getElementById(`img2-edit`);
     let priorityImg3Edit = document.getElementById(`img3-edit`);
-    
-    if(priority.innerHTML == 'Urgent') {
+
+    if (priority.innerHTML == 'Urgent') {
         urgentEdit.classList.add('urgent');
         priorityImg1Edit.classList.add('white');
     }
-    if(priority.innerHTML == 'Medium') {
+    if (priority.innerHTML == 'Medium') {
         mediumEdit.classList.add('medium');
         priorityImg2Edit.classList.add('white');
     }
-    if(priority.innerHTML == 'Low') {
+    if (priority.innerHTML == 'Low') {
         lowEdit.classList.add('low');
         priorityImg3Edit.classList.add('white');
     }
@@ -451,38 +491,38 @@ async function submitChanges(i) {
     let urgentEdit = document.getElementById('urgent-edit')
     let mediumEdit = document.getElementById('medium-edit')
     let lowEdit = document.getElementById('low-edit')
-    if(newPriority == undefined) {
-    test.title = newTaskName;
-    test.description = newDescription;
-    test.cat = newCategory;
-    test.assignedContacts = newAssignedContact;
-    test.priority = newPriority;
-    test.date = newDate;
-    newCategoryPopUp = newCategory;
-    await backend.setItem('testData', JSON.stringify(testData));
-    closeEditTask();
-    closeTaskPopUp();
-    hideOrShowPriorityLevels();
-    renderColors(i);
-    await includeHTML();
+    if (newPriority == undefined) {
+        test.title = newTaskName;
+        test.description = newDescription;
+        test.cat = newCategory;
+        test.assignedContacts = newAssignedContact;
+        test.priority = newPriority;
+        test.date = newDate;
+        newCategoryPopUp = newCategory;
+        await backend.setItem('testData', JSON.stringify(testData));
+        closeEditTask();
+        closeTaskPopUp();
+        hideOrShowPriorityLevels();
+        renderColors(i);
+        await includeHTML();
     }
-    else if(!urgentEdit.classList.contains('urgent') & !mediumEdit.classList.contains('medium') & !lowEdit.classList.contains('low') ) {
+    else if (!urgentEdit.classList.contains('urgent') & !mediumEdit.classList.contains('medium') & !lowEdit.classList.contains('low')) {
         alert('Please choose a priority level for your task')
     }
     else {
-    test.title = newTaskName;
-    test.description = newDescription;
-    test.cat = newCategory;
-    test.assignedContacts = newAssignedContact;
-    test.priority = newPriority;
-    test.date = newDate;
-    newCategoryPopUp = newCategory;
-    await backend.setItem('testData', JSON.stringify(testData));
-    closeEditTask();
-    closeTaskPopUp();
-    hideOrShowPriorityLevels();
-    renderColors(i);
-    await includeHTML();
+        test.title = newTaskName;
+        test.description = newDescription;
+        test.cat = newCategory;
+        test.assignedContacts = newAssignedContact;
+        test.priority = newPriority;
+        test.date = newDate;
+        newCategoryPopUp = newCategory;
+        await backend.setItem('testData', JSON.stringify(testData));
+        closeEditTask();
+        closeTaskPopUp();
+        hideOrShowPriorityLevels();
+        renderColors(i);
+        await includeHTML();
     }
 }
 
@@ -498,16 +538,16 @@ function closeEditTask() {
 function renderColors(i) {
     let category = document.getElementById(`category-${i}`);
     if (category.innerHTML == 'Design') {
-      category.classList.add('design');
+        category.classList.add('design');
     }
     if (category.innerHTML == 'Backoffice') {
-      category.classList.add('backoffice');
+        category.classList.add('backoffice');
     }
     if (category.innerHTML == 'Sales') {
-      category.classList.add('sales');
+        category.classList.add('sales');
     }
     if (category.innerHTML == 'Marketing') {
-      category.classList.add('marketing');
+        category.classList.add('marketing');
     }
 }
 
@@ -636,7 +676,7 @@ function searchTask() {
         }
         if (task.includes(input)) {
             searchedTaskArray.push(searchedTask);
-            
+
         }
     }
     renderData();

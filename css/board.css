@@ -190,6 +190,26 @@ input:active{
     overflow: auto;
 }
 
+.show_subtasks {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.show_subtasks button {
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.subtask {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Animation Start */
 .show {
     animation: pop-up-right 0.5s forwards;
