@@ -521,6 +521,8 @@ function clearInputFields() {
     let selectContacts = document.getElementById('select-contact-add');
     let taskDate = document.getElementById('task-date');
     let taskDescription = document.getElementById('task-description');
+    let subTasks = document.getElementById('task-subtask');
+    subTasks.value = '';
     document.getElementById('initials-div').innerHTML = '';
     input.value = '';
     selectCategory.value = '';
