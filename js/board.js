@@ -518,7 +518,7 @@ function renderColors(i) {
 function clearInputFields() {
     let input = document.getElementById('task-title');
     let selectCategory = document.getElementById('select-category');
-    let selectContacts = document.getElementById('select-contact');
+    let selectContacts = document.getElementById('select-contact-add');
     let taskDate = document.getElementById('task-date');
     let taskDescription = document.getElementById('task-description');
     document.getElementById('initials-div').innerHTML = '';
