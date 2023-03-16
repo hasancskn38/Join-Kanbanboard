@@ -408,7 +408,7 @@ function openEditTaskPopUp(test, i) {
     <div class="input-container-edit">
     <input id="input-edit-${i}" type="text" value="${test.title}">
     </div>
-    <select required id="select-category-edit" class="cursor">
+    <select required id="select-category-edit${i}" class="cursor">
                             <option value="${test.cat}" selected hidden>${test.cat}</option>
                             <option class="design-option" value="Design">Design</option>
                             <option class="sales-option" value="Sales">Sales</option>
@@ -417,11 +417,11 @@ function openEditTaskPopUp(test, i) {
                         </select>
 
     <h2>Description</h2>
-    <textarea id="edit-description">${test.description}</textarea>
+    <textarea id="edit-description${i}">${test.description}</textarea>
     <h2 class="date-header-edit">Due date</h2>
     <label for="appointment">
         <div class="date-edit">
-        <input id="task-date-edit" value="${test.date}" required="" type="text" class="form-control" placeholder="dd/mm/yyyy" onfocus="(this.type='date')"/>
+        <input id="task-date-edit${i}" value="${test.date}" required="" type="text" class="form-control" placeholder="dd/mm/yyyy" onfocus="(this.type='date')"/>
         </div>
     </label>
     <div class="priority">

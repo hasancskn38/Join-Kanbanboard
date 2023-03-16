@@ -352,7 +352,7 @@ function openEditTask(i) {
     let taskPopUp = document.getElementById(`task-popup`).classList.add('d-none');
     editTask.classList.remove('d-none');
     editTask.innerHTML = openEditTaskPopUp(test, i);
-    assignContactsToTask('edit');
+    assignContactsToTask('edit', test);
     renderEditPriorityColors();
     showSubtasks(i);
 }
@@ -499,10 +499,16 @@ function changeLowColorEdit() {
 async function submitChanges(i) {
     let test = testData[i];
     let newTaskName = document.getElementById(`input-edit-${i}`).value;
-    let newDescription = document.getElementById('edit-description').value;
-    let newDate = document.getElementById('task-date-edit').value;
-    let newCategory = document.getElementById('select-category-edit').value;
-    let newAssignedContact = document.getElementById('select-contact-edit').value
+    let newDescription = document.getElementById(`edit-description${i}`).value;
+    let newDate = document.getElementById(`task-date-edit${i}`).value;
+    let newCategory = document.getElementById(`select-category-edit${i}`).value;
+    let newAssignedContact = Array.from(document.getElementById('select-contact-edit').selectedOptions)
+    .map(option => {
+        let fullName = option.value;
+        let nameArr = fullName.split(' ');
+        let initials = nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
+        return initials.toUpperCase();
+    });
     let newCategoryPopUp = document.getElementById(`category-${i}`);
     let urgentEdit = document.getElementById('urgent-edit')
     let mediumEdit = document.getElementById('medium-edit')
@@ -516,6 +522,7 @@ async function submitChanges(i) {
         test.date = newDate;
         newCategoryPopUp = newCategory;
         await backend.setItem('testData', JSON.stringify(testData));
+        location.reload();
         closeEditTask();
         closeTaskPopUp();
         hideOrShowPriorityLevels();
@@ -534,6 +541,7 @@ async function submitChanges(i) {
         test.date = newDate;
         newCategoryPopUp = newCategory;
         await backend.setItem('testData', JSON.stringify(testData));
+        location.reload();
         closeEditTask();
         closeTaskPopUp();
         hideOrShowPriorityLevels();
@@ -637,10 +645,10 @@ function openAddTaskPopUp() {
 }
 
 
-function assignContactsToTask(value) {
+function assignContactsToTask(value, test) {
     let contactList = document.getElementById(`select-contact-${value}`);
     contactList.innerHTML = '';
-    contactList.innerHTML = `<option value="" disabled="" selected="" hidden="">Select contacts to assign</option>`;
+    contactList.innerHTML = `<option value="${test['assignedContacts']}" disabled="" selected="" hidden="">Select new contact to assign</option>`;
     for (let i = 0; i < contacts.length; i++) {
         let contact = contacts[i];
         contactList.innerHTML += `<option value="${contact['name']}">${contact['name']}</option>`;
