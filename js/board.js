@@ -30,12 +30,21 @@ async function includeHTML() {
         }
     }
     renderData();
+    parseLoggedOnUser();
+    
 }
  
 async function loadDataFromServer() {
     await downloadFromServer();
     contacts = await JSON.parse(backend.getItem('contacts')) || [];
     testData = await JSON.parse(backend.getItem('testData')) || [];
+}
+
+function parseLoggedOnUser() {
+    let loggedOnUser = JSON.parse(localStorage.getItem("loggedOnUser"));
+    let loggedOnUserFirstChart = loggedOnUser.charAt(0);
+    let loggedOnUserFirstChartToUpperCase = loggedOnUserFirstChart.toUpperCase();
+    document.getElementById('display_logged_on_user').innerHTML = `${loggedOnUserFirstChartToUpperCase}`;
 }
 
 
@@ -600,7 +609,19 @@ function showHelpMeSection() {
     document.querySelector('main').classList.add('d-none');
 }
 
+function userLogout() {
+    if (!document.getElementById('log_out_button').classList.contains('dontShow')) {
+        document.getElementById('log_out_button').classList.add('dontShow');
+    }
+    else {
+        document.getElementById('log_out_button').classList.remove('dontShow');
+    }
+}
 
+function logOut() {
+    localStorage.removeItem("loggedOnUser");
+    window.location.href = `login.html?msg=Du hast dich erfolgreich ausgeloggt`;
+}
 // Hide Help me Container
 function hideHelpMeSection() {
     document.getElementById('help-me-container').classList.add('d-none');
@@ -613,12 +634,14 @@ function searchTask() {
     for (let j = 0; j < testData.length; j++) {
         let task = testData[j]['title'].toLowerCase();
         let searchedTask = testData[j];
-        if (input == '') {
+        if (input.trim() === '') {
             searchedTaskArray = [];
             renderData();
+            break;
         }
         if (task.includes(input)) {
             searchedTaskArray.push(searchedTask);
+            
         }
     }
     renderData();
