@@ -646,13 +646,23 @@ function openAddTaskPopUp() {
 
 
 function assignContactsToTask(value, test) {
+    if (test == undefined) {
+        let contactList = document.getElementById(`select-contact-${value}`);
+        contactList.innerHTML = '';
+        contactList.innerHTML = `<option value="" disabled="" selected="" hidden="">Select new contact to assign</option>`;
+        for (let i = 0; i < contacts.length; i++) {
+            let contact = contacts[i];
+            contactList.innerHTML += `<option value="${contact['name']}">${contact['name']}</option>`;
+        }
+    }
+    else {
     let contactList = document.getElementById(`select-contact-${value}`);
     contactList.innerHTML = '';
     contactList.innerHTML = `<option value="${test['assignedContacts']}" disabled="" selected="" hidden="">Select new contact to assign</option>`;
     for (let i = 0; i < contacts.length; i++) {
         let contact = contacts[i];
         contactList.innerHTML += `<option value="${contact['name']}">${contact['name']}</option>`;
-    }
+    }}
 }
 
 function closeAddTaskPopUp() {
