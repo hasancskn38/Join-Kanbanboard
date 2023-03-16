@@ -1,8 +1,6 @@
 setURL('https://gruppe-447.developerakademie.net/join/smallest_backend_ever');
 
 let testData = [];
-
-
 let contacts = [];
 let priorityColor;
 let priority;
@@ -17,7 +15,7 @@ let initialsDiv = document.getElementById('initials-div');
  * This function implements the template.html
  *  */
 async function includeHTML() {
-    await loadDataFromServer();
+    
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
         let element = includeElements[i];
@@ -29,15 +27,15 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
-    renderData();
-    parseLoggedOnUser();
-    
+    await loadDataFromServer();
 }
  
 async function loadDataFromServer() {
     await downloadFromServer();
     contacts = await JSON.parse(backend.getItem('contacts')) || [];
     testData = await JSON.parse(backend.getItem('testData')) || [];
+    renderData();
+    parseLoggedOnUser();
 }
 
 function parseLoggedOnUser() {
@@ -198,17 +196,10 @@ async function createTask() {
         };
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
-        closeAddTaskPopUp();
-        await includeHTML();
-        clearInputFields();
-        removePrioritys();
         // Condition to check if the selected item is already passed
-    } 
-    
-    else if(userDate < currentDate) {
+    } else if(userDate < currentDate) {
         alert('The date you selected is already passed, please select a date in the future')
     } 
-
     else {
         let newId = Number(lastItem.id) + 1;
         let newItem = {
