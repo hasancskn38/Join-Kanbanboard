@@ -1,12 +1,13 @@
-function toDoTemplate(i, test) {
-    return `
+function toDoTemplate(i, test, finishedSubTasks) {
+    if (test['subtasks'].length === 0) {
+        return `
     <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
     <h3 id="category-${i}">${test.cat}</h3>
     <h4 class="blue">${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
     <!-- <div class="progress"><progress></div> -->
-    <div class="subtasks-done">1/2 Done</div>
+    <div class="subtasks-done"></div>
     </div>
    
     <div class="contact-priority-container">
@@ -22,69 +23,191 @@ function toDoTemplate(i, test) {
     </div>
     </div>
     `
-}
-
-function progressTemplate(i, test) {
-    return `<div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
+    }
+    else {
+        return `
+    <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
     <h3 id="category-${i}">${test.cat}</h3>
     <h4 class="blue">${test.description}</h4>
-    <p class="grey">${test.title}</p>
+    <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
     <!-- <div class="progress"><progress></div> -->
-    <div class="subtasks-done">1/2 Done</div>
+    <div class="subtasks-done">${finishedSubTasks}/${test['subtasks'].length}</div>
     </div>
-
+   
     <div class="contact-priority-container">
+
     <div id="assigned-contacts-${i}" class="assigned-contact">
     
     </div>
-    <div class"priority-level"">
+
+    <div class="priority-level">
     <img id="urgent-main-${i}" class="" src="../assets/icons/urgent.png">
     <img id="medium-main-${i}" class="" src="../assets/icons/medium.png">
     <img id="low-main-${i}" class="" src="../assets/icons/low.png"></div>
     </div>
-    </div>`
+    </div>
+    `
+    }
 }
 
-function feedBackTemplate(i, test) {
-    return `<div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
+function progressTemplate(i, test, finishedSubTasks) {
+    if (test['subtasks'].length === 0) {
+        return `
+    <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
     <h3 id="category-${i}">${test.cat}</h3>
     <h4 class="blue">${test.description}</h4>
-    <p class="grey">${test.title}</p>
+    <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
     <!-- <div class="progress"><progress></div> -->
-    <div class="subtasks-done">1/2 Done</div>
+    <div class="subtasks-done"></div>
+    </div>
+   
+    <div class="contact-priority-container">
+
+    <div id="assigned-contacts-${i}" class="assigned-contact">
+    
     </div>
 
-    <div class="contact-priority-container">
-    <div id="assigned-contacts-${i}" class="assigned-contact">
-    </div>
     <div class="priority-level">
-    <img id="urgent-main-${i}" src="../assets/icons/urgent.png">
-    <img id="medium-main-${i}" src="../assets/icons/medium.png">
-    <img id="low-main-${i}" src="../assets/icons/low.png"></div>
+    <img id="urgent-main-${i}" class="" src="../assets/icons/urgent.png">
+    <img id="medium-main-${i}" class="" src="../assets/icons/medium.png">
+    <img id="low-main-${i}" class="" src="../assets/icons/low.png"></div>
     </div>
-    </div>`
+    </div>
+    `
+    }
+    else {
+        return `
+    <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
+    <h3 id="category-${i}">${test.cat}</h3>
+    <h4 class="blue">${test.description}</h4>
+    <p id="task-title" class="grey">${test.title}</p>
+    <div class="progress-container">
+    <!-- <div class="progress"><progress></div> -->
+    <div class="subtasks-done">${finishedSubTasks}/${test['subtasks'].length}</div>
+    </div>
+   
+    <div class="contact-priority-container">
+
+    <div id="assigned-contacts-${i}" class="assigned-contact">
+    
+    </div>
+
+    <div class="priority-level">
+    <img id="urgent-main-${i}" class="" src="../assets/icons/urgent.png">
+    <img id="medium-main-${i}" class="" src="../assets/icons/medium.png">
+    <img id="low-main-${i}" class="" src="../assets/icons/low.png"></div>
+    </div>
+    </div>
+    `
+    }
 }
 
-function doneTemplate(i, test) {
-    return `<div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
+function feedBackTemplate(i, test, finishedSubTasks) {
+    if (test['subtasks'].length === 0) {
+        return `
+    <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
     <h3 id="category-${i}">${test.cat}</h3>
     <h4 class="blue">${test.description}</h4>
-    <p class="grey">${test.title}</p>
+    <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
     <!-- <div class="progress"><progress></div> -->
-    <div class="subtasks-done">1/2 Done</div>
+    <div class="subtasks-done"></div>
     </div>
+   
     <div class="contact-priority-container">
+
     <div id="assigned-contacts-${i}" class="assigned-contact">
+    
     </div>
+
     <div class="priority-level">
-    <img id="urgent-main-${i}" src="../assets/icons/urgent.png">
-    <img id="medium-main-${i}" src="../assets/icons/medium.png">
-    <img id="low-main-${i}" src="../assets/icons/low.png"></div>
+    <img id="urgent-main-${i}" class="" src="../assets/icons/urgent.png">
+    <img id="medium-main-${i}" class="" src="../assets/icons/medium.png">
+    <img id="low-main-${i}" class="" src="../assets/icons/low.png"></div>
     </div>
-    </div>`
+    </div>
+    `
+    }
+    else {
+        return `
+    <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
+    <h3 id="category-${i}">${test.cat}</h3>
+    <h4 class="blue">${test.description}</h4>
+    <p id="task-title" class="grey">${test.title}</p>
+    <div class="progress-container">
+    <!-- <div class="progress"><progress></div> -->
+    <div class="subtasks-done">${finishedSubTasks}/${test['subtasks'].length}</div>
+    </div>
+   
+    <div class="contact-priority-container">
+
+    <div id="assigned-contacts-${i}" class="assigned-contact">
+    
+    </div>
+
+    <div class="priority-level">
+    <img id="urgent-main-${i}" class="" src="../assets/icons/urgent.png">
+    <img id="medium-main-${i}" class="" src="../assets/icons/medium.png">
+    <img id="low-main-${i}" class="" src="../assets/icons/low.png"></div>
+    </div>
+    </div>
+    `
+    }
+}
+
+function doneTemplate(i, test, finishedSubTasks) {
+    if (test['subtasks'].length === 0) {
+        return `
+    <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
+    <h3 id="category-${i}">${test.cat}</h3>
+    <h4 class="blue">${test.description}</h4>
+    <p id="task-title" class="grey">${test.title}</p>
+    <div class="progress-container">
+    <!-- <div class="progress"><progress></div> -->
+    <div class="subtasks-done"></div>
+    </div>
+   
+    <div class="contact-priority-container">
+
+    <div id="assigned-contacts-${i}" class="assigned-contact">
+    
+    </div>
+
+    <div class="priority-level">
+    <img id="urgent-main-${i}" class="" src="../assets/icons/urgent.png">
+    <img id="medium-main-${i}" class="" src="../assets/icons/medium.png">
+    <img id="low-main-${i}" class="" src="../assets/icons/low.png"></div>
+    </div>
+    </div>
+    `
+    }
+    else {
+        return `
+    <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
+    <h3 id="category-${i}">${test.cat}</h3>
+    <h4 class="blue">${test.description}</h4>
+    <p id="task-title" class="grey">${test.title}</p>
+    <div class="progress-container">
+    <!-- <div class="progress"><progress></div> -->
+    <div class="subtasks-done">${finishedSubTasks}/${test['subtasks'].length}</div>
+    </div>
+   
+    <div class="contact-priority-container">
+
+    <div id="assigned-contacts-${i}" class="assigned-contact">
+    
+    </div>
+
+    <div class="priority-level">
+    <img id="urgent-main-${i}" class="" src="../assets/icons/urgent.png">
+    <img id="medium-main-${i}" class="" src="../assets/icons/medium.png">
+    <img id="low-main-${i}" class="" src="../assets/icons/low.png"></div>
+    </div>
+    </div>
+    `
+    }
 }
 
 
@@ -115,27 +238,6 @@ function renderLetterContainerHTML(letter, i) {
     <div id="contactLetter${i}"></div>
     `;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -297,12 +399,6 @@ function openTaskPopUpTemplate(test, i, contact) {
                     <img onclick="openEditTask(${i})" class="edit-button cursor" src="../assets/icons/editbutton.png" alt="">
                 </div>
     `
-}
-
-
-function renderSubtasksTemplate(subtask, i) {
-    return `
-    <li>${subtask}<button class="cursor" onclick="deleteSubtask(${i})">X</button></li>`
 }
 
 

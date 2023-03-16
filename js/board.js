@@ -73,21 +73,22 @@ function renderData() {
 function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone) {
     for (let i = 0; i < testData.length; i++) {
         let test = testData[i];
+        let finishedSubTasks = countFinishedSubtasks(test);
         if (test.status === 'todo') {
-            stageToDo.innerHTML += toDoTemplate(i, test);
-            renderContactInitials(i, test);
+            stageToDo.innerHTML += toDoTemplate(i, test, finishedSubTasks);
+            renderContactInitials(i, test, finishedSubTasks);
         }
         else if (test.status === 'inprogress') {
-            stageProgress.innerHTML += progressTemplate(i, test);
-            renderContactInitials(i, test);
+            stageProgress.innerHTML += progressTemplate(i, test, finishedSubTasks);
+            renderContactInitials(i, test, finishedSubTasks);
         }
         else if (test.status === 'feedback') {
-            stageFeedBack.innerHTML += feedBackTemplate(i, test);
-            renderContactInitials(i, test);
+            stageFeedBack.innerHTML += feedBackTemplate(i, test, finishedSubTasks);
+            renderContactInitials(i, test, finishedSubTasks);
         }
         else if (test.status === 'done') {
-            stageDone.innerHTML += doneTemplate(i, test);
-            renderContactInitials(i, test);
+            stageDone.innerHTML += doneTemplate(i, test, finishedSubTasks);
+            renderContactInitials(i, test, finishedSubTasks);
         }
         renderColors(i);
     }
@@ -97,24 +98,35 @@ function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDo
 function renderSearchedTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone) {
     for (let i = 0; i < searchedTaskArray.length; i++) {
         let task = searchedTaskArray[i];
+        let finishedSubTasks = countFinishedSubtasks(task);
         if (task.status === 'todo') {
-            stageToDo.innerHTML += toDoTemplate(i, task);
-            renderContactInitials(i, task);
+            stageToDo.innerHTML += toDoTemplate(i, task, finishedSubTasks);
+            renderContactInitials(i, task, finishedSubTasks);
         }
         else if (task.status === 'inprogress') {
-            stageProgress.innerHTML += progressTemplate(i, task);
-            renderContactInitials(i, task);
+            stageProgress.innerHTML += progressTemplate(i, task, finishedSubTasks);
+            renderContactInitials(i, task, finishedSubTasks);
         }
         else if (task.status === 'feedback') {
-            stageFeedBack.innerHTML += feedBackTemplate(i, task);
-            renderContactInitials(i, task);
+            stageFeedBack.innerHTML += feedBackTemplate(i, task, finishedSubTasks);
+            renderContactInitials(i, task, finishedSubTasks);
         }
         else if (task.status === 'done') {
-            stageDone.innerHTML += doneTemplate(i, task);
-            renderContactInitials(i, task);
+            stageDone.innerHTML += doneTemplate(i, task, finishedSubTasks);
+            renderContactInitials(i, task, finishedSubTasks);
         }
         renderColors(i);
     }
+}
+
+function countFinishedSubtasks(test) {
+  let count = 0;
+  for (let i = 0; i < test.subtasks.length; i++) {
+    if (test.subtasks[i].status === 'finished') {
+      count++;
+    }
+  }
+  return count;
 }
 
 
