@@ -183,7 +183,7 @@ async function createTask() {
             return initials.toUpperCase();
         });
     let lastItem = testData[testData.length - 1];
-    if (testData.length == 0) {
+    if (testData.length === 0) {
         let newItem = {
             "title": title,
             "cat": category,
@@ -192,7 +192,7 @@ async function createTask() {
             "priority": priority,
             "date": date,
             "assignedContacts": assignedContacts,
-            "id": 0,
+            "id": 0
         };
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
@@ -210,7 +210,7 @@ async function createTask() {
             "priority": priority,
             "date": date,
             "assignedContacts": assignedContacts,
-            "id": newId.toString(),
+            "id": newId.toString()
         };
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
