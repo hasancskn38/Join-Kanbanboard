@@ -4,6 +4,7 @@ setURL('https://gruppe-447.developerakademie.net/join/smallest_backend_ever');
 let contacts = [];
 let priority;
 let testData = [];
+let subtaskArray = [];
 
 
 
@@ -65,6 +66,17 @@ function renderAllContacts() {
     }
 }
 
+function addSubtask() {
+    let subtaskInput = document.getElementById('task-subtask').value;
+    renderSubtasksInPopUp(subtaskInput);
+    subtaskArray.push(subtaskInput);
+    document.getElementById('task-subtask').value = '';
+}
+
+function renderSubtasksInPopUp(subtaskInput) {
+    let subTasks = document.getElementById('subtasks');
+    subTasks.innerHTML += `<ul class="subtask-list">${subtaskInput}</ul>`;
+}
 
 function changeUrgentColor() {
     let priorityImg1 = document.getElementById('img1');
@@ -170,7 +182,8 @@ async function addTaskToBoard() {
             "priority": priority,
             "date": date,
             "assignedContacts": assignedContacts,
-            "id": 0,
+            "subtasks": renderSubtasks(),
+            "id": 0
         };
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
@@ -184,7 +197,8 @@ async function addTaskToBoard() {
             "priority": priority,
             "date": date,
             "assignedContacts": assignedContacts,
-            "id": newId.toString(),
+            "subtasks": renderSubtasks(),
+            "id": newId.toString()
         };
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
@@ -192,6 +206,19 @@ async function addTaskToBoard() {
     clearInputFields();
     userAddedSuccessfull(title);
 }
+
+function renderSubtasks() {
+    let resultArray = []; 
+    for (let i = 0; i < subtaskArray.length; i++) {
+      let subtask = subtaskArray[i];
+      let obj = {
+        "subtask": subtask,
+        "status": 'open'
+      };
+      resultArray.push(obj); 
+    }
+    return resultArray; 
+  }
 
 function userAddedSuccessfull(title) {
     let container = document.getElementById('successfull_added');

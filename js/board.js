@@ -7,6 +7,7 @@ let priority;
 let currentDraggedItemId;
 let newPriority;
 let searchedTaskArray = [];
+let subtaskArray = [];
 let selectElement = document.getElementById('select-contact');
 let initialsDiv = document.getElementById('initials-div');
 
@@ -192,6 +193,7 @@ async function createTask() {
             "priority": priority,
             "date": date,
             "assignedContacts": assignedContacts,
+            "subtasks": renderSubtasks(),
             "id": 0
         };
         testData.push(newItem);
@@ -210,6 +212,7 @@ async function createTask() {
             "priority": priority,
             "date": date,
             "assignedContacts": assignedContacts,
+            "subtasks": renderSubtasks(),
             "id": newId.toString()
         };
         testData.push(newItem);
@@ -226,6 +229,19 @@ async function handleSubmit(event) {
     event.preventDefault();
     await createTask();
 }
+
+function renderSubtasks() {
+    let resultArray = []; 
+    for (let i = 0; i < subtaskArray.length; i++) {
+      let subtask = subtaskArray[i];
+      let obj = {
+        "subtask": subtask,
+        "status": 'open'
+      };
+      resultArray.push(obj); 
+    }
+    return resultArray; 
+  }
 
 
 async function deleteTask(i) {
@@ -277,39 +293,21 @@ function closeTaskPopUp() {
     document.querySelector('body').classList.remove('overflow-hidden');
 }
 
-// array where the subtask are stored 
-let subtaskArray = [];
-/**
- * render subtasks from subtaskArray
- */
-function renderSubtasks() {
-    let subtasks = document.getElementById('subtasks');
-    subtasks.innerHTML = '';
-    for (let i = 0; i < subtaskArray.length; i++) {
-        let subtask = subtaskArray[i];
-        subtasks.innerHTML += renderSubtasksTemplate(subtask, i);
-    }
-    renderData();
-}
 
-/**
- * add value of input field to subtask list
- */
 function addSubtask() {
     let subtaskInput = document.getElementById('task-subtask').value;
     subtaskArray.push(subtaskInput);
-    renderSubtasks(subtaskInput);
+    renderSubtasksInPopUp(subtaskInput);
     document.getElementById('task-subtask').value = '';
 }
 
 
-/**
- * render subtasks in popup 
- */
 function renderSubtasksInPopUp(subtaskInput) {
-    let subTasks = document.getElementById('subtask');
-    subTasks.innerHTML += `${subtaskInput}`
+    let subTasks = document.getElementById('subtasks');
+    subTasks.innerHTML += `<ul class="subtask-list">${subtaskInput}</ul>`;
 }
+
+
 
 
 /**

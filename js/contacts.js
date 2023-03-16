@@ -194,7 +194,7 @@ async function createTask() {
             "date": date,
             "assignedContacts": assignedContacts,
             "subtasks": renderSubtasks(),
-            "id": 0,
+            "id": 0
         };
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
@@ -209,7 +209,7 @@ async function createTask() {
             "date": date,
             "assignedContacts": assignedContacts,
             "subtasks": renderSubtasks(),
-            "id": newId.toString(),
+            "id": newId.toString()
         };
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
