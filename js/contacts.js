@@ -221,12 +221,17 @@ async function createTask() {
 
 
 function renderSubtasks() {
+    let resultArray = []; 
     for (let i = 0; i < subtaskArray.length; i++) {
-        let subtasks = subtaskArray[i];
-        return subtasks;
-        
+      let subtask = subtaskArray[i];
+      let obj = {
+        "subtask": subtask,
+        "status": 'open'
+      };
+      resultArray.push(obj); 
     }
-}
+    return resultArray; 
+  }
 
 
 

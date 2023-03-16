@@ -348,7 +348,7 @@ function openEditTask(i) {
 }
 
 function showSubtasks(i) {
-    let subTasks = testData[i]['assignedContacts'];
+    let subTasks = testData[i]['subtasks'];
     let container = document.getElementById('show_subtasks');
     container.innerHTML = '';
     for (let j = 0; j < subTasks.length; j++) {
@@ -356,33 +356,39 @@ function showSubtasks(i) {
         if (subTask['status'] === 'finished') {
             container.innerHTML += `
             <div class="subtask">
-            <div>${subTask}</div>
-            <div>
-            <button onclick="openSubtask(${i},${j})">✔️</button>
+            <div>${subTask['subtask']}</div>
+            <div id="subtask${j}">
+            <button onclick="openSubtask(${i}, ${j})">✔️</button>
             </div>
             </div>
             `;
         }
-        container.innerHTML += `
+        else {
+            container.innerHTML += `
         <div class="subtask">
-        <div>${subTask}</div>
-        <div>
-        <button onclick="openSubtask(${i},${j})">❌</button>
+        <div>${subTask['subtask']}</div>
+        <div id="subtask${j}">
+        <button onclick="finishSubtask(${i}, ${j})">❌</button>
         </div>
         </div>
         `;
+        }
     }
 
 }
 
-function openSubtask(i, j) {
-    let container = document.getElementById('show_subtasks');
-    console.log(i, j);
+async function openSubtask(i, j) {
+    testData[i]['subtasks'][j]['status'] = 'open';
+    await backend.setItem('testData', JSON.stringify(testData));
+    let container = document.getElementById(`subtask${j}`);
+    container.innerHTML = `<button onclick="finishSubtask(${i}, ${j})">❌</button>`;
 }
 
-function finishSubtask(i, j) {
-    let container = document.getElementById('show_subtasks');
-    console.log(i, j);
+async function finishSubtask(i, j) {
+    testData[i]['subtasks'][j]['status'] = 'finished';
+    await backend.setItem('testData', JSON.stringify(testData)); 
+    let container = document.getElementById(`subtask${j}`);
+    container.innerHTML = `<button onclick="openSubtask(${i}, ${j})">✔️</button>`;
 }
 
 function renderEditPriorityColors(i) {
