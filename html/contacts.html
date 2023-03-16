@@ -104,18 +104,19 @@
                     <textarea required maxlength="30" id="task-description"
                         placeholder="Enter a description"></textarea>
                 </div>
+
+                <div class="subtasks">
+                    <h2>Subtask</h2>
+                    <div class="subtasks-input"><input required id="task-subtask" minlength="8" placeholder="Add new subtask" type="text">
+                        <button id="add-subtask" onclick="addSubtask()" class="cursor">+</button>
+                    </div>
+            
+                </div>
+            
+                <div id="subtask" class="task-div">
+            
+                </div>
         </form>
-
-    </div>
-    <div class="subtasks">
-        <h2>Subtask</h2>
-        <div class="subtasks-input"><input required id="task-subtask" minlength="8" placeholder="Add new subtask" type="text">
-            <button id="add-subtask" onclick="addSubtask()" class="cursor">+</button>
-        </div>
-
-    </div>
-
-    <div id="subtask" class="task-div">
 
     </div>
 </body>

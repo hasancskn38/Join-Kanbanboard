@@ -191,6 +191,7 @@ async function createTask() {
             "priority": priority,
             "date": date,
             "assignedContacts": assignedContacts,
+            "subtasks": renderSubtasks(),
             "id": 0,
         };
         testData.push(newItem);
@@ -205,6 +206,7 @@ async function createTask() {
             "priority": priority,
             "date": date,
             "assignedContacts": assignedContacts,
+            "subtasks": renderSubtasks(),
             "id": newId.toString(),
         };
         testData.push(newItem);
@@ -213,6 +215,15 @@ async function createTask() {
     closeAddTaskPopUp();
     clearInputFields();
     removePrioritys();
+}
+
+
+function renderSubtasks() {
+    for (let i = 0; i < subtaskArray.length; i++) {
+        let subtasks = subtaskArray[i];
+        return subtasks;
+        
+    }
 }
 
 
