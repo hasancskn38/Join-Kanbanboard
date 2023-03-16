@@ -125,6 +125,8 @@ function openAddTaskPopUp() {
     document.getElementById('popup').classList.remove('hide');
     document.getElementById('popup').classList.add('show');
     document.getElementById('popup').classList.remove('d-none');
+    let subtaskdiv = document.getElementById('subtask');
+    subtaskdiv.innerHTML = '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
     renderContacts();
     document.getElementById('urgent').addEventListener('click', function () {
@@ -261,13 +263,13 @@ function clearInputFields() {
     let selectCategory = document.getElementById('select-category');
     let taskDate = document.getElementById('task-date');
     let taskDescription = document.getElementById('task-description');
-    let subtaskdiv = document.getElementById('subtask');
+    let subtaskdiv = document.getElementById('task-subtask');
     document.getElementById('initials-div').innerHTML = '';
     input.value = '';
     selectCategory.value = '';
     taskDate.value = '';
     taskDescription.value = '';
-    subtaskdiv.innerHTML = '';
+    subtaskdiv.value = '';
 }
 
 function creatSingleLetters() {
