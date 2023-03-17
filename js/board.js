@@ -212,7 +212,7 @@ async function createTask() {
         await backend.setItem('testData', JSON.stringify(testData));
         // Condition to check if the selected item is already passed
     } else if (userDate < currentDate) {
-        alert('The date you selected is already passed, please select a date in the future')
+        alert('The date you selected is already passed, please select a date in the future');
     }
     else {
         let newId = Number(lastItem.id) + 1;
@@ -229,11 +229,11 @@ async function createTask() {
         };
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
+        closeAddTaskPopUp();
+        await includeHTML();
+        clearInputFields();
+        removePrioritys();
     }
-    closeAddTaskPopUp();
-    await includeHTML();
-    clearInputFields();
-    removePrioritys();
 }
 
 
