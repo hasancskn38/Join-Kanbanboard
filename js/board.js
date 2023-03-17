@@ -515,12 +515,11 @@ async function submitChanges(i) {
     let lowEdit = document.getElementById('low-edit')
     if (newPriority == undefined) {
         newPriority = checkForPrio();
-        console.log(newPriority);
         test.title = newTaskName;
         test.description = newDescription;
         test.cat = newCategory;
         test.assignedContacts = newAssignedContact;
-        test.priority = newPriority;
+        test.priority;
         test.date = newDate;
         newCategoryPopUp = newCategory;
         await backend.setItem('testData', JSON.stringify(testData));
