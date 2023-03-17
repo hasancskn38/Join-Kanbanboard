@@ -120,13 +120,13 @@ function renderSearchedTaskArray(stageToDo, stageProgress, stageFeedBack, stageD
 }
 
 function countFinishedSubtasks(test) {
-  let count = 0;
-  for (let i = 0; i < test.subtasks.length; i++) {
-    if (test.subtasks[i].status === 'finished') {
-      count++;
+    let count = 0;
+    for (let i = 0; i < test.subtasks.length; i++) {
+        if (test.subtasks[i].status === 'finished') {
+            count++;
+        }
     }
-  }
-  return count;
+    return count;
 }
 
 
@@ -243,17 +243,17 @@ async function handleSubmit(event) {
 }
 
 function renderSubtasks() {
-    let resultArray = []; 
+    let resultArray = [];
     for (let i = 0; i < subtaskArray.length; i++) {
-      let subtask = subtaskArray[i];
-      let obj = {
-        "subtask": subtask,
-        "status": 'open'
-      };
-      resultArray.push(obj); 
+        let subtask = subtaskArray[i];
+        let obj = {
+            "subtask": subtask,
+            "status": 'open'
+        };
+        resultArray.push(obj);
     }
-    return resultArray; 
-  }
+    return resultArray;
+}
 
 
 async function deleteTask(i) {
@@ -308,9 +308,14 @@ function closeTaskPopUp() {
 
 function addSubtask() {
     let subtaskInput = document.getElementById('task-subtask').value;
-    subtaskArray.push(subtaskInput);
-    renderSubtasksInPopUp(subtaskInput);
-    document.getElementById('task-subtask').value = '';
+    if (subtaskInput.length <= 2) {
+        alert('Mindestens 3 Zeichen sind nötig um ein Subtask zu');
+    }
+    else {
+        subtaskArray.push(subtaskInput);
+        renderSubtasksInPopUp(subtaskInput);
+        document.getElementById('task-subtask').value = '';
+    }
 }
 
 
@@ -396,7 +401,7 @@ async function openSubtask(i, j) {
 
 async function finishSubtask(i, j) {
     testData[i]['subtasks'][j]['status'] = 'finished';
-    await backend.setItem('testData', JSON.stringify(testData)); 
+    await backend.setItem('testData', JSON.stringify(testData));
     let container = document.getElementById(`subtask${j}`);
     container.innerHTML = `<button onclick="openSubtask(${i}, ${j})">✔️</button>`;
 }
@@ -503,12 +508,12 @@ async function submitChanges(i) {
     let newDate = document.getElementById(`task-date-edit${i}`).value;
     let newCategory = document.getElementById(`select-category-edit${i}`).value;
     let newAssignedContact = Array.from(document.getElementById('select-contact-edit').selectedOptions)
-    .map(option => {
-        let fullName = option.value;
-        let nameArr = fullName.split(' ');
-        let initials = nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
-        return initials.toUpperCase();
-    });
+        .map(option => {
+            let fullName = option.value;
+            let nameArr = fullName.split(' ');
+            let initials = nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
+            return initials.toUpperCase();
+        });
     let newCategoryPopUp = document.getElementById(`category-${i}`);
     let urgentEdit = document.getElementById('urgent-edit')
     let mediumEdit = document.getElementById('medium-edit')
@@ -555,7 +560,7 @@ function checkForPrio() {
     let urgent = document.getElementById('urgent-edit');
     if (urgent.classList.contains('urgent')) {
         return 'urgent';
-      }
+    }
     let medium = document.getElementById('medium-edit');
     if (medium.classList.contains('medium')) {
         return 'medium';
@@ -563,7 +568,7 @@ function checkForPrio() {
     let low = document.getElementById('low-edit');
     if (low.classList.contains('low')) {
         return 'low';
-      }
+    }
 }
 
 
@@ -672,13 +677,14 @@ function assignContactsToTask(value, test) {
         }
     }
     else {
-    let contactList = document.getElementById(`select-contact-${value}`);
-    contactList.innerHTML = '';
-    contactList.innerHTML = `<option value="${test['assignedContacts']}" disabled="" selected="" hidden="">Select new contact to assign</option>`;
-    for (let i = 0; i < contacts.length; i++) {
-        let contact = contacts[i];
-        contactList.innerHTML += `<option value="${contact['name']}">${contact['name']}</option>`;
-    }}
+        let contactList = document.getElementById(`select-contact-${value}`);
+        contactList.innerHTML = '';
+        contactList.innerHTML = `<option value="${test['assignedContacts']}" disabled="" selected="" hidden="">Select new contact to assign</option>`;
+        for (let i = 0; i < contacts.length; i++) {
+            let contact = contacts[i];
+            contactList.innerHTML += `<option value="${contact['name']}">${contact['name']}</option>`;
+        }
+    }
 }
 
 function closeAddTaskPopUp() {
