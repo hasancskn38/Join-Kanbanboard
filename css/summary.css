@@ -16,13 +16,14 @@
 }
 
 h1 {
-    color:#2A3647;
+    color: #2A3647;
 }
+
 /* General Stylings End*/
 
 /* Header Start */
 nav {
-    height:80px;
+    height: 80px;
     background: #4589FF;
     position: sticky;
     top: 0;
@@ -51,9 +52,11 @@ nav {
     color: #fff;
 }
 
-.nav-container-right p, img {
+.nav-container-right p,
+img {
     padding: 0 22px 0 0;
 }
+
 /* Header End */
 
 /* Main Start */
@@ -79,6 +82,7 @@ main h2 {
     width: 25%;
     background-color: black;
 }
+
 /* Styling for temporary sidebar remove later*/
 .main-right-header {
     display: flex;
@@ -98,7 +102,7 @@ main h2 {
 
 .main-right-top {
     display: flex;
-    margin-bottom:20px;
+    margin-bottom: 20px;
     gap: 25px;
 }
 
@@ -194,9 +198,26 @@ main h2 {
 .task-todo-top img {
     padding: 0px 22px 10px 0;
 }
+
 /* Task To-do End */
 /* Main End */
 
+.show_logged_on_user {
+    width: 500px;
+    height: 200px;
+    margin-top: 105px;
+    margin-bottom: -90px;
+    margin-left: 200px;
+    font-size: 40px;
+    font-family: 'open sans';
+    display: flex;
+    justify-content: center;
+}
+
+.show_logged_on_user span {
+    color: rgb(69, 137, 255);
+    margin-left: 15px;
+}
 
 /* Responsive Start */
 @media only screen and (max-width: 1200px) {
@@ -235,7 +256,7 @@ main h2 {
     .task-todo {
         width: 100%;
     }
-  }  
+}
 
 @media only screen and (max-width: 800px) {
     .main-right-bottom {
@@ -255,18 +276,23 @@ main h2 {
 @media only screen and (max-width:450px) {
     body {
         position: fixed;
-    }    
+    }
+
     .nav-container {
         justify-content: center;
     }
+
     .nav-container p {
         text-align: center;
     }
+
     h1 {
         text-align: center;
     }
+
     .main-right-tasks {
         margin: 20px;
     }
 }
+
 /* Responsive End */

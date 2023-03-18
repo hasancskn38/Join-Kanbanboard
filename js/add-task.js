@@ -4,6 +4,7 @@ setURL('https://gruppe-447.developerakademie.net/join/smallest_backend_ever');
 let contacts = [];
 let priority;
 let testData = [];
+let subtaskArray = [];
 
 
 
@@ -12,7 +13,7 @@ let testData = [];
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
-        const element = includeElements[i];
+        let element = includeElements[i];
         file = element.getAttribute("w3-include-html");
         let resp = await fetch(file);
         if (resp.ok) {
@@ -22,6 +23,14 @@ async function includeHTML() {
         }
     }
     renderAllBackendData();
+    
+}
+
+function parseLoggedOnUser() {
+    let loggedOnUser = JSON.parse(localStorage.getItem("loggedOnUser"));
+    let loggedOnUserFirstChart = loggedOnUser.charAt(0);
+    let loggedOnUserFirstChartToUpperCase = loggedOnUserFirstChart.toUpperCase();
+    document.getElementById('display_logged_on_user').innerHTML = `${loggedOnUserFirstChartToUpperCase}`;
 }
 
 async function renderAllBackendData() {
@@ -29,6 +38,7 @@ async function renderAllBackendData() {
     contacts = JSON.parse(backend.getItem('contacts')) || [];
     testData = JSON.parse(backend.getItem('testData')) || [];
     renderAllContacts();
+    parseLoggedOnUser();
 }
 
 function renderAllContacts() {
@@ -56,7 +66,17 @@ function renderAllContacts() {
     }
 }
 
+function addSubtask() {
+    let subtaskInput = document.getElementById('task-subtask').value;
+    renderSubtasksInPopUp(subtaskInput);
+    subtaskArray.push(subtaskInput);
+    document.getElementById('task-subtask').value = '';
+}
 
+function renderSubtasksInPopUp(subtaskInput) {
+    let subTasks = document.getElementById('subtasks');
+    subTasks.innerHTML += `<ul class="subtask-list">${subtaskInput}</ul>`;
+}
 
 function changeUrgentColor() {
     let priorityImg1 = document.getElementById('img1');
@@ -125,7 +145,19 @@ function changeLowColor() {
     }
 }
 
+function userLogout() {
+    if (!document.getElementById('log_out_button').classList.contains('dontShow')) {
+        document.getElementById('log_out_button').classList.add('dontShow');
+    }
+    else {
+        document.getElementById('log_out_button').classList.remove('dontShow');
+    }
+}
 
+function logOut() {
+    localStorage.removeItem("loggedOnUser");
+    window.location.href = `login.html?msg=Du hast dich erfolgreich ausgeloggt`;
+}
 
 async function addTaskToBoard() {
     let title = document.getElementById('task-title').value;
@@ -150,7 +182,8 @@ async function addTaskToBoard() {
             "priority": priority,
             "date": date,
             "assignedContacts": assignedContacts,
-            "id": 0,
+            "subtasks": renderSubtasks(),
+            "id": 0
         };
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
@@ -164,7 +197,8 @@ async function addTaskToBoard() {
             "priority": priority,
             "date": date,
             "assignedContacts": assignedContacts,
-            "id": newId.toString(),
+            "subtasks": renderSubtasks(),
+            "id": newId.toString()
         };
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
@@ -172,6 +206,19 @@ async function addTaskToBoard() {
     clearInputFields();
     userAddedSuccessfull(title);
 }
+
+function renderSubtasks() {
+    let resultArray = []; 
+    for (let i = 0; i < subtaskArray.length; i++) {
+      let subtask = subtaskArray[i];
+      let obj = {
+        "subtask": subtask,
+        "status": 'open'
+      };
+      resultArray.push(obj); 
+    }
+    return resultArray; 
+  }
 
 function userAddedSuccessfull(title) {
     let container = document.getElementById('successfull_added');

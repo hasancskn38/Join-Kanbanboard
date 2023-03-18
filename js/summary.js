@@ -35,13 +35,33 @@ async function includeHTML() {
     renderTasks();
 }
 
+function parseLoggedOnUser() {
+    let loggedOnUser = JSON.parse(localStorage.getItem("loggedOnUser"));
+    let loggedOnUserFirstChart = loggedOnUser.charAt(0);
+    let loggedOnUserFirstChartToUpperCase = loggedOnUserFirstChart.toUpperCase();
+    document.getElementById('logged_on_user').innerHTML = `
+    <div>Good Morning,</div> 
+    <span>${loggedOnUser}</span>`;
+    document.getElementById('display_logged_on_user').innerHTML = `${loggedOnUserFirstChartToUpperCase}`;
+}
+
 async function loadDataFromServer() {
     await downloadFromServer();
     contacts = await JSON.parse(backend.getItem('contacts')) || [];
     testData = await JSON.parse(backend.getItem('testData')) || [];
 }
 
+function showHelpMeSection() {
+    document.getElementById('help-me-container').classList.remove('d-none');
+    document.querySelector('main').classList.add('d-none');
+}
 
+
+// Hide Help me Container
+function hideHelpMeSection() {
+    document.getElementById('help-me-container').classList.add('d-none');
+    document.querySelector('main').classList.remove('d-none');
+}
 
 function renderTasks() {
     let boardNum = document.getElementById('onBoardNum');
@@ -56,8 +76,22 @@ function renderTasks() {
     numToDo.innerHTML = countTasksToDo();
     let numUrgent = document.getElementById('numUrgent');
     numUrgent.innerHTML = countUrgent();
+    parseLoggedOnUser();
 }
 
+function userLogout() {
+    if (!document.getElementById('log_out_button').classList.contains('dontShow')) {
+        document.getElementById('log_out_button').classList.add('dontShow');
+    }
+    else {
+        document.getElementById('log_out_button').classList.remove('dontShow');
+    }
+}
+
+function logOut() {
+    localStorage.removeItem("loggedOnUser");
+    window.location.href = `login.html?msg=Du hast dich erfolgreich ausgeloggt`;
+}
 
 function countTasksOnBoard() {
     let onBoard = testData.length;
@@ -112,8 +146,8 @@ function countTasksToDo() {
 function countUrgent() {
     let inUrgent = 0;
     for (let i = 0; i < testData.length; i++) {
-        if ( testData[i]['priority'] == 'Urgent')
-        inUrgent++;
+        if (testData[i]['priority'] == 'Urgent')
+            inUrgent++;
     }
     return inUrgent;
 }

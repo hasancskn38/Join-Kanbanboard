@@ -1,14 +1,13 @@
 setURL('https://gruppe-447.developerakademie.net/join/smallest_backend_ever');
 
 let testData = [];
-
-
 let contacts = [];
 let priorityColor;
 let priority;
 let currentDraggedItemId;
 let newPriority;
 let searchedTaskArray = [];
+
 let selectElement = document.getElementById('select-contact');
 let initialsDiv = document.getElementById('initials-div');
 
@@ -17,7 +16,7 @@ let initialsDiv = document.getElementById('initials-div');
  * This function implements the template.html
  *  */
 async function includeHTML() {
-    await loadDataFromServer();
+
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
         let element = includeElements[i];
@@ -29,13 +28,22 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
-    renderData();
+    await loadDataFromServer();
 }
- 
+
 async function loadDataFromServer() {
     await downloadFromServer();
     contacts = await JSON.parse(backend.getItem('contacts')) || [];
     testData = await JSON.parse(backend.getItem('testData')) || [];
+    renderData();
+    parseLoggedOnUser();
+}
+
+function parseLoggedOnUser() {
+    let loggedOnUser = JSON.parse(localStorage.getItem("loggedOnUser"));
+    let loggedOnUserFirstChart = loggedOnUser.charAt(0);
+    let loggedOnUserFirstChartToUpperCase = loggedOnUserFirstChart.toUpperCase();
+    document.getElementById('display_logged_on_user').innerHTML = `${loggedOnUserFirstChartToUpperCase}`;
 }
 
 
@@ -65,21 +73,22 @@ function renderData() {
 function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone) {
     for (let i = 0; i < testData.length; i++) {
         let test = testData[i];
+        let finishedSubTasks = countFinishedSubtasks(test);
         if (test.status === 'todo') {
-            stageToDo.innerHTML += toDoTemplate(i, test);
-            renderContactInitials(i, test);
+            stageToDo.innerHTML += toDoTemplate(i, test, finishedSubTasks);
+            renderContactInitials(i, test, finishedSubTasks);
         }
         else if (test.status === 'inprogress') {
-            stageProgress.innerHTML += progressTemplate(i, test);
-            renderContactInitials(i, test);
+            stageProgress.innerHTML += progressTemplate(i, test, finishedSubTasks);
+            renderContactInitials(i, test, finishedSubTasks);
         }
         else if (test.status === 'feedback') {
-            stageFeedBack.innerHTML += feedBackTemplate(i, test);
-            renderContactInitials(i, test);
-        } 
+            stageFeedBack.innerHTML += feedBackTemplate(i, test, finishedSubTasks);
+            renderContactInitials(i, test, finishedSubTasks);
+        }
         else if (test.status === 'done') {
-            stageDone.innerHTML += doneTemplate(i, test);
-            renderContactInitials(i, test);
+            stageDone.innerHTML += doneTemplate(i, test, finishedSubTasks);
+            renderContactInitials(i, test, finishedSubTasks);
         }
         renderColors(i);
     }
@@ -89,24 +98,35 @@ function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDo
 function renderSearchedTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone) {
     for (let i = 0; i < searchedTaskArray.length; i++) {
         let task = searchedTaskArray[i];
+        let finishedSubTasks = countFinishedSubtasks(task);
         if (task.status === 'todo') {
-            stageToDo.innerHTML += toDoTemplate(i, task);
-            renderContactInitials(i, task);
+            stageToDo.innerHTML += toDoTemplate(i, task, finishedSubTasks);
+            renderContactInitials(i, task, finishedSubTasks);
         }
         else if (task.status === 'inprogress') {
-            stageProgress.innerHTML += progressTemplate(i, task);
-            renderContactInitials(i, task);
+            stageProgress.innerHTML += progressTemplate(i, task, finishedSubTasks);
+            renderContactInitials(i, task, finishedSubTasks);
         }
         else if (task.status === 'feedback') {
-            stageFeedBack.innerHTML += feedBackTemplate(i, task);
-            renderContactInitials(i, task);
-        } 
+            stageFeedBack.innerHTML += feedBackTemplate(i, task, finishedSubTasks);
+            renderContactInitials(i, task, finishedSubTasks);
+        }
         else if (task.status === 'done') {
-            stageDone.innerHTML += doneTemplate(i, task);
-            renderContactInitials(i, task);
+            stageDone.innerHTML += doneTemplate(i, task, finishedSubTasks);
+            renderContactInitials(i, task, finishedSubTasks);
         }
         renderColors(i);
     }
+}
+
+function countFinishedSubtasks(test) {
+    let count = 0;
+    for (let i = 0; i < test.subtasks.length; i++) {
+        if (test.subtasks[i].status === 'finished') {
+            count++;
+        }
+    }
+    return count;
 }
 
 
@@ -165,6 +185,8 @@ async function createTask() {
     let title = document.getElementById('task-title').value;
     let category = document.getElementById('select-category').value;
     let date = document.getElementById('task-date').value;
+    let currentDate = new Date();
+    let userDate = new Date(date);
     let taskDescription = document.getElementById('task-description').value;
     let assignedContacts = Array.from(document.getElementById('select-contact-add').selectedOptions)
         .map(option => {
@@ -173,9 +195,8 @@ async function createTask() {
             let initials = nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
             return initials.toUpperCase();
         });
-
     let lastItem = testData[testData.length - 1];
-    if (testData.length == 0) {
+    if (testData.length === 0) {
         let newItem = {
             "title": title,
             "cat": category,
@@ -184,11 +205,16 @@ async function createTask() {
             "priority": priority,
             "date": date,
             "assignedContacts": assignedContacts,
-            "id": 0,
+            "subtasks": renderSubtasks(),
+            "id": 0
         };
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
-    } else {
+        // Condition to check if the selected item is already passed
+    } else if (userDate < currentDate) {
+        alert('The date you selected is already passed, please select a date in the future');
+    }
+    else {
         let newId = Number(lastItem.id) + 1;
         let newItem = {
             "title": title,
@@ -198,15 +224,16 @@ async function createTask() {
             "priority": priority,
             "date": date,
             "assignedContacts": assignedContacts,
-            "id": newId.toString(),
+            "subtasks": renderSubtasks(),
+            "id": newId.toString()
         };
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
+        closeAddTaskPopUp();
+        await includeHTML();
+        clearInputFields();
+        removePrioritys();
     }
-    closeAddTaskPopUp();
-    await includeHTML();
-    clearInputFields();
-    removePrioritys();
 }
 
 
@@ -215,96 +242,28 @@ async function handleSubmit(event) {
     await createTask();
 }
 
+function renderSubtasks() {
+    let resultArray = [];
+    for (let i = 0; i < subtaskArray.length; i++) {
+        let subtask = subtaskArray[i];
+        let obj = {
+            "subtask": subtask,
+            "status": 'open'
+        };
+        resultArray.push(obj);
+    }
+    return resultArray;
+}
+
 
 async function deleteTask(i) {
     testData.splice(i, 1);
-    console.log('test');
     await backend.setItem('testData', JSON.stringify(testData));
     closeEditTask();
     closeTaskPopUp();
     await includeHTML();
+    location.reload();
 }
-
-
-//TODO Remove commenting after contacts JSON Array problem is solved
-// Populate select element with options for each contact name by iterating through the contacts JSON
- contacts.forEach(contact => {
-    const optionElement = document.createElement('option');
-     optionElement.value = contact.name;
-     optionElement.textContent = contact.name;
-     selectElement.appendChild(optionElement);
- });
-
-
-/**
- * create initials of a contact
- * @param {*} name is each name of the contacts from JSON Array
- * @param {*} randomColor is the randomColor from each contact
- * @returns 
- */
-function createInitial(name, randomColor) {
-    let span = document.createElement('span');
-    span.textContent = name.charAt(0).toUpperCase();
-    span.style.backgroundColor = randomColor;
-    return span;
-}
-
-
-/**
- * get initials of a contact
- * @param {*} name is each name of the contacts from JSON Array
- * @param {*} randomColor is the randomColor from each contact
- * @returns 
- */
-function getInitials(name, randomColor) {
-    let names = name.split(' ');
-    let initials = [];
-    for (let i = 0; i < names.length; i += 2) {
-        let span = document.createElement('span');
-        let initialsPair = names[i].charAt(0).toUpperCase();
-        if (i + 1 < names.length) {
-            initialsPair += names[i + 1].charAt(0).toUpperCase();
-            i++;
-        }
-        span.textContent = initialsPair;
-        span.style.backgroundColor = randomColor;
-        initials.push(span);
-    }
-    return initials;
-}
-
-
-/**
- * sets the background-color of the selected contacts to each of their randomColors
- * @param {*} selectedContacts is a const that is declared which is an array of the selected items from the select field
- */
-function setBackgroundColors(selectedContacts) {
-    let backgroundColors = selectedContacts.map(contact => contact.randomColors);
-}
-
-//TODO Remove commenting after problem with contacts json array is solved
-// Eventlistener for each select item, which has the function to create a span for each initals of a contact
- selectElement.addEventListener('change', function () {
-     // Get the selected contact objects
-     const selectedContacts = Array.from(this.selectedOptions).map(option => {
-         return contacts.find(contact => contact.name === option.value);
-     });
-     // Get the initials of the selected contacts
-     const initials = selectedContacts.flatMap(contact => getInitials(contact.name, contact.randomColors));
-     // Remove any existing children from the initials div
-     initialsDiv.innerHTML = '';
-     // Add the new initials spans to the initials div
-     initials.forEach(span => {
-         initialsDiv.appendChild(span);
-         // Add a space between the initials
-         const space = document.createTextNode('');
-         initialsDiv.appendChild(space);
-     });
-     // Set the background color of the initialsDiv
-     setBackgroundColors(selectedContacts);
- });
-
-
 /**
  * open popup for more information on a task
  * @param {*} i is each element from testData JSON array
@@ -328,10 +287,10 @@ function changePriorityColorPopUp() {
     priorityColor = document.getElementById(`test-priority`);
     if (priorityColor.innerHTML == 'Urgent') {
         priorityColor.classList.add('urgent-popup');
-    } 
+    }
     if (priorityColor.innerHTML == 'Medium') {
         priorityColor.classList.add('medium-popup');
-    } 
+    }
     if (priorityColor.innerHTML == 'Low') {
         priorityColor.classList.add('low-popup');
     }
@@ -346,38 +305,26 @@ function closeTaskPopUp() {
     document.querySelector('body').classList.remove('overflow-hidden');
 }
 
-// array where the subtask are stored 
-let subtaskArray = [];
-/**
- * render subtasks from subtaskArray
- */
-function renderSubtasks() {
-    let subtasks = document.getElementById('subtasks');
-    subtasks.innerHTML = '';
-    for (let i = 0; i < subtaskArray.length; i++) {
-        let subtask = subtaskArray[i];
-        subtasks.innerHTML += renderSubtasksTemplate(subtask, i);
-    }
-    renderData();
-}
 
-/**
- * add value of input field to subtask list
- */
 function addSubtask() {
     let subtaskInput = document.getElementById('task-subtask').value;
-    subtaskArray.push(subtaskInput);
-    renderSubtasks();
-    document.getElementById('task-subtask').value = '';
+    if (subtaskInput.length <= 2) {
+        alert('Mindestens 3 Zeichen sind nötig um ein Subtask zu');
+    }
+    else {
+        subtaskArray.push(subtaskInput);
+        renderSubtasksInPopUp(subtaskInput);
+        document.getElementById('task-subtask').value = '';
+    }
 }
 
 
-/**
- * render subtasks in popup 
- */
-function renderSubtasksInPopUp() {
-    let subTasks = document.getElementById('subtask');
+function renderSubtasksInPopUp(subtaskInput) {
+    let subTasks = document.getElementById('subtasks');
+    subTasks.innerHTML += `<ul class="subtask-list">${subtaskInput}</ul>`;
 }
+
+
 
 
 /**
@@ -410,12 +357,57 @@ function openEditTask(i) {
     let taskPopUp = document.getElementById(`task-popup`).classList.add('d-none');
     editTask.classList.remove('d-none');
     editTask.innerHTML = openEditTaskPopUp(test, i);
-    assignContactsToTask('edit');
+    assignContactsToTask('edit', test);
     renderEditPriorityColors();
+    showSubtasks(i);
+}
+
+function showSubtasks(i) {
+    let subTasks = testData[i]['subtasks'];
+    let container = document.getElementById('show_subtasks');
+    container.innerHTML = '';
+    for (let j = 0; j < subTasks.length; j++) {
+        let subTask = subTasks[j];
+        if (subTask['status'] === 'finished') {
+            container.innerHTML += `
+            <div class="subtask">
+            <div>${subTask['subtask']}</div>
+            <div id="subtask${j}">
+            <button onclick="openSubtask(${i}, ${j})">✔️</button>
+            </div>
+            </div>
+            `;
+        }
+        else {
+            container.innerHTML += `
+        <div class="subtask">
+        <div>${subTask['subtask']}</div>
+        <div id="subtask${j}">
+        <button onclick="finishSubtask(${i}, ${j})">❌</button>
+        </div>
+        </div>
+        `;
+        }
+    }
+
+}
+
+async function openSubtask(i, j) {
+    testData[i]['subtasks'][j]['status'] = 'open';
+    await backend.setItem('testData', JSON.stringify(testData));
+    let container = document.getElementById(`subtask${j}`);
+    container.innerHTML = `<button onclick="finishSubtask(${i}, ${j})">❌</button>`;
+}
+
+async function finishSubtask(i, j) {
+    testData[i]['subtasks'][j]['status'] = 'finished';
+    await backend.setItem('testData', JSON.stringify(testData));
+    let container = document.getElementById(`subtask${j}`);
+    container.innerHTML = `<button onclick="openSubtask(${i}, ${j})">✔️</button>`;
 }
 
 function renderEditPriorityColors(i) {
-    test = testData[i]
+    test = testData[i];
     let priority = document.getElementById('test-priority');
     let urgentEdit = document.getElementById('urgent-edit');
     let mediumEdit = document.getElementById('medium-edit');
@@ -423,16 +415,16 @@ function renderEditPriorityColors(i) {
     let priorityImg1Edit = document.getElementById(`img1-edit`);
     let priorityImg2Edit = document.getElementById(`img2-edit`);
     let priorityImg3Edit = document.getElementById(`img3-edit`);
-    
-    if(priority.innerHTML == 'Urgent') {
+
+    if (priority.innerHTML == 'Urgent') {
         urgentEdit.classList.add('urgent');
         priorityImg1Edit.classList.add('white');
     }
-    if(priority.innerHTML == 'Medium') {
+    if (priority.innerHTML == 'Medium') {
         mediumEdit.classList.add('medium');
         priorityImg2Edit.classList.add('white');
     }
-    if(priority.innerHTML == 'Low') {
+    if (priority.innerHTML == 'Low') {
         lowEdit.classList.add('low');
         priorityImg3Edit.classList.add('white');
     }
@@ -512,34 +504,71 @@ function changeLowColorEdit() {
 async function submitChanges(i) {
     let test = testData[i];
     let newTaskName = document.getElementById(`input-edit-${i}`).value;
-    // let taskName = document.getElementById('task-popup-header');
-    let newDescription = document.getElementById('edit-description').value;
-    let newDate = document.getElementById('task-date-edit').value;
-    // let taskTitle = document.getElementById('task-title');
-    let newCategory = document.getElementById('select-category-edit').value
+    let newDescription = document.getElementById(`edit-description${i}`).value;
+    let newDate = document.getElementById(`task-date-edit${i}`).value;
+    let newCategory = document.getElementById(`select-category-edit${i}`).value;
+    let newAssignedContact = Array.from(document.getElementById('select-contact-edit').selectedOptions)
+        .map(option => {
+            let fullName = option.value;
+            let nameArr = fullName.split(' ');
+            let initials = nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
+            return initials.toUpperCase();
+        });
     let newCategoryPopUp = document.getElementById(`category-${i}`);
-    if(newPriority == undefined) {
-    test.title = newTaskName;
-    test.description = newDescription;
-    test.cat = newCategory;
-    test.priority ;
-    test.date = newDate;
-    newCategoryPopUp = newCategory;
+    let urgentEdit = document.getElementById('urgent-edit')
+    let mediumEdit = document.getElementById('medium-edit')
+    let lowEdit = document.getElementById('low-edit')
+    if (newPriority == undefined) {
+        newPriority = checkForPrio();
+        test.title = newTaskName;
+        test.description = newDescription;
+        test.cat = newCategory;
+        test.assignedContacts = newAssignedContact;
+        test.priority;
+        test.date = newDate;
+        newCategoryPopUp = newCategory;
+        await backend.setItem('testData', JSON.stringify(testData));
+        location.reload();
+        closeEditTask();
+        closeTaskPopUp();
+        hideOrShowPriorityLevels();
+        renderColors(i);
+        await includeHTML();
+    }
+    else if (!urgentEdit.classList.contains('urgent') & !mediumEdit.classList.contains('medium') & !lowEdit.classList.contains('low')) {
+        alert('Please choose a priority level for your task')
     }
     else {
-    test.title = newTaskName;
-    test.description = newDescription;
-    test.cat = newCategory;
-    test.priority = newPriority;
-    test.date = newDate;
-    newCategoryPopUp = newCategory;
+        test.title = newTaskName;
+        test.description = newDescription;
+        test.cat = newCategory;
+        test.assignedContacts = newAssignedContact;
+        test.priority = newPriority;
+        test.date = newDate;
+        newCategoryPopUp = newCategory;
+        await backend.setItem('testData', JSON.stringify(testData));
+        location.reload();
+        closeEditTask();
+        closeTaskPopUp();
+        hideOrShowPriorityLevels();
+        renderColors(i);
+        await includeHTML();
     }
-    await backend.setItem('testData', JSON.stringify(testData));
-    closeEditTask();
-    closeTaskPopUp();
-    hideOrShowPriorityLevels();
-    includeHTML();
-    renderColors(i);
+}
+
+function checkForPrio() {
+    let urgent = document.getElementById('urgent-edit');
+    if (urgent.classList.contains('urgent')) {
+        return 'urgent';
+    }
+    let medium = document.getElementById('medium-edit');
+    if (medium.classList.contains('medium')) {
+        return 'medium';
+    }
+    let low = document.getElementById('low-edit');
+    if (low.classList.contains('low')) {
+        return 'low';
+    }
 }
 
 
@@ -554,16 +583,16 @@ function closeEditTask() {
 function renderColors(i) {
     let category = document.getElementById(`category-${i}`);
     if (category.innerHTML == 'Design') {
-      category.classList.add('design');
+        category.classList.add('design');
     }
     if (category.innerHTML == 'Backoffice') {
-      category.classList.add('backoffice');
+        category.classList.add('backoffice');
     }
     if (category.innerHTML == 'Sales') {
-      category.classList.add('sales');
+        category.classList.add('sales');
     }
     if (category.innerHTML == 'Marketing') {
-      category.classList.add('marketing');
+        category.classList.add('marketing');
     }
 }
 
@@ -574,9 +603,11 @@ function renderColors(i) {
 function clearInputFields() {
     let input = document.getElementById('task-title');
     let selectCategory = document.getElementById('select-category');
-    let selectContacts = document.getElementById('select-contact');
+    let selectContacts = document.getElementById('select-contact-add');
     let taskDate = document.getElementById('task-date');
     let taskDescription = document.getElementById('task-description');
+    let subTasks = document.getElementById('task-subtask');
+    subTasks.value = '';
     document.getElementById('initials-div').innerHTML = '';
     input.value = '';
     selectCategory.value = '';
@@ -635,13 +666,24 @@ function openAddTaskPopUp() {
 }
 
 
-function assignContactsToTask(value) {
-    let contactList = document.getElementById(`select-contact-${value}`);
-    contactList.innerHTML = '';
-    contactList.innerHTML = `<option value="" disabled="" selected="" hidden="">Select contacts to assign</option>`;
-    for (let i = 0; i < contacts.length; i++) {
-        let contact = contacts[i];
-        contactList.innerHTML += `<option value="${contact['name']}">${contact['name']}</option>`;
+function assignContactsToTask(value, test) {
+    if (test == undefined) {
+        let contactList = document.getElementById(`select-contact-${value}`);
+        contactList.innerHTML = '';
+        contactList.innerHTML = `<option value="" disabled="" selected="" hidden="">Select new contact to assign</option>`;
+        for (let i = 0; i < contacts.length; i++) {
+            let contact = contacts[i];
+            contactList.innerHTML += `<option value="${contact['name']}">${contact['name']}</option>`;
+        }
+    }
+    else {
+        let contactList = document.getElementById(`select-contact-${value}`);
+        contactList.innerHTML = '';
+        contactList.innerHTML = `<option value="${test['assignedContacts']}" disabled="" selected="" hidden="">Select new contact to assign</option>`;
+        for (let i = 0; i < contacts.length; i++) {
+            let contact = contacts[i];
+            contactList.innerHTML += `<option value="${contact['name']}">${contact['name']}</option>`;
+        }
     }
 }
 
@@ -658,7 +700,19 @@ function showHelpMeSection() {
     document.querySelector('main').classList.add('d-none');
 }
 
+function userLogout() {
+    if (!document.getElementById('log_out_button').classList.contains('dontShow')) {
+        document.getElementById('log_out_button').classList.add('dontShow');
+    }
+    else {
+        document.getElementById('log_out_button').classList.remove('dontShow');
+    }
+}
 
+function logOut() {
+    localStorage.removeItem("loggedOnUser");
+    window.location.href = `login.html?msg=Du hast dich erfolgreich ausgeloggt`;
+}
 // Hide Help me Container
 function hideHelpMeSection() {
     document.getElementById('help-me-container').classList.add('d-none');
@@ -671,12 +725,14 @@ function searchTask() {
     for (let j = 0; j < testData.length; j++) {
         let task = testData[j]['title'].toLowerCase();
         let searchedTask = testData[j];
-        if (input == '') {
+        if (input.trim() === '') {
             searchedTaskArray = [];
             renderData();
+            break;
         }
         if (task.includes(input)) {
             searchedTaskArray.push(searchedTask);
+
         }
     }
     renderData();

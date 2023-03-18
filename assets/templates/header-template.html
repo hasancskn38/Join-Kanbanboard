@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="../css/header-template.css">
+<link rel="stylesheet" href="../css/style.css">
+
 <body>
     <!-- Nav Start -->
     <nav>
@@ -10,8 +12,13 @@
             <div class="nav-container-right">
                 <p>Kanban Project Management Tool</p>
                 <img onclick="showHelpMeSection()" class="cursor" src="../assets/img/questionmark.png" alt="?">
+                <div class="log_on_container">
+                    <div onclick="userLogout()" class="display_logged_on_user" id="display_logged_on_user"></div>
+                </div>
             </div>
+
         </div>
+
     </nav>
     <!-- Nav End -->
 
@@ -21,31 +28,40 @@
         <div class="help-me-header">
             <h1>Help</h1>
             <button onclick="hideHelpMeSection()">X</button>
-        </div> 
-        
+        </div>
+
         <h2>What is Join ?</h2>
-        <p>Join is a kanban board is a visual management tool used to help teams track and prioritize tasks in a workflow. The board is divided into columns that represent different stages of the workflow, and tasks are represented as cards that are moved from one column to the next as they progress. This allows teams to have a clear and up-to-date view of what work is in progress, what needs to be done next, and what has been completed. The use of a kanban board helps teams to manage work more efficiently, reduce bottlenecks and improve communication.</p>
+        <p>Join is a kanban board is a visual management tool used to help teams track and prioritize tasks in a
+            workflow. The board is divided into columns that represent different stages of the workflow, and tasks are
+            represented as cards that are moved from one column to the next as they progress. This allows teams to have
+            a clear and up-to-date view of what work is in progress, what needs to be done next, and what has been
+            completed. The use of a kanban board helps teams to manage work more efficiently, reduce bottlenecks and
+            improve communication.</p>
         <h2>How to use it</h2>
         <ol>
-            <li>Define Workflow: Start by defining the workflow for your projects or tasks, breaking them down into individual steps or stages. Assign each step to a specific column on the kanban board.</li>
-            <li>Add Cards: Add work items to the board as cards, assigning each card to the appropriate column based on its current status in the workflow.</li>
-            <li>Move Cards: Move the cards from column to column as the work progresses, updating the board in real-time to reflect the current status of each work item. Use the board to track progress, identify bottlenecks, and make informed decisions about what work to tackle next.</li>
+            <li>Define Workflow: Start by defining the workflow for your projects or tasks, breaking them down into
+                individual steps or stages. Assign each step to a specific column on the kanban board.</li>
+            <li>Add Cards: Add work items to the board as cards, assigning each card to the appropriate column based on
+                its current status in the workflow.</li>
+            <li>Move Cards: Move the cards from column to column as the work progresses, updating the board in real-time
+                to reflect the current status of each work item. Use the board to track progress, identify bottlenecks,
+                and make informed decisions about what work to tackle next.</li>
         </ol>
     </div>
     <!-- Help me Section End -->
 
     <script>
-// Show Help me Container
-function showHelpMeSection() {
-    document.getElementById('help-me-container').classList.remove('d-none');
-    document.querySelector('main').classList.add('d-none');
-}
+        // Show Help me Container
 
-// Hide Help me Container
-function hideHelpMeSection() {
-    document.getElementById('help-me-container').classList.add('d-none');
-    document.querySelector('main').classList.remove('d-none');
-}
+        function showHelpMeSection() {
+            document.getElementById('help-me-container').classList.remove('d-none');
+            document.querySelector('main').classList.add('d-none');
+        }
+
+        // Hide Help me Container
+        function hideHelpMeSection() {
+            document.getElementById('help-me-container').classList.add('d-none');
+            document.querySelector('main').classList.remove('d-none');
+        }
     </script>
 </body>
-

@@ -20,15 +20,19 @@ function loginUser() {
     let password = document.getElementById('login_password');
     let user = users.find(u => u.email.toLowerCase() == email.value.toLowerCase() && u.password == password.value);
     if(user) {
-        console.log('User gefunden');
         window.location.href = `summary.html?msg=Du hast dich erfolgreich eingelogt${user.name}`;
     }
+    sessionLogon(user.name);
 }
 
 function guestLogin() {
     let user = users.find(u => u.email == 'guest@gmail.com' && u.password == 'guest123');
     if(user) {
-        console.log('User gefunden');
         window.location.href = `summary.html?msg=Du hast dich erfolgreich eingelogt ${user.name}`;
     }
+    sessionLogon(user.name);
 }
+
+function sessionLogon(userName) {
+    localStorage.setItem("loggedOnUser", JSON.stringify(userName));
+} 

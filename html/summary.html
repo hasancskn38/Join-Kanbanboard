@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="../css/legalnotice.css">
     <link rel="stylesheet" href="../css/summary.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
     <script src="../smallest_backend_ever/mini_backend.js"></script>
     <script src="../js/summary.js"></script>
 </head>
@@ -35,7 +38,9 @@
             <div w3-include-html="../assets/templates/sidebar-template.html"></div>
         </div>
         <!-- Sidebar End -->
-
+        <div class="log_out_button dontShow" id="log_out_button">
+            <button onclick="logOut()">Log Out</button>
+        </div>
         <div class="main-right">
 
             <!-- Main Right Header Start -->
@@ -48,7 +53,7 @@
             <div class="main-right-tasks">
 
                 <!-- Main Top Start -->
-                
+                <div class="show_logged_on_user" id="logged_on_user"></div>
                 <div class="main-right-top">
 
                     <div class="task-urgent cursor">
@@ -127,7 +132,9 @@
 
             <div class="main-right-tasks-information"></div>
         </div>
+
     </main>
+
     <!-- Main End -->
 
     
