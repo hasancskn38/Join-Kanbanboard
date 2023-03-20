@@ -220,7 +220,7 @@ main h2 {
 }
 
 /* Responsive Start */
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1300px) {
 
     main p {
         font-size: 18px;
@@ -232,6 +232,7 @@ main h2 {
 
     .main-right-tasks {
         margin: 0;
+        margin-left: 200px;
     }
 
     .main-right-top {
@@ -246,6 +247,7 @@ main h2 {
         flex-wrap: wrap;
         align-items: center;
         margin: 20px auto;
+        margin-left: 70px;
         width: 100%;
     }
 
@@ -256,26 +258,48 @@ main h2 {
     .task-todo {
         width: 100%;
     }
+
+    .show_logged_on_user {
+        margin-left: 155px;
+    }
 }
 
-@media only screen and (max-width: 800px) {
+@media (max-width:1024px) {
+    .main-right-top {}
+
     .main-right-bottom {
-        display: flex;
-        flex-direction: column;
+        width: 70%;
+        margin-bottom: 150px;
     }
 
-    .task-general {
-        width: 80%;
+    .main-right-tasks {
+        margin: 0;
     }
 
-    .task-todo {
-        width: 100%;
+    .show_logged_on_user {
+        margin-left: 50px;
     }
 }
 
-@media only screen and (max-width:450px) {
-    body {
-        position: fixed;
+
+
+
+@media only screen and (max-width:600px) {
+    .main-right {
+        margin: 0;
+        width: 400px;
+    }
+
+    .main-right-tasks {
+        margin: 0;
+        width: 400px;
+    }
+
+    .show_logged_on_user {
+        margin-left: 15px;
+        font-size: 30px;
+        margin-right: 0px;
+        width: 350px;
     }
 
     .nav-container {
@@ -290,29 +314,19 @@ main h2 {
         text-align: center;
     }
 
-    .main-right-tasks {
-        margin: 20px;
+    .main-right-header {
+        width: 80vw;
     }
+
+    .side-links-div {
+        margin: 0px;
+        justify-content: center;
+        align-items: center;
+    }
+
 }
 
-@media (max-width:1024px) {
-    .main-right-top {
-       
-    } 
-    .main-right-bottom {
-        width: 70%;
-    }
-}
 
-@media (max-width:820px) {
-    .show_logged_on_user {
-        margin-left: -130px;
-        margin-top: -74px;
-    }
-    .side-bar a {
-        min-width: 75px;
-    }
-}
-    
+
 
 /* Responsive End */

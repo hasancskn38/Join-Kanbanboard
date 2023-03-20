@@ -91,13 +91,17 @@ a {
     }
 
     .side-bar a {
-        display: flex;
         flex-direction: column;
+        justify-content: center;
         white-space: nowrap;
         min-width: 90px;
         padding-block: 12px;
         padding-inline: 8px;
         height: 100px;
+    }
+
+    .side-bar a img{
+margin-left: 20px;
     }
 
     .side-bar a:hover {
