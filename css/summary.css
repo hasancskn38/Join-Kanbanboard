@@ -259,25 +259,58 @@ main h2 {
         width: 100%;
     }
 
-    /* .show_logged_on_user {
+    .show_logged_on_user {
         margin-left: 155px;
-    } */
+        margin-top: 150px;
+    } 
 }
 
-@media (max-width:1024px) {
-    .main-right-bottom {
-        width: 90%;
-        margin-bottom: 150px;
+@media only screen and (max-width: 1000px) {
+
+    main p {
+        font-size: 18px;
+    }
+
+    .main-right {
+        margin: auto;
     }
 
     .main-right-tasks {
         margin: 0;
+        width: 100%;
+        margin-bottom: 125px;
     }
 
-    /* .show_logged_on_user {
-        margin-left: 50px;
-    } */
+    .main-right-top {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        margin: auto;
+    }
+
+    .main-right-bottom {
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 20px auto;
+        width: 90%;
+    }
+
+    .task-general {
+        width: 92%;
+    }
+
+    .task-todo {
+        width: 100%;
+    }
+
+    .show_logged_on_user {
+        margin-left: 55px;
+        margin-top: 150px;
+    } 
 }
+
+
 
 
 
@@ -286,6 +319,7 @@ main h2 {
     .main-right {
         margin: 0;
         width: 400px;
+        margin-bottom: 150px;
     }
 
     .main-right-bottom {
@@ -298,12 +332,12 @@ main h2 {
         width: 400px;
     }
 
-    /* .show_logged_on_user {
+     .show_logged_on_user {
         margin-left: 15px;
         font-size: 30px;
         margin-right: 0px;
         width: 350px;
-    } */
+    } 
 
     .nav-container {
         justify-content: center;
@@ -329,6 +363,36 @@ main h2 {
 
 }
 
+@media only screen and (max-width:420px) {
+
+    .main-right {
+        margin-left: 50px;
+    }
+
+    .show_logged_on_user {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 60px;
+        margin-bottom: 0px;
+        margin-top: 50px;
+        width: 200px;
+    }
+
+    .main-right-tasks {
+        width: 300px;
+    }
+.main-right-bottom {
+    margin-left: 15px;
+}
+}
+
+@media only screen and (max-width:380px) {
+
+    .main-right {
+        margin-left: 25px;
+    }
+}
 
 
 
