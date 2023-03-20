@@ -295,4 +295,24 @@ main h2 {
     }
 }
 
+@media (max-width:1024px) {
+    .main-right-top {
+       
+    } 
+    .main-right-bottom {
+        width: 70%;
+    }
+}
+
+@media (max-width:820px) {
+    .show_logged_on_user {
+        margin-left: -130px;
+        margin-top: -74px;
+    }
+    .side-bar a {
+        min-width: 75px;
+    }
+}
+    
+
 /* Responsive End */
