@@ -2,6 +2,7 @@ body {
     margin: 0;
     height: 100%;
     width: 100%;
+    animation: backgroundcolor 1.5s;
 }
 
 .login_head {
@@ -26,6 +27,7 @@ body {
     width: 100px;
     object-fit: contain;
     animation: go_small 1.5s;
+
     z-index: 1;
     object-fit: contain;
 }
@@ -33,20 +35,20 @@ body {
 @keyframes go_small {
     0% {
         transform: scale(4);
-        margin-left: 47vw;
+        margin-left: 35vw;
         margin-top: calc(50vh - 122px);
         margin-right: 0px;
         object-fit: cover;
-        background-color: rgb(255, 255, 255);
+        filter: grayscale(100%) brightness(1000%);
     }
 
     35% {
         transform: scale(4);
-        margin-left: 47vw;
+        margin-left: 35vw;
         margin-top: calc(50vh - 122px);
         margin-right: 0px;
         object-fit: cover;
-        background-color: rgb(255, 255, 255);
+        filter: grayscale(100%) brightness(1000%);
     }
 
     100% {
@@ -54,6 +56,21 @@ body {
         margin-left: 0px;
         margin-top: 0px;
         object-fit: cover;
+        filter: none;
+    }
+}
+
+@keyframes backgroundcolor {
+    0% {
+        background-color: rgb(69,137,255);
+    }
+
+    35% {
+
+        background-color: rgb(69,137,255);
+    }
+
+    100% {
     }
 }
 
