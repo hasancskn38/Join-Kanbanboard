@@ -165,8 +165,8 @@ input:active {
 }
 
 .subtask-list button {
-cursor: pointer;
-background-color: white;
+    cursor: pointer;
+    background-color: white;
 }
 
 .board-header img {
@@ -859,91 +859,96 @@ textarea::placeholder {
 
 /* Main End */
 
+
+::-webkit-scrollbar {
+    width: 8px;
+    /* Breite des Scrollbalkens */
+    height: 12px;
+    /* Höhe des Scrollbalkens */
+}
+
+
+::-webkit-scrollbar-track {
+    background-color: rgb(69, 137, 255);
+    border-radius: 5px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+/* Den beweglichen Teil des Scrollbalkens anpassen */
+::-webkit-scrollbar-thumb {
+    background-color: rgb(40, 100, 202);
+    /* Farbe des beweglichen Teils des Scrollbalkens */
+    border-radius: 5px;
+    /* Runde Ecken des beweglichen Teils des Scrollbalkens */
+}
+
+/* Den Scrollbalken beim Darüberfahren mit der Maus ändern */
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(44, 112, 230);
+    /* Farbe des beweglichen Teils des Scrollbalkens beim Darüberfahren mit der Maus */
+}
+
 /* Responsive Start */
 
 
 
-@media only screen and (max-width: 1450px) {
-
-    .kanbanboard-description {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .kanbanboard-description h1 {
-        font-size: 38px;
-        color: #14466B;
-        text-align: center;
-        max-width: 70vw;
-    }
-
-    .stage-general {
-        width: 40% !important;
-        margin: 0 30px 0 0;
-    }
-
-    .board-header {
-        margin: 50px 50px 0;
-        justify-content: center;
+@media only screen and (max-width: 1400px) {
+    .main-column {
+        left: 280px;
+        bottom: 0;
+        top: -100px;
+        position: fixed;
+        overflow: auto;
     }
 
     .stages-container {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 50px;
+        width: 1150px;
+        flex-wrap: nowrap;
     }
 
-    .stage-general {
-        width: 100%;
-        margin: 0 auto;
-    }
-
-    .stage-header {
-        display: flex;
-        justify-content: space-between;
-        margin: 20px;
-    }
 }
 
 @media only screen and (max-width: 1000px) {
 
     .main-column {
-        width: 100vw;
+        left: 100px;
+        bottom: 120px;
+        top: -100px;
+        position: fixed;
+        overflow: auto;
     }
+
     .stages-container {
-        margin-bottom: 150px;
-    }
-}
-
-@media only screen and (max-width: 770px) {
-
-    .main-column {
-        width: 90vw;
-    }
-
-    .open-add-task>span {
-        display: none;
-    }
-
-    .stage-general {
-        width: 100% !important;
-        margin: 0 30px 0 0;
-    }
-
-    .popup {
-        border-radius: 0;
-    }
-
-    .popup-content {
-        height: 100vh;
-        width: 100vw;
-        padding: 30px;
+        width: 1150px;
         margin: 0;
-        border-radius: 0px;
+        flex-wrap: nowrap;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .main-column {
+        position: relative;
+        overflow: visible;
+        left: auto;
+        margin-left: 50px;
+        margin-top: 50px;
+        margin-bottom: 50px;
     }
 
+    .stages-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+    }
+
+    .stages-container div {
+        width: 370px;
+    }
 }
+
 
 /* Responsive End */
 
