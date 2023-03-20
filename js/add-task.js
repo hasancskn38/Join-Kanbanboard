@@ -303,10 +303,10 @@ function resetForm() {
 
 function showHelpMeSection() {
     document.getElementById('help-me-container').classList.remove('d-none');
-    document.querySelector('main').classList.add('d-none');
+    document.getElementById('createtask-form').classList.add('d-none');
 }
 
 function hideHelpMeSection() {
     document.getElementById('help-me-container').classList.add('d-none');
-    document.querySelector('main').classList.remove('d-none');
+    document.getElementById('createtask-form').classList.remove('d-none');
 }

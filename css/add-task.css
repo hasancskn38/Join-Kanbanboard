@@ -1,5 +1,14 @@
+/* General Stylings Start*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'PT Sans', sans-serif;
+    scroll-behavior: smooth;
+}
+
 body {
-    position: relative;
+    margin: 0;
 }
 
 .main_container {
@@ -12,26 +21,14 @@ body {
     overflow: hidden;
 }
 
-.help-me-container {
-    background-color: #ffffff;
-    height: 50vh !;
-    position: absolute;
-    margin: 150px 100px;
+.d-none {
+    display: none;
 }
 
-.help-me-container h1 {
-    font-size: 36px;
+.side-bar {
+    z-index: 0;
 }
 
-.help-me-container h1,
-.help-me-container h2 {
-    color: #4589FF;
-}
-
-.help-me-header {
-    display: flex;
-    justify-content: space-between;
-}
 
 ol {
     list-style-type: none;
@@ -379,6 +376,8 @@ textarea::placeholder {
     animation: fade-in 1s ease-in;
 }
 
+
+
 @keyframes fade-in {
     0% {opacity: 0;} 
     100% {opacity: 1;} 
@@ -386,6 +385,27 @@ textarea::placeholder {
 
 .display_opacity {
     opacity: 0;
+}
+
+
+.help-me-container {
+    position: absolute;
+    left: 0;
+    z-index: 1;
+}
+
+.help-me-container h1 {
+    font-size: 36px;
+}
+
+.help-me-container h1,
+.help-me-container h2 {
+    color: #4589FF;
+}
+
+.help-me-header {
+    display: flex;
+    justify-content: space-between;
 }
 
 
