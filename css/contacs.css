@@ -24,6 +24,18 @@
     margin-top: 82px;
 }
 
+.subtask-list {
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.subtask-list button {
+cursor: pointer;
+background-color: white;
+}
+
+
 .layout-contact3 {
     margin: 50px;
     width: 100%;

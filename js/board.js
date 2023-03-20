@@ -240,6 +240,7 @@ async function createTask() {
 async function handleSubmit(event) {
     event.preventDefault();
     await createTask();
+    subtaskArray = [];
 }
 
 function renderSubtasks() {
@@ -313,16 +314,21 @@ function addSubtask() {
     }
     else {
         subtaskArray.push(subtaskInput);
-        renderSubtasksInPopUp(subtaskInput);
+        renderSubtasksInPopUp();
         document.getElementById('task-subtask').value = '';
     }
 }
 
 
 
-function renderSubtasksInPopUp(subtaskInput) {
+function renderSubtasksInPopUp() {
     let subTasks = document.getElementById('subtasks');
-    subTasks.innerHTML += `<li class="subtask-list">${subtaskInput} <button type="button" id="delete-subtask">X</button></li>`;
+    subTasks.innerHTML = '';
+    for (let i = 0; i < subtaskArray.length; i++) {
+        let subtaskInput = subtaskArray[i];
+        subTasks.innerHTML += `<li class="subtask-list">${subtaskInput} <button type="button" onclick="deleteSubtask(${i})" id="delete-subtask">❌</button></li>`;
+    }
+   
 }
 
 
@@ -333,7 +339,6 @@ function renderSubtasksInPopUp(subtaskInput) {
 function deleteSubtask(i) {
     subtaskArray.splice(i, 1);
     renderSubtasksInPopUp();
-    renderData();
 }
 
 

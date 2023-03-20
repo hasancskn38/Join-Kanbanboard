@@ -158,6 +158,17 @@ input:active {
     padding-right: 20px;
 }
 
+.subtask-list {
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.subtask-list button {
+cursor: pointer;
+background-color: white;
+}
+
 .board-header img {
     height: 45px;
     margin: 0 0 0 20px
