@@ -6,7 +6,6 @@ function toDoTemplate(i, test, finishedSubTasks) {
     <h4 class="blue">${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
-    <!-- <div class="progress"><progress></div> -->
     <div class="subtasks-done"></div>
     </div>
    
@@ -31,7 +30,7 @@ function toDoTemplate(i, test, finishedSubTasks) {
     <h4 class="blue">${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
-    <!-- <div class="progress"><progress></div> -->
+    <progress value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
     <div class="subtasks-done">${finishedSubTasks}/${test['subtasks'].length}</div>
     </div>
    
@@ -84,7 +83,7 @@ function progressTemplate(i, test, finishedSubTasks) {
     <h4 class="blue">${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
-    <!-- <div class="progress"><progress></div> -->
+    <progress value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
     <div class="subtasks-done">${finishedSubTasks}/${test['subtasks'].length}</div>
     </div>
    
@@ -137,7 +136,7 @@ function feedBackTemplate(i, test, finishedSubTasks) {
     <h4 class="blue">${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
-    <!-- <div class="progress"><progress></div> -->
+    <progress value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
     <div class="subtasks-done">${finishedSubTasks}/${test['subtasks'].length}</div>
     </div>
    
@@ -190,7 +189,7 @@ function doneTemplate(i, test, finishedSubTasks) {
     <h4 class="blue">${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
-    <!-- <div class="progress"><progress></div> -->
+    <progress value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
     <div class="subtasks-done">${finishedSubTasks}/${test['subtasks'].length}</div>
     </div>
    

@@ -319,12 +319,11 @@ function addSubtask() {
 }
 
 
+
 function renderSubtasksInPopUp(subtaskInput) {
     let subTasks = document.getElementById('subtasks');
-    subTasks.innerHTML += `<ul class="subtask-list">${subtaskInput}</ul>`;
+    subTasks.innerHTML += `<li class="subtask-list">${subtaskInput} <button type="button" id="delete-subtask">X</button></li>`;
 }
-
-
 
 
 /**
@@ -333,7 +332,7 @@ function renderSubtasksInPopUp(subtaskInput) {
  */
 function deleteSubtask(i) {
     subtaskArray.splice(i, 1);
-    renderSubtasks();
+    renderSubtasksInPopUp();
     renderData();
 }
 
