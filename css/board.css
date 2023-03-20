@@ -35,28 +35,32 @@ body {
 .d-none {
     display: none;
 }
+
 /* Remove default stylings */
-button, button:focus{
+button,
+button:focus {
     outline: none;
     border: 1px solid transparent;
 }
-  
-button:active{
+
+button:active {
     outline: none;
     /* border: none; */
 }
 
-select, select:focus{
+select,
+select:focus {
     outline: none;
     border: 1px solid transparent;
 }
-  
-select:active{
+
+select:active {
     outline: none;
     border: 1px solid grey;
 }
 
-input, input:focus{
+input,
+input:focus {
     outline: none;
     background: transparent;
     border: none;
@@ -65,14 +69,15 @@ input, input:focus{
 
 input[type="text"]:focus {
     border: none;
-  }
-  
-input:active{
+}
+
+input:active {
     outline: none;
     background: transparent;
     border: 1px solid grey;
     text-indent: 10px;
 }
+
 /* General Stylings End*/
 
 /* Main Column Start */
@@ -85,6 +90,7 @@ input:active{
     width: 80vw;
 
 }
+
 /* Main Column End */
 
 .kanbanboard-description {
@@ -109,10 +115,11 @@ input:active{
 }
 
 .board-header button {
-    padding-right:20px;
+    padding-right: 20px;
 }
 
-.board-header input, .board-header button {
+.board-header input,
+.board-header button {
     height: 45px;
     border-radius: 10px;
 }
@@ -129,7 +136,7 @@ input:active{
 }
 
 ::placeholder {
-    color:rgb(196, 196, 196);
+    color: rgb(196, 196, 196);
 }
 
 .add-remove-container {
@@ -139,7 +146,7 @@ input:active{
 }
 
 .open-add-task {
-    color:#fff;
+    color: #fff;
     background-color: #4589FF;
     font-size: 20px;
     padding-left: 20px;
@@ -148,7 +155,7 @@ input:active{
 .search-button {
     color: #000;
     background: none;
-    padding-right:20px;
+    padding-right: 20px;
 }
 
 .board-header img {
@@ -213,31 +220,34 @@ input:active{
 /* Animation Start */
 .show {
     animation: pop-up-right 0.5s forwards;
-  }
+}
 
 .hide {
     animation: pop-up-right-reverse 0.5s forwards;
 }
 
-  @keyframes pop-up-right {
+@keyframes pop-up-right {
     from {
-      right: -100%;
+        right: -100%;
     }
-    to {
-      right: 0;
-      
-    }
-  }
 
-  @keyframes pop-up-right-reverse {
+    to {
+        right: 0;
+
+    }
+}
+
+@keyframes pop-up-right-reverse {
     from {
         right: 0;
-      }
-      to {
+    }
+
+    to {
         right: -100%;
-        
-      }
-  }
+
+    }
+}
+
 /* Animation End */
 
 .popup-content {
@@ -252,7 +262,8 @@ input:active{
     font-size: 28px;
 }
 
-.popup-header h2, .createtask-button {
+.popup-header h2,
+.createtask-button {
     margin: 20px;
     padding: 0 5px;
 }
@@ -263,7 +274,7 @@ input:active{
     padding: 10px;
     border-radius: 10px;
     font-size: 20px;
-    font-weight:lighter;
+    font-weight: lighter;
 }
 
 .createtask-button:hover {
@@ -296,11 +307,12 @@ select {
     font-size: 24px;
     border-bottom: 1px solid lightgray;
     margin: 20px;
-    padding:5px;
+    padding: 5px;
     color: #4589FF;
 }
 
-#select-contact-edit, #select-category-edit {
+#select-contact-edit,
+#select-category-edit {
     width: 90%;
     font-size: 24px;
     border-bottom: 1px solid lightgray;
@@ -329,23 +341,23 @@ select option {
     padding: 5px;
 }
 
-.date > input {
+.date>input {
     font-size: 24px;
     width: 100%;
     border-bottom: 0;
 }
 
 
-label > input {
+label>input {
     width: 90%;
     border-bottom: 1px solid lightgray;
     font-size: 28px;
-    padding:5px;
+    padding: 5px;
     margin: 0 20px;
 }
 
 .date-header {
-    margin-left:30px;
+    margin-left: 30px;
 }
 
 .priority {
@@ -365,9 +377,10 @@ label > input {
     align-items: center;
     justify-content: space-around;
     border: 2px solid transparent;
-    font-size: 20px;}
+    font-size: 20px;
+}
 
-.priority-levels > img {
+.priority-levels>img {
     padding: 0 0 0 5px;
 }
 
@@ -421,8 +434,8 @@ label > input {
 }
 
 .description {
-    margin:0 20px;
-    padding:5px;
+    margin: 0 20px;
+    padding: 5px;
 }
 
 textarea {
@@ -471,13 +484,14 @@ textarea::placeholder {
 }
 
 /* To only style the first child of an container */
-.popup > *:first-child {
+.popup>*:first-child {
     position: absolute;
     right: 2%;
     top: .5%;
     background: none;
     font-size: 20px;
 }
+
 /* Pop Up End */
 
 /* Opened Task Pop Up Start */
@@ -520,7 +534,7 @@ textarea::placeholder {
 }
 
 #task-popup ul li {
-    padding: 15px 0 ;
+    padding: 15px 0;
 }
 
 #task-popup span {
@@ -541,7 +555,7 @@ textarea::placeholder {
     background-color: #0038FF;
     color: #fff !important;
     border-radius: 50% !important;
-    margin-right:20px;
+    margin-right: 20px;
 }
 
 .edit-button {
@@ -561,6 +575,7 @@ textarea::placeholder {
     display: flex;
     align-items: center;
 }
+
 /* Opened Task Pop Up End */
 
 /* Edit Task Start */
@@ -576,7 +591,7 @@ textarea::placeholder {
     min-height: 60vh;
     margin: auto;
     border-radius: 10px;
-} 
+}
 
 .close-edit-task {
     position: absolute;
@@ -644,14 +659,14 @@ textarea::placeholder {
     font-size: 1.2rem;
     color: gray;
     background-color: lightgrey;
-  }
-  
-  .empty-container h2 {
+}
+
+.empty-container h2 {
     text-align: center;
     margin-top: 0;
     font-size: 1.5rem;
     font-weight: bold;
-  }
+}
 
 .stage-general {
     width: 20%;
@@ -678,83 +693,8 @@ textarea::placeholder {
 .stage-header button:hover {
     opacity: .7;
 }
+
 /* Stages Container End */
-
-/* Main End */
-
-/* Responsive Start */
-@media only screen and (max-width: 1450px) {
-
-.kanbanboard-description {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.kanbanboard-description h1 {
-        font-size: 38px;
-        color: #14466B;
-        text-align: center;
-        max-width: 70vw;
-}
-
-.stage-general {
-    width: 40% !important;
-    margin: 0 30px 0 0;
-}
-
-.board-header {
-    margin: 50px 50px 0;
-    justify-content: center;
-}
-
-.stages-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 50px;
-}
-
-.stage-general {
-    width: 100%;
-    margin: 0 auto;
-}
-
-.stage-header {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px;
-}
-}
-
-@media only screen and (max-width: 770px) {
-
-    .main-column {
-        width: 90vw;
-    }
-
-    .open-add-task > span {
-        display: none;
-    }
-
-    .stage-general {
-        width: 100% !important;
-        margin: 0 30px 0 0;
-    }
-
-    .popup {
-        border-radius: 0;
-    }
-
-    .popup-content {
-        height: 100vh;
-        width: 100vw;
-        padding: 30px;
-        margin: 0;
-        border-radius: 0px;
-    }
-
-}
-/* Responsive End */ 
 
 /* Styling of the Content that is created or rendered with Javascript Start */
 .test {
@@ -766,7 +706,7 @@ textarea::placeholder {
 }
 
 
-.test > h3 {
+.test>h3 {
     display: inline-block;
     font-weight: 100;
     color: #fff;
@@ -775,14 +715,17 @@ textarea::placeholder {
     margin: 0 0 20px 0;
 }
 
-.test > h4 {
+.test>h4 {
     word-wrap: break-word;
 }
 
 /* To give every single child element the exact same stylings */
-#stage-todo > *, #stage-progress > *, #stage-done > *, #stage-feedback > * {
+#stage-todo>*,
+#stage-progress>*,
+#stage-done>*,
+#stage-feedback>* {
     margin: 0 0 20px 0;
-} 
+}
 
 .blue {
     color: #4589FF;
@@ -817,7 +760,8 @@ textarea::placeholder {
 }
 
 .backoffice {
-    background-color: #1FD7C1;;
+    background-color: #1FD7C1;
+    ;
 }
 
 .marketing {
@@ -844,7 +788,7 @@ textarea::placeholder {
 
 .contact-initials {
     display: flex;
-    
+
 }
 
 
@@ -883,7 +827,7 @@ textarea::placeholder {
 }
 
 .assigned-contacts-popup {
-   padding: 20px 0;
+    padding: 20px 0;
 }
 
 .assigned-contacts-popup span {
@@ -897,4 +841,96 @@ textarea::placeholder {
     margin: 0 !important;
     border-radius: 50% !important;
 }
+
+/* Main End */
+
+/* Responsive Start */
+
+
+
+@media only screen and (max-width: 1450px) {
+
+    .kanbanboard-description {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .kanbanboard-description h1 {
+        font-size: 38px;
+        color: #14466B;
+        text-align: center;
+        max-width: 70vw;
+    }
+
+    .stage-general {
+        width: 40% !important;
+        margin: 0 30px 0 0;
+    }
+
+    .board-header {
+        margin: 50px 50px 0;
+        justify-content: center;
+    }
+
+    .stages-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 50px;
+    }
+
+    .stage-general {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .stage-header {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+
+    .main-column {
+        width: 100vw;
+    }
+    .stages-container {
+        margin-bottom: 150px;
+    }
+}
+
+@media only screen and (max-width: 770px) {
+
+    .main-column {
+        width: 90vw;
+    }
+
+    .open-add-task>span {
+        display: none;
+    }
+
+    .stage-general {
+        width: 100% !important;
+        margin: 0 30px 0 0;
+    }
+
+    .popup {
+        border-radius: 0;
+    }
+
+    .popup-content {
+        height: 100vh;
+        width: 100vw;
+        padding: 30px;
+        margin: 0;
+        border-radius: 0px;
+    }
+
+}
+
+/* Responsive End */
+
+
 /* Styling of the Content that is created or rendered with Javascript End*/
