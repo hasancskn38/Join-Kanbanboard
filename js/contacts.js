@@ -49,6 +49,41 @@ function renderLetterGroups(contactContainer, greatLetter) {
 }
 
 
+function addSubtask() {
+    let subtaskInput = document.getElementById('task-subtask').value;
+    if (subtaskInput.length <= 2) {
+        alert('Mindestens 3 Zeichen sind nötig um ein Subtask zu');
+    }
+    else {
+        subtaskArray.push(subtaskInput);
+        renderSubtasksInPopUp();
+        document.getElementById('task-subtask').value = '';
+    }
+}
+
+
+
+function renderSubtasksInPopUp() {
+    let subTasks = document.getElementById('subtask');
+    subTasks.innerHTML = '';
+    for (let i = 0; i < subtaskArray.length; i++) {
+        let subtaskInput = subtaskArray[i];
+        subTasks.innerHTML += `<li class="subtask-list">${subtaskInput} <button type="button" onclick="deleteSubtask(${i})" id="delete-subtask">❌</button></li>`;
+    }
+   
+}
+
+
+/**
+ * 
+ * @param {*} i used to specify the index of the subtask that should be deleted from the subtaskArray
+ */
+function deleteSubtask(i) {
+    subtaskArray.splice(i, 1);
+    renderSubtasksInPopUp();
+}
+
+
 function renderContact() {
     for (let j = 0; j < contacts.length; j++) {
         let contactName = contacts[j]['name'];
@@ -469,18 +504,5 @@ async function deleteContact(i) {
 }
 
 
-function addSubtask() {
-    let subtaskInput = document.getElementById('task-subtask').value;
-    renderSubtasksInPopUp(subtaskInput);
-    subtaskArray.push(subtaskInput);
-    document.getElementById('task-subtask').value = '';
-}
 
 
-/**
- * render subtasks in popup 
- */
-function renderSubtasksInPopUp(subtaskInput) {
-    let subTasks = document.getElementById('subtask');
-    subTasks.innerHTML += `<ul class="subtask-list">${subtaskInput}</ul>`;
-}

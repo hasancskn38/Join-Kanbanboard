@@ -235,6 +235,35 @@ function userAddedSuccessfull(title) {
     `;
 }
 
+function addSubtask() {
+    let subtaskInput = document.getElementById('task-subtask').value;
+    if (subtaskInput.length <= 2) {
+        alert('Mindestens 3 Zeichen sind nötig um ein Subtask zu');
+    }
+    else {
+        subtaskArray.push(subtaskInput);
+        renderSubtasksInPopUp();
+        document.getElementById('task-subtask').value = '';
+    }
+}
+
+
+
+function renderSubtasksInPopUp() {
+    let subTasks = document.getElementById('subtasks');
+    subTasks.innerHTML = '';
+    for (let i = 0; i < subtaskArray.length; i++) {
+        let subtaskInput = subtaskArray[i];
+        subTasks.innerHTML += `<li class="subtask-list">${subtaskInput} <button type="button" onclick="deleteSubtask(${i})" id="delete-subtask">❌</button></li>`;
+    }
+   
+}
+
+function deleteSubtask(i) {
+    subtaskArray.splice(i, 1);
+    renderSubtasksInPopUp();
+}
+
 function addAnimation() {
     let animation = document.getElementById('successfull_added');
     animation.classList.remove('display_opacity');
@@ -254,6 +283,8 @@ function clearInputFields() {
     document.getElementById('task-description').value = '';
     document.getElementById('task-subtask').value = '';
     document.getElementById('select-contact').value = '';
+    subtaskArray = [];
+    document.getElementById('subtasks').innerHTML = '';
     if (priority == 'Urgent') {
         changeUrgentColor();
     }
