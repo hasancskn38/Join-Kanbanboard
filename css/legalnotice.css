@@ -2,9 +2,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 300px;
+    margin-top: 150px;
     position: absolute;
-    left: 350px;
-    top: 211px;
     flex-direction: column;
     z-index: -1;
 }
@@ -80,9 +80,10 @@
     word-break: break-word;
 }
 
-@media (max-width:771px) {
+@media (max-width:1000px) {
     .main-legal-notice {
-        left: 31px;
+        margin-left: 50px;
+        margin-top: 20px;
+        padding-bottom: 120px;
     }
-    
 }
