@@ -677,13 +677,14 @@ background-color: white;
 }
 
 @media (max-width:450px) {
+
     nav {
         width: 102%;
     }
 
     .layout-contact1 {
         width: 440px;
-        margin-top: -80px;
+        margin-top: -75px;
     }
 
     .add-contact-layout-2 {

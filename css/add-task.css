@@ -16,8 +16,8 @@ body {
 }
 
 .popup-content {
-    height: 100%;
-    margin: 30px;
+    height: auto;
+    margin: 20px;
     overflow: hidden;
 }
 
@@ -210,9 +210,10 @@ label>input {
 
 textarea {
     width: 90%;
+    height: 100px;
     font-size: 17px;
     margin: 15px 0;
-    padding: 15px;
+    padding: px;
     border-radius: 10px;
     border: 1px solid lightgrey;
 }
@@ -353,8 +354,8 @@ textarea::placeholder {
 }
 
 .description {
-    margin:0 20px;
-    padding:5px;
+    margin: 0 20px;
+    padding: 5px;
 }
 
 .successfull_added {
@@ -367,7 +368,7 @@ textarea::placeholder {
 
 .successfull_added b {
     font-size: 38px;
-    color: rgb(69,137,255);
+    color: rgb(69, 137, 255);
 }
 
 
@@ -379,8 +380,13 @@ textarea::placeholder {
 
 
 @keyframes fade-in {
-    0% {opacity: 0;} 
-    100% {opacity: 1;} 
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .display_opacity {
@@ -414,40 +420,26 @@ textarea::placeholder {
     .successfull_added {
         margin-left: 20px;
     }
-    .main_container {
-        margin-bottom: 130px;
+}
+
+@media (max-width: 1000px) {
+    .popup-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: visible;
+        margin-left: calc(50vw - 200px);
+        height: 1000px;
+        margin-top: -100px;
+    }
+
+    .two-button button {
+       height: 50px;
+       margin-top: -20px;
     }
 }
 
-@media (max-width: 770px) {
-    .popup-content {
-        margin: -20px;
-    }
-    .successfull_added {
-        color: white;
-        padding-top: 100px;
-        padding-bottom: 100px;
-        position: absolute;
-        left: calc(50% - 220px);
-        background-color: rgba(0, 0, 0, 0.904);
-        border-radius: 20px;
-    }
-}
+@media (max-width: 430px) {
 
-@media (max-width: 550px) {
-    .popup-content {
-        margin: -20px;
 
-    }
-}
-
-@media (max-width: 450px) {
-    .successfull_added {
-        width: 300px;
-        left: calc(50% - 170px);
-    }
-
-    .popup-content {
-        margin: -20px;
-    }
 }

@@ -38,23 +38,14 @@
 
                 <div class="popup-content">
 
-                    <div class="popup-header">
-                        <h2>Add Task</h2>
-                    </div>
-
                     <div class="input-container">
                         <input required id="task-title" class="popup-input" type="text" placeholder="Enter a title">
                     </div>
 
+                    <select id="select-contact" class="select-contact cursor" required>
+                        <option value="" disabled selected hidden>Select contacts to assign</option>
 
-                    <select required id="select-category" class="cursor">
-                        <option value="" disabled selected hidden>Select task category</option>
-                        <option class="design-option" value="Design">Design</option>
-                        <option class="sales-option" value="Sales">Sales</option>
-                        <option class="backoffice-option" value="Backoffice">Backoffice</option>
-                        <option class="marketing-option" value="Marketing">Marketing</option>
                     </select>
-
 
                     <label for="appointment">
                         <h2 class="date-header">Due date</h2>
@@ -64,11 +55,13 @@
                         </div>
                     </label>
 
-                    <select multiple id="select-contact" class="select-contact cursor" required>
-                        <option value="" disabled selected hidden>Select contacts to assign</option>
-
+                    <select required id="select-category" class="cursor">
+                        <option value="" disabled selected hidden>Select task category</option>
+                        <option class="design-option" value="Design">Design</option>
+                        <option class="sales-option" value="Sales">Sales</option>
+                        <option class="backoffice-option" value="Backoffice">Backoffice</option>
+                        <option class="marketing-option" value="Marketing">Marketing</option>
                     </select>
-
 
                     <div class="priority">
 
