@@ -535,6 +535,10 @@
 }
 
 @media (max-width:1000px) {
+    .add-contact-layout-2 {
+        width: 100vw;
+        border-radius: 0px;
+    }
     .side-bar {
         height: 120px;
         width: 100%;
@@ -569,9 +573,7 @@
         box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
         height: 100px;
     }
-}
 
-@media (max-width:1000px) {
     .layout-contact2 {
         position: relative;
         width: 100%;
@@ -660,7 +662,6 @@
         width: 100%;
         cursor: pointer;
     }
-
 }
 
 @media (max-width:450px) {
@@ -674,9 +675,7 @@
     }
 
     .add-contact-layout-2 {
-        width: 385px;
-        margin-left: 15px;
-        border-radius: 30px 30px 30px 30px;
+    width: 100vw;
     }
 
     .add-contact-top {
@@ -708,108 +707,4 @@
     }
 }
 
-@media (max-width:393px) {
-    nav {
-        width: 91%;
-    }
 
-    .layout-contact2 {
-        width: 78%;
-    }
-
-    .arrow-div {
-        margin-right: 25px;
-    }
-
-    .add-contact-layout-2 {
-        width: 365px;
-    }
-}
-
-@media (max-width:390px) {
-    nav {
-        width: 91%;
-    }
-
-    .layout-contact2 {
-        width: 78%;
-    }
-
-    .arrow-div {
-        margin-right: 25px;
-    }
-
-    .add-contact-layout-2 {
-        width: 365px;
-    }
-
-    .navbar div {
-        width: 110%;
-    }
-}
-
-@media (max-width:375px) {
-
-    .edit-contact-responsive {
-        right: 120px;
-    }
-
-    .arrow-div {
-        margin-right: 110px;
-    }
-
-    .layout-contact2 {
-        height: calc(80vh) !important;
-        margin-top: 120px;
-    }
-
-    .priority {
-        gap: 7px;
-    }
-
-    .priority-levels {
-        width: 40%;
-    }
-
-    .popup-content {
-        overflow-x: hidden;
-    }
-
-    .creat-contact {
-        margin-left: 60px;
-        margin-top: -15px;
-    }
-
-    .add-contact-input-field {
-        width: 337px;
-    }
-
-    .add-contact-layout-2 {
-        width: 350px;
-        margin-left: 9px;
-        border-radius: 30px 30px 30px 30px;
-    }
-
-    .add-contact-top {
-        border-radius: 30px 30px 0 0;
-    }
-}
-
-@media (max-width:360px) {
-    .arrow-div {
-        margin-right: 45px;
-    }
-
-    .contact-detail-header-right {
-        margin-left: -30px;
-    }
-
-    .edit-contact-responsive {
-        right: 70px;
-    }
-
-    .layout-contact2 {
-        width: 75%;
-    }
-
-}
