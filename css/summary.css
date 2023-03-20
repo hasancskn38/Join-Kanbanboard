@@ -108,6 +108,7 @@ main h2 {
 
 .main-right-bottom {
     display: flex;
+    flex-wrap: wrap;
     gap: 25px;
     width: 100%;
 }
@@ -247,8 +248,7 @@ main h2 {
         flex-wrap: wrap;
         align-items: center;
         margin: 20px auto;
-        margin-left: 70px;
-        width: 100%;
+        width: 90%;
     }
 
     .task-general {
@@ -259,16 +259,14 @@ main h2 {
         width: 100%;
     }
 
-    .show_logged_on_user {
+    /* .show_logged_on_user {
         margin-left: 155px;
-    }
+    } */
 }
 
 @media (max-width:1024px) {
-    .main-right-top {}
-
     .main-right-bottom {
-        width: 70%;
+        width: 90%;
         margin-bottom: 150px;
     }
 
@@ -276,9 +274,9 @@ main h2 {
         margin: 0;
     }
 
-    .show_logged_on_user {
+    /* .show_logged_on_user {
         margin-left: 50px;
-    }
+    } */
 }
 
 
@@ -290,17 +288,22 @@ main h2 {
         width: 400px;
     }
 
+    .main-right-bottom {
+        margin-left: 0;
+        width: 100%;
+    }
+
     .main-right-tasks {
         margin: 0;
         width: 400px;
     }
 
-    .show_logged_on_user {
+    /* .show_logged_on_user {
         margin-left: 15px;
         font-size: 30px;
         margin-right: 0px;
         width: 350px;
-    }
+    } */
 
     .nav-container {
         justify-content: center;

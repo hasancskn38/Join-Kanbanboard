@@ -556,6 +556,7 @@ async function submitChanges(i) {
     }
 }
 
+
 function checkForPrio() {
     let urgent = document.getElementById('urgent-edit');
     if (urgent.classList.contains('urgent')) {
