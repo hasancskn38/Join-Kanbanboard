@@ -23,7 +23,7 @@ async function includeHTML() {
         }
     }
     renderAllBackendData();
-    
+
 }
 
 function parseLoggedOnUser() {
@@ -52,15 +52,15 @@ function renderAllContacts() {
     document.getElementById('urgent').addEventListener('click', function () {
         setPriority('Urgent');
     });
-    
+
     document.getElementById('medium').addEventListener('click', function () {
         setPriority('Medium');
     });
-    
+
     document.getElementById('low').addEventListener('click', function () {
         setPriority('Low');
     });
-    
+
     function setPriority(value) {
         priority = value;
     }
@@ -208,17 +208,17 @@ async function addTaskToBoard() {
 }
 
 function renderSubtasks() {
-    let resultArray = []; 
+    let resultArray = [];
     for (let i = 0; i < subtaskArray.length; i++) {
-      let subtask = subtaskArray[i];
-      let obj = {
-        "subtask": subtask,
-        "status": 'open'
-      };
-      resultArray.push(obj); 
+        let subtask = subtaskArray[i];
+        let obj = {
+            "subtask": subtask,
+            "status": 'open'
+        };
+        resultArray.push(obj);
     }
-    return resultArray; 
-  }
+    return resultArray;
+}
 
 function userAddedSuccessfull(title) {
     let container = document.getElementById('successfull_added');
@@ -239,7 +239,7 @@ function addAnimation() {
     let animation = document.getElementById('successfull_added');
     animation.classList.remove('display_opacity');
     animation.classList.add('successfull_added_animation');
-  
+
 
     setTimeout(() => {
         animation.classList.remove('successfull_added_animation');
@@ -268,4 +268,14 @@ function clearInputFields() {
 function resetForm() {
     document.getElementById("createtask-form").reset();
     clearInputFields();
-  }
+}
+
+function showHelpMeSection() {
+    document.getElementById('help-me-container').classList.remove('d-none');
+    document.querySelector('main').classList.add('d-none');
+}
+
+function hideHelpMeSection() {
+    document.getElementById('help-me-container').classList.add('d-none');
+    document.querySelector('main').classList.remove('d-none');
+}
