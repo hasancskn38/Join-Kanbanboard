@@ -159,3 +159,52 @@ body {
     color: rgb(38, 110, 255);
     transition: all .2s ease-in-out;
 }
+
+@media (max-width: 800px) {
+    .login_head img {
+        margin-left: -20px;
+    }
+    .login_form {
+        width: 450px;
+    }
+}
+
+@media (max-width: 600px) {
+    .login_head img {
+        margin-left: -70px;
+    }
+    .login_form {
+        height: 450px;
+        width: 350px;
+    }
+
+    .registry_input {
+        height: 200px;
+        width: 300px;
+    }
+
+    .back_button {
+        margin-top: -60px;
+    }
+}
+
+@media (max-width: 450px) {
+    .login_head img {
+        margin-left: -100px;
+    }
+    .login_form {
+        height: 450px;
+        width: 350px;
+    }
+
+    .registry_input {
+        height: 200px;
+        width: 300px;
+    }
+
+    .back_button {
+        margin-top: -60px;
+    }
+}
+
+
