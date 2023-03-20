@@ -544,6 +544,10 @@ textarea::placeholder {
     color: #000;
 }
 
+.assigned-contacts-popup span {
+    color: #fff !important;
+}
+
 .short-cut {
     display: flex;
     justify-content: center;

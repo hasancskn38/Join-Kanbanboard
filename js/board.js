@@ -513,6 +513,7 @@ async function submitChanges(i) {
             let initials = nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
             return initials.toUpperCase();
         });
+    let selectedContacts = document.getElementById('select-contact-add').value
     let newCategoryPopUp = document.getElementById(`category-${i}`);
     let urgentEdit = document.getElementById('urgent-edit')
     let mediumEdit = document.getElementById('medium-edit')
@@ -521,8 +522,8 @@ async function submitChanges(i) {
         newPriority = checkForPrio();
         test.title = newTaskName;
         test.description = newDescription;
-        test.cat = newCategory;
         test.assignedContacts = newAssignedContact;
+        test.cat = newCategory;
         test.priority;
         test.date = newDate;
         newCategoryPopUp = newCategory;
@@ -535,7 +536,7 @@ async function submitChanges(i) {
         await includeHTML();
     }
     else if (!urgentEdit.classList.contains('urgent') & !mediumEdit.classList.contains('medium') & !lowEdit.classList.contains('low')) {
-        alert('Please choose a priority level for your task')
+        alert('Please choose a priority level for your task');
     }
     else {
         test.title = newTaskName;
