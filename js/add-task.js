@@ -304,9 +304,11 @@ function resetForm() {
 function showHelpMeSection() {
     document.getElementById('help-me-container').classList.remove('d-none');
     document.getElementById('createtask-form').classList.add('d-none');
+    document.getElementById('side_bar').classList.add('d-none');
 }
 
 function hideHelpMeSection() {
     document.getElementById('help-me-container').classList.add('d-none');
     document.getElementById('createtask-form').classList.remove('d-none');
+    document.getElementById('side_bar').classList.remove('d-none');
 }
