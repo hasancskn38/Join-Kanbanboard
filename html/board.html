@@ -87,6 +87,9 @@
                             <input required id="task-title" class="popup-input" type="text" placeholder="Enter a title">
                         </div>
 
+                        <div id="new-category-input" class="input-container d-none">
+                            <input required id="new-category-name" class="popup-input" type="text" placeholder="new category name"><button type="button" id="add-new-category">Add</button>
+                        </div>
 
                         <select required id="select-category" class="cursor">
                             <option value="" disabled selected hidden>Select task category</option>
@@ -94,6 +97,7 @@
                             <option class="sales-option" value="Sales">Sales</option>
                             <option class="backoffice-option" value="Backoffice">Backoffice</option>
                             <option class="marketing-option" value="Marketing">Marketing</option>
+                            <option id="new-category" value="new-category">Create New Category</option>
                         </select>
 
 
@@ -107,6 +111,9 @@
                             <select multiple required id="select-contact-add" class="select-contact cursor">
                                 <option value="" disabled selected hidden>Select contacts to assign</option>
                             </select>
+
+                            
+
                         <div id="initials-div">
                             
                         </div>
@@ -194,8 +201,5 @@
         <!-- Drag and Drop End -->
 
     </main>
-
-
 </body>
-
 </html>

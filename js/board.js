@@ -743,3 +743,34 @@ function searchTask() {
     }
     renderData();
 } 
+
+
+// Change Select Element to Input
+let selectCategory = document.getElementById('select-category');
+selectCategory.addEventListener('change', function(event) {
+  let selectedOption = event.target.value;
+  if (selectedOption === 'new-category') {
+    changeSelectToInput();
+  }
+});
+
+function changeSelectToInput() {
+  document.getElementById('select-category').classList.add('d-none');
+  document.getElementById('new-category-input').classList.remove('d-none');
+}
+
+
+document.getElementById('add-new-category').addEventListener('click', function() {
+    let newCategoryName = document.getElementById('new-category-name');
+    let newOption = document.createElement('option');
+    newOption.value = newCategoryName.value;
+    newOption.text = newCategoryName.value;
+    selectCategory.insertBefore(newOption, selectCategory.options[selectCategory.options.length - 1]);
+    document.getElementById('select-category').classList.remove('d-none');
+    document.getElementById('new-category-input').classList.add('d-none');
+})
+
+
+
+
+
