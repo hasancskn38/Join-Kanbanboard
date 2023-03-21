@@ -166,6 +166,27 @@ body {
     transition: all .2s ease-in-out;
 }
 
+.register-name {
+    background: url("../assets/img/Input_Name.png");
+    background-position: 370px;
+    background-size: 4%;
+    background-repeat: no-repeat;
+}
+
+.register-email {
+    background: url("../assets/img/Input_Email.png");
+    background-position: 370px;
+    background-size: 4%;
+    background-repeat: no-repeat;
+}
+
+.register-lock {
+    background: url("../assets/img/Input_Lock.png");
+    background-position: 370px;
+    background-size: 4%;
+    background-repeat: no-repeat;
+}
+
 @media (max-width: 800px) {
     .login_head img {
         margin-left: -20px;

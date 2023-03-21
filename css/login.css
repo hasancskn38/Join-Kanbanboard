@@ -5,6 +5,20 @@ body {
     animation: backgroundcolor 1.5s;
 }
 
+.login-email {
+    background: url("../assets/img/Input_Email.png");
+    background-position: 335px;
+    background-size: 4%;
+    background-repeat: no-repeat;
+}
+
+.login-lock {
+    background: url("../assets/img/Input_Lock.png");
+    background-position: 335px;
+    background-size: 4%;
+    background-repeat: no-repeat;
+}
+
 .login_head {
     display: flex;
     justify-content: space-around;
@@ -303,8 +317,6 @@ body {
             margin-top: 0px;
             object-fit: cover;
         }
-
-        2.5
     }
 }
 
