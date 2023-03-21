@@ -907,11 +907,16 @@ textarea::placeholder {
 @media only screen and (max-width: 1400px) {
 
     .main-column {
-        overflow-x: hidden;
+        position: fixed;
+        overflow: auto;
+        left: 280px;
+        bottom: 0;
+        top: 0;
+        height: 100vh;
     }
 
     .stages-container {
-
+        height: 100vh;
         width: 1150px;
         flex-wrap: nowrap;
     }
@@ -921,14 +926,16 @@ textarea::placeholder {
 @media only screen and (max-width: 1000px) {
 
     .main-column {
-        left: 100px;
-        bottom: 120px;
-        top: 0px;
         position: fixed;
         overflow: auto;
+        left: 100px;
+        bottom: 0;
+        top: 0;
+        height: 87vh;
     }
 
     .stages-container {
+        height: 100vh;
         width: 1150px;
         margin: 0;
         flex-wrap: nowrap;
