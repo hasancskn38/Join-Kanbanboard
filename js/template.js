@@ -214,7 +214,7 @@ function doneTemplate(i, test, finishedSubTasks) {
 function renderShowContactsHTML(contactColor, bothFirstLetter, contactName, contactEmail, contactPhone, i) {
     return `
     <div class="border-for-contacts"></div>
-     <div class="over" onclick="openDetailContact('${bothFirstLetter}', '${contactColor}', '${contactName}', '${contactEmail}', '${contactPhone}', ${i})">
+     <div id="contact_nr${i}" class="over" onclick="openDetailContact('${bothFirstLetter}', '${contactColor}', '${contactName}', '${contactEmail}', '${contactPhone}', ${i})">
       <div class="over-div-letter-name-email">
       <div style="background-color: ${contactColor}" class="letter-circle">${bothFirstLetter}</div>
       <div>
