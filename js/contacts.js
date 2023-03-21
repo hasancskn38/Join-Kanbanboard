@@ -127,8 +127,17 @@ function openDetailContact(bothFirstLetter, contactColor, contactName, contactEm
     let contactDetail = document.getElementById('layout-contact4');
     contactDetail.innerHTML = '';
     contactDetail.innerHTML = renderOpenDetailContact(bothFirstLetter, contactColor, contactName, contactEmail, contactPhone, i);
+    highlightClickedContact(i);
 }
 
+function highlightClickedContact(i){
+    let highlightedContacts = document.getElementsByClassName('highlight_contact');
+    while (highlightedContacts.length) {
+        highlightedContacts[0].classList.remove('highlight_contact');
+}
+    document.getElementById(`contact_nr${i}`).classList.add('highlight_contact');
+
+}
 function showHelpMeSection() {
     document.getElementById('help-me-container').classList.remove('d-none');
     document.querySelector('main').classList.add('d-none');

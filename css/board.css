@@ -706,9 +706,9 @@ textarea::placeholder {
     font-size: 20px;
     height: 30px;
     width: 30px;
- display: flex;
- align-items: center;
- justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #fff;
     color: #4589FF;
     border: 1px solid #4589FF;
