@@ -19,6 +19,7 @@ body {
     height: auto;
     margin: 20px;
     overflow: hidden;
+    font-family: 'Open Sans' !important;
 }
 
 .d-none {
