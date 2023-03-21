@@ -101,9 +101,11 @@ body {
 
 .sign_in_button:hover {
     cursor: pointer;
-    background-color: rgb(59, 131, 255);
+    background: #4e85e5;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.283);
     transition: all .2s ease-in-out;
 }
+    
 
 .login_main_container {
     display: flex;
@@ -237,7 +239,8 @@ body {
 
 .log_in_button:hover {
     cursor: pointer;
-    background-color: rgb(59, 131, 255);
+    background: #4e85e5;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.283);
     transition: all .2s ease-in-out;
 }
 
@@ -252,7 +255,9 @@ body {
 .guest_log_in_button:hover {
     cursor: pointer;
     transition: all .2s ease-in-out;
-    background-color: rgb(238, 238, 238);
+    border: 1px solid #4589FF;
+    color: #4589FF;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.283);
 }
 
 .login_remember_me {
