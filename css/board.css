@@ -905,15 +905,13 @@ textarea::placeholder {
 
 
 @media only screen and (max-width: 1400px) {
+
     .main-column {
-        left: 280px;
-        bottom: 0;
-        top: -100px;
-        position: fixed;
-        overflow: auto;
+        overflow-x: hidden;
     }
 
     .stages-container {
+
         width: 1150px;
         flex-wrap: nowrap;
     }
