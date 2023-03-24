@@ -7,6 +7,21 @@
     scroll-behavior: smooth;
 }
 
+.popup-content h4 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 120%;
+    color: #42526E;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+
 li {
     list-style-type: none;
 }
@@ -191,10 +206,6 @@ input:active {
 
 /* Board Header End */
 
-/* Pop Up Task Start*/
-
-/* Pop Up Task End*/
-
 /* Pop Up Start */
 .overlay {
     position: absolute;
@@ -312,12 +323,13 @@ input:active {
     justify-content: center;
     border-bottom: 1px solid lightgray;
     margin: 20px;
+    width: 90%;
 }
 
 .popup-input {
     width: 90%;
-    font-size: 28px;
-    padding: 5px;
+    font-size: 35px;
+    padding: 10px;
     /* Margin Right to push the placeholder on the outside */
     margin-right: 80px;
 }
@@ -365,11 +377,13 @@ select option {
     width: 90%;
     margin: 15px;
     padding: 5px;
+    
 }
 
 .date>input {
     font-size: 24px;
     width: 100%;
+    color: #D1D1D1;
     border-bottom: 0;
 }
 
@@ -384,6 +398,45 @@ label>input {
 
 .date-header {
     margin-left: 30px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 120%;
+    color: #42526E;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.new-category-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#new-category-name {
+    font-size:20px;
+}
+
+.category-colors {
+    display: flex;
+    margin: 15px;
+}
+
+.category-colors img {
+    padding: 5;
+    /* border: 3px solid #fff;
+    border-radius: 50%; */
+    height: 25px;
+}
+
+.check-and-cross {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.check-and-cross img {
+    padding: 0;
 }
 
 .priority {
@@ -394,8 +447,14 @@ label>input {
     margin: 20px;
 }
 
+#category-alert {
+    color: red;
+    margin: 20px;
+    font-size: 20px;
+}
+
 .priority-levels {
-    box-shadow: 1px 1px rgb(0 0 0 / 10%), -1px 1px rgb(0 0 0 / 10%), 1px -1px rgb(0 0 0 / 10%), -1px -1px rgb(0 0 0 / 10%);
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
     padding: 15px 20px;
     width: 31%;
     border-radius: 10px;
@@ -490,7 +549,8 @@ textarea::placeholder {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 90%;
+    width: 100%;
+    margin: 0;
 }
 
 .subtasks-input button {

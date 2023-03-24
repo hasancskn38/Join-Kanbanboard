@@ -747,28 +747,50 @@ function searchTask() {
 
 // Change Select Element to Input
 let selectCategory = document.getElementById('select-category');
+let newCategoryName = document.getElementById('new-category-name');
+let newCategoryContainer = document.getElementById('new-category-container');
 selectCategory.addEventListener('change', function(event) {
   let selectedOption = event.target.value;
   if (selectedOption === 'new-category') {
+    console.log('hi');
     changeSelectToInput();
   }
 });
 
 function changeSelectToInput() {
   document.getElementById('select-category').classList.add('d-none');
-  document.getElementById('new-category-input').classList.remove('d-none');
+  newCategoryContainer.classList.remove('d-none');
+  newCategoryName.focus();
 }
 
 
 document.getElementById('add-new-category').addEventListener('click', function() {
-    let newCategoryName = document.getElementById('new-category-name');
     let newOption = document.createElement('option');
+    let categoryNote = document.getElementById('category-alert')
+    if (newCategoryName.value == '') {
+        categoryNote.classList.remove('d-none');
+    } else {
+    categoryNote.classList.add('d-none');
     newOption.value = newCategoryName.value;
     newOption.text = newCategoryName.value;
-    selectCategory.insertBefore(newOption, selectCategory.options[selectCategory.options.length - 1]);
+    selectCategory.appendChild(newOption);
     document.getElementById('select-category').classList.remove('d-none');
-    document.getElementById('new-category-input').classList.add('d-none');
+    document.getElementById('new-category-input').classList.add('d-none');  
+    newCategoryName.value = '';  
+    selectCategory.selectedIndex = 0;
+    }
 })
+
+
+let taskDate = document.getElementById('task-date');
+let myCalendar = document.getElementById('calendar-img');
+
+// TODO eventlistener that shows the calendar
+myCalendar.onclick = function() {
+    taskDate.click();
+    taskDate.focus();
+}
+
 
 
 
