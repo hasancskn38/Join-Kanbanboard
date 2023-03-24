@@ -752,7 +752,6 @@ let newCategoryContainer = document.getElementById('new-category-container');
 selectCategory.addEventListener('change', function(event) {
   let selectedOption = event.target.value;
   if (selectedOption === 'new-category') {
-    console.log('hi');
     changeSelectToInput();
   }
 });
@@ -776,6 +775,7 @@ document.getElementById('add-new-category').addEventListener('click', function()
     selectCategory.appendChild(newOption);
     document.getElementById('select-category').classList.remove('d-none');
     document.getElementById('new-category-input').classList.add('d-none');  
+    document.getElementById('category-colors').classList.add('d-none');
     newCategoryName.value = '';  
     selectCategory.selectedIndex = 0;
     }
@@ -791,7 +791,13 @@ myCalendar.onclick = function() {
     taskDate.focus();
 }
 
-
+document.getElementById('hide-new-category').addEventListener('click', function() {
+    document.getElementById('category-colors').classList.add('d-none');
+    document.getElementById('new-category-input').classList.add('d-none');
+    document.getElementById('category-alert').classList.add('d-none');
+    document.getElementById('select-category').classList.remove('d-none');
+    selectCategory.selectedIndex = 0;
+})
 
 
 
