@@ -749,6 +749,7 @@ let selectCategory = document.getElementById('select-category');
 let categorys =  document.getElementById('new-category');
 let dropDownImg = document.getElementById('dropwdown-icon');
 
+// hide or show categorylist
 selectCategory.addEventListener('click', function() {
     if(categorys.classList.contains('d-none')) {
         categorys.classList.remove('d-none');
@@ -761,10 +762,42 @@ selectCategory.addEventListener('click', function() {
 
 let newCategoryContainer = document.getElementById('new-category-container');
 let newCategory = document.getElementById('new-category');
+// show new category input when clicking on 'create new category'
 newCategory.addEventListener('click', function() {
     categorys.classList.add('d-none');
     selectCategory.classList.add('d-none');
     newCategoryContainer.classList.remove('d-none');
-})
+});
+
+
+// create new category
+let addNewCategory = document.getElementById('add-new-category');
+let newCategoryName = document.getElementById('new-category-name');
+let categoryAlert = document.getElementById('category-alert');
+addNewCategory.addEventListener('click', function() {
+    if(newCategoryName.value == '') {
+        categoryAlert.classList.remove('d-none');
+    } else {
+        console.log(newCategoryName.value);
+    }
+});
+
+
+function displayColor() {
+    // Get all the color images
+    const colorImages = document.querySelectorAll('.category-colors img');
+    
+    // Loop through each color image
+    colorImages.forEach(image => {
+      // Check if the clicked image matches the current image in the loop
+      if (image === event.target) {
+        // Remove the "d-none" class from the clicked image
+        image.classList.remove('d-none');
+      } else {
+        // Add the "d-none" class to all other color images
+        image.classList.add('d-none');
+      }
+    });
+  }
 
 
