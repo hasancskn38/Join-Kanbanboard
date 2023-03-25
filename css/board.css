@@ -21,6 +21,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 }
 
+.turn-dropdown {
+    rotate: 180deg;
+}
 
 li {
     list-style-type: none;
@@ -439,12 +442,22 @@ label>input {
     padding: 15px;
 }
 
+#select-category-inner {
+    display: flex;
+    justify-content: space-between;
+}
+
+#select-category-inner img {
+    padding: 0;
+}
+
 .categorys:hover {
     background-color: #D2E3FF;
 }
 
 .category-name {
     font-size: 20px;
+    margin-right: 20px;
 }
 
 .categorys img {

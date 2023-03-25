@@ -746,15 +746,25 @@ function searchTask() {
 
 
 let selectCategory = document.getElementById('select-category');
-let categorys =  document.getElementById('categorys');
+let categorys =  document.getElementById('new-category');
+let dropDownImg = document.getElementById('dropwdown-icon');
 
 selectCategory.addEventListener('click', function() {
     if(categorys.classList.contains('d-none')) {
         categorys.classList.remove('d-none');
+        dropDownImg.classList.add('turn-dropdown');
     } else {
         categorys.classList.add('d-none');
+        dropDownImg.classList.remove('turn-dropdown');
     }
 })
 
+let newCategoryContainer = document.getElementById('new-category-container');
+let newCategory = document.getElementById('new-category');
+newCategory.addEventListener('click', function() {
+    categorys.classList.add('d-none');
+    selectCategory.classList.add('d-none');
+    newCategoryContainer.classList.remove('d-none');
+})
 
 

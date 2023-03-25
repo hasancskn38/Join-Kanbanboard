@@ -102,6 +102,7 @@
                         <h4 class="date-header">Category</h4>
                        <div class="new-category-container d-none" id="new-category-container">
                         <p class="d-none" id="category-alert">Please select a category name and then a color !</p>
+                        
                         <div id="new-category-input" class="input-container">
                             <input required id="new-category-name" class="popup-input" type="text" placeholder="new category name">
                             <div class="check-and-cross">
@@ -131,11 +132,13 @@
                         </select> -->
 
                         <div class="cursor" id="select-category">
-                            <p>Select task category</p><img class="dropdown-icon" src="../assets/icons/dropdown.png" alt="">
+                            <p id="select-category-inner">Select task category</p><img id="dropwdown-icon" class="dropdown-icon" src="../assets/icons/dropdown.png" alt="">
                         </div>
 
-                        <div class="categorys d-none cursor" id="categorys">
-                            <div class="category-name">Design</div><div class="category-color"><img src="../assets/icons/color1.png" alt=""></div>
+                        <div class="categorys-container">
+                            <div class="categorys d-none cursor" id="new-category">
+                                <div class="new-category cursor">create new category</div>
+                            </div>
                         </div>
 
 
