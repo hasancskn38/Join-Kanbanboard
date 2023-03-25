@@ -121,22 +121,25 @@
                         </div>
                        </div>
                         
-                        <select required id="select-category" class="cursor">
+                        <!-- <select required id="select-category" class="cursor">
                             <option value="" disabled selected hidden>Select task category</option>
                             <option id="new-category" value="new-category">Create New Category</option>
                             <option class="design-option" value="Design">Design</option>
                             <option class="sales-option" value="Sales">Sales</option>
                             <option class="backoffice-option" value="Backoffice">Backoffice</option>
                             <option class="marketing-option" value="Marketing">Marketing</option>
-                        </select>
-                            
+                        </select> -->
 
-                        <div id="initials-div">
-                            
+                        <div class="cursor" id="select-category">
+                            <p>Select task category</p><img class="dropdown-icon" src="../assets/icons/dropdown.png" alt="">
                         </div>
 
-                        <div class="priority">
+                        <div class="categorys d-none cursor" id="categorys">
+                            <div class="category-name">Design</div><div class="category-color"><img src="../assets/icons/color1.png" alt=""></div>
+                        </div>
 
+
+                        <div class="priority">
                             <div class="priority-levels cursor" id="urgent" onclick="changeUrgentColor()"><span
                                     id="urgent-inner">Urgent</span><img id="img1" src="../assets/icons/urgent.png"
                                     alt=""></div>

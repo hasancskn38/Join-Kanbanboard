@@ -745,60 +745,16 @@ function searchTask() {
 } 
 
 
-// Change Select Element to Input
 let selectCategory = document.getElementById('select-category');
-let newCategoryName = document.getElementById('new-category-name');
-let newCategoryContainer = document.getElementById('new-category-container');
-selectCategory.addEventListener('change', function(event) {
-  let selectedOption = event.target.value;
-  if (selectedOption === 'new-category') {
-    changeSelectToInput();
-  }
-});
+let categorys =  document.getElementById('categorys');
 
-function changeSelectToInput() {
-  document.getElementById('select-category').classList.add('d-none');
-  newCategoryContainer.classList.remove('d-none');
-  newCategoryName.focus();
-}
-
-
-document.getElementById('add-new-category').addEventListener('click', function() {
-    let newOption = document.createElement('option');
-    let categoryNote = document.getElementById('category-alert')
-    if (newCategoryName.value == '') {
-        categoryNote.classList.remove('d-none');
+selectCategory.addEventListener('click', function() {
+    if(categorys.classList.contains('d-none')) {
+        categorys.classList.remove('d-none');
     } else {
-    categoryNote.classList.add('d-none');
-    newOption.value = newCategoryName.value;
-    newOption.text = newCategoryName.value;
-    selectCategory.appendChild(newOption);
-    document.getElementById('select-category').classList.remove('d-none');
-    document.getElementById('new-category-input').classList.add('d-none');  
-    document.getElementById('category-colors').classList.add('d-none');
-    newCategoryName.value = '';  
-    selectCategory.selectedIndex = 0;
+        categorys.classList.add('d-none');
     }
 })
-
-
-let taskDate = document.getElementById('task-date');
-let myCalendar = document.getElementById('calendar-img');
-
-// TODO eventlistener that shows the calendar
-myCalendar.onclick = function() {
-    taskDate.click();
-    taskDate.focus();
-}
-
-document.getElementById('hide-new-category').addEventListener('click', function() {
-    document.getElementById('category-colors').classList.add('d-none');
-    document.getElementById('new-category-input').classList.add('d-none');
-    document.getElementById('category-alert').classList.add('d-none');
-    document.getElementById('select-category').classList.remove('d-none');
-    selectCategory.selectedIndex = 0;
-})
-
 
 
 

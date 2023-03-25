@@ -407,6 +407,50 @@ label>input {
     margin-bottom: 0px;
 }
 
+#calendar-img {
+    padding: 0;
+}
+
+#select-category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 15px;
+    padding: 5px;
+    border-bottom: 1px solid lightgray;
+}
+
+#select-category p {
+    font-size: 24px;
+}
+
+.dropdown-icon {
+    padding: 0;
+    width: 14px;
+    height: 8px;
+}
+
+.categorys {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 15px;
+    padding: 15px;
+}
+
+.categorys:hover {
+    background-color: #D2E3FF;
+}
+
+.category-name {
+    font-size: 20px;
+}
+
+.categorys img {
+    padding: 0;
+}
+
 .new-category-container {
     display: flex;
     flex-direction: column;
