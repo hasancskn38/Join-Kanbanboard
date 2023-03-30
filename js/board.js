@@ -141,7 +141,7 @@ function renderContactInitials(i, test, selectedContacts) {
     assignedContactsContainer.innerHTML = '';
     for (let i = 0; i < test.assignedContacts.length; i++) {
         assignedContactsContainer.innerHTML +=
-            `<span>${test.assignedContacts[i]}</span>`
+            `<span>${test.assignedContacts[i].substring(0, 2).toUpperCase()}</span>`
     }
 }
 
@@ -876,7 +876,7 @@ function selectContact(i) {
     }
     if (!alreadyAssigned) {
         document.getElementById(`dropdown_checkbox${i}`).innerHTML = '▣';
-        assignedContacts.push(contacts[i].name.substring(0, 2).toUpperCase());
+        assignedContacts.push(contacts[i].name);
     }
 
 }
