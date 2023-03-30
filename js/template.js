@@ -30,7 +30,7 @@ function toDoTemplate(i, test, finishedSubTasks) {
     <h4 class="blue">${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
-    <progress value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
+    <progress style:width:80% value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
     <div class="subtasks-done">${finishedSubTasks}/${test['subtasks'].length}</div>
     </div>
    
@@ -83,7 +83,7 @@ function progressTemplate(i, test, finishedSubTasks) {
     <h4 class="blue">${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
-    <progress value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
+    <progress width="80%" value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
     <div class="subtasks-done">${finishedSubTasks}/${test['subtasks'].length}</div>
     </div>
    
@@ -136,7 +136,7 @@ function feedBackTemplate(i, test, finishedSubTasks) {
     <h4 class="blue">${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
-    <progress value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
+    <progress width="80%" value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
     <div class="subtasks-done">${finishedSubTasks}/${test['subtasks'].length}</div>
     </div>
    
@@ -189,7 +189,7 @@ function doneTemplate(i, test, finishedSubTasks) {
     <h4 class="blue">${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
-    <progress value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
+    <progress width="80%" value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
     <div class="subtasks-done">${finishedSubTasks}/${test['subtasks'].length}</div>
     </div>
    

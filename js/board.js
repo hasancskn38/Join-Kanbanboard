@@ -183,8 +183,8 @@ function setPriority(value) {
 // Create New Task Function
 async function createTask() {
     let title = document.getElementById('task-title').value;
-    let category = document.getElementById('select-category').value;
-    // TODO add innerHTML of Category and replace it with category
+    // let category = document.getElementById('select-category').value;
+    let category = document.getElementById('select-category-inner').innerHTML
     let date = document.getElementById('task-date').value;
     let currentDate = new Date();
     let userDate = new Date(date);
@@ -786,10 +786,9 @@ addNewCategory.addEventListener('click', function() {
         let newDiv = document.createElement('div');
         newDiv.classList.add('create-new-category');
         newDiv.classList.add('cursor');
-        newDiv.id = 'create-new-category';
-        
         let categoryContent = document.createElement('div');
         categoryContent.classList.add('category-content');
+        categoryContent.id = 'category-content';
         categoryContent.innerHTML = newCategoryName.value;
         
         let categoryColors = document.createElement('div');
@@ -806,8 +805,17 @@ addNewCategory.addEventListener('click', function() {
         newDiv.appendChild(categoryColors);
         document.getElementById('show-categorys').appendChild(newDiv);
         hideNewCategory();
+
+        // Add event listener to new div
+        newDiv.addEventListener('click', function() {
+            let category = this.querySelector('.category-content').innerHTML;
+            document.getElementById('select-category-inner').innerHTML = category;
+            categorys.classList.add('d-none')
+        });
     }
 });
+
+
 
 
 function displayColor() {
@@ -830,7 +838,8 @@ function displayColor() {
     });
 }
 
-function addColorToCategory(color, index) {
+
+function addColorToCategory(color) {
     let categoryColors = document.querySelector('.category-colors');
     if (color === 'lightBlue') {
         categoryColors.children[0].classList.remove('d-none');                 

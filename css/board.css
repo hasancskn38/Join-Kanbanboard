@@ -17,6 +17,10 @@
     margin-bottom: 0px;
 }
 
+progress {
+    width: 70%;
+}
+
 
 .turn-dropdown {
     rotate: 180deg;
@@ -329,7 +333,7 @@ input:active {
 .popup-input {
     width: 90%;
     font-size: 35px;
-    padding: 10px;
+    padding: 15px;
     /* Margin Right to push the placeholder on the outside */
     margin-right: 80px;
 }
@@ -458,6 +462,13 @@ label>input {
     padding:15px;
 }
 
+.create-new-category {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+}
+
 #create-new-category {
     display: flex;
     justify-content: space-between;
@@ -467,6 +478,10 @@ label>input {
 
 .create-new-category:hover {
     background-color: #D2E3FF;
+}
+
+.category-content {
+    font-size: 18px;
 }
 
 .new-category:hover {
@@ -485,10 +500,6 @@ label>input {
 .new-category-container {
     display: flex;
     flex-direction: column;
-}
-
-.create-new-category {
-    padding: 15px;
 }
 
 #new-category-name {
@@ -945,7 +956,7 @@ textarea::placeholder {
 .blue2 {
     background-color: #0038FF;
 }
-.pink {
+.purple {
     background-color: #E200BE;
 }
 .orange {
