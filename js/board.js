@@ -876,7 +876,7 @@ function selectContact(i) {
     }
     if (!alreadyAssigned) {
         document.getElementById(`dropdown_checkbox${i}`).innerHTML = '▣';
-        assignedContacts.push(contact);
+        assignedContacts.push(contacts[i].name.substring(0, 2).toUpperCase());
     }
 
 }
