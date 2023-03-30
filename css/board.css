@@ -17,9 +17,6 @@
     margin-bottom: 0px;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
-}
 
 .turn-dropdown {
     rotate: 180deg;
@@ -54,7 +51,7 @@ body {
 }
 
 .cursor {
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 .d-none {
@@ -348,7 +345,7 @@ select {
     font-size: 24px;
     border-bottom: 1px solid lightgray;
     margin: 20px;
-    padding: 5px;
+    padding: 15px;
     color: #4589FF;
 }
 
@@ -379,7 +376,7 @@ select option {
     border-bottom: 1px solid lightgray;
     width: 90%;
     margin: 15px;
-    padding: 5px;
+    padding: 15px;
     
 }
 
@@ -414,17 +411,17 @@ label>input {
     padding: 0;
 }
 
-#select-category {
+#display-categories {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 90%;
     margin: 15px;
-    padding: 5px;
+    padding: 15px;
     border-bottom: 1px solid lightgray;
 }
 
-#select-category p {
+#display-categories p {
     font-size: 24px;
 }
 
@@ -451,7 +448,28 @@ label>input {
     padding: 0;
 }
 
-.categorys:hover {
+#show-categorys {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-category {
+    font-size: 18px;
+    padding:15px;
+}
+
+#create-new-category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+}
+
+.create-new-category:hover {
+    background-color: #D2E3FF;
+}
+
+.new-category:hover {
     background-color: #D2E3FF;
 }
 
@@ -467,6 +485,10 @@ label>input {
 .new-category-container {
     display: flex;
     flex-direction: column;
+}
+
+.create-new-category {
+    padding: 15px;
 }
 
 #new-category-name {
@@ -766,7 +788,7 @@ textarea::placeholder {
     border-bottom: 1px solid lightgray;
     width: 90%;
     margin: 15px;
-    padding: 5px;
+    padding: 15px;
 }
 
 .date-edit input {

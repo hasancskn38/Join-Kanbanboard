@@ -184,6 +184,7 @@ function setPriority(value) {
 async function createTask() {
     let title = document.getElementById('task-title').value;
     let category = document.getElementById('select-category').value;
+    // TODO add innerHTML of Category and replace it with category
     let date = document.getElementById('task-date').value;
     let currentDate = new Date();
     let userDate = new Date(date);
@@ -744,29 +745,31 @@ function searchTask() {
     renderData();
 } 
 
-
-let selectCategory = document.getElementById('select-category');
-let categorys =  document.getElementById('new-category');
-let dropDownImg = document.getElementById('dropwdown-icon');
+let displayCategories = document.getElementById('display-categories');
+let categorys =  document.getElementById('show-categorys');
+// let dropDownImg = document.getElementById('dropwdown-icon');
 
 // hide or show categorylist
-selectCategory.addEventListener('click', function() {
+displayCategories.addEventListener('click', function() {
     if(categorys.classList.contains('d-none')) {
+        console.log('hi');
         categorys.classList.remove('d-none');
-        dropDownImg.classList.add('turn-dropdown');
+        newCategory.classList.remove('d-none');
     } else {
+        console.log('bye');
         categorys.classList.add('d-none');
-        dropDownImg.classList.remove('turn-dropdown');
+        newCategory.classList.add('d-none');
     }
-})
+});
+
 
 let newCategoryContainer = document.getElementById('new-category-container');
 let newCategory = document.getElementById('new-category');
 // show new category input when clicking on 'create new category'
 newCategory.addEventListener('click', function() {
     categorys.classList.add('d-none');
-    selectCategory.classList.add('d-none');
     newCategoryContainer.classList.remove('d-none');
+    displayCategories.classList.add('d-none');
 });
 
 
@@ -774,30 +777,91 @@ newCategory.addEventListener('click', function() {
 let addNewCategory = document.getElementById('add-new-category');
 let newCategoryName = document.getElementById('new-category-name');
 let categoryAlert = document.getElementById('category-alert');
+let categoryCounter = 0;
+
 addNewCategory.addEventListener('click', function() {
     if(newCategoryName.value == '') {
         categoryAlert.classList.remove('d-none');
     } else {
-        console.log(newCategoryName.value);
+        let newDiv = document.createElement('div');
+        newDiv.classList.add('create-new-category');
+        newDiv.classList.add('cursor');
+        newDiv.id = 'create-new-category';
+        
+        let categoryContent = document.createElement('div');
+        categoryContent.classList.add('category-content');
+        categoryContent.innerHTML = newCategoryName.value;
+        
+        let categoryColors = document.createElement('div');
+        categoryColors.classList.add('category-colors');
+        categoryColors.innerHTML = `
+            <img class="cursor d-none" src="../assets/icons/color1.png" alt="">
+            <img class="cursor d-none" src="../assets/icons/color2.png" alt="">
+            <img class="cursor d-none" src="../assets/icons/color3.png" alt="">
+            <img class="cursor d-none" src="../assets/icons/color4.png" alt="">
+            <img class="cursor d-none" src="../assets/icons/color5.png" alt="">
+            <img class="cursor d-none" src="../assets/icons/color6.png" alt="">
+        `;
+        newDiv.appendChild(categoryContent);
+        newDiv.appendChild(categoryColors);
+        document.getElementById('show-categorys').appendChild(newDiv);
+        hideNewCategory();
     }
 });
 
 
 function displayColor() {
-    // Get all the color images
-    const colorImages = document.querySelectorAll('.category-colors img');
-    
+    // Get the clicked image
+    const clickedImage = event.target;
+    // Get the parent container of the clicked image
+    const parentContainer = clickedImage.parentNode;
+    // Get all the color images in the parent container
+    const colorImages = parentContainer.querySelectorAll('img');
     // Loop through each color image
     colorImages.forEach(image => {
-      // Check if the clicked image matches the current image in the loop
-      if (image === event.target) {
-        // Remove the "d-none" class from the clicked image
-        image.classList.remove('d-none');
-      } else {
-        // Add the "d-none" class to all other color images
-        image.classList.add('d-none');
-      }
+        // Check if the clicked image matches the current image in the loop
+        if (image === clickedImage) {
+            // Remove the "d-none" class from the clicked image
+            image.classList.remove('d-none');
+        } else {
+            // Add the "d-none" class to all other color images
+            image.classList.add('d-none');
+        }
     });
-  }
+}
+
+function addColorToCategory(color, index) {
+    let categoryColors = document.querySelector('.category-colors');
+    if (color === 'lightBlue') {
+        categoryColors.children[0].classList.remove('d-none');                 
+    }
+    if(color === 'red') {
+        categoryColors.children[1].classList.remove('d-none');
+    }
+    if(color === 'green') {
+        categoryColors.children[2].classList.remove('d-none');
+    }
+    if(color === 'orange') {
+        categoryColors.children[3].classList.remove('d-none');
+    }
+    if(color === 'purple') {
+        categoryColors.children[4].classList.remove('d-none');
+    }
+    if(color === 'blue') {
+        categoryColors.children[5].classList.remove('d-none');
+    }
+}
 
 
+function hideNewCategory() {
+    categorys.classList.remove('d-none');
+    document.getElementById('show-categorys').classList.add('d-none');
+    displayCategories.classList.remove('d-none');
+    newCategoryContainer.classList.add('d-none');
+    newCategoryName.value = '';
+    categoryAlert.classList.add('d-none');
+    const colorImages = document.querySelectorAll('.new-category-colors img');
+    colorImages.forEach(image => {
+        image.classList.remove('d-none');
+    });
+}

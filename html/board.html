@@ -20,7 +20,7 @@
 
 
 </head>
-<body onload="includeHTML()">
+<body onload="includeHTML(); renderColorForCategory()">
     <!-- Header Start -->
     <div class="navbar">
         <div w3-include-html="../assets/templates/header-template.html"></div>
@@ -49,7 +49,6 @@
             <div class="board-header">
                 <div class="search-task">
                     <input id="search-input" oninput="searchTask()" type="text" placeholder="Find Task">
-                    <!-- <hr class="vertical-line" width="2" color="grey" size="20"/> -->
                 </div>
                 <div class="add-remove-container">
                     <button class="cursor open-add-task" onclick="openAddTaskPopUp()">Add task <span>+</span></button>
@@ -91,11 +90,15 @@
                             <option value="" disabled selected hidden>Select contacts to assign</option>
                         </select>
 
+                        <!-- <div class="cursor" id="select-category">
+                            <p id="select-category-inner">Select contacts to assign</p><img id="dropwdown-icon" class="dropdown-icon" src="../assets/icons/dropdown.png" alt="">
+                        </div> -->
+
                         <label for="appointment">
                             <h4 class="date-header">Due date</h4>
                             <div class="date">
                                 <input id="task-date" required type="date"/>
-                                <img id="calendar-img" class="cursor" src="../assets/icons/date-icon.png" alt="">
+                                <!-- <img id="calendar-img" class="cursor" src="../assets/icons/date-icon.png" alt=""> -->
                             </div>
                         </label>
 
@@ -104,27 +107,27 @@
                         <p class="d-none" id="category-alert">Please select a category name and then a color !</p>
                         
                         <div id="new-category-input" class="input-container">
-                            <img height="20px" onclick="displayColor()" class="cursor d-none" src="../assets/icons/color1.png" alt="">
-                            <img height="20px" onclick="displayColor()" class="cursor d-none" src="../assets/icons/color2.png" alt="">
-                            <img height="20px" onclick="displayColor()" class="cursor d-none" src="../assets/icons/color3.png" alt="">
-                            <img height="20px" onclick="displayColor()" class="cursor d-none" src="../assets/icons/color4.png" alt="">
-                            <img height="20px" onclick="displayColor()" class="cursor d-none" src="../assets/icons/color5.png" alt="">
-                            <img height="20px" onclick="displayColor()" class="cursor d-none" src="../assets/icons/color6.png" alt="">
+                            <img height="20px" onclick="displayColor('lightBlue')" class="cursor d-none" src="../assets/icons/color1.png" alt="">
+                            <img height="20px" onclick="displayColor('red')" class="cursor d-none" src="../assets/icons/color2.png" alt="">
+                            <img height="20px" onclick="displayColor('green')" class="cursor d-none" src="../assets/icons/color3.png" alt="">
+                            <img height="20px" onclick="displayColor('orange')" class="cursor d-none" src="../assets/icons/color4.png" alt="">
+                            <img height="20px" onclick="displayColor('purple')" class="cursor d-none" src="../assets/icons/color5.png" alt="">
+                            <img height="20px" onclick="displayColor('blue')" class="cursor d-none" src="../assets/icons/color6.png" alt="">
                             <input required id="new-category-name" class="popup-input" type="text" placeholder="new category name">
                             <div class="check-and-cross">
-                            <img class="cursor" id="hide-new-category" src="../assets/icons/x.png" alt="">
+                            <img onclick="hideNewCategory()" class="cursor" id="hide-new-category" src="../assets/icons/x.png" alt="">
                             <img src="../assets/icons/divider.png" alt="">
                             <img class="cursor" id="add-new-category" src="../assets/icons/checkmark.png" alt="">
                         </div>
                            
                         </div>
-                        <div id="category-colors" class="category-colors">
-                            <img onclick="displayColor()" class="cursor" src="../assets/icons/color1.png" alt="">
-                            <img onclick="displayColor()" class="cursor" src="../assets/icons/color2.png" alt="">
-                            <img onclick="displayColor()" class="cursor" src="../assets/icons/color3.png" alt="">
-                            <img onclick="displayColor()" class="cursor" src="../assets/icons/color4.png" alt="">
-                            <img onclick="displayColor()" class="cursor" src="../assets/icons/color5.png" alt="">
-                            <img onclick="displayColor()" class="cursor" src="../assets/icons/color6.png" alt="">
+                        <div id="category-colors" class="new-category-colors">
+                            <img onclick="displayColor(); addColorToCategory('lightBlue', 1);" class="cursor" src="../assets/icons/color1.png" alt="">
+                            <img onclick="displayColor(); addColorToCategory('red', 2);" class="cursor" src="../assets/icons/color2.png" alt="">
+                            <img onclick="displayColor(); addColorToCategory('green', 3);" class="cursor" src="../assets/icons/color3.png" alt="">
+                            <img onclick="displayColor(); addColorToCategory('orange', 4);" class="cursor" src="../assets/icons/color4.png" alt="">
+                            <img onclick="displayColor(); addColorToCategory('purple', 5);" class="cursor" src="../assets/icons/color5.png" alt="">
+                            <img onclick="displayColor(); addColorToCategory('blue', 6);" class="cursor" src="../assets/icons/color6.png" alt="">
                         </div>
                        </div>
                         
@@ -136,17 +139,17 @@
                             <option class="backoffice-option" value="Backoffice">Backoffice</option>
                             <option class="marketing-option" value="Marketing">Marketing</option>
                         </select> -->
-
-                        <div class="cursor" id="select-category">
+                        
+                        <!-- Event listener to display the categorys -->
+                        <div class="cursor" id="display-categories">
                             <p id="select-category-inner">Select task category</p><img id="dropwdown-icon" class="dropdown-icon" src="../assets/icons/dropdown.png" alt="">
                         </div>
 
                         <div class="categorys-container">
-                            <div class="categorys d-none cursor" id="new-category">
-                                <div class="new-category cursor">create new category</div>
+                            <div class="categorys d-none cursor" id="show-categorys">
+                                <div id="new-category" class="cursor new-category">create new category</div>
                             </div>
                         </div>
-
 
                         <div class="priority">
                             <div class="priority-levels cursor" id="urgent" onclick="changeUrgentColor()"><span
