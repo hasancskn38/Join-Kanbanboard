@@ -10,7 +10,8 @@ let searchedTaskArray = [];
 let subtaskArray = [];
 let selectElement = document.getElementById('select-contact');
 let initialsDiv = document.getElementById('initials-div');
-
+let dropDownShow = false;
+let assignedContacts = [];
 
 /**
  * This function implements the template.html
@@ -189,13 +190,6 @@ async function createTask() {
     let currentDate = new Date();
     let userDate = new Date(date);
     let taskDescription = document.getElementById('task-description').value;
-    let assignedContacts = Array.from(document.getElementById('select-contact-add').selectedOptions)
-        .map(option => {
-            let fullName = option.value;
-            let nameArr = fullName.split(' ');
-            let initials = nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
-            return initials.toUpperCase();
-        });
     let lastItem = testData[testData.length - 1];
     if (testData.length === 0) {
         let newItem = {
@@ -329,7 +323,7 @@ function renderSubtasksInPopUp() {
         let subtaskInput = subtaskArray[i];
         subTasks.innerHTML += `<li class="subtask-list">${subtaskInput} <button type="button" onclick="deleteSubtask(${i})" id="delete-subtask">❌</button></li>`;
     }
-   
+
 }
 
 
@@ -669,30 +663,8 @@ function openAddTaskPopUp() {
     document.getElementById('popup').classList.add('show');
     document.getElementById('popup').classList.remove('d-none');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    assignContactsToTask('add');
 }
 
-
-function assignContactsToTask(value, test) {
-    if (test == undefined) {
-        let contactList = document.getElementById(`select-contact-${value}`);
-        contactList.innerHTML = '';
-        contactList.innerHTML = `<option value="" disabled="" selected="" hidden="">Select new contact to assign</option>`;
-        for (let i = 0; i < contacts.length; i++) {
-            let contact = contacts[i];
-            contactList.innerHTML += `<option value="${contact['name']}">${contact['name']}</option>`;
-        }
-    }
-    else {
-        let contactList = document.getElementById(`select-contact-${value}`);
-        contactList.innerHTML = '';
-        contactList.innerHTML = `<option value="${test['assignedContacts']}" disabled="" selected="" hidden="">Select new contact to assign</option>`;
-        for (let i = 0; i < contacts.length; i++) {
-            let contact = contacts[i];
-            contactList.innerHTML += `<option value="${contact['name']}">${contact['name']}</option>`;
-        }
-    }
-}
 
 function closeAddTaskPopUp() {
     document.getElementById('overlay').classList.add('d-none');
@@ -743,15 +715,15 @@ function searchTask() {
         }
     }
     renderData();
-} 
+}
 
 let displayCategories = document.getElementById('display-categories');
-let categorys =  document.getElementById('show-categorys');
+let categorys = document.getElementById('show-categorys');
 // let dropDownImg = document.getElementById('dropwdown-icon');
 
 // hide or show categorylist
-displayCategories.addEventListener('click', function() {
-    if(categorys.classList.contains('d-none')) {
+displayCategories.addEventListener('click', function () {
+    if (categorys.classList.contains('d-none')) {
         console.log('hi');
         categorys.classList.remove('d-none');
         newCategory.classList.remove('d-none');
@@ -766,7 +738,7 @@ displayCategories.addEventListener('click', function() {
 let newCategoryContainer = document.getElementById('new-category-container');
 let newCategory = document.getElementById('new-category');
 // show new category input when clicking on 'create new category'
-newCategory.addEventListener('click', function() {
+newCategory.addEventListener('click', function () {
     categorys.classList.add('d-none');
     newCategoryContainer.classList.remove('d-none');
     displayCategories.classList.add('d-none');
@@ -779,8 +751,8 @@ let newCategoryName = document.getElementById('new-category-name');
 let categoryAlert = document.getElementById('category-alert');
 let categoryCounter = 0;
 
-addNewCategory.addEventListener('click', function() {
-    if(newCategoryName.value == '') {
+addNewCategory.addEventListener('click', function () {
+    if (newCategoryName.value == '') {
         categoryAlert.classList.remove('d-none');
     } else {
         let newDiv = document.createElement('div');
@@ -790,7 +762,7 @@ addNewCategory.addEventListener('click', function() {
         categoryContent.classList.add('category-content');
         categoryContent.id = 'category-content';
         categoryContent.innerHTML = newCategoryName.value;
-        
+
         let categoryColors = document.createElement('div');
         categoryColors.classList.add('category-colors');
         categoryColors.innerHTML = `
@@ -807,7 +779,7 @@ addNewCategory.addEventListener('click', function() {
         hideNewCategory();
 
         // Add event listener to new div
-        newDiv.addEventListener('click', function() {
+        newDiv.addEventListener('click', function () {
             let category = this.querySelector('.category-content').innerHTML;
             document.getElementById('select-category-inner').innerHTML = category;
             categorys.classList.add('d-none')
@@ -842,21 +814,21 @@ function displayColor() {
 function addColorToCategory(color) {
     let categoryColors = document.querySelector('.category-colors');
     if (color === 'lightBlue') {
-        categoryColors.children[0].classList.remove('d-none');                 
+        categoryColors.children[0].classList.remove('d-none');
     }
-    if(color === 'red') {
+    if (color === 'red') {
         categoryColors.children[1].classList.remove('d-none');
     }
-    if(color === 'green') {
+    if (color === 'green') {
         categoryColors.children[2].classList.remove('d-none');
     }
-    if(color === 'orange') {
+    if (color === 'orange') {
         categoryColors.children[3].classList.remove('d-none');
     }
-    if(color === 'purple') {
+    if (color === 'purple') {
         categoryColors.children[4].classList.remove('d-none');
     }
-    if(color === 'blue') {
+    if (color === 'blue') {
         categoryColors.children[5].classList.remove('d-none');
     }
 }
@@ -874,3 +846,50 @@ function hideNewCategory() {
         image.classList.remove('d-none');
     });
 }
+
+
+
+function showDropDown() {
+    if (dropDownShow == false) {
+        for (let i = 0; i < contacts.length; i++) {
+            let contact = contacts[i];
+            document.getElementById('contact_dropdown').innerHTML += `
+            <div onclick="selectContact(${i})"  class="dropdown_content"><div>${contact['name']}</div> <div class="dropdown_checkbox" id="dropdown_checkbox${i}">▢</div> </div>`;
+        }
+        return dropDownShow = true;
+    }
+
+    if (dropDownShow == true) {
+        document.getElementById('contact_dropdown').innerHTML = ``;
+        return dropDownShow = false;
+    }
+}
+
+function selectContact(i) {
+    let contact = contacts[i];
+    let alreadyAssigned = alreadyAssignedContact(i);
+    if (alreadyAssigned) {
+        document.getElementById(`dropdown_checkbox${i}`).innerHTML = '▢';
+        let assignedContact = assignedContacts.find(ac => ac.name == contact.name);
+        let j = assignedContacts.indexOf(assignedContact);
+        assignedContacts.splice(j, i);
+    }
+    if (!alreadyAssigned) {
+        document.getElementById(`dropdown_checkbox${i}`).innerHTML = '▣';
+        assignedContacts.push(contact);
+    }
+
+}
+
+function alreadyAssignedContact(i) {
+    let container = document.getElementById(`dropdown_checkbox${i}`).innerHTML;
+    console.log(container);
+    if (container == '▣') {
+        return true;
+    }
+    if (container == '▢') {
+        return false;
+    }
+}
+
+

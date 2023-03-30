@@ -353,6 +353,58 @@ select {
     color: #4589FF;
 }
 
+.select-contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 23px;
+    margin-left: 20px;
+    margin-right: 45px;
+    margin-top: 20px;
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid lightgray;
+
+}
+
+.dropdown_checkbox {
+    font-size: 18px;
+    color:#4589FF;
+}
+
+.contact_dropdown {
+    width: 89%;
+    margin-top: -25px;
+    margin-left: 20px;
+    font-size: 23px;
+}
+
+.dropdown_content {
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown_content:hover {
+    cursor: pointer;
+    background-color: rgb(228,238,255);
+}
+
+.dropdown_img {
+    margin-right: -25px;
+}
+
+.dropdown_border {
+border-bottom-left-radius: 10px !important;
+border-bottom-right-radius: 10px !important;
+
+}
+
+
+
 #select-contact-edit,
 #select-category-edit {
     width: 90%;
@@ -381,7 +433,7 @@ select option {
     width: 90%;
     margin: 15px;
     padding: 15px;
-    
+
 }
 
 .date>input {
@@ -401,6 +453,7 @@ label>input {
 }
 
 .date-header {
+    padding-top: 10px;
     margin-left: 30px;
     font-style: normal;
     font-weight: 700;
@@ -459,7 +512,7 @@ label>input {
 
 .new-category {
     font-size: 18px;
-    padding:15px;
+    padding: 15px;
 }
 
 .create-new-category {
@@ -503,7 +556,7 @@ label>input {
 }
 
 #new-category-name {
-    font-size:20px;
+    font-size: 20px;
 }
 
 .category-colors {
@@ -938,13 +991,16 @@ textarea::placeholder {
 .design {
     background-color: #ff7a00;
 }
+
 .sales {
     background-color: #FC71FF;
 }
+
 .backoffice {
     background-color: #1FD7C1;
     ;
 }
+
 .marketing {
     background-color: #0038FF;
 }
@@ -953,21 +1009,27 @@ textarea::placeholder {
 .blue1 {
     background-color: #8AA4FF;
 }
+
 .blue2 {
     background-color: #0038FF;
 }
+
 .purple {
     background-color: #E200BE;
 }
+
 .orange {
     background-color: #FF8A00;
 }
+
 .green {
     background-color: #2AD300;
 }
+
 .red {
     background-color: #FF0000;
 }
+
 /* Colors for new styling */
 .design-option {
     color: #ff7a00 !important;
@@ -1103,6 +1165,7 @@ textarea::placeholder {
         width: 75%;
         margin: 0px 30px 0px 0px;
     }
+
     .board-header {
         margin-top: 340px;
     }
