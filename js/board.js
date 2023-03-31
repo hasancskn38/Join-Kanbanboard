@@ -12,6 +12,7 @@ let selectElement = document.getElementById('select-contact');
 let initialsDiv = document.getElementById('initials-div');
 let dropDownShow = false;
 let assignedContacts = [];
+let createdCategorys = [];
 
 /**
  * This function implements the template.html
@@ -69,6 +70,7 @@ function renderData() {
     }
     stagesContentWhenEmpty();
     hideOrShowPriorityLevels();
+    renderCategorys();
 }
 
 function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone) {
@@ -719,24 +721,57 @@ function searchTask() {
 
 let displayCategories = document.getElementById('display-categories');
 let categorys = document.getElementById('show-categorys');
-// let dropDownImg = document.getElementById('dropwdown-icon');
+let addNewCategory = document.getElementById('add-new-category');
+let newCategoryName = document.getElementById('new-category-name');
+let categoryAlert = document.getElementById('category-alert');
+let newCategoryContainer = document.getElementById('new-category-container');
+let newCategory = document.getElementById('new-category');
+
+// render categorys from array
+function renderCategorys() {
+    let categorys = document.getElementById('created-categorys');
+    categorys.innerHTML = '';
+    for (let i = 0; i < createdCategorys.length; i++) {
+      let createdCategory = createdCategorys[i];
+      let categoryElement = document.createElement('div');
+      categoryElement.id = `new-category-${i}`;
+      categoryElement.classList.add('new-category');
+      categoryElement.textContent = createdCategory;
+  
+      // Create remove button
+      let removeButton = document.createElement('button');
+      removeButton.textContent = 'X';
+      removeButton.addEventListener('click', function(event) {
+        event.stopPropagation();
+        if (createdCategorys[i] === document.getElementById('select-category-inner').textContent) {
+          document.getElementById('select-category-inner').textContent = 'Select task category';
+        }
+        createdCategorys.splice(i, 1);
+        renderCategorys();
+      });
+      categoryElement.appendChild(removeButton);
+      // Add click event listener to select category
+      categoryElement.addEventListener('click', function() {
+        document.getElementById('select-category-inner').innerHTML = createdCategory;
+        document.getElementById('show-categorys').classList.add('d-none')
+      });
+      categorys.appendChild(categoryElement);
+    }
+}
+  
 
 // hide or show categorylist
 displayCategories.addEventListener('click', function () {
     if (categorys.classList.contains('d-none')) {
-        console.log('hi');
         categorys.classList.remove('d-none');
         newCategory.classList.remove('d-none');
     } else {
-        console.log('bye');
         categorys.classList.add('d-none');
         newCategory.classList.add('d-none');
     }
 });
 
 
-let newCategoryContainer = document.getElementById('new-category-container');
-let newCategory = document.getElementById('new-category');
 // show new category input when clicking on 'create new category'
 newCategory.addEventListener('click', function () {
     categorys.classList.add('d-none');
@@ -745,49 +780,15 @@ newCategory.addEventListener('click', function () {
 });
 
 
-// create new category
-let addNewCategory = document.getElementById('add-new-category');
-let newCategoryName = document.getElementById('new-category-name');
-let categoryAlert = document.getElementById('category-alert');
-let categoryCounter = 0;
-
 addNewCategory.addEventListener('click', function () {
     if (newCategoryName.value == '') {
         categoryAlert.classList.remove('d-none');
     } else {
-        let newDiv = document.createElement('div');
-        newDiv.classList.add('create-new-category');
-        newDiv.classList.add('cursor');
-        let categoryContent = document.createElement('div');
-        categoryContent.classList.add('category-content');
-        categoryContent.id = 'category-content';
-        categoryContent.innerHTML = newCategoryName.value;
-
-        let categoryColors = document.createElement('div');
-        categoryColors.classList.add('category-colors');
-        categoryColors.innerHTML = `
-            <img class="cursor d-none" src="../assets/icons/color1.png" alt="">
-            <img class="cursor d-none" src="../assets/icons/color2.png" alt="">
-            <img class="cursor d-none" src="../assets/icons/color3.png" alt="">
-            <img class="cursor d-none" src="../assets/icons/color4.png" alt="">
-            <img class="cursor d-none" src="../assets/icons/color5.png" alt="">
-            <img class="cursor d-none" src="../assets/icons/color6.png" alt="">
-        `;
-        newDiv.appendChild(categoryContent);
-        newDiv.appendChild(categoryColors);
-        document.getElementById('show-categorys').appendChild(newDiv);
+        createdCategorys.push(newCategoryName.value);
         hideNewCategory();
-
-        // Add event listener to new div
-        newDiv.addEventListener('click', function () {
-            let category = this.querySelector('.category-content').innerHTML;
-            document.getElementById('select-category-inner').innerHTML = category;
-            categorys.classList.add('d-none')
-        });
     }
-});
-
-
+    renderCategorys();
+});  
 
 
 function displayColor() {
@@ -808,29 +809,6 @@ function displayColor() {
             image.classList.add('d-none');
         }
     });
-}
-
-
-function addColorToCategory(color) {
-    let categoryColors = document.querySelector('.category-colors');
-    if (color === 'lightBlue') {
-        categoryColors.children[0].classList.remove('d-none');
-    }
-    if (color === 'red') {
-        categoryColors.children[1].classList.remove('d-none');
-    }
-    if (color === 'green') {
-        categoryColors.children[2].classList.remove('d-none');
-    }
-    if (color === 'orange') {
-        categoryColors.children[3].classList.remove('d-none');
-    }
-    if (color === 'purple') {
-        categoryColors.children[4].classList.remove('d-none');
-    }
-    if (color === 'blue') {
-        categoryColors.children[5].classList.remove('d-none');
-    }
 }
 
 

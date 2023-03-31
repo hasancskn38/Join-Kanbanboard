@@ -67,12 +67,12 @@ main {
 }
 
 main p {
-    font-size: 20px;
+    font-size: 22px;
     text-align: center;
 }
 
 main h2 {
-    font-size: 28px;
+    font-size: 40px;
     text-align: center;
 }
 
@@ -109,7 +109,7 @@ main h2 {
 .main-right-bottom {
     display: flex;
     flex-wrap: wrap;
-    gap: 25px;
+    gap: 28px;
     width: 100%;
 }
 
@@ -123,7 +123,7 @@ main h2 {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 100%;
+    width: 682px;
     height: 190px;
     color: #fff;
     background-color: #4589ff;
@@ -151,7 +151,7 @@ main h2 {
 .task-urgent-left-top img {
     height: 60px;
     border-radius: 50%;
-    border: 2px solid #FFFFFF;
+    border: 3px solid #FFFFFF;
     object-fit: cover;
     padding: 0;
     margin: 0 15px 0 0;
@@ -169,6 +169,7 @@ main h2 {
 .task-general {
     display: inline-block;
     height: 190px;
+    width: 208px;
     padding: 40px;
     box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
     border-radius: 30px;
@@ -186,6 +187,7 @@ main h2 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 208px;
     color: #4589FF;
     background: #D2E3FF;
 }
@@ -204,13 +206,10 @@ main h2 {
 /* Main End */
 
 .show_logged_on_user {
-    width: 500px;
     height: 200px;
     margin-top: 105px;
     margin-bottom: -90px;
-    margin-left: 200px;
     font-size: 40px;
-    font-family: 'open sans';
     display: flex;
     justify-content: center;
 }
@@ -223,6 +222,14 @@ main h2 {
 /* Responsive Start */
 @media only screen and (max-width: 1300px) {
 
+    .show_logged_on_user {
+        display: flex;
+        height: 200px;
+        margin-top: 105px;
+        margin-bottom: -90px;
+        font-size: 40px;
+    }
+
     main p {
         font-size: 18px;
     }
@@ -233,34 +240,34 @@ main h2 {
 
     .main-right-tasks {
         margin: 0;
-        margin-left: 200px;
+        margin-left: 232px;
     }
 
     .main-right-top {
         display: flex;
         flex-direction: column;
-        width: 80%;
+        width: 100%;
         margin: auto;
     }
 
     .main-right-bottom {
-        justify-content: center;
+        width: 682px;
+        gap: 30px;
         flex-wrap: wrap;
-        align-items: center;
-        margin: 20px auto;
-        width: 90%;
+        margin: 25px 0 30px;
     }
 
     .task-general {
-        width: 92%;
+        width: 326px;
     }
 
     .task-todo {
-        width: 100%;
+        height: 150px;
+        width: 682px;
     }
+      
 
     .show_logged_on_user {
-        margin-left: 155px;
         margin-top: 150px;
     } 
 }
@@ -282,10 +289,15 @@ main h2 {
     }
 
     .main-right-top {
-        display: flex;
-        flex-direction: column;
-        width: 80%;
-        margin: auto;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 20px auto;
+        width: 100%;
+    }
+
+    .task-urgent {
+        width: 80vw;
     }
 
     .main-right-bottom {
@@ -293,15 +305,11 @@ main h2 {
         flex-wrap: wrap;
         align-items: center;
         margin: 20px auto;
-        width: 90%;
     }
 
     .task-general {
-        width: 92%;
-    }
-
-    .task-todo {
-        width: 100%;
+        /* width: 230px;*/
+        width: 80vw !important;
     }
 
     .show_logged_on_user {
@@ -322,6 +330,14 @@ main h2 {
         margin-bottom: 150px;
     }
 
+    .task-urgent, .task-general {
+        width: 80vw;
+    }
+
+    .task-general {
+        height: 200px;
+    }
+
     .main-right-bottom {
         margin-left: 0;
         width: 100%;
@@ -333,10 +349,10 @@ main h2 {
     }
 
      .show_logged_on_user {
-        margin-left: 15px;
         font-size: 30px;
         margin-right: 0px;
-        width: 350px;
+        margin-bottom: -140px;
+        margin-left: 0;
     } 
 
     .nav-container {

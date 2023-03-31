@@ -138,7 +138,8 @@ input:active {
 /* Board Header Start */
 .board-header {
     display: flex;
-    margin: 50px 0;
+    margin: 80px 0 0 0;
+    padding-left: 30px;
 }
 
 .board-header button {
@@ -511,8 +512,10 @@ label>input {
 }
 
 .new-category {
+    display: flex;
+    justify-content: space-between;
     font-size: 18px;
-    padding: 15px;
+    padding: 15px 5px;
 }
 
 .create-new-category {
@@ -877,8 +880,12 @@ textarea::placeholder {
 
 /* Stages Container Start */
 .stages-container {
+    width: 100%;
     display: flex;
-    flex-wrap: wrap;
+    column-gap: 30px;
+    margin: 60px 0 0;
+    padding: 0 5px;
+    overflow: auto;
 }
 
 /* Styling of stages when they are empty */
@@ -939,7 +946,7 @@ textarea::placeholder {
     box-shadow: 0 0 7px 0 rgb(0 0 0 / 15%) !important;
     border-radius: 30px;
     margin: 20px 0;
-    padding: 20px;
+    padding: 12px;
 }
 
 
@@ -947,7 +954,7 @@ textarea::placeholder {
     display: inline-block;
     font-weight: 100;
     color: #fff;
-    padding: 5px 30px;
+    padding: 5px 10px;
     border-radius: 10px;
     margin: 0 0 20px 0;
 }
@@ -977,6 +984,7 @@ textarea::placeholder {
 .progress-container {
     display: flex;
     justify-content: space-between;
+    column-gap: 15px;
 }
 
 .contact.priority-container {
@@ -986,6 +994,8 @@ textarea::placeholder {
 
 .subtasks-done {
     margin-right: 15px;
+    font-size: 14px;
+    color: rgb(174, 173, 173);
 }
 
 .design {
@@ -1059,7 +1069,7 @@ textarea::placeholder {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0 10px 0;
+    padding: 5px 0;
     padding-bottom: 20px !important;
 }
 
@@ -1140,8 +1150,7 @@ textarea::placeholder {
 
 
 
-@media only screen and (max-width: 1400px) {
-
+@media only screen and (max-width: 1100px) {
     .main-column {
         position: fixed;
         overflow: auto;
@@ -1153,44 +1162,32 @@ textarea::placeholder {
 
     .stages-container {
         height: 100vh;
-        /*width: 1150px;*/
-        flex-wrap: nowrap;
-        flex-direction: column;
+        margin: 0;
+        flex-wrap: wrap;
         align-items: center;
     }
 
     .stage-general {
         display: flex;
         flex-direction: column;
-        width: 75%;
-        margin: 0px 30px 0px 0px;
-    }
-
-    .board-header {
-        margin-top: 340px;
+        height: 10vh;
+        width: 40%;
+        padding-left: 30px;
+        margin-bottom: 100px;
     }
 
 }
 
 @media only screen and (max-width: 1000px) {
-
-    .main-column {
-        position: fixed;
-        overflow: auto;
-        width: 100%;
-        left: 0px;
-        bottom: 0;
-        top: 0;
-        height: 87vh;
+    .side-bar {
+        display: none;
     }
-
     .stages-container {
-        height: 100vh;
-        /*width: 1150px;*/
-        margin: 0;
-        flex-wrap: nowrap;
-    }
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
+    }
 }
 
 @media only screen and (max-width: 450px) {
