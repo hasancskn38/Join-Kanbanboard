@@ -150,6 +150,7 @@ input:active {
 .board-header button {
     height: 45px;
     border-radius: 10px;
+    font-weight: 600;
 }
 
 .search-task {
@@ -233,6 +234,7 @@ input:active {
     top: 0;
     background-color: #fff;
     height: 100vh;
+    width: 500px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     right: 0;
@@ -480,7 +482,7 @@ label>input {
 }
 
 #display-categories p {
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .dropdown-icon {
@@ -682,7 +684,7 @@ textarea {
 }
 
 textarea::placeholder {
-    font-size: 24px;
+    font-size: 16px;
 }
 
 .subtasks {
@@ -1158,6 +1160,7 @@ textarea::placeholder {
     .stages-container {
         margin: 35px 0 0 -35px;
         flex-wrap: wrap;
+        justify-content: space-between;
     }
 
     .stage-general {
@@ -1169,6 +1172,10 @@ textarea::placeholder {
         padding-left: 30px;
         margin-bottom: 100px;
         overflow: auto;
+    }
+
+    .test {
+        width: calc(45vw - 196px);
     }
 
 }
@@ -1184,12 +1191,17 @@ textarea::placeholder {
     .stages-container {
         width: 100vw;
     }
+
+    .test {
+        width: 39vw;
+    }
+
     .stage-general {
-        width: 40vw;
+        width: 43vw;
     }
 }
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 775px) {
     .main-column {
         width: 100vw;
         padding: 0;
@@ -1209,6 +1221,11 @@ textarea::placeholder {
         align-items: center;
         width: 100vw;
     }
+
+    .test {
+        width: 80vw;
+    }
+
     .stage-general {
         width: 100vw;
     }
