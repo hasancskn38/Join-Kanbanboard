@@ -111,10 +111,11 @@ input:active {
 .main-column {
     position: absolute;
     right: 0;
+    padding-left: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 80vw;
+    width: calc(100vw - 232px);
 
 }
 
@@ -139,7 +140,6 @@ input:active {
 .board-header {
     display: flex;
     margin: 80px 0 0 0;
-    padding-left: 30px;
 }
 
 .board-header button {
@@ -880,7 +880,8 @@ textarea::placeholder {
 
 /* Stages Container Start */
 .stages-container {
-    width: 100%;
+    height: calc(100vh - 80px);
+    width: calc(100vw - 232px);
     display: flex;
     column-gap: 30px;
     margin: 60px 0 0;
@@ -910,7 +911,7 @@ textarea::placeholder {
 }
 
 .stage-general {
-    width: 20%;
+    width: calc(20vw - 58px);
     margin: 0 30px 0 0;
 }
 
@@ -942,7 +943,6 @@ textarea::placeholder {
 
 /* Styling of the Content that is created or rendered with Javascript Start */
 .test {
-    height: 200px;
     box-shadow: 0 0 7px 0 rgb(0 0 0 / 15%) !important;
     border-radius: 30px;
     margin: 20px 0;
@@ -1151,70 +1151,67 @@ textarea::placeholder {
 
 
 @media only screen and (max-width: 1100px) {
-    .main-column {
-        position: fixed;
-        overflow: auto;
-        left: 280px;
-        bottom: 0;
-        top: 0;
-        height: 100vh;
+    .board-header {
+        padding-left: 0;
     }
 
     .stages-container {
-        height: 100vh;
-        margin: 0;
+        margin: 35px 0 0 -35px;
         flex-wrap: wrap;
-        align-items: center;
     }
 
     .stage-general {
         display: flex;
         flex-direction: column;
-        height: 10vh;
-        width: 40%;
+        height: auto;
+        max-height: none;
+        width: calc(50vw - 196px);
         padding-left: 30px;
         margin-bottom: 100px;
+        overflow: auto;
     }
 
 }
 
 @media only screen and (max-width: 1000px) {
-    .side-bar {
-        display: none;
+    .main-column {
+        position: relative;
+        margin: 35px 0;
+    }
+    .board-header {
+        padding-left: 30px;
     }
     .stages-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
+        width: 100vw;
+    }
+    .stage-general {
+        width: 40vw;
     }
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 550px) {
     .main-column {
-        position: relative;
-        overflow: visible;
-        left: auto;
-        margin-left: 50px;
-        margin-top: -50px;
-        margin-bottom: 150px;
+        width: 100vw;
+        padding: 0;
+        margin-right: 0;
+    }
+
+    .board-header {
+        display: flex;
+        justify-content: center;
+        margin: 50px 0;
+        padding: 0;
     }
 
     .stages-container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        width: auto;
+        width: 100vw;
     }
-
-    .stages-container div {
-        width: 370px;
+    .stage-general {
+        width: 100vw;
     }
 }
-
-
 /* Responsive End */
-
-
 /* Styling of the Content that is created or rendered with Javascript End*/
