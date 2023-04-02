@@ -407,22 +407,16 @@ function openEditTaskPopUp(test, i) {
     <div class="input-container-edit">
     <input id="input-edit-${i}" type="text" value="${test.title}">
     </div>
-    <select required id="select-category-edit${i}" class="cursor">
-                            <option value="${test.cat}" selected hidden>${test.cat}</option>
-                            <option class="design-option" value="Design">Design</option>
-                            <option class="sales-option" value="Sales">Sales</option>
-                            <option class="backoffice-option" value="Backoffice">Backoffice</option>
-                            <option class="marketing-option" value="Marketing">Marketing</option>
-                        </select>
-
     <h2>Description</h2>
     <textarea id="edit-description${i}">${test.description}</textarea>
     <h2 class="date-header-edit">Due date</h2>
+
     <label for="appointment">
-        <div class="date-edit">
-        <input id="task-date-edit${i}" value="${test.date}" required="" type="text" class="form-control" placeholder="dd/mm/yyyy" onfocus="(this.type='date')"/>
-        </div>
-    </label>
+                            <h4 class="date-header">Due date</h4>
+                            <div class="date">
+                                <input id="task-date-edit${i}" value="${test.date}" required type="date" />
+                            </div>
+                        </label>
     <div class="priority">
     <div class="priority-levels cursor priority-edit" id="urgent-edit" onclick="changeUrgentColorEdit(); editPriority('Urgent');"><span
             id="urgent-inner-edit">Urgent</span><img id="img1-edit" src="../assets/icons/urgent.png"
@@ -433,14 +427,41 @@ function openEditTaskPopUp(test, i) {
     <div class="priority-levels cursor priority-edit" id="low-edit" onclick="changeLowColorEdit(); editPriority('Low');"><span
             id="low-inner-edit">Low</span><img id="img3-edit" src="../assets/icons/low.png" alt=""></div>
 </div>
-<select multiple required id="select-contact-edit" class="select-contact cursor">
-<option value="" disabled selected hidden>Select contacts to assign</option>
-</select>
+<div required onclick="showDropDown()" id="select-contact-add" class="select-contact cursor"><div> Select contacts to assign</div> <div class="arrow"><img id="dropwdown-icon"
+                            class="dropdown-icon" src="../assets/icons/dropdown.png" alt=""></div>
+                        </div>
+                        <div id="contact_dropdown" class="contact_dropdown">
+                        
+                        </div>
 </div>
 <div class="show_subtasks" id="show_subtasks">
 </div>
+<div class="subtasks">
+<h4>Subtask</h4>
+<div class="subtasks-input"><input id="task-subtask" minlength="8"
+        placeholder="Add new subtask" type="text">
+    <div class="check-and-cross">
+        <img class="cursor" src="../assets/icons/x.png" alt="">
+        <img src="../assets/icons/divider.png" alt="">
+        <img id="add-subtask" onclick="addSubtask()" class="cursor"
+            src="../assets/icons/checkmark.png" alt="">
+    </div>
+</div>
+
+</div>
+
+<ul id="subtasks">
+
+</ul>
 <div class="edit-task-button-container">
-<button class="submit-change cursor" onclick="submitChanges(${i})">Submit Changes</button>
+
+
+<div class="cursor submit-change">
+<p>Ok</p>
+<img id="add-subtask" onclick="submitChanges(${i})" class="cursor" src="../assets/icons/checkmark-white.png" alt="">
+</div>
+
+
 <button class="delete-task cursor" onclick="deleteTask(${i})" class="cursor">Delete Task</button>
 </div>
 `

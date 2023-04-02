@@ -281,6 +281,7 @@ textarea::placeholder {
     padding: 18px 10px;
     gap: 10px;
     background: #FFFFFF;
+    color: #4589FF;
     border: 1px solid #647188;
     border-radius: 10px;
     width: 136px;

@@ -93,7 +93,6 @@ function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDo
             stageDone.innerHTML += doneTemplate(i, test, finishedSubTasks);
             renderContactInitials(i, test, finishedSubTasks);
         }
-        renderColors(i);
     }
 }
 
@@ -118,7 +117,6 @@ function renderSearchedTaskArray(stageToDo, stageProgress, stageFeedBack, stageD
             stageDone.innerHTML += doneTemplate(i, task, finishedSubTasks);
             renderContactInitials(i, task, finishedSubTasks);
         }
-        renderColors(i);
     }
 }
 
@@ -275,7 +273,6 @@ function openTaskPopUp(i) {
     taskPopUp.classList.remove('d-none');
     document.getElementById('overlay').classList.remove('d-none');
     taskPopUp.innerHTML = openTaskPopUpTemplate(test, i, contact);
-    renderColors(i);
     renderContactInitials(i, test);
     changePriorityColorPopUp();
 }
@@ -507,14 +504,6 @@ async function submitChanges(i) {
     let newTaskName = document.getElementById(`input-edit-${i}`).value;
     let newDescription = document.getElementById(`edit-description${i}`).value;
     let newDate = document.getElementById(`task-date-edit${i}`).value;
-    let newCategory = document.getElementById(`select-category-edit${i}`).value;
-    let newAssignedContact = Array.from(document.getElementById('select-contact-edit').selectedOptions)
-        .map(option => {
-            let fullName = option.value;
-            let nameArr = fullName.split(' ');
-            let initials = nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
-            return initials.toUpperCase();
-        });
     let selectedContacts = document.getElementById('select-contact-add').value
     let newCategoryPopUp = document.getElementById(`category-${i}`);
     let urgentEdit = document.getElementById('urgent-edit')
@@ -524,17 +513,13 @@ async function submitChanges(i) {
         newPriority = checkForPrio();
         test.title = newTaskName;
         test.description = newDescription;
-        test.assignedContacts = newAssignedContact;
-        test.cat = newCategory;
         test.priority;
         test.date = newDate;
-        newCategoryPopUp = newCategory;
         await backend.setItem('testData', JSON.stringify(testData));
         location.reload();
         closeEditTask();
         closeTaskPopUp();
         hideOrShowPriorityLevels();
-        renderColors(i);
         await includeHTML();
     }
     else if (!urgentEdit.classList.contains('urgent') & !mediumEdit.classList.contains('medium') & !lowEdit.classList.contains('low')) {
@@ -543,17 +528,13 @@ async function submitChanges(i) {
     else {
         test.title = newTaskName;
         test.description = newDescription;
-        test.cat = newCategory;
-        test.assignedContacts = newAssignedContact;
         test.priority = newPriority;
         test.date = newDate;
-        newCategoryPopUp = newCategory;
         await backend.setItem('testData', JSON.stringify(testData));
         location.reload();
         closeEditTask();
         closeTaskPopUp();
         hideOrShowPriorityLevels();
-        renderColors(i);
         await includeHTML();
     }
 }
@@ -579,24 +560,6 @@ function checkForPrio() {
 function closeEditTask() {
     document.getElementById(`task-popup`).classList.remove('d-none');
     document.getElementById('edit-task-popup').classList.add('d-none');
-}
-
-
-
-function renderColors(i) {
-    let category = document.getElementById(`category-${i}`);
-    if (category.innerHTML == 'Design') {
-        category.classList.add('design');
-    }
-    if (category.innerHTML == 'Backoffice') {
-        category.classList.add('backoffice');
-    }
-    if (category.innerHTML == 'Sales') {
-        category.classList.add('sales');
-    }
-    if (category.innerHTML == 'Marketing') {
-        category.classList.add('marketing');
-    }
 }
 
 

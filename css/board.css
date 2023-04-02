@@ -3,7 +3,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif !important;
     scroll-behavior: smooth;
 }
 
@@ -15,6 +15,10 @@
     color: #42526E;
     margin-top: 5px;
     margin-bottom: 0px;
+}
+
+.static {
+    position: static !important;
 }
 
 progress {
@@ -150,14 +154,23 @@ input:active {
 .board-header button {
     height: 45px;
     border-radius: 10px;
-    font-weight: 600;
+}
+
+.board-header input::placeholder {
+    font-size: 18px;
 }
 
 .search-task {
+    display: flex;
+    align-items: center;
     height: 45px;
     border: 1px solid rgb(184, 184, 184);
     margin-right: 30px;
     border-radius: 10px;
+}
+
+.search-task img {
+    height: 20px !important;
 }
 
 .popup-input::placeholder {
@@ -216,10 +229,9 @@ input:active {
 .overlay {
     position: absolute;
     top: 0;
-    bottom: 0;
-    height: 100vh;
-    width: 100vw;
     right: 0;
+    bottom: 0;
+    width: 100vw;
     background-color: rgba(211, 211, 211, 0.5);
     display: flex;
     justify-content: center;
@@ -605,7 +617,7 @@ label>input {
 .priority-levels {
     box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
     padding: 15px 20px;
-    width: 31%;
+    width: 130px;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -739,7 +751,7 @@ textarea::placeholder {
     transform: translate(-50%, -50%);
     padding: 45px;
     min-width: 50vw;
-    min-height: 60vh;
+    height: 80vh;
     margin: auto;
     border-radius: 10px;
 }
@@ -757,7 +769,7 @@ textarea::placeholder {
 }
 
 .task-popup-header {
-    font-size: 50px;
+    font-size: 70px;
 }
 
 #task-popup h3 {
@@ -769,7 +781,8 @@ textarea::placeholder {
 }
 
 #task-popup ul li {
-    padding: 15px 0;
+    padding: 25px 0;
+    font-size: 20px;
 }
 
 #task-popup span {
@@ -777,10 +790,6 @@ textarea::placeholder {
     margin-left: 10px;
     border-radius: 10px;
     color: #000;
-}
-
-.assigned-contacts-popup span {
-    color: #fff !important;
 }
 
 .short-cut {
@@ -825,11 +834,13 @@ textarea::placeholder {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 45px;
-    min-width: 50vw;
-    min-height: 60vh;
+    padding: 50px;
+    width: 60vw;
+    height: 80vh;
     margin: auto;
     border-radius: 10px;
+    overflow-y: scroll; /* add a vertical scrollbar if the content overflows */
+    overflow-x: hidden;
 }
 
 .close-edit-task {
@@ -871,19 +882,41 @@ textarea::placeholder {
     justify-content: space-around;
 }
 
-.edit-task-button-container button {
+.submit-change {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 400;
+    font-size: 20px;
+    padding: 15px 30px;
     color: #fff;
+}
+
+.submit-change img {
+    padding-right: 0;
+}
+
+.delete-task {
+    font-weight: 400;
+    font-size: 20px;
+    padding: 15px 30px;
+    color: #fff;
+}
+
+
+.edit-task-button-container div, button {
     background-color: #4589FF;
     border-radius: 10px;
-    padding: 15px 30px;
 }
+
+
 
 /* Edit Task End */
 
 /* Stages Container Start */
 .stages-container {
     height: calc(100vh - 80px);
-    width: calc(100vw - 232px);
+    width: calc(100vw - 270px);
     display: flex;
     column-gap: 30px;
     margin: 60px 0 0;
@@ -1106,14 +1139,15 @@ textarea::placeholder {
 
 .assigned-contacts-popup span {
     background-color: #ffa800;
-    height: 35px;
-    width: 35px;
-    line-height: 35px;
+    height: 45px;
+    width: 45px;
+    line-height: 45px;
     text-align: center;
     display: inline-block;
     padding: 0 !important;
     margin: 0 !important;
     border-radius: 50% !important;
+    color: #fff !important;
 }
 
 /* Main End */
@@ -1178,18 +1212,39 @@ textarea::placeholder {
         width: calc(45vw - 196px);
     }
 
+    #edit-task-popup {
+        height: 60vh;
+    }
+
+    #task-popup {
+        width: 60vw;
+        height: 60vh;
+    }
 }
 
 @media only screen and (max-width: 1000px) {
+    .overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        width: 100vw;
+        background-color: rgba(211, 211, 211, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+    }
+
+
     .main-column {
         position: relative;
+        height: 100vh;
         margin: 35px 0;
     }
-    .board-header {
-        padding-left: 30px;
-    }
     .stages-container {
-        width: 100vw;
+        width: 99vw;
     }
 
     .test {
@@ -1199,9 +1254,18 @@ textarea::placeholder {
     .stage-general {
         width: 43vw;
     }
+
+    #edit-task-popup {
+        width: 80vw;
+    }
+
+    #task-popup {
+        width: 60vw;
+    }
 }
 
-@media only screen and (max-width: 775px) {
+
+@media only screen and (max-width: 830px) {
     .main-column {
         width: 100vw;
         padding: 0;
@@ -1213,6 +1277,14 @@ textarea::placeholder {
         justify-content: center;
         margin: 50px 0;
         padding: 0;
+    }
+
+    .stage-header {
+        justify-content: space-around;
+    }
+
+    .container {
+        margin: auto;
     }
 
     .stages-container {
@@ -1228,6 +1300,18 @@ textarea::placeholder {
 
     .stage-general {
         width: 100vw;
+    }
+
+    #edit-task-popup {
+        width: 90vw;
+        height: 60vh;
+    }
+    #task-popup-header{
+        font-size: 40px;
+    }
+    #task-popup ul li {
+        padding: 15px 0;
+        font-size: 16px;
     }
 }
 /* Responsive End */
