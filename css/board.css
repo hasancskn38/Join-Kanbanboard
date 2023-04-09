@@ -17,6 +17,10 @@
     margin-bottom: 0px;
 }
 
+.LOL {
+    background-color: red;
+}
+
 .static {
     position: static !important;
 }
@@ -149,6 +153,8 @@ input:active {
 .board-header button {
     padding-right: 20px;
 }
+
+
 
 .board-header input,
 .board-header button {
@@ -316,21 +322,28 @@ input:active {
     display: flex;
     justify-content: center;
     font-size: 28px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }
 
-.popup-header h2,
-.createtask-button {
+.popup-header h2 {
     margin: 20px;
     padding: 0 5px;
+    width: 200px;
+    height: 70px;
 }
 
 .createtask-button {
+    margin: 20px;
     color: #fff;
     background-color: #4589FF;
     padding: 10px;
     border-radius: 10px;
     font-size: 20px;
     font-weight: lighter;
+    width: 100px;
+    height: 70px;
 }
 
 .createtask-button:hover {
@@ -384,11 +397,13 @@ select {
 
 .dropdown_checkbox {
     font-size: 18px;
-    color:#4589FF;
+    color: #4589FF;
 }
 
 .contact_dropdown {
     width: 89%;
+    max-height: 125px;
+    overflow-y: scroll;
     margin-top: -25px;
     margin-left: 20px;
     font-size: 23px;
@@ -405,7 +420,7 @@ select {
 
 .dropdown_content:hover {
     cursor: pointer;
-    background-color: rgb(228,238,255);
+    background-color: rgb(228, 238, 255);
 }
 
 .dropdown_img {
@@ -413,8 +428,8 @@ select {
 }
 
 .dropdown_border {
-border-bottom-left-radius: 10px !important;
-border-bottom-right-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
 
 }
 
@@ -523,6 +538,12 @@ label>input {
 #show-categorys {
     display: flex;
     flex-direction: column;
+}
+
+.new_category_item {
+    display: flex;
+    width: 320px;
+    justify-content: space-between;
 }
 
 .new-category {
@@ -770,6 +791,7 @@ textarea::placeholder {
 
 .task-popup-header {
     font-size: 70px;
+    width: 100%;
 }
 
 #task-popup h3 {
@@ -839,7 +861,8 @@ textarea::placeholder {
     height: 80vh;
     margin: auto;
     border-radius: 10px;
-    overflow-y: scroll; /* add a vertical scrollbar if the content overflows */
+    overflow-y: scroll;
+    /* add a vertical scrollbar if the content overflows */
     overflow-x: hidden;
 }
 
@@ -904,9 +927,11 @@ textarea::placeholder {
 }
 
 
-.edit-task-button-container div, button {
+.edit-task-button-container div,
+button {
     background-color: #4589FF;
     border-radius: 10px;
+    width: 15px;
 }
 
 
@@ -1006,8 +1031,84 @@ textarea::placeholder {
     margin: 0 0 20px 0;
 }
 
+
+
+.task_lightBlue {
+    background-color: rgba(138, 164, 255, 0.6);
+}
+
+.task_blue {
+    background-color: rgba(0, 56, 255, 0.6);
+}
+
+.task_purple {
+    background-color: rgba(226, 0, 190, 0.6);
+}
+
+.task_orange {
+    background-color: rgba(255, 138, 0, 0.6);
+}
+
+.task_green {
+    background-color: rgba(42, 211, 0, 0.6);
+}
+
+.task_red {
+    background-color: rgba(255, 0, 0, 0.6);
+}
+
+.lightBlue {
+    display: flex;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    background-color: rgb(138, 164, 255);
+    border-radius: 100%;
+}
+
 .blue {
-    color: #4589FF;
+    display: flex;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    background-color: rgb(0, 56, 255);
+    border-radius: 100%;
+}
+
+.purple {
+    display: flex;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    background-color: rgb(226, 0, 190);
+    border-radius: 100%;
+}
+
+.orange {
+    display: flex;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    background-color: rgb(255, 138, 0);
+    border-radius: 100%;
+}
+
+.green {
+    display: flex;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    background-color: rgb(42, 211, 0);
+    border-radius: 100%;
+}
+
+.red {
+    display: flex;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    background-color: rgb(255, 0, 0);
+    border-radius: 100%;
 }
 
 .grey {
@@ -1048,31 +1149,6 @@ textarea::placeholder {
 
 .marketing {
     background-color: #0038FF;
-}
-
-/* Colors for new styling */
-.blue1 {
-    background-color: #8AA4FF;
-}
-
-.blue2 {
-    background-color: #0038FF;
-}
-
-.purple {
-    background-color: #E200BE;
-}
-
-.orange {
-    background-color: #FF8A00;
-}
-
-.green {
-    background-color: #2AD300;
-}
-
-.red {
-    background-color: #FF0000;
 }
 
 /* Colors for new styling */
@@ -1243,6 +1319,7 @@ textarea::placeholder {
         height: 100vh;
         margin: 35px 0;
     }
+
     .stages-container {
         width: 99vw;
     }
@@ -1306,13 +1383,16 @@ textarea::placeholder {
         width: 90vw;
         height: 60vh;
     }
-    #task-popup-header{
+
+    #task-popup-header {
         font-size: 40px;
     }
+
     #task-popup ul li {
         padding: 15px 0;
         font-size: 16px;
     }
 }
+
 /* Responsive End */
 /* Styling of the Content that is created or rendered with Javascript End*/

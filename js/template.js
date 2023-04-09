@@ -2,8 +2,8 @@ function toDoTemplate(i, test, finishedSubTasks) {
     if (test['subtasks'].length === 0) {
         return `
     <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
-    <h3 id="category-${i}">${test.cat}</h3>
-    <h4 class="blue">${test.description}</h4>
+    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+    <h4>${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
     <div class="subtasks-done"></div>
@@ -26,8 +26,8 @@ function toDoTemplate(i, test, finishedSubTasks) {
     else {
         return `
     <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
-    <h3 id="category-${i}">${test.cat}</h3>
-    <h4 class="blue">${test.description}</h4>
+    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+    <h4>${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
     <progress style:width:80% value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
@@ -54,8 +54,8 @@ function progressTemplate(i, test, finishedSubTasks) {
     if (test['subtasks'].length === 0) {
         return `
     <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
-    <h3 id="category-${i}">${test.cat}</h3>
-    <h4 class="blue">${test.description}</h4>
+    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+    <h4>${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
     <!-- <div class="progress"><progress></div> -->
@@ -79,8 +79,8 @@ function progressTemplate(i, test, finishedSubTasks) {
     else {
         return `
     <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
-    <h3 id="category-${i}">${test.cat}</h3>
-    <h4 class="blue">${test.description}</h4>
+    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+    <h4>${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
     <progress width="80%" value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
@@ -107,8 +107,8 @@ function feedBackTemplate(i, test, finishedSubTasks) {
     if (test['subtasks'].length === 0) {
         return `
     <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
-    <h3 id="category-${i}">${test.cat}</h3>
-    <h4 class="blue">${test.description}</h4>
+    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+    <h4>${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
     <!-- <div class="progress"><progress></div> -->
@@ -132,8 +132,8 @@ function feedBackTemplate(i, test, finishedSubTasks) {
     else {
         return `
     <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
-    <h3 id="category-${i}">${test.cat}</h3>
-    <h4 class="blue">${test.description}</h4>
+    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+    <h4>${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
     <progress width="80%" value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
@@ -160,8 +160,8 @@ function doneTemplate(i, test, finishedSubTasks) {
     if (test['subtasks'].length === 0) {
         return `
     <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
-    <h3 id="category-${i}">${test.cat}</h3>
-    <h4 class="blue">${test.description}</h4>
+    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+    <h4>${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
     <!-- <div class="progress"><progress></div> -->
@@ -185,8 +185,8 @@ function doneTemplate(i, test, finishedSubTasks) {
     else {
         return `
     <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
-    <h3 id="category-${i}">${test.cat}</h3>
-    <h4 class="blue">${test.description}</h4>
+    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+    <h4>${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
     <progress width="80%" value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
