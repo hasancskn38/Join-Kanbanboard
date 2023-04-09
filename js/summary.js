@@ -2,21 +2,6 @@ setURL('https://gruppe-447.developerakademie.net/join/smallest_backend_ever');
 let contacts = [];
 let letters = [];
 let testData = [];
-// Generate Greeting Based on real world time
-// setInterval(function() {
-//     let date = new Date();
-//     let hours = date.getHours();
-//     // then we declare a var named timeOfDay
-//     let timeOfDay;
-//     if (hours < 12) {
-//         timeOfDay = 'Good Morning !';
-//     } else if(hours >= 12 && hours < 17) {
-//         timeOfDay = 'Good afternoon !';
-//     } else {
-//         timeOfDay = 'Good evening !';
-//     }
-//     document.getElementById('greeting').innerHTML = timeOfDay ;
-// }, 1000);
 
 // Implement Templates
 async function includeHTML() {
@@ -40,10 +25,27 @@ function parseLoggedOnUser() {
     let loggedOnUserFirstChart = loggedOnUser.charAt(0);
     let loggedOnUserFirstChartToUpperCase = loggedOnUserFirstChart.toUpperCase();
     document.getElementById('logged_on_user').innerHTML = `
-    <div>Good Morning,</div> 
+    <h5 id="greeting"></h5>
     <span>${loggedOnUser}</span>`;
     document.getElementById('display_logged_on_user').innerHTML = `${loggedOnUserFirstChartToUpperCase}`;
 }
+
+
+// Generate Greeting Based on real world time
+setInterval(function() {
+    let date = new Date();
+    let hours = date.getHours();
+    let timeOfDay;
+    if (hours < 12) {
+        timeOfDay = 'Good Morning !';
+    } else if(hours >= 12 && hours < 17) {
+        timeOfDay = 'Good afternoon !';
+    } else {
+        timeOfDay = 'Good evening !';
+    }
+    document.getElementById('greeting').innerHTML = timeOfDay, ',' ;
+}, 1000);
+
 
 async function loadDataFromServer() {
     await downloadFromServer();

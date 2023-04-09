@@ -1,5 +1,14 @@
+/* General Stylings Start*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'PT Sans', sans-serif;
+    scroll-behavior: smooth;
+}
+
 body {
-    position: relative;
+    margin: 0;
 }
 
 .main_container {
@@ -7,31 +16,20 @@ body {
 }
 
 .popup-content {
-    height: 100%;
-    margin: 30px;
+    height: auto;
+    margin: 20px;
     overflow: hidden;
+    font-family: 'Open Sans' !important;
 }
 
-.help-me-container {
-    background-color: #ffffff;
-    height: 50vh !;
-    position: absolute;
-    margin: 150px 100px;
+.d-none {
+    display: none !important;
 }
 
-.help-me-container h1 {
-    font-size: 36px;
+.side-bar {
+    z-index: 0;
 }
 
-.help-me-container h1,
-.help-me-container h2 {
-    color: #4589FF;
-}
-
-.help-me-header {
-    display: flex;
-    justify-content: space-between;
-}
 
 ol {
     list-style-type: none;
@@ -213,9 +211,10 @@ label>input {
 
 textarea {
     width: 90%;
+    height: 100px;
     font-size: 17px;
     margin: 15px 0;
-    padding: 15px;
+    padding: px;
     border-radius: 10px;
     border: 1px solid lightgrey;
 }
@@ -282,6 +281,7 @@ textarea::placeholder {
     padding: 18px 10px;
     gap: 10px;
     background: #FFFFFF;
+    color: #4589FF;
     border: 1px solid #647188;
     border-radius: 10px;
     width: 136px;
@@ -292,7 +292,7 @@ textarea::placeholder {
 
 .createtask-button-clear:hover {
     border: 1px solid #4589FF;
-    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.283);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     transition: all 125ms ease-in-out;
     color: #4589FF;
 }
@@ -317,7 +317,7 @@ textarea::placeholder {
 .createtask-button-2:hover {
     transition: all 125ms ease-in-out;
     background: #4e85e5;
-    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.283);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .two-button {
@@ -356,8 +356,8 @@ textarea::placeholder {
 }
 
 .description {
-    margin:0 20px;
-    padding:5px;
+    margin: 0 20px;
+    padding: 5px;
 }
 
 .successfull_added {
@@ -370,7 +370,7 @@ textarea::placeholder {
 
 .successfull_added b {
     font-size: 38px;
-    color: rgb(69,137,255);
+    color: rgb(69, 137, 255);
 }
 
 
@@ -379,13 +379,41 @@ textarea::placeholder {
     animation: fade-in 1s ease-in;
 }
 
+
+
 @keyframes fade-in {
-    0% {opacity: 0;} 
-    100% {opacity: 1;} 
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .display_opacity {
     opacity: 0;
+}
+
+
+.help-me-container {
+    position: absolute;
+    left: 0;
+    z-index: 1;
+}
+
+.help-me-container h1 {
+    font-size: 36px;
+}
+
+.help-me-container h1,
+.help-me-container h2 {
+    color: #4589FF;
+}
+
+.help-me-header {
+    display: flex;
+    justify-content: space-between;
 }
 
 
@@ -394,40 +422,30 @@ textarea::placeholder {
     .successfull_added {
         margin-left: 20px;
     }
-    .main_container {
-        margin-bottom: 130px;
+}
+
+@media (max-width: 1000px) {
+    .popup-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: visible;
+        margin-left: calc(50vw - 200px);
+        height: 1000px;
+        margin-top: -100px;
+    }
+
+    .popup-content-add-task {
+        padding-bottom: 120px !important;
+    }
+
+    .two-button button {
+       height: 50px;
+       margin-top: -20px;
     }
 }
 
-@media (max-width: 770px) {
-    .popup-content {
-        margin: -20px;
-    }
-    .successfull_added {
-        color: white;
-        padding-top: 100px;
-        padding-bottom: 100px;
-        position: absolute;
-        left: calc(50% - 220px);
-        background-color: rgba(0, 0, 0, 0.904);
-        border-radius: 20px;
-    }
-}
+@media (max-width: 430px) {
 
-@media (max-width: 550px) {
-    .popup-content {
-        margin: -20px;
 
-    }
-}
-
-@media (max-width: 450px) {
-    .successfull_added {
-        width: 300px;
-        left: calc(50% - 170px);
-    }
-
-    .popup-content {
-        margin: -20px;
-    }
 }

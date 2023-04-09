@@ -1,12 +1,12 @@
-function toDoTemplate(i, test) {
-    return `
+function toDoTemplate(i, test, finishedSubTasks) {
+    if (test['subtasks'].length === 0) {
+        return `
     <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
-    <h3 id="category-${i}">${test.cat}</h3>
-    <h4 class="blue">${test.description}</h4>
+    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+    <h4>${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
-    <!-- <div class="progress"><progress></div> -->
-    <div class="subtasks-done">1/2 Done</div>
+    <div class="subtasks-done"></div>
     </div>
    
     <div class="contact-priority-container">
@@ -22,16 +22,16 @@ function toDoTemplate(i, test) {
     </div>
     </div>
     `
-}
-
-function progressTemplate(i, test) {
-    return `<div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
-    <h3 id="category-${i}">${test.cat}</h3>
-    <h4 class="blue">${test.description}</h4>
-    <p class="grey">${test.title}</p>
+    }
+    else {
+        return `
+    <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
+    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+    <h4>${test.description}</h4>
+    <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
-    <!-- <div class="progress"><progress></div> -->
-    <div class="subtasks-done">1/2 Done</div>
+    <progress style:width:80% value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
+    <div class="subtasks-done">${finishedSubTasks}/${test['subtasks'].length} Done</div>
     </div>
    
     <div class="contact-priority-container">
@@ -50,14 +50,41 @@ function progressTemplate(i, test) {
     }
 }
 
-function feedBackTemplate(i, test) {
-    return `<div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
-    <h3 id="category-${i}">${test.cat}</h3>
-    <h4 class="blue">${test.description}</h4>
-    <p class="grey">${test.title}</p>
+function progressTemplate(i, test, finishedSubTasks) {
+    if (test['subtasks'].length === 0) {
+        return `
+    <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
+    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+    <h4>${test.description}</h4>
+    <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
     <!-- <div class="progress"><progress></div> -->
-    <div class="subtasks-done">1/2 Done</div>
+    <div class="subtasks-done"></div>
+    </div>
+   
+    <div class="contact-priority-container">
+
+    <div id="assigned-contacts-${i}" class="assigned-contact">
+    
+    </div>
+
+    <div class="priority-level">
+    <img id="urgent-main-${i}" class="" src="../assets/icons/urgent.png">
+    <img id="medium-main-${i}" class="" src="../assets/icons/medium.png">
+    <img id="low-main-${i}" class="" src="../assets/icons/low.png"></div>
+    </div>
+    </div>
+    `
+    }
+    else {
+        return `
+    <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
+    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+    <h4>${test.description}</h4>
+    <p id="task-title" class="grey">${test.title}</p>
+    <div class="progress-container">
+    <progress width="80%" value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
+    <div class="subtasks-done">${finishedSubTasks}/${test['subtasks'].length} Done</div>
     </div>
    
     <div class="contact-priority-container">
@@ -76,14 +103,94 @@ function feedBackTemplate(i, test) {
     }
 }
 
-function doneTemplate(i, test) {
-    return `<div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
-    <h3 id="category-${i}">${test.cat}</h3>
-    <h4 class="blue">${test.description}</h4>
+function feedBackTemplate(i, test, finishedSubTasks) {
+    if (test['subtasks'].length === 0) {
+        return `
+    <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
+    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+    <h4>${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
     <!-- <div class="progress"><progress></div> -->
-    <div class="subtasks-done">1/2 Done</div>
+    <div class="subtasks-done"></div>
+    </div>
+   
+    <div class="contact-priority-container">
+
+    <div id="assigned-contacts-${i}" class="assigned-contact">
+    
+    </div>
+
+    <div class="priority-level">
+    <img id="urgent-main-${i}" class="" src="../assets/icons/urgent.png">
+    <img id="medium-main-${i}" class="" src="../assets/icons/medium.png">
+    <img id="low-main-${i}" class="" src="../assets/icons/low.png"></div>
+    </div>
+    </div>
+    `
+    }
+    else {
+        return `
+    <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
+    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+    <h4>${test.description}</h4>
+    <p id="task-title" class="grey">${test.title}</p>
+    <div class="progress-container">
+    <progress width="80%" value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
+    <div class="subtasks-done">${finishedSubTasks}/${test['subtasks'].length} Done</div>
+    </div>
+   
+    <div class="contact-priority-container">
+
+    <div id="assigned-contacts-${i}" class="assigned-contact">
+    
+    </div>
+
+    <div class="priority-level">
+    <img id="urgent-main-${i}" class="" src="../assets/icons/urgent.png">
+    <img id="medium-main-${i}" class="" src="../assets/icons/medium.png">
+    <img id="low-main-${i}" class="" src="../assets/icons/low.png"></div>
+    </div>
+    </div>
+    `
+    }
+}
+
+function doneTemplate(i, test, finishedSubTasks) {
+    if (test['subtasks'].length === 0) {
+        return `
+    <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
+    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+    <h4>${test.description}</h4>
+    <p id="task-title" class="grey">${test.title}</p>
+    <div class="progress-container">
+    <!-- <div class="progress"><progress></div> -->
+    <div class="subtasks-done"></div>
+    </div>
+   
+    <div class="contact-priority-container">
+
+    <div id="assigned-contacts-${i}" class="assigned-contact">
+    
+    </div>
+
+    <div class="priority-level">
+    <img id="urgent-main-${i}" class="" src="../assets/icons/urgent.png">
+    <img id="medium-main-${i}" class="" src="../assets/icons/medium.png">
+    <img id="low-main-${i}" class="" src="../assets/icons/low.png"></div>
+    </div>
+    </div>
+    `
+    }
+    else {
+        return `
+    <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
+    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+    <h4>${test.description}</h4>
+    <p id="task-title" class="grey">${test.title}</p>
+    <div class="progress-container">
+    <progress width="80%" value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
+    <div class="subtasks-done">${finishedSubTasks}/${test['subtasks'].length} Done</div>
     </div>
    
     <div class="contact-priority-container">
@@ -107,7 +214,7 @@ function doneTemplate(i, test) {
 function renderShowContactsHTML(contactColor, bothFirstLetter, contactName, contactEmail, contactPhone, i) {
     return `
     <div class="border-for-contacts"></div>
-     <div class="over" onclick="openDetailContact('${bothFirstLetter}', '${contactColor}', '${contactName}', '${contactEmail}', '${contactPhone}', ${i})">
+     <div id="contact_nr${i}" class="over" onclick="openDetailContact('${bothFirstLetter}', '${contactColor}', '${contactName}', '${contactEmail}', '${contactPhone}', ${i})">
       <div class="over-div-letter-name-email">
       <div style="background-color: ${contactColor}" class="letter-circle">${bothFirstLetter}</div>
       <div>
@@ -273,9 +380,9 @@ function openTaskPopUpTemplate(test, i, contact) {
     return `
     <div class="task-popup-container">
                     <button class="cursor" onclick="closeTaskPopUp()">X</button>
-                    <h3 id="category-${i}">${test.cat}</h3>
+                    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
                     <h1 id="task-popup-header" class="grey task-popup-header">${test.title}</h1>
-                    <p class="blue">${test.description}</p>
+                    <p>${test.description}</p>
                     <ul>
                         <li><b>Due Date:</b> ${test.date}</li>
                         <li><b>Priority:</b><span id="test-priority">${test.priority}</span> </li>
@@ -300,22 +407,16 @@ function openEditTaskPopUp(test, i) {
     <div class="input-container-edit">
     <input id="input-edit-${i}" type="text" value="${test.title}">
     </div>
-    <select required id="select-category-edit${i}" class="cursor">
-                            <option value="${test.cat}" selected hidden>${test.cat}</option>
-                            <option class="design-option" value="Design">Design</option>
-                            <option class="sales-option" value="Sales">Sales</option>
-                            <option class="backoffice-option" value="Backoffice">Backoffice</option>
-                            <option class="marketing-option" value="Marketing">Marketing</option>
-                        </select>
-
     <h2>Description</h2>
     <textarea id="edit-description${i}">${test.description}</textarea>
     <h2 class="date-header-edit">Due date</h2>
+
     <label for="appointment">
-        <div class="date-edit">
-        <input id="task-date-edit${i}" value="${test.date}" required="" type="text" class="form-control" placeholder="dd/mm/yyyy" onfocus="(this.type='date')"/>
-        </div>
-    </label>
+                            <h4 class="date-header">Due date</h4>
+                            <div class="date">
+                                <input id="task-date-edit${i}" value="${test.date}" required type="date" />
+                            </div>
+                        </label>
     <div class="priority">
     <div class="priority-levels cursor priority-edit" id="urgent-edit" onclick="changeUrgentColorEdit(); editPriority('Urgent');"><span
             id="urgent-inner-edit">Urgent</span><img id="img1-edit" src="../assets/icons/urgent.png"
@@ -326,14 +427,41 @@ function openEditTaskPopUp(test, i) {
     <div class="priority-levels cursor priority-edit" id="low-edit" onclick="changeLowColorEdit(); editPriority('Low');"><span
             id="low-inner-edit">Low</span><img id="img3-edit" src="../assets/icons/low.png" alt=""></div>
 </div>
-<select required id="select-contact-edit" class="select-contact cursor">
-<option value="" disabled selected hidden>Select contacts to assign</option>
-</select>
+<div required onclick="showDropDown()" id="select-contact-add" class="select-contact cursor"><div> Select contacts to assign</div> <div class="arrow"><img id="dropwdown-icon"
+                            class="dropdown-icon" src="../assets/icons/dropdown.png" alt=""></div>
+                        </div>
+                        <div id="contact_dropdown" class="contact_dropdown">
+                        
+                        </div>
 </div>
 <div class="show_subtasks" id="show_subtasks">
 </div>
+<div class="subtasks">
+<h4>Subtask</h4>
+<div class="subtasks-input"><input id="task-subtask" minlength="8"
+        placeholder="Add new subtask" type="text">
+    <div class="check-and-cross">
+        <img class="cursor" src="../assets/icons/x.png" alt="">
+        <img src="../assets/icons/divider.png" alt="">
+        <img id="add-subtask" onclick="addSubtask()" class="cursor"
+            src="../assets/icons/checkmark.png" alt="">
+    </div>
+</div>
+
+</div>
+
+<ul id="subtasks">
+
+</ul>
 <div class="edit-task-button-container">
-<button class="submit-change cursor" onclick="submitChanges(${i})">Submit Changes</button>
+
+
+<div class="cursor submit-change">
+<p>Ok</p>
+<img id="add-subtask" onclick="submitChanges(${i})" class="cursor" src="../assets/icons/checkmark-white.png" alt="">
+</div>
+
+
 <button class="delete-task cursor" onclick="deleteTask(${i})" class="cursor">Delete Task</button>
 </div>
 `

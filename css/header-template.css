@@ -149,7 +149,7 @@ img {
     background-color: #fff;
     height: 50vh;
     position: absolute;
-    margin: 150px 100px;
+    margin: 50px;
 }
 
 .help-me-container h1 {
@@ -159,19 +159,31 @@ img {
 .help-me-container h1,
 .help-me-container h2 {
     color: #4589FF;
+    margin-bottom: 25px;
 }
 
 .help-me-header {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 25px;
 }
 
 ol {
     list-style-type: none;
+    font-size: 20px;
 }
 
 li {
     margin: 10px auto;
+}
+
+li span {
+    color: #4589FF;
+    font-weight: 700;
+}
+
+p, .kanban-description {
+    font-size: 20px;
 }
 
 .help-me-header button {
@@ -181,11 +193,14 @@ li {
     border: none;
     outline: none;
     cursor: pointer;
-    transition: all 225ms ease-in-out;
+    transition: all 125ms ease-in-out;
+}
+
+.kanban-description {
+    margin-bottom: 25px;
 }
 
 .help-me-header button:hover {
-    transform: scale(1.05) rotate(180deg);
     opacity: .6;
 }
 

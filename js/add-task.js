@@ -23,7 +23,7 @@ async function includeHTML() {
         }
     }
     renderAllBackendData();
-    
+
 }
 
 function parseLoggedOnUser() {
@@ -52,15 +52,15 @@ function renderAllContacts() {
     document.getElementById('urgent').addEventListener('click', function () {
         setPriority('Urgent');
     });
-    
+
     document.getElementById('medium').addEventListener('click', function () {
         setPriority('Medium');
     });
-    
+
     document.getElementById('low').addEventListener('click', function () {
         setPriority('Low');
     });
-    
+
     function setPriority(value) {
         priority = value;
     }
@@ -208,17 +208,17 @@ async function addTaskToBoard() {
 }
 
 function renderSubtasks() {
-    let resultArray = []; 
+    let resultArray = [];
     for (let i = 0; i < subtaskArray.length; i++) {
-      let subtask = subtaskArray[i];
-      let obj = {
-        "subtask": subtask,
-        "status": 'open'
-      };
-      resultArray.push(obj); 
+        let subtask = subtaskArray[i];
+        let obj = {
+            "subtask": subtask,
+            "status": 'open'
+        };
+        resultArray.push(obj);
     }
-    return resultArray; 
-  }
+    return resultArray;
+}
 
 function userAddedSuccessfull(title) {
     let container = document.getElementById('successfull_added');
@@ -235,11 +235,40 @@ function userAddedSuccessfull(title) {
     `;
 }
 
+function addSubtask() {
+    let subtaskInput = document.getElementById('task-subtask').value;
+    if (subtaskInput.length <= 2) {
+        alert('Mindestens 3 Zeichen sind nötig um ein Subtask zu');
+    }
+    else {
+        subtaskArray.push(subtaskInput);
+        renderSubtasksInPopUp();
+        document.getElementById('task-subtask').value = '';
+    }
+}
+
+
+
+function renderSubtasksInPopUp() {
+    let subTasks = document.getElementById('subtasks');
+    subTasks.innerHTML = '';
+    for (let i = 0; i < subtaskArray.length; i++) {
+        let subtaskInput = subtaskArray[i];
+        subTasks.innerHTML += `<li class="subtask-list">${subtaskInput} <button type="button" onclick="deleteSubtask(${i})" id="delete-subtask">❌</button></li>`;
+    }
+   
+}
+
+function deleteSubtask(i) {
+    subtaskArray.splice(i, 1);
+    renderSubtasksInPopUp();
+}
+
 function addAnimation() {
     let animation = document.getElementById('successfull_added');
     animation.classList.remove('display_opacity');
     animation.classList.add('successfull_added_animation');
-  
+
 
     setTimeout(() => {
         animation.classList.remove('successfull_added_animation');
@@ -254,6 +283,8 @@ function clearInputFields() {
     document.getElementById('task-description').value = '';
     document.getElementById('task-subtask').value = '';
     document.getElementById('select-contact').value = '';
+    subtaskArray = [];
+    document.getElementById('subtasks').innerHTML = '';
     if (priority == 'Urgent') {
         changeUrgentColor();
     }
@@ -268,4 +299,16 @@ function clearInputFields() {
 function resetForm() {
     document.getElementById("createtask-form").reset();
     clearInputFields();
-  }
+}
+
+function showHelpMeSection() {
+    document.getElementById('help-me-container').classList.remove('d-none');
+    document.getElementById('createtask-form').classList.add('d-none');
+    document.getElementById('side_bar').classList.add('d-none');
+}
+
+function hideHelpMeSection() {
+    document.getElementById('help-me-container').classList.add('d-none');
+    document.getElementById('createtask-form').classList.remove('d-none');
+    document.getElementById('side_bar').classList.remove('d-none');
+}

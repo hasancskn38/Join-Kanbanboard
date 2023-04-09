@@ -6,10 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Task</title>
-    <link rel="stylesheet" href="../css/board.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo-blue.png">
     <link rel="stylesheet" href="../css/contacs.css">
+    <link rel="stylesheet" href="../css/board.css">
+    <link rel="stylesheet" href="../css/header-template.css">
     <link rel="stylesheet" href="../css/add-task.css">
     <script src="../smallest_backend_ever/mini_backend.js"></script>
+    <script src="../js/board.js"></script>
+    <script src="../js/board-priority.js"></script>
     <script src="../js/add-task.js"></script>
 
 </head>
@@ -34,39 +41,60 @@
 
             <form id="createtask-form" onsubmit="addTaskToBoard(); return false;">
 
-                <div class="popup-content">
-
-                    <div class="popup-header">
-                        <h2>Add Task</h2>
-                    </div>
+                <div class="popup-content popup-content-add-task">
 
                     <div class="input-container">
                         <input required id="task-title" class="popup-input" type="text" placeholder="Enter a title">
                     </div>
 
-
-                    <select required id="select-category" class="cursor">
-                        <option value="" disabled selected hidden>Select task category</option>
-                        <option class="design-option" value="Design">Design</option>
-                        <option class="sales-option" value="Sales">Sales</option>
-                        <option class="backoffice-option" value="Backoffice">Backoffice</option>
-                        <option class="marketing-option" value="Marketing">Marketing</option>
-                    </select>
-
-
-                    <label for="appointment">
-                        <h2 class="date-header">Due date</h2>
-                        <div class="date">
-                            <input id="task-date" required="" type="text" class="form-control"
-                                placeholder="dd/mm/yyyy" onfocus="(this.type='date')" />
-                        </div>
-                    </label>
-
-                    <select multiple id="select-contact" class="select-contact cursor" required>
+                    <select id="select-contact" class="select-contact cursor" required>
                         <option value="" disabled selected hidden>Select contacts to assign</option>
 
                     </select>
 
+                    <label for="appointment">
+                        <h4 class="date-header">Due date</h4>
+                        <div class="date">
+                            <input id="task-date" required type="date" />
+                        </div>
+                    </label>
+
+                    
+                    <div class="new-category-container d-none" id="new-category-container">
+                        <p class="d-none" id="category-alert">Please select a category name and then a color !</p>
+
+                        <div id="new-category-input" class="input-container">
+                            <input id="new-category-name" class="popup-input" type="text"
+                                placeholder="new category name">
+                            <div class="check-and-cross">
+                                <img onclick="hideNewCategory()" class="cursor" id="hide-new-category"
+                                    src="../assets/icons/x.png" alt="">
+                                <img src="../assets/icons/divider.png" alt="">
+                                <img class="cursor" id="add-new-category" src="../assets/icons/checkmark.png"
+                                    alt="">
+                            </div>
+
+                        </div>
+                        <div style="margin-left: 25px;" id="category-colors" class="new-category-colors">
+                            <img onclick="displayColor(); addColorToCategory('blue1');" class="cursor"
+                                src="../assets/icons/color1.png" alt="">
+                            <img onclick="displayColor(); addColorToCategory('blue2');" class="cursor"
+                                src="../assets/icons/color2.png" alt="">
+                            <img onclick="displayColor(); addColorToCategory('purple');" class="cursor"
+                                src="../assets/icons/color3.png" alt="">
+                            <img onclick="displayColor(); addColorToCategory('orange');" class="cursor"
+                                src="../assets/icons/color4.png" alt="">
+                            <img onclick="displayColor(); addColorToCategory('green');" class="cursor"
+                                src="../assets/icons/color5.png" alt="">
+                            <img onclick="displayColor(); addColorToCategory('red');" class="cursor"
+                                src="../assets/icons/color6.png" alt="">
+                        </div>
+                    </div>
+
+                    <div class="cursor" id="display-categories">
+                        <p id="select-category-inner">Select task category</p>
+                        <img id="dropwdown-icon" class="dropdown-icon" src="../assets/icons/dropdown.png" alt="">
+                    </div>
 
                     <div class="priority">
 

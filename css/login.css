@@ -2,6 +2,21 @@ body {
     margin: 0;
     height: 100%;
     width: 100%;
+    animation: backgroundcolor 1.5s;
+}
+
+.login-email {
+    background: url("../assets/img/Input_Email.png");
+    background-position: 335px;
+    background-size: 4%;
+    background-repeat: no-repeat;
+}
+
+.login-lock {
+    background: url("../assets/img/Input_Lock.png");
+    background-position: 335px;
+    background-size: 4%;
+    background-repeat: no-repeat;
 }
 
 .login_head {
@@ -11,8 +26,8 @@ body {
 }
 
 .login_head div {
-font-size: 23px;
-font-family: 'open sans';
+    font-size: 23px;
+    font-family: 'open sans';
 }
 
 
@@ -26,6 +41,7 @@ font-family: 'open sans';
     width: 100px;
     object-fit: contain;
     animation: go_small 1.5s;
+
     z-index: 1;
     object-fit: contain;
 }
@@ -33,18 +49,20 @@ font-family: 'open sans';
 @keyframes go_small {
     0% {
         transform: scale(4);
-        margin-left: 680px;
-        margin-top: 350px;
+        margin-left: 35vw;
+        margin-top: calc(50vh - 122px);
+        margin-right: 0px;
         object-fit: cover;
-        background-color: white;
+        filter: grayscale(100%) brightness(1000%);
     }
 
-    30% {
+    35% {
         transform: scale(4);
-        margin-left: 680px;
-        margin-top: 350px;
+        margin-left: 35vw;
+        margin-top: calc(50vh - 122px);
+        margin-right: 0px;
         object-fit: cover;
-        background-color: white;
+        filter: grayscale(100%) brightness(1000%);
     }
 
     100% {
@@ -52,6 +70,21 @@ font-family: 'open sans';
         margin-left: 0px;
         margin-top: 0px;
         object-fit: cover;
+        filter: none;
+    }
+}
+
+@keyframes backgroundcolor {
+    0% {
+        background-color: rgb(69,137,255);
+    }
+
+    35% {
+
+        background-color: rgb(69,137,255);
+    }
+
+    100% {
     }
 }
 
@@ -68,9 +101,11 @@ font-family: 'open sans';
 
 .sign_in_button:hover {
     cursor: pointer;
-    background-color: rgb(59, 131, 255);
+    background: #4e85e5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     transition: all .2s ease-in-out;
 }
+    
 
 .login_main_container {
     display: flex;
@@ -92,7 +127,7 @@ font-family: 'open sans';
     margin-top: -80px;
 }
 
-.login_inputs{
+.login_inputs {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -116,6 +151,27 @@ font-family: 'open sans';
     }
 }
 
+.login_div {
+    animation: fade 1.5s;
+}
+
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+        transform: scale(0.4);
+    }
+
+    85% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 
 .login_main_container form {
     display: flex;
@@ -183,7 +239,8 @@ font-family: 'open sans';
 
 .log_in_button:hover {
     cursor: pointer;
-    background-color: rgb(59, 131, 255);
+    background: #4e85e5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     transition: all .2s ease-in-out;
 }
 
@@ -198,7 +255,9 @@ font-family: 'open sans';
 .guest_log_in_button:hover {
     cursor: pointer;
     transition: all .2s ease-in-out;
-    background-color: rgb(238, 238, 238);
+    border: 1px solid #4589FF;
+    color: #4589FF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .login_remember_me {
@@ -209,13 +268,141 @@ font-family: 'open sans';
     font-size: 19px;
 }
 
-@media (max-width:500px) {
+@media (max-width:900px) {
     .login_head img {
-        position: absolute;
-        left: 35px;
+        margin-right: 330px;
     }
+
+}
+
+@media (max-width:720px) {
+    .login_head img {
+        margin-right: 200px;
+    }
+
+}
+
+@media (max-width:660px) {
+    .login_head img {
+        margin-right: 20px;
+    }
+
+    .login_form {
+        width: 528px;
+    }
+}
+
+@media (max-width:540px) {
+    .login_form {
+        width: 390px;
+    }
+
+    @keyframes go_small {
+        0% {
+            transform: scale(2.5);
+            margin-left: 47vw;
+            margin-top: calc(50vh - 122px);
+            margin-right: 0px;
+            object-fit: cover;
+            background-color: rgb(255, 255, 255);
+        }
+
+        35% {
+            transform: scale(2.5);
+            margin-left: 47vw;
+            margin-top: calc(50vh - 122px);
+            margin-right: 0px;
+            object-fit: cover;
+            background-color: rgb(255, 255, 255);
+        }
+
+        100% {
+            transform: scale(1);
+            margin-left: 0px;
+            margin-top: 0px;
+            object-fit: cover;
+        }
+    }
+}
+
+@media (max-width:450px) {
+    .login_form {
+        width: 370px;
+        overflow: hidden;
+    }
+
+    .login_form form {
+overflow: hidden;
+    }
+
+    .login_main_container form {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .login_div {
+        font-size: 20px !important;
+    }
+
+    .login_additionals {
+        flex-direction: column;
+        margin-left: 100px;
+        height: 100px;
+        margin-top: 0px;
+    }
+
+    .log_in_buttons {
+        flex-direction: column;
+        margin-left: 170px;
+        margin-right: 0;
+    }
+
+    .log_in_button {
+        width: 180px;
+        height: 51px;
+        margin: 0;
+        margin-bottom: 15px !important;
+        margin-right: 0;
+    }
+
+    .login_form {
+        height: 550px;
+    }
+
     .login_div {
         position: absolute;
-        bottom: 60px;
+        bottom: 40px;
+    }
+
+    .login_head img {
+        margin-left: -250px;
+        width: 70px;
+    }
+
+    @keyframes go_small {
+        0% {
+            transform: scale(2);
+            margin-left: 10vw;
+            margin-top: calc(50vh - 122px);
+            margin-right: 0px;
+            object-fit: cover;
+            background-color: rgb(255, 255, 255);
+        }
+    
+        35% {
+            transform: scale(2);
+            margin-left: 10vw;
+            margin-top: calc(50vh - 122px);
+            margin-right: 0px;
+            object-fit: cover;
+            background-color: rgb(255, 255, 255);
+        }
+    
+        100% {
+            transform: scale(1);
+            margin-left: -250px;
+            margin-top: 0px;
+            object-fit: cover;
+        }
     }
 }

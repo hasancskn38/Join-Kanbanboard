@@ -67,12 +67,12 @@ main {
 }
 
 main p {
-    font-size: 20px;
+    font-size: 22px;
     text-align: center;
 }
 
 main h2 {
-    font-size: 28px;
+    font-size: 40px;
     text-align: center;
 }
 
@@ -108,7 +108,8 @@ main h2 {
 
 .main-right-bottom {
     display: flex;
-    gap: 25px;
+    flex-wrap: wrap;
+    gap: 28px;
     width: 100%;
 }
 
@@ -122,7 +123,7 @@ main h2 {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 100%;
+    width: 682px;
     height: 190px;
     color: #fff;
     background-color: #4589ff;
@@ -150,7 +151,7 @@ main h2 {
 .task-urgent-left-top img {
     height: 60px;
     border-radius: 50%;
-    border: 2px solid #FFFFFF;
+    border: 3px solid #FFFFFF;
     object-fit: cover;
     padding: 0;
     margin: 0 15px 0 0;
@@ -168,6 +169,7 @@ main h2 {
 .task-general {
     display: inline-block;
     height: 190px;
+    width: 208px;
     padding: 40px;
     box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
     border-radius: 30px;
@@ -185,6 +187,7 @@ main h2 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 208px;
     color: #4589FF;
     background: #D2E3FF;
 }
@@ -203,13 +206,10 @@ main h2 {
 /* Main End */
 
 .show_logged_on_user {
-    width: 500px;
     height: 200px;
     margin-top: 105px;
     margin-bottom: -90px;
-    margin-left: 200px;
     font-size: 40px;
-    font-family: 'open sans';
     display: flex;
     justify-content: center;
 }
@@ -220,7 +220,15 @@ main h2 {
 }
 
 /* Responsive Start */
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1300px) {
+
+    .show_logged_on_user {
+        display: flex;
+        height: 200px;
+        margin-top: 105px;
+        margin-bottom: -90px;
+        font-size: 40px;
+    }
 
     main p {
         font-size: 18px;
@@ -232,16 +240,55 @@ main h2 {
 
     .main-right-tasks {
         margin: 0;
+        margin-left: 232px;
     }
 
     .main-right-top {
         display: flex;
         flex-direction: column;
-        width: 80%;
+        width: 100%;
         margin: auto;
     }
 
     .main-right-bottom {
+        width: 682px;
+        gap: 30px;
+        flex-wrap: wrap;
+        margin: 25px 0 30px;
+    }
+
+    .task-general {
+        width: 326px;
+    }
+
+    .task-todo {
+        height: 150px;
+        width: 682px;
+    }
+      
+
+    .show_logged_on_user {
+        margin-top: 150px;
+    } 
+}
+
+@media only screen and (max-width: 1000px) {
+
+    main p {
+        font-size: 18px;
+    }
+
+    .main-right {
+        margin: auto;
+    }
+
+    .main-right-tasks {
+        margin: 0;
+        width: 100%;
+        margin-bottom: 125px;
+    }
+
+    .main-right-top {
         justify-content: center;
         flex-wrap: wrap;
         align-items: center;
@@ -249,34 +296,64 @@ main h2 {
         width: 100%;
     }
 
-    .task-general {
-        width: 92%;
+    .task-urgent {
+        width: 80vw;
     }
 
-    .task-todo {
-        width: 100%;
-    }
-}
-
-@media only screen and (max-width: 800px) {
     .main-right-bottom {
-        display: flex;
-        flex-direction: column;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 20px auto;
     }
 
     .task-general {
-        width: 80%;
+        /* width: 230px;*/
+        width: 80vw !important;
     }
 
-    .task-todo {
-        width: 100%;
-    }
+    .show_logged_on_user {
+        margin-left: 55px;
+        margin-top: 150px;
+    } 
 }
 
-@media only screen and (max-width:450px) {
-    body {
-        position: fixed;
+
+
+
+
+
+@media only screen and (max-width:600px) {
+    .main-right {
+        margin: 0;
+        width: 400px;
+        margin-bottom: 150px;
     }
+
+    .task-urgent, .task-general {
+        width: 80vw;
+    }
+
+    .task-general {
+        height: 200px;
+    }
+
+    .main-right-bottom {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .main-right-tasks {
+        margin: 0;
+        width: 400px;
+    }
+
+     .show_logged_on_user {
+        font-size: 30px;
+        margin-right: 0px;
+        margin-bottom: -140px;
+        margin-left: 0;
+    } 
 
     .nav-container {
         justify-content: center;
@@ -290,9 +367,49 @@ main h2 {
         text-align: center;
     }
 
+    .main-right-header {
+        width: 80vw;
+    }
+
+    .side-links-div {
+        margin: 0px;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+@media only screen and (max-width:420px) {
+
+    .main-right {
+        margin-left: 50px;
+    }
+
+    .show_logged_on_user {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 60px;
+        margin-bottom: 0px;
+        margin-top: 50px;
+        width: 200px;
+    }
+
     .main-right-tasks {
-        margin: 20px;
+        width: 300px;
+    }
+.main-right-bottom {
+    margin-left: 15px;
+}
+}
+
+@media only screen and (max-width:380px) {
+
+    .main-right {
+        margin-left: 25px;
     }
 }
+
+
 
 /* Responsive End */

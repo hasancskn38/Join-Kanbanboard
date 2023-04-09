@@ -6,6 +6,7 @@ a {
 
 /* General Styling End */
 
+
 .side-bar {
     display: flex;
     flex-direction: column;
@@ -21,6 +22,7 @@ a {
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
     border-radius: 0px;
 }
+
 
 .side-bar a {
     text-decoration: none;
@@ -91,13 +93,17 @@ a {
     }
 
     .side-bar a {
-        display: flex;
         flex-direction: column;
+        justify-content: center;
         white-space: nowrap;
         min-width: 90px;
         padding-block: 12px;
         padding-inline: 8px;
         height: 100px;
+    }
+
+    .side-bar a img{
+margin-left: 20px;
     }
 
     .side-bar a:hover {

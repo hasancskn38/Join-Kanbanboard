@@ -14,6 +14,14 @@
     min-height: calc(100vh - 100px);
 }
 
+h2 {
+    font-family: 'Open Sans' !important;
+}
+
+h4 {
+    font-family: 'Open Sans' !important;
+}
+
 .layout-contact2 {
     width: 493px;
     height: calc(100vh - 82px);
@@ -23,6 +31,18 @@
     overflow-x: hidden;
     margin-top: 82px;
 }
+
+.subtask-list {
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.subtask-list button {
+cursor: pointer;
+background-color: white;
+}
+
 
 .layout-contact3 {
     margin: 50px;
@@ -53,7 +73,7 @@
 .new-contact:hover {
     transition: all 125ms ease-in-out;
     background: #4e85e5;
-    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.283);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
 }
 
@@ -100,6 +120,11 @@
 }
 
 .over:hover {
+    background-color: #d2e3ff;
+    border-radius: 15px;
+}
+
+.highlight_contact {
     background-color: #d2e3ff;
     border-radius: 15px;
 }
@@ -171,6 +196,7 @@
     background-color: #4589ff;
     border-radius: 0px 30px 0 0;
 }
+
 
 .add-contact-middle {
     display: flex;
@@ -295,7 +321,7 @@
 .creat-contact:hover {
     transition: all 125ms ease-in-out;
     background: #4e85e5;
-    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.283);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
 }
 
@@ -431,7 +457,7 @@
 .new-contact-detail:hover {
     transition: all 125ms ease-in-out;
     background: #4e85e5;
-    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.283);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .detail-main {
@@ -535,6 +561,10 @@
 }
 
 @media (max-width:1000px) {
+    .add-contact-layout-2 {
+        width: 100vw;
+        border-radius: 0px;
+    }
     .side-bar {
         height: 120px;
         width: 100%;
@@ -569,9 +599,7 @@
         box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
         height: 100px;
     }
-}
 
-@media (max-width:1000px) {
     .layout-contact2 {
         position: relative;
         width: 100%;
@@ -660,23 +688,21 @@
         width: 100%;
         cursor: pointer;
     }
-
 }
 
 @media (max-width:450px) {
+
     nav {
         width: 102%;
     }
 
     .layout-contact1 {
         width: 440px;
-        margin-top: -80px;
+        margin-top: -75px;
     }
 
     .add-contact-layout-2 {
-        width: 385px;
-        margin-left: 15px;
-        border-radius: 30px 30px 30px 30px;
+    width: 100vw;
     }
 
     .add-contact-top {
@@ -708,108 +734,4 @@
     }
 }
 
-@media (max-width:393px) {
-    nav {
-        width: 91%;
-    }
 
-    .layout-contact2 {
-        width: 78%;
-    }
-
-    .arrow-div {
-        margin-right: 25px;
-    }
-
-    .add-contact-layout-2 {
-        width: 365px;
-    }
-}
-
-@media (max-width:390px) {
-    nav {
-        width: 91%;
-    }
-
-    .layout-contact2 {
-        width: 78%;
-    }
-
-    .arrow-div {
-        margin-right: 25px;
-    }
-
-    .add-contact-layout-2 {
-        width: 365px;
-    }
-
-    .navbar div {
-        width: 110%;
-    }
-}
-
-@media (max-width:375px) {
-
-    .edit-contact-responsive {
-        right: 120px;
-    }
-
-    .arrow-div {
-        margin-right: 110px;
-    }
-
-    .layout-contact2 {
-        height: calc(80vh) !important;
-        margin-top: 120px;
-    }
-
-    .priority {
-        gap: 7px;
-    }
-
-    .priority-levels {
-        width: 40%;
-    }
-
-    .popup-content {
-        overflow-x: hidden;
-    }
-
-    .creat-contact {
-        margin-left: 60px;
-        margin-top: -15px;
-    }
-
-    .add-contact-input-field {
-        width: 337px;
-    }
-
-    .add-contact-layout-2 {
-        width: 350px;
-        margin-left: 9px;
-        border-radius: 30px 30px 30px 30px;
-    }
-
-    .add-contact-top {
-        border-radius: 30px 30px 0 0;
-    }
-}
-
-@media (max-width:360px) {
-    .arrow-div {
-        margin-right: 45px;
-    }
-
-    .contact-detail-header-right {
-        margin-left: -30px;
-    }
-
-    .edit-contact-responsive {
-        right: 70px;
-    }
-
-    .layout-contact2 {
-        width: 75%;
-    }
-
-}

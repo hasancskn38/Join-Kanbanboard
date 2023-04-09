@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summary</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo-blue.png">
     <link rel="stylesheet" href="../css/summary.css">
     <link rel="stylesheet" href="../css/board.css">
     <link rel="stylesheet" href="../css/add-task.css">
     <link rel="stylesheet" href="../css/board.css">
-    <link rel="stylesheet" href="../css/contacts.css">
+    <!-- <link rel="stylesheet" href="../css/contacts.css"> -->
     <link rel="stylesheet" href="../css/header-template.css">
     <link rel="stylesheet" href="../css/add-task.css">
     <link rel="stylesheet" href="../css/legalnotice.css">
@@ -44,21 +45,21 @@
         <div class="main-right">
 
             <!-- Main Right Header Start -->
-            <div class="main-right-header">
-                <h1 id="greeting"></h1>
-            </div>
+            
             <!-- Main Right Header End -->
 
             <!-- Main Right Tasks Start -->
             <div class="main-right-tasks">
 
                 <!-- Main Top Start -->
-                <div class="show_logged_on_user" id="logged_on_user"></div>
+                <div class="show_logged_on_user" id="logged_on_user">
+                    
+                </div>
                 <div class="main-right-top">
 
+                <a href="board.html">
                     <div class="task-urgent cursor">
                         <div class="task-urgent-left">
-                        <!-- TODO Add Anchor Tag with the specific index.html that navigates the user  -->
                             <div class="task-urgent-left-top"><img src="../assets/img/task-urgent.png" alt="">
                                 <h2 id="numUrgent">0</h2>
                             </div>
@@ -72,13 +73,14 @@
                             <p>Upcoming Deadline</p>
                         </div>
                 </div>
+                </a>
                 
 
                     <a href="board.html">
                     <div class="task-todo task-general cursor">
-                            <!-- TODO Add Anchor Tag with the specific index.html that navigates the user  -->
-                        <div class="task-todo-top"><img src="../assets/img/task-todo.png" alt="">
-                            <h2 id="numToDo">0</h2>
+                        <div class="task-todo-top">
+                            <img src="../assets/img/task-todo.png" alt="">
+                            <h2 id="numToDo"></h2>
                         </div>
                         <p>Tasks To-do</p>
                     </div>
@@ -91,16 +93,15 @@
                 <div class="main-right-bottom">
                     <a href="board.html">
                     <div class="task-board task-general cursor">
-                        <!-- TODO Add Anchor Tag with the specific index.html that navigates the user  -->
+                        
                         <div class="task-todo-top"><img src="../assets/img/task-todo.png" alt="">
-                            <h2 id="onBoardNum">1</h2>
+                            <h2 id="onBoardNum"></h2>
                         </div>
                         <p>Tasks on board</p>
                     </div>
                 </a>
                     <a href="board.html">
-                    <div class="task-board task-general cursor">
-                        <!-- TODO Add Anchor Tag with the specific index.html that navigates the user  -->
+                    <div class="task-board task-general cursor">   
                         <div class="task-todo-top"><img src="../assets/img/task-inprogress.png" alt="">
                             <h2 id="numProgress">0</h2>
                         </div>
@@ -109,7 +110,6 @@
                     </a>
                     <a href="board.html">
                     <div class="task-progress task-general cursor">
-                        <!-- TODO Add Anchor Tag with the specific index.html that navigates the user  -->
                         <div class="task-todo-top"><img src="../assets/img/awaiting-feedback.png" alt="">
                             <h2 id="awaitingFeedbackNum">0</h2>
                         </div>
@@ -118,7 +118,6 @@
                     </a>
                     <a href="board.html">
                     <div class="task-feedback task-general cursor">
-                        <!-- TODO Add Anchor Tag with the specific index.html that navigates the user to his/her desired page  -->
                         <div class="task-todo-top"><img src="../assets/img/task-done.png" alt="">
                             <h2 id="numDone">0</h2>
                         </div>

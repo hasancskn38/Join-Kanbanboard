@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/login.css">
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo-blue.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
@@ -26,13 +27,13 @@
             <h1 class="log_in_headline">Log in</h1>
             <form onsubmit="loginUser(); return false;">
                 <div class="login_inputs">
-                <input type="email" placeholder="Email" id="login_email" required>
-                <input type="password" placeholder="Password" id="login_password" required>
+                <input class="login-email" type="email" placeholder="Email" id="login_email" required>
+                <input class="login-lock" type="password" placeholder="Password" id="login_password" required>
                 </div>
                 <div class="login_additionals">
                     <div class="login_remember_me"><input type="checkbox" id="login_remember_me">Remember me</div>
                     <div class="forgot_my_password">
-                        <a href="/html/forgot_password.html">Forgot my password</a>
+                        <a href="forgot_password.html">Forgot my password</a>
                     </div>
                 </div>
                 <div class="log_in_buttons">

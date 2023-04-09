@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo-blue.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/register.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,14 +22,14 @@
     <div class="login_main_container">
         <div class="login_form">
             <div class="headline_fortgot_password">
-                <a class="back_button" href="login.html">◀</a>
+                <a class="back_button" href="login.html"><img src="../assets\img\arrow-left.png"></a>
                 <h1 class="log_in_headline">Sign up</h1>
             </div>
             <form onsubmit="registerUser(); return false;">
                 <div class="registry_input">
-                    <input type="text" placeholder="Name" id="register_name" required>
-                    <input type="email" placeholder="Email" id="register_email" required>
-                    <input type="password" placeholder="Password" id="register_password" required>
+                    <input class="register-name" type="text" placeholder="Name" id="register_name" required>
+                    <input class="register-email" type="email" placeholder="Email" id="register_email" required>
+                    <input class="register-lock" type="password" placeholder="Password" id="register_password" required>
                 </div>
                 <div class="log_in_buttons">
                     <button class="log_in_button">Sign up</button>
