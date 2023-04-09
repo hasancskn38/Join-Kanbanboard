@@ -13,6 +13,7 @@ let initialsDiv = document.getElementById('initials-div');
 let dropDownShow = false;
 let assignedContacts = [];
 let createdCategorys = [];
+let newCategoryColor;
 
 /**
  * This function implements the template.html
@@ -180,12 +181,16 @@ function setPriority(value) {
     priority = value;
 }
 
+function findCategory(categoryName) {
+    return createdCategorys.find((obj) => obj.categoryName === categoryName);
+  }
 
 // Create New Task Function
 async function createTask() {
     let title = document.getElementById('task-title').value;
     // let category = document.getElementById('select-category').value;
-    let category = document.getElementById('select-category-inner').innerHTML
+    let categoryName = document.getElementById('category_Name_to_Task').innerHTML;
+    let category = findCategory(categoryName);
     let date = document.getElementById('task-date').value;
     let currentDate = new Date();
     let userDate = new Date(date);
@@ -194,7 +199,10 @@ async function createTask() {
     if (testData.length === 0) {
         let newItem = {
             "title": title,
-            "cat": category,
+            "cat": {
+                categoryName: category['categoryName'],
+                categoryColor: category['categoryColor']
+            },
             "description": taskDescription,
             "status": 'todo',
             "priority": priority,
@@ -213,7 +221,10 @@ async function createTask() {
         let newId = Number(lastItem.id) + 1;
         let newItem = {
             "title": title,
-            "cat": category,
+            "cat": {
+                categoryName: category['categoryName'],
+                categoryColor: category['categoryColor']
+            },
             "description": taskDescription,
             "status": 'todo',
             "priority": priority,
@@ -236,6 +247,7 @@ async function handleSubmit(event) {
     event.preventDefault();
     await createTask();
     subtaskArray = [];
+
 }
 
 function renderSubtasks() {
@@ -699,7 +711,12 @@ function renderCategorys() {
       let categoryElement = document.createElement('div');
       categoryElement.id = `new-category-${i}`;
       categoryElement.classList.add('new-category');
-      categoryElement.textContent = createdCategory;
+      categoryElement.innerHTML = `
+        <div class="new_category_item">
+            <div>${createdCategory['categoryName']}</div>
+            <div class="${createdCategory['categoryColor']}"></div>
+        </div>
+      `;
   
       // Create remove button
       let removeButton = document.createElement('button');
@@ -715,7 +732,11 @@ function renderCategorys() {
       categoryElement.appendChild(removeButton);
       // Add click event listener to select category
       categoryElement.addEventListener('click', function() {
-        document.getElementById('select-category-inner').innerHTML = createdCategory;
+        document.getElementById('select-category-inner').innerHTML = `
+        <div class="new_category_item">
+            <div id="category_Name_to_Task">${createdCategory['categoryName']}</div>
+            <div class="${createdCategory['categoryColor']}"></div>
+        </div>`;
         document.getElementById('show-categorys').classList.add('d-none')
       });
       categorys.appendChild(categoryElement);
@@ -748,14 +769,19 @@ addNewCategory.addEventListener('click', function () {
     if (newCategoryName.value == '') {
         categoryAlert.classList.remove('d-none');
     } else {
-        createdCategorys.push(newCategoryName.value);
+        let newCategory = {
+            categoryName: newCategoryName.value,
+            categoryColor: newCategoryColor
+        };
+        createdCategorys.push(newCategory);
         hideNewCategory();
     }
     renderCategorys();
+    newCategoryColor = '';
 });  
 
 
-function displayColor() {
+function displayColor(color) {
     // Get the clicked image
     const clickedImage = event.target;
     // Get the parent container of the clicked image
@@ -766,6 +792,7 @@ function displayColor() {
     colorImages.forEach(image => {
         // Check if the clicked image matches the current image in the loop
         if (image === clickedImage) {
+            newCategoryColor = color;
             // Remove the "d-none" class from the clicked image
             image.classList.remove('d-none');
         } else {
