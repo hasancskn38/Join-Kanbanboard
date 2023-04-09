@@ -435,6 +435,10 @@ textarea::placeholder {
         margin-top: -100px;
     }
 
+    .popup-content-add-task {
+        padding-bottom: 120px !important;
+    }
+
     .two-button button {
        height: 50px;
        margin-top: -20px;

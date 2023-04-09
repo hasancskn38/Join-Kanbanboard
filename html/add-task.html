@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../css/add-task.css">
     <script src="../smallest_backend_ever/mini_backend.js"></script>
     <script src="../js/board.js"></script>
+    <script src="../js/board-priority.js"></script>
     <script src="../js/add-task.js"></script>
 
 </head>
@@ -40,7 +41,7 @@
 
             <form id="createtask-form" onsubmit="addTaskToBoard(); return false;">
 
-                <div class="popup-content">
+                <div class="popup-content popup-content-add-task">
 
                     <div class="input-container">
                         <input required id="task-title" class="popup-input" type="text" placeholder="Enter a title">
@@ -52,20 +53,12 @@
                     </select>
 
                     <label for="appointment">
-                        <h2 class="date-header">Due date</h2>
+                        <h4 class="date-header">Due date</h4>
                         <div class="date">
-                            <input id="task-date" required="" type="text" class="form-control"
-                                placeholder="dd/mm/yyyy" onfocus="(this.type='date')" />
+                            <input id="task-date" required type="date" />
                         </div>
                     </label>
 
-                    <!-- <select required id="select-category" class="cursor">
-                        <option value="" disabled selected hidden>Select task category</option>
-                        <option class="design-option" value="Design">Design</option>
-                        <option class="sales-option" value="Sales">Sales</option>
-                        <option class="backoffice-option" value="Backoffice">Backoffice</option>
-                        <option class="marketing-option" value="Marketing">Marketing</option>
-                    </select> -->
                     
                     <div class="new-category-container d-none" id="new-category-container">
                         <p class="d-none" id="category-alert">Please select a category name and then a color !</p>

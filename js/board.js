@@ -725,6 +725,7 @@ function renderCategorys() {
 
 // hide or show categorylist
 displayCategories.addEventListener('click', function () {
+    console.log('hi');
     if (categorys.classList.contains('d-none')) {
         categorys.classList.remove('d-none');
         newCategory.classList.remove('d-none');
