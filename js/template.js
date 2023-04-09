@@ -380,9 +380,9 @@ function openTaskPopUpTemplate(test, i, contact) {
     return `
     <div class="task-popup-container">
                     <button class="cursor" onclick="closeTaskPopUp()">X</button>
-                    <h3 id="category-${i}">${test.cat}</h3>
+                    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
                     <h1 id="task-popup-header" class="grey task-popup-header">${test.title}</h1>
-                    <p class="blue">${test.description}</p>
+                    <p>${test.description}</p>
                     <ul>
                         <li><b>Due Date:</b> ${test.date}</li>
                         <li><b>Priority:</b><span id="test-priority">${test.priority}</span> </li>
