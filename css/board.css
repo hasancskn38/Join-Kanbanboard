@@ -385,7 +385,7 @@ select {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 23px;
+    font-size: 20px;
     margin-left: 20px;
     margin-right: 45px;
     margin-top: 20px;
@@ -544,6 +544,11 @@ label>input {
     display: flex;
     width: 320px;
     justify-content: space-between;
+}
+
+#remove-button {
+    background-color: #fff !important;
+    background: none;
 }
 
 .new-category {
@@ -775,6 +780,7 @@ textarea::placeholder {
     height: 80vh;
     margin: auto;
     border-radius: 10px;
+    overflow-y: scroll;
 }
 
 #task-popup button {
@@ -831,7 +837,7 @@ textarea::placeholder {
 .edit-button {
     position: absolute !important;
     right: 0;
-    bottom: 4.5% !important;
+    bottom: 3.5% !important;
     background: none;
     font-size: 20px;
     transition: all 125ms ease-in-out;
@@ -931,7 +937,7 @@ textarea::placeholder {
 button {
     background-color: #4589FF;
     border-radius: 10px;
-    width: 15px;
+    /* width: 15px; */
 }
 
 

@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="../css/header-template.css">
     <link rel="stylesheet" href="../css/add-task.css">
     <script src="../smallest_backend_ever/mini_backend.js"></script>
-    <script src="../js/board.js"></script>
     <script src="../js/board-priority.js"></script>
     <script src="../js/add-task.js"></script>
 
@@ -47,10 +46,12 @@
                         <input required id="task-title" class="popup-input" type="text" placeholder="Enter a title">
                     </div>
 
-                    <select id="select-contact" class="select-contact cursor" required>
-                        <option value="" disabled selected hidden>Select contacts to assign</option>
-
-                    </select>
+                    <div required onclick="showDropDown()" id="select-contact-add" class="select-contact cursor"><div> Select contacts to assign</div> <div class="arrow"><img id="dropwdown-icon"
+                        class="dropdown-icon" src="../assets/icons/dropdown.png" alt=""></div>
+                    </div>
+                    <div id="contact_dropdown" class="contact_dropdown">
+                        
+                    </div>
 
                     <label for="appointment">
                         <h4 class="date-header">Due date</h4>
@@ -60,41 +61,50 @@
                     </label>
 
                     
-                    <div class="new-category-container d-none" id="new-category-container">
-                        <p class="d-none" id="category-alert">Please select a category name and then a color !</p>
+                    <h4 class="date-header">Category</h4>
+                        <div class="new-category-container d-none" id="new-category-container">
+                            <p class="d-none" id="category-alert">Please select a category name and then a color !</p>
 
-                        <div id="new-category-input" class="input-container">
-                            <input id="new-category-name" class="popup-input" type="text"
-                                placeholder="new category name">
-                            <div class="check-and-cross">
-                                <img onclick="hideNewCategory()" class="cursor" id="hide-new-category"
-                                    src="../assets/icons/x.png" alt="">
-                                <img src="../assets/icons/divider.png" alt="">
-                                <img class="cursor" id="add-new-category" src="../assets/icons/checkmark.png"
-                                    alt="">
+                            <div id="new-category-input" class="input-container">
+                                <input id="new-category-name" class="popup-input" type="text"
+                                    placeholder="new category name">
+                                <div class="check-and-cross">
+                                    <img onclick="hideNewCategory()" class="cursor" id="hide-new-category"
+                                        src="../assets/icons/x.png" alt="">
+                                    <img src="../assets/icons/divider.png" alt="">
+                                    <img class="cursor" id="add-new-category" src="../assets/icons/checkmark.png"
+                                        alt="">
+                                </div>
+
                             </div>
-
+                            <div style="margin-left: 25px;" id="category-colors" class="new-category-colors">
+                                <img onclick="displayColor('lightBlue')" class="cursor"
+                                    src="../assets/icons/color1.png" alt="">
+                                <img onclick="displayColor('blue')" class="cursor"
+                                    src="../assets/icons/color2.png" alt="">
+                                <img onclick="displayColor('purple')" class="cursor"
+                                    src="../assets/icons/color3.png" alt="">
+                                <img onclick="displayColor('orange')" class="cursor"
+                                    src="../assets/icons/color4.png" alt="">
+                                <img onclick="displayColor('green')" class="cursor"
+                                    src="../assets/icons/color5.png" alt="">
+                                <img onclick="displayColor('red')" class="cursor"
+                                    src="../assets/icons/color6.png" alt="">
+                            </div>
                         </div>
-                        <div style="margin-left: 25px;" id="category-colors" class="new-category-colors">
-                            <img onclick="displayColor(); addColorToCategory('blue1');" class="cursor"
-                                src="../assets/icons/color1.png" alt="">
-                            <img onclick="displayColor(); addColorToCategory('blue2');" class="cursor"
-                                src="../assets/icons/color2.png" alt="">
-                            <img onclick="displayColor(); addColorToCategory('purple');" class="cursor"
-                                src="../assets/icons/color3.png" alt="">
-                            <img onclick="displayColor(); addColorToCategory('orange');" class="cursor"
-                                src="../assets/icons/color4.png" alt="">
-                            <img onclick="displayColor(); addColorToCategory('green');" class="cursor"
-                                src="../assets/icons/color5.png" alt="">
-                            <img onclick="displayColor(); addColorToCategory('red');" class="cursor"
-                                src="../assets/icons/color6.png" alt="">
-                        </div>
-                    </div>
 
-                    <div class="cursor" id="display-categories">
-                        <p id="select-category-inner">Select task category</p>
-                        <img id="dropwdown-icon" class="dropdown-icon" src="../assets/icons/dropdown.png" alt="">
-                    </div>
+                        <!-- Event listener to display the categorys -->
+                        <div class="cursor" onclick="showCategories()" id="display-categories">
+                            <p id="select-category-inner">Select task category</p>
+                            <img id="dropwdown-icon" class="dropdown-icon" src="../assets/icons/dropdown.png" alt="">
+                        </div>
+
+                        <div class="categorys-container">
+                            <div class="categorys d-none cursor" id="show-categorys">
+                                <div id="new-category" class="cursor new-category">create new category</div>
+                                <div id="created-categorys"></div>
+                            </div>
+                        </div>
 
                     <div class="priority">
 

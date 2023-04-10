@@ -188,7 +188,6 @@ function findCategory(categoryName) {
 // Create New Task Function
 async function createTask() {
     let title = document.getElementById('task-title').value;
-    // let category = document.getElementById('select-category').value;
     let categoryName = document.getElementById('category_Name_to_Task').innerHTML;
     let category = findCategory(categoryName);
     let date = document.getElementById('task-date').value;
@@ -247,7 +246,6 @@ async function handleSubmit(event) {
     event.preventDefault();
     await createTask();
     subtaskArray = [];
-
 }
 
 function renderSubtasks() {
@@ -290,6 +288,7 @@ function openTaskPopUp(i) {
 }
 
 
+// Adds the background color when opening popup
 function changePriorityColorPopUp() {
     priorityColor = document.getElementById(`test-priority`);
     if (priorityColor.innerHTML == 'Urgent') {
@@ -367,8 +366,8 @@ function openEditTask(i) {
     let taskPopUp = document.getElementById(`task-popup`).classList.add('d-none');
     editTask.classList.remove('d-none');
     editTask.innerHTML = openEditTaskPopUp(test, i);
-    assignContactsToTask('edit', test);
-    renderEditPriorityColors();
+    // assignContactsToTask('edit', test);
+    renderEditPriorityColors(i);
     showSubtasks(i);
 }
 
@@ -425,7 +424,6 @@ function renderEditPriorityColors(i) {
     let priorityImg1Edit = document.getElementById(`img1-edit`);
     let priorityImg2Edit = document.getElementById(`img2-edit`);
     let priorityImg3Edit = document.getElementById(`img3-edit`);
-
     if (priority.innerHTML == 'Urgent') {
         urgentEdit.classList.add('urgent');
         priorityImg1Edit.classList.add('white');
@@ -516,15 +514,15 @@ async function submitChanges(i) {
     let newTaskName = document.getElementById(`input-edit-${i}`).value;
     let newDescription = document.getElementById(`edit-description${i}`).value;
     let newDate = document.getElementById(`task-date-edit${i}`).value;
-    let selectedContacts = document.getElementById('select-contact-add').value
-    let newCategoryPopUp = document.getElementById(`category-${i}`);
-    let urgentEdit = document.getElementById('urgent-edit')
-    let mediumEdit = document.getElementById('medium-edit')
-    let lowEdit = document.getElementById('low-edit')
+    let urgentEdit = document.getElementById('urgent-edit');
+    let mediumEdit = document.getElementById('medium-edit');
+    let lowEdit = document.getElementById('low-edit');
     if (newPriority == undefined) {
-        newPriority = checkForPrio();
+        // newPriority = checkForPrio();
         test.title = newTaskName;
         test.description = newDescription;
+        // TODO Add new assignedContacts
+        test.assignedContacts = assignedContacts;
         test.priority;
         test.date = newDate;
         await backend.setItem('testData', JSON.stringify(testData));
@@ -541,6 +539,7 @@ async function submitChanges(i) {
         test.title = newTaskName;
         test.description = newDescription;
         test.priority = newPriority;
+        test.assignedContacts = assignedContacts;
         test.date = newDate;
         await backend.setItem('testData', JSON.stringify(testData));
         location.reload();
@@ -713,14 +712,15 @@ function renderCategorys() {
       categoryElement.classList.add('new-category');
       categoryElement.innerHTML = `
         <div class="new_category_item">
-            <div>${createdCategory['categoryName']}</div>
+            <div id="category-name">${createdCategory['categoryName']}</div>
             <div class="${createdCategory['categoryColor']}"></div>
         </div>
       `;
-  
       // Create remove button
       let removeButton = document.createElement('button');
+      removeButton.id = 'remove-button';
       removeButton.textContent = 'X';
+
       removeButton.addEventListener('click', function(event) {
         event.stopPropagation();
         if (createdCategorys[i] === document.getElementById('select-category-inner').textContent) {
@@ -739,6 +739,7 @@ function renderCategorys() {
         </div>`;
         document.getElementById('show-categorys').classList.add('d-none')
       });
+
       categorys.appendChild(categoryElement);
     }
 }
@@ -746,7 +747,6 @@ function renderCategorys() {
 
 // hide or show categorylist
 displayCategories.addEventListener('click', function () {
-    console.log('hi');
     if (categorys.classList.contains('d-none')) {
         categorys.classList.remove('d-none');
         newCategory.classList.remove('d-none');

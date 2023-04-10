@@ -436,19 +436,7 @@ function openEditTaskPopUp(test, i) {
 </div>
 <div class="show_subtasks" id="show_subtasks">
 </div>
-<div class="subtasks">
-<h4>Subtask</h4>
-<div class="subtasks-input"><input id="task-subtask" minlength="8"
-        placeholder="Add new subtask" type="text">
-    <div class="check-and-cross">
-        <img class="cursor" src="../assets/icons/x.png" alt="">
-        <img src="../assets/icons/divider.png" alt="">
-        <img id="add-subtask" onclick="addSubtask()" class="cursor"
-            src="../assets/icons/checkmark.png" alt="">
-    </div>
-</div>
 
-</div>
 
 <ul id="subtasks">
 
@@ -456,11 +444,10 @@ function openEditTaskPopUp(test, i) {
 <div class="edit-task-button-container">
 
 
-<div class="cursor submit-change">
+<div onclick="submitChanges(${i})" class="cursor submit-change">
 <p>Ok</p>
-<img id="add-subtask" onclick="submitChanges(${i})" class="cursor" src="../assets/icons/checkmark-white.png" alt="">
+<img class="cursor" src="../assets/icons/checkmark-white.png" alt="">
 </div>
-
 
 <button class="delete-task cursor" onclick="deleteTask(${i})" class="cursor">Delete Task</button>
 </div>
