@@ -47,15 +47,19 @@ async function renderAllBackendData() {
     parseLoggedOnUser();
 }
 
-// function renderAllContacts() {
-//     let contactContainer = document.getElementById('select-contact');
-//     contactContainer.innerHTML = '';
-//     contactContainer.innerHTML = `<option value="" disabled="" selected="" hidden="">Select contacts to assign</option>`;
-//     for (let i = 0; i < contacts.length; i++) {
-//         let contact = contacts[i];
-//         contactContainer.innerHTML += `<option value="${contact['name']}">${contact['name']}</option>`;
-//     }
-// }
+ function renderAllContacts() {
+     let contactContainer = document.getElementById('select-contact');
+     contactContainer.innerHTML = '';
+     contactContainer.innerHTML = `<option value="" disabled="" selected="" hidden="">Select contacts to assign</option>`;
+     for (let i = 0; i < contacts.length; i++) {
+         let contact = contacts[i];
+         contactContainer.innerHTML += `<option value="${contact['name']}">${contact['name']}</option>`;
+     }
+ }
+
+     document.getElementById('urgent').addEventListener('click', function () {
+         setPriority('Urgent');
+     });
 
     document.getElementById('urgent').addEventListener('click', function () {
         setPriority('Urgent');
@@ -167,9 +171,14 @@ function logOut() {
     window.location.href = `login.html?msg=Du hast dich erfolgreich ausgeloggt`;
 }
 
+function findCategory(categoryName) {
+    return createdCategorys.find((obj) => obj.categoryName === categoryName);
+  }
+
 
 // Create New Task Function
 async function addTaskToBoard() {
+    showDropDown();
     let title = document.getElementById('task-title').value;
     let categoryName = document.getElementById('category_Name_to_Task').innerHTML;
     let category = findCategory(categoryName);
@@ -217,12 +226,22 @@ async function addTaskToBoard() {
         };
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
-        closeAddTaskPopUp();
         await includeHTML();
         clearInputFields();
-        removePrioritys();
+        /* removePrioritys(); */
         userAddedSuccessfull(title);
     }
+}
+
+
+function removePrioritys() {
+    urgent.classList.remove('urgent');
+    priorityImg1.classList.remove('white');
+    medium.classList.remove('medium');
+    priorityImg2.classList.remove('white');
+    low.classList.remove('low');
+    priorityImg3.classList.remove('white');
+
 }
 
 
@@ -297,11 +316,11 @@ function addAnimation() {
 
 function clearInputFields() {
     document.getElementById('task-title').value = '';
-    document.getElementById('select-category').value = '';
+    document.getElementById('select-category-inner').value = '';
     document.getElementById('task-date').value = '';
     document.getElementById('task-description').value = '';
     document.getElementById('task-subtask').value = '';
-    document.getElementById('select-contact').value = '';
+    document.getElementById('select-contact-add').value = '';
     subtaskArray = [];
     document.getElementById('subtasks').innerHTML = '';
     if (priority == 'Urgent') {
@@ -333,6 +352,7 @@ function hideHelpMeSection() {
 }
 
 
+
 let displayCategories = document.getElementById('display-categories');
 let categorys = document.getElementById('show-categorys');
 let addNewCategory = document.getElementById('add-new-category');
@@ -352,7 +372,7 @@ function renderCategorys() {
       categoryElement.classList.add('new-category');
       categoryElement.innerHTML = `
         <div class="new_category_item">
-            <div id="category-name">${createdCategory['categoryName']}</div>
+            <div id="category_Name_to_Task">${createdCategory['categoryName']}</div>
             <div class="${createdCategory['categoryColor']}"></div>
         </div>
       `;
@@ -387,6 +407,7 @@ function renderCategorys() {
 
 // hide or show categorylist
 displayCategories.addEventListener('click', function () {
+    
     if (categorys.classList.contains('d-none')) {
         categorys.classList.remove('d-none');
         newCategory.classList.remove('d-none');
@@ -399,6 +420,7 @@ displayCategories.addEventListener('click', function () {
 
 // show new category input when clicking on 'create new category'
 newCategory.addEventListener('click', function () {
+
     categorys.classList.add('d-none');
     newCategoryContainer.classList.remove('d-none');
     displayCategories.classList.add('d-none');
