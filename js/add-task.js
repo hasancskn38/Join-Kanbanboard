@@ -179,6 +179,9 @@ function findCategory(categoryName) {
 // Create New Task Function
 async function addTaskToBoard() {
     showDropDown();
+    document.getElementById('display-categories').innerHTML = `
+    <p id="select-category-inner">Select task category</p>
+    <img id="dropwdown-icon" class="dropdown-icon" src="../assets/icons/dropdown.png" alt="">`;
     let title = document.getElementById('task-title').value;
     let categoryName = document.getElementById('category_Name_to_Task').innerHTML;
     let category = findCategory(categoryName);
