@@ -18,6 +18,13 @@ async function includeHTML() {
         }
     }
     renderTasks();
+    getCurrentPage();
+}
+
+function getCurrentPage() {
+    let currentPagePath = window.location.pathname;
+    let htmlName = currentPagePath.split("/").pop().substring(0, currentPagePath.split("/").pop().lastIndexOf("."));
+    document.getElementById(`menu_${htmlName}`).classList.add(htmlName);
 }
 
 function parseLoggedOnUser() {

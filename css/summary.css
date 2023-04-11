@@ -19,6 +19,10 @@ h1 {
     color: #2A3647;
 }
 
+.summary {
+    background-color:     rgb(210,227,255);
+}
+
 /* General Stylings End*/
 
 /* Header Start */

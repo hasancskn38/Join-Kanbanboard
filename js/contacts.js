@@ -25,7 +25,13 @@ async function showContacts() {
     renderLetterGroups(contactContainer, greatLetter);
     renderContact();
     parseLoggedOnUser()
+    getCurrentPage();
+}
 
+function getCurrentPage() {
+    let currentPagePath = window.location.pathname;
+    let htmlName = currentPagePath.split("/").pop().substring(0, currentPagePath.split("/").pop().lastIndexOf("."));
+    document.getElementById(`menu_${htmlName}`).classList.add(htmlName);
 }
 
 function parseLoggedOnUser() {
@@ -70,7 +76,7 @@ function renderSubtasksInPopUp() {
         let subtaskInput = subtaskArray[i];
         subTasks.innerHTML += `<li class="subtask-list">${subtaskInput} <button type="button" onclick="deleteSubtask(${i})" id="delete-subtask">❌</button></li>`;
     }
-   
+
 }
 
 
@@ -130,11 +136,11 @@ function openDetailContact(bothFirstLetter, contactColor, contactName, contactEm
     highlightClickedContact(i);
 }
 
-function highlightClickedContact(i){
+function highlightClickedContact(i) {
     let highlightedContacts = document.getElementsByClassName('highlight_contact');
     while (highlightedContacts.length) {
         highlightedContacts[0].classList.remove('highlight_contact');
-}
+    }
     document.getElementById(`contact_nr${i}`).classList.add('highlight_contact');
 
 }
@@ -176,15 +182,15 @@ function openAddTaskPopUp() {
     document.getElementById('urgent').addEventListener('click', function () {
         setPriority('Urgent');
     });
-    
+
     document.getElementById('medium').addEventListener('click', function () {
         setPriority('Medium');
     });
-    
+
     document.getElementById('low').addEventListener('click', function () {
         setPriority('Low');
     });
-    
+
     function setPriority(value) {
         priority = value;
     }
@@ -265,17 +271,17 @@ async function createTask() {
 
 
 function renderSubtasks() {
-    let resultArray = []; 
+    let resultArray = [];
     for (let i = 0; i < subtaskArray.length; i++) {
-      let subtask = subtaskArray[i];
-      let obj = {
-        "subtask": subtask,
-        "status": 'open'
-      };
-      resultArray.push(obj); 
+        let subtask = subtaskArray[i];
+        let obj = {
+            "subtask": subtask,
+            "status": 'open'
+        };
+        resultArray.push(obj);
     }
-    return resultArray; 
-  }
+    return resultArray;
+}
 
 
 

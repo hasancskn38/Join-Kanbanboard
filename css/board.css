@@ -21,6 +21,10 @@
     background-color: red;
 }
 
+.board {
+    background-color:     rgb(210,227,255);
+}
+
 .static {
     position: static !important;
 }
@@ -255,8 +259,6 @@ input:active {
     width: 500px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    right: 0;
-    overflow: auto;
 }
 
 .show_subtasks {
@@ -315,7 +317,7 @@ input:active {
 .popup-content {
     height: 100vh;
     overflow: auto;
-    margin: 30px;
+    margin-left: 20px;
 }
 
 .popup-header {
@@ -362,6 +364,7 @@ input:active {
     width: 90%;
     font-size: 35px;
     padding: 15px;
+    padding-top: 0px;
     /* Margin Right to push the placeholder on the outside */
     margin-right: 80px;
 }
@@ -461,7 +464,7 @@ select option {
     align-items: center;
     border-bottom: 1px solid lightgray;
     width: 90%;
-    margin: 15px;
+
     padding: 15px;
 
 }
@@ -706,7 +709,7 @@ label>input {
 }
 
 .description {
-    margin: 0 20px;
+    margin-left: 20px;
     padding: 5px;
 }
 
@@ -728,7 +731,7 @@ textarea::placeholder {
 .subtasks {
     border-bottom: 1px solid lightgray;
     width: 90%;
-    margin: 20px;
+    margin-left: 20px;
     padding: 5px;
 }
 
@@ -951,7 +954,6 @@ button {
     column-gap: 30px;
     margin: 60px 0 0;
     padding: 0 5px;
-    overflow: auto;
 }
 
 /* Styling of stages when they are empty */
@@ -1016,9 +1018,9 @@ button {
 }
 
 .test:hover {
-transform: scale(1.02);
-transition: all .2s ease-in-out;
-box-shadow: 1px 1px 7px 1px rgba(0, 0, 0, 0.247) !important;
+    transform: scale(1.02);
+    transition: all .2s ease-in-out;
+    box-shadow: 1px 1px 7px 1px rgba(0, 0, 0, 0.247) !important;
 }
 
 
@@ -1221,6 +1223,11 @@ box-shadow: 1px 1px 7px 1px rgba(0, 0, 0, 0.247) !important;
     color: #fff;
 }
 
+.assigned-contact span:not(:first-of-type) {
+    margin-left: -4px;
+    border: 1px solid white;
+}
+
 .assigned-contacts-popup {
     padding: 20px 0;
 }
@@ -1328,8 +1335,9 @@ box-shadow: 1px 1px 7px 1px rgba(0, 0, 0, 0.247) !important;
 
     .main-column {
         position: relative;
-        height: 100vh;
+        min-height: 100vh;
         margin: 35px 0;
+        margin-bottom: 635px;
     }
 
     .stages-container {
