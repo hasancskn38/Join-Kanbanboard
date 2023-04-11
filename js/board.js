@@ -268,7 +268,6 @@ async function deleteTask(i) {
     closeEditTask();
     closeTaskPopUp();
     await includeHTML();
-    location.reload();
 }
 /**
  * open popup for more information on a task
@@ -526,7 +525,6 @@ async function submitChanges(i) {
         test.priority;
         test.date = newDate;
         await backend.setItem('testData', JSON.stringify(testData));
-        location.reload();
         closeEditTask();
         closeTaskPopUp();
         hideOrShowPriorityLevels();
@@ -542,7 +540,6 @@ async function submitChanges(i) {
         test.assignedContacts = assignedContacts;
         test.date = newDate;
         await backend.setItem('testData', JSON.stringify(testData));
-        location.reload();
         closeEditTask();
         closeTaskPopUp();
         hideOrShowPriorityLevels();

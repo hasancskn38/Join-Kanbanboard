@@ -356,22 +356,22 @@ function renderOpenEdit(contactName, contactEmail, contactPhone, contactColor, b
 
 function emptyTodoTemplate() {
     return `<div class="empty-container">
-    <h2>There are no todos</h2>
+    <h2></h2>
 </div>`
 }
 function emptyProgressTemplate() {
     return `<div class="empty-container">
-        <h2>There are no tasks in progress</h2>
+        <h2></h2>
     </div>`
 }
 function emptyFeedbackTemplate() {
     return `<div class="empty-container">
-    <h2>There are no tasks that need feedback</h2>
+    <h2></h2>
 </div>`
 }
 function emptyDoneTemplate() {
     return `<div class="empty-container">
-    <h2>There are no tasks that are done</h2>
+    <h2></h2>
 </div>`
 }
 

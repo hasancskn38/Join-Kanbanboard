@@ -39,8 +39,8 @@ a {
 }
 
 .side-bar a:hover {
-    border: 1px solid #42526e;
-    box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
+    background-color:     rgb(210,227,255);
+
 }
 
 .side-links {
