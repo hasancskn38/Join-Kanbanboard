@@ -30,7 +30,6 @@ async function includeHTML() {
         }
     }
     renderAllBackendData();
-
 }
 
 function parseLoggedOnUser() {
@@ -62,18 +61,21 @@ async function renderAllBackendData() {
          setPriority('Urgent');
      });
 
-     document.getElementById('medium').addEventListener('click', function () {
-         setPriority('Medium');
-     });
+    document.getElementById('urgent').addEventListener('click', function () {
+        setPriority('Urgent');
+    });
 
-     document.getElementById('low').addEventListener('click', function () {
-         setPriority('Low');
-     });
+    document.getElementById('medium').addEventListener('click', function () {
+        setPriority('Medium');
+    });
 
-     function setPriority(value) {
-         priority = value;
+    document.getElementById('low').addEventListener('click', function () {
+        setPriority('Low');
+    });
 
- }
+    function setPriority(value) {
+        priority = value;
+}
 
 
 function addSubtask() {
