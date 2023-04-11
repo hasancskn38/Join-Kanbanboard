@@ -322,6 +322,7 @@ textarea::placeholder {
 
 .two-button {
     display: flex;
+    height: 8vh;
     flex-direction: row-reverse;
     justify-content: flex-end;
     margin-left: 25px;

@@ -1015,6 +1015,12 @@ button {
     padding: 12px;
 }
 
+.test:hover {
+transform: scale(1.02);
+transition: all .2s ease-in-out;
+box-shadow: 1px 1px 7px 1px rgba(0, 0, 0, 0.247) !important;
+}
+
 
 .test>h3 {
     display: inline-block;
