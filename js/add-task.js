@@ -30,7 +30,6 @@ async function includeHTML() {
         }
     }
     renderAllBackendData();
-
 }
 
 function parseLoggedOnUser() {
@@ -58,21 +57,21 @@ async function renderAllBackendData() {
 //     }
 // }
 
-//     document.getElementById('urgent').addEventListener('click', function () {
-//         setPriority('Urgent');
-//     });
+    document.getElementById('urgent').addEventListener('click', function () {
+        setPriority('Urgent');
+    });
 
-//     document.getElementById('medium').addEventListener('click', function () {
-//         setPriority('Medium');
-//     });
+    document.getElementById('medium').addEventListener('click', function () {
+        setPriority('Medium');
+    });
 
-//     document.getElementById('low').addEventListener('click', function () {
-//         setPriority('Low');
-//     });
+    document.getElementById('low').addEventListener('click', function () {
+        setPriority('Low');
+    });
 
-//     function setPriority(value) {
-//         priority = value;
-// }
+    function setPriority(value) {
+        priority = value;
+}
 
 
 function addSubtask() {

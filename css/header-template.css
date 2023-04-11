@@ -21,6 +21,11 @@ h1 {
 /* General Stylings End*/
 
 /* Header Start */
+#help-me-container {
+    height: calc(90vh - 80px);
+    overflow-y: scroll;
+}
+
 nav {
     height: 80px;
     background: #4589FF;
@@ -55,7 +60,7 @@ nav {
 
 .log_out_button {
     z-index: 5;
-    position: absolute;
+    position: fixed;
     right: 0px;
     top: 80px;
     color: rgb(0, 0, 0);
@@ -93,7 +98,7 @@ nav {
     height: 100%;
     font-size: 19px;
     cursor: pointer;
-    padding: 5px;
+    
     color: #4589FF;
     background: transparent;
 }
