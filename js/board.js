@@ -62,18 +62,18 @@ function parseLoggedOnUser() {
  */
 function renderData() {
     let stageToDo = document.getElementById('stage-todo');
-    stageToDo.innerHTML = '';
     let stageProgress = document.getElementById('stage-progress');
-    stageProgress.innerHTML = '';
     let stageFeedBack = document.getElementById('stage-feedback');
-    stageFeedBack.innerHTML = '';
     let stageDone = document.getElementById('stage-done');
+    stageToDo.innerHTML = '';
+    stageProgress.innerHTML = '';
+    stageFeedBack.innerHTML = '';
     stageDone.innerHTML = '';
 
     if (searchedTaskArray.length === 0) {
         renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone);
     }
-    else {
+    if (searchedTaskArray.length !== 0) {
         renderSearchedTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone);
     }
     stagesContentWhenEmpty();
@@ -97,7 +97,7 @@ function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDo
         if (test.status === 'done') {
             stageDone.innerHTML += taskTemplate(i, test, finishedSubTasks);
         }
-        renderContactInitials(i, test, finishedSubTasks);
+        renderContactInitials(i);
     }
 }
 
@@ -143,11 +143,12 @@ function countFinishedSubtasks(test) {
  *  */
 function renderContactInitials(i) { 
     let task = testData[i];
+    console.log(i);
     let assignedContactsContainer = document.getElementById(`assigned-contacts-${i}`);
     assignedContactsContainer.innerHTML = '';
     for (let j = 0; j < task['assignedContacts'].length; j++) {
         assignedContactsContainer.innerHTML +=
-            `<span>${task['assignedContacts'][j].substring(0, 2).toUpperCase()}</span>`
+            `<span>${task['assignedContacts'][j].substring(0, 2).toUpperCase()}</span>`;
     }
 }
 
@@ -785,11 +786,11 @@ addNewCategory.addEventListener('click', function () {
 
 function displayColor(color) {
     // Get the clicked image
-    const clickedImage = event.target;
+    let clickedImage = event.target;
     // Get the parent container of the clicked image
-    const parentContainer = clickedImage.parentNode;
+    let parentContainer = clickedImage.parentNode;
     // Get all the color images in the parent container
-    const colorImages = parentContainer.querySelectorAll('img');
+    let colorImages = parentContainer.querySelectorAll('img');
     // Loop through each color image
     colorImages.forEach(image => {
         // Check if the clicked image matches the current image in the loop
@@ -812,7 +813,7 @@ function hideNewCategory() {
     newCategoryContainer.classList.add('d-none');
     newCategoryName.value = '';
     categoryAlert.classList.add('d-none');
-    const colorImages = document.querySelectorAll('.new-category-colors img');
+    let colorImages = document.querySelectorAll('.new-category-colors img');
     colorImages.forEach(image => {
         image.classList.remove('d-none');
     });
