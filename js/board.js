@@ -110,16 +110,16 @@ function renderSearchedTaskArray(stageToDo, stageProgress, stageFeedBack, stageD
         let task = searchedTaskArray[i];
         let finishedSubTasks = countFinishedSubtasks(task);
         if (task.status === 'todo') {
-            stageToDo.innerHTML += toDoTemplate(i, task, finishedSubTasks);
+            stageToDo.innerHTML += taskTemplate(i, task, finishedSubTasks);
         }
         if (task.status === 'inprogress') {
-            stageProgress.innerHTML += progressTemplate(i, task, finishedSubTasks);
+            stageProgress.innerHTML += taskTemplate(i, task, finishedSubTasks);
         }
         if (task.status === 'feedback') {
-            stageFeedBack.innerHTML += feedBackTemplate(i, task, finishedSubTasks);
+            stageFeedBack.innerHTML += taskTemplate(i, task, finishedSubTasks);
         }
         if (task.status === 'done') {
-            stageDone.innerHTML += doneTemplate(i, task, finishedSubTasks);
+            stageDone.innerHTML += taskTemplate(i, task, finishedSubTasks);
         }
         renderContactInitials(i);
     }
@@ -141,7 +141,7 @@ function countFinishedSubtasks(test) {
  * @param {*} i is every item from the JSON Array
  * @param {*} test is the loop variable that will contain the value of the current element of the for loop
  *  */
-function renderContactInitials(i) { 
+function renderContactInitials(i) {
     let task = testData[i];
     console.log(i);
     let assignedContactsContainer = document.getElementById(`assigned-contacts-${i}`);
@@ -161,13 +161,16 @@ function stagesContentWhenEmpty() {
     let stageFeedBack = document.getElementById('stage-feedback');
     let stageDone = document.getElementById('stage-done');
     if (stageToDo.innerHTML == '') {
-        stageToDo.innerHTML += emptyTodoTemplate();
-    } if (stageProgress.innerHTML == '') {
-        stageProgress.innerHTML += emptyProgressTemplate();
-    } if (stageFeedBack.innerHTML == '') {
-        stageFeedBack.innerHTML += emptyFeedbackTemplate();
-    } if (stageDone.innerHTML == '') {
-        stageDone.innerHTML += emptyDoneTemplate();
+        stageToDo.innerHTML = emptyTaskTemplate();
+    }
+    if (stageProgress.innerHTML == '') {
+        stageProgress.innerHTML = emptyTaskTemplate();
+    }
+    if (stageFeedBack.innerHTML == '') {
+        stageFeedBack.innerHTML = emptyTaskTemplate();
+    }
+    if (stageDone.innerHTML == '') {
+        stageDone.innerHTML = emptyTaskTemplate();
     }
 }
 
@@ -189,7 +192,7 @@ function setPriority(value) {
 
 function findCategory(categoryName) {
     return createdCategorys.find((obj) => obj.categoryName === categoryName);
-  }
+}
 
 // Create New Task Function
 async function createTask() {
@@ -709,44 +712,44 @@ function renderCategorys() {
     let categorys = document.getElementById('created-categorys');
     categorys.innerHTML = '';
     for (let i = 0; i < createdCategorys.length; i++) {
-      let createdCategory = createdCategorys[i];
-      let categoryElement = document.createElement('div');
-      categoryElement.id = `new-category-${i}`;
-      categoryElement.classList.add('new-category');
-      categoryElement.innerHTML = `
+        let createdCategory = createdCategorys[i];
+        let categoryElement = document.createElement('div');
+        categoryElement.id = `new-category-${i}`;
+        categoryElement.classList.add('new-category');
+        categoryElement.innerHTML = `
         <div class="new_category_item">
             <div id="category-name">${createdCategory['categoryName']}</div>
             <div class="${createdCategory['categoryColor']}"></div>
         </div>
       `;
-      // Create remove button
-      let removeButton = document.createElement('button');
-      removeButton.id = 'remove-button';
-      removeButton.textContent = 'X';
+        // Create remove button
+        let removeButton = document.createElement('button');
+        removeButton.id = 'remove-button';
+        removeButton.textContent = 'X';
 
-      removeButton.addEventListener('click', function(event) {
-        event.stopPropagation();
-        if (createdCategorys[i] === document.getElementById('select-category-inner').textContent) {
-          document.getElementById('select-category-inner').textContent = 'Select task category';
-        }
-        createdCategorys.splice(i, 1);
-        renderCategorys();
-      });
-      categoryElement.appendChild(removeButton);
-      // Add click event listener to select category
-      categoryElement.addEventListener('click', function() {
-        document.getElementById('select-category-inner').innerHTML = `
+        removeButton.addEventListener('click', function (event) {
+            event.stopPropagation();
+            if (createdCategorys[i] === document.getElementById('select-category-inner').textContent) {
+                document.getElementById('select-category-inner').textContent = 'Select task category';
+            }
+            createdCategorys.splice(i, 1);
+            renderCategorys();
+        });
+        categoryElement.appendChild(removeButton);
+        // Add click event listener to select category
+        categoryElement.addEventListener('click', function () {
+            document.getElementById('select-category-inner').innerHTML = `
         <div class="new_category_item">
             <div id="category_Name_to_Task">${createdCategory['categoryName']}</div>
             <div class="${createdCategory['categoryColor']}"></div>
         </div>`;
-        document.getElementById('show-categorys').classList.add('d-none')
-      });
+            document.getElementById('show-categorys').classList.add('d-none')
+        });
 
-      categorys.appendChild(categoryElement);
+        categorys.appendChild(categoryElement);
     }
 }
-  
+
 
 // hide or show categorylist
 displayCategories.addEventListener('click', function () {
@@ -781,7 +784,7 @@ addNewCategory.addEventListener('click', function () {
     }
     renderCategorys();
     newCategoryColor = '';
-});  
+});
 
 
 function displayColor(color) {

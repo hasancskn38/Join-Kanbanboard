@@ -21,7 +21,7 @@ function taskTemplate(i, test, finishedSubTasks) {
     <img id="low-main-${i}" class="" src="../assets/icons/low.png"></div>
     </div>
     </div>
-    `
+    `;
     }
     if (test['subtasks'].length !== 0) {
         return `
@@ -30,7 +30,7 @@ function taskTemplate(i, test, finishedSubTasks) {
     <h4>${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
     <div class="progress-container">
-    <progress style:width:80% value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
+    <progress style=width:80% value="${finishedSubTasks}" max="${test['subtasks'].length}"></progress>
     <div class="subtasks-done">${finishedSubTasks}/${test['subtasks'].length} Done</div>
     </div>
    
@@ -46,7 +46,7 @@ function taskTemplate(i, test, finishedSubTasks) {
     <img id="low-main-${i}" class="" src="../assets/icons/low.png"></div>
     </div>
     </div>
-    `
+    `;
     }
 
 }
@@ -196,26 +196,12 @@ function renderOpenEdit(contactName, contactEmail, contactPhone, contactColor, b
 }
 
 
-function emptyTodoTemplate() {
+function emptyTaskTemplate() {
     return `<div class="empty-container">
     <h2></h2>
-</div>`
+</div>`;
 }
-function emptyProgressTemplate() {
-    return `<div class="empty-container">
-        <h2></h2>
-    </div>`
-}
-function emptyFeedbackTemplate() {
-    return `<div class="empty-container">
-    <h2></h2>
-</div>`
-}
-function emptyDoneTemplate() {
-    return `<div class="empty-container">
-    <h2></h2>
-</div>`
-}
+
 
 
 function openTaskPopUpTemplate(test, i, contact) {
@@ -239,7 +225,7 @@ function openTaskPopUpTemplate(test, i, contact) {
 
                     <img onclick="openEditTask(${i})" class="edit-button cursor" src="../assets/icons/editbutton.png" alt="">
                 </div>
-    `
+    `;
 }
 
 
@@ -293,5 +279,5 @@ function openEditTaskPopUp(test, i) {
 
 <button class="delete-task cursor" onclick="deleteTask(${i})" class="cursor">Delete Task</button>
 </div>
-`
+`;
 }
