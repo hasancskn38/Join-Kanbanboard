@@ -86,23 +86,23 @@ function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDo
         let test = testData[i];
         let finishedSubTasks = countFinishedSubtasks(test);
         if (test.status === 'todo') {
-            stageToDo.innerHTML += toDoTemplate(i, test, finishedSubTasks);
-            renderContactInitials(i, test, finishedSubTasks);
+            stageToDo.innerHTML += taskTemplate(i, test, finishedSubTasks);
         }
-        else if (test.status === 'inprogress') {
-            stageProgress.innerHTML += progressTemplate(i, test, finishedSubTasks);
-            renderContactInitials(i, test, finishedSubTasks);
+        if (test.status === 'progress') {
+            stageProgress.innerHTML += taskTemplate(i, test, finishedSubTasks);
         }
-        else if (test.status === 'feedback') {
-            stageFeedBack.innerHTML += feedBackTemplate(i, test, finishedSubTasks);
-            renderContactInitials(i, test, finishedSubTasks);
+        if (test.status === 'feedback') {
+            stageFeedBack.innerHTML += taskTemplate(i, test, finishedSubTasks);
         }
-        else if (test.status === 'done') {
-            stageDone.innerHTML += doneTemplate(i, test, finishedSubTasks);
-            renderContactInitials(i, test, finishedSubTasks);
+        if (test.status === 'done') {
+            stageDone.innerHTML += taskTemplate(i, test, finishedSubTasks);
         }
+        renderContactInitials(i, test, finishedSubTasks);
     }
 }
+
+
+
 
 
 function renderSearchedTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone) {
@@ -111,20 +111,17 @@ function renderSearchedTaskArray(stageToDo, stageProgress, stageFeedBack, stageD
         let finishedSubTasks = countFinishedSubtasks(task);
         if (task.status === 'todo') {
             stageToDo.innerHTML += toDoTemplate(i, task, finishedSubTasks);
-            renderContactInitials(i, task, finishedSubTasks);
         }
-        else if (task.status === 'inprogress') {
+        if (task.status === 'inprogress') {
             stageProgress.innerHTML += progressTemplate(i, task, finishedSubTasks);
-            renderContactInitials(i, task, finishedSubTasks);
         }
-        else if (task.status === 'feedback') {
+        if (task.status === 'feedback') {
             stageFeedBack.innerHTML += feedBackTemplate(i, task, finishedSubTasks);
-            renderContactInitials(i, task, finishedSubTasks);
         }
-        else if (task.status === 'done') {
+        if (task.status === 'done') {
             stageDone.innerHTML += doneTemplate(i, task, finishedSubTasks);
-            renderContactInitials(i, task, finishedSubTasks);
         }
+        renderContactInitials(i);
     }
 }
 
@@ -144,12 +141,13 @@ function countFinishedSubtasks(test) {
  * @param {*} i is every item from the JSON Array
  * @param {*} test is the loop variable that will contain the value of the current element of the for loop
  *  */
-function renderContactInitials(i, test, selectedContacts) {
+function renderContactInitials(i) { 
+    let task = testData[i];
     let assignedContactsContainer = document.getElementById(`assigned-contacts-${i}`);
     assignedContactsContainer.innerHTML = '';
-    for (let i = 0; i < test.assignedContacts.length; i++) {
+    for (let j = 0; j < task['assignedContacts'].length; j++) {
         assignedContactsContainer.innerHTML +=
-            `<span>${test.assignedContacts[i].substring(0, 2).toUpperCase()}</span>`
+            `<span>${task['assignedContacts'][j].substring(0, 2).toUpperCase()}</span>`
     }
 }
 
