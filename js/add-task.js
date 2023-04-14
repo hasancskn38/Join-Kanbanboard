@@ -15,6 +15,11 @@ let assignedContacts = [];
 let createdCategorys = [];
 let newCategoryColor;
 
+/**
+ * Function to block dates that are in the past
+ */
+let today = new Date().toISOString().split('T')[0];
+document.getElementById('task-date').setAttribute('min', today);
 
 
 async function includeHTML() {
@@ -182,6 +187,10 @@ function findCategory(categoryName) {
     return createdCategorys.find((obj) => obj.categoryName === categoryName);
   }
 
+function navigateToBoardSection(url) {
+    window.location.href = url;
+}
+
 
 // Create New Task Function
 async function addTaskToBoard() {
@@ -193,8 +202,6 @@ async function addTaskToBoard() {
     let categoryName = document.getElementById('category_Name_to_Task').innerHTML;
     let category = findCategory(categoryName);
     let date = document.getElementById('task-date').value;
-    let currentDate = new Date();
-    let userDate = new Date(date);
     let taskDescription = document.getElementById('task-description').value;
     let lastItem = testData[testData.length - 1];
     if (testData.length === 0) {
@@ -215,10 +222,7 @@ async function addTaskToBoard() {
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
         // Condition to check if the selected item is already passed
-    } else if (userDate < currentDate) {
-        alert('The date you selected is already passed, please select a date in the future');
-    }
-    else {
+    } else {
         let newId = Number(lastItem.id) + 1;
         let newItem = {
             "title": title,
@@ -238,10 +242,15 @@ async function addTaskToBoard() {
         await backend.setItem('testData', JSON.stringify(testData));
         await includeHTML();
         clearInputFields();
-        /* removePrioritys(); */
         userAddedSuccessfull(title);
+        // TODO Implement function that leads to board section
+        // setTimeout(() => {
+        //     window.location.href = 'board.html';
+        // }, 1000)
     }
 }
+
+
 
 
 function removePrioritys() {

@@ -17,6 +17,13 @@ let newCategoryColor;
 let overlay = document.getElementById('overlay');
 
 /**
+ * Function to block dates that are in the past
+ */
+let today = new Date().toISOString().split('T')[0];
+document.getElementById('task-date').setAttribute('min', today);
+
+
+/**
  * This function implements the template.html
  *  */
 async function includeHTML() {
@@ -207,8 +214,6 @@ async function createTask() {
     let categoryName = document.getElementById('category_Name_to_Task').innerHTML;
     let category = findCategory(categoryName);
     let date = document.getElementById('task-date').value;
-    let currentDate = new Date();
-    let userDate = new Date(date);
     let taskDescription = document.getElementById('task-description').value;
     let lastItem = testData[testData.length - 1];
     if (testData.length === 0) {
@@ -228,11 +233,7 @@ async function createTask() {
         };
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
-        // Condition to check if the selected item is already passed
-    } else if (userDate < currentDate) {
-        alert('The date you selected is already passed, please select a date in the future');
-    }
-    else {
+    } else {
         let newId = Number(lastItem.id) + 1;
         let newItem = {
             "title": title,
