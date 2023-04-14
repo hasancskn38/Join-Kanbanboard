@@ -66,11 +66,13 @@ function hideOrShowPriorityLevels() {
             urgentMain.classList.remove('d-none');
             mediumMain.classList.add('d-none');
             lowMain.classList.add('d-none');
-        } else if (test.priority == 'Medium') {
+        } 
+        if (test.priority == 'Medium') {
             urgentMain.classList.add('d-none');
             mediumMain.classList.remove('d-none');
             lowMain.classList.add('d-none');
-        } else if (test.priority == 'Low') {
+        } 
+        if (test.priority == 'Low') {
             urgentMain.classList.add('d-none');
             mediumMain.classList.add('d-none');
             lowMain.classList.remove('d-none');
