@@ -14,6 +14,7 @@ let dropDownShow = false;
 let assignedContacts = [];
 let createdCategorys = [];
 let newCategoryColor;
+let overlay = document.getElementById('overlay');
 
 /**
  * This function implements the template.html
@@ -56,6 +57,13 @@ function parseLoggedOnUser() {
     document.getElementById('display_logged_on_user').innerHTML = `${loggedOnUserFirstChartToUpperCase}`;
 }
 
+  function closeOverlay() {
+    closeAddTaskPopUp();
+    closeTaskPopUp()
+  }
+
+
+overlay.addEventListener('click', closeOverlay);
 
 /**
  * render the data from the testData JSON Array
