@@ -522,10 +522,8 @@ async function submitChanges(i) {
     let mediumEdit = document.getElementById('medium-edit');
     let lowEdit = document.getElementById('low-edit');
     if (newPriority == undefined) {
-        // newPriority = checkForPrio();
         test.title = newTaskName;
         test.description = newDescription;
-        // TODO Add new assignedContacts
         test.assignedContacts = assignedContacts;
         test.priority;
         test.date = newDate;
