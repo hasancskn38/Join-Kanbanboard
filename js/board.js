@@ -143,7 +143,6 @@ function countFinishedSubtasks(test) {
  *  */
 function renderContactInitials(i) {
     let task = testData[i];
-    console.log(i);
     let assignedContactsContainer = document.getElementById(`assigned-contacts-${i}`);
     assignedContactsContainer.innerHTML = '';
     for (let j = 0; j < task['assignedContacts'].length; j++) {
@@ -291,10 +290,19 @@ function openTaskPopUp(i) {
     taskPopUp.classList.remove('d-none');
     document.getElementById('overlay').classList.remove('d-none');
     taskPopUp.innerHTML = openTaskPopUpTemplate(test, i, contact);
-    renderContactInitials(i, test);
+    renderContactPopupInitials(i);
     changePriorityColorPopUp();
 }
 
+function renderContactPopupInitials(i) {
+    let task = testData[i];
+    let assignedContactsContainer = document.getElementById(`assigned-popup-contacts-${i}`);
+    assignedContactsContainer.innerHTML = '';
+    for (let j = 0; j < task['assignedContacts'].length; j++) {
+        assignedContactsContainer.innerHTML +=
+            `<span>${task['assignedContacts'][j].substring(0, 2).toUpperCase()}</span>`;
+    }
+}
 
 // Adds the background color when opening popup
 function changePriorityColorPopUp() {

@@ -215,7 +215,7 @@ function openTaskPopUpTemplate(test, i, contact) {
                         <li><b>Due Date:</b> ${test.date}</li>
                         <li><b>Priority:</b><span id="test-priority">${test.priority}</span> </li>
                         <li><b>Assigned to:</b>
-                        <div id="assigned-contacts-${i}" class="assigned-contacts-popup">
+                        <div id="assigned-popup-contacts-${i}" class="assigned-contacts-popup">
                         
                         </div>
                         </li>
