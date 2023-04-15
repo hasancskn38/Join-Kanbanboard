@@ -122,8 +122,12 @@ select option {
 
 .date>input {
     font-size: 18px;
-    width: 100%;
+    width: 95%;
     border-bottom: 0;
+}
+
+.date>input::placeholder {
+    padding-left: 200px;
 }
 
 
@@ -283,7 +287,6 @@ textarea::placeholder {
     color: #4589FF;
     border: 1px solid #647188;
     border-radius: 10px;
-    width: 136px;
     height: 61px;
     font-size: 21px;
     transition: all 125ms ease-in-out;
@@ -307,7 +310,6 @@ textarea::placeholder {
     gap: 10px;
     border: 1px solid #647188;
     border-radius: 10px;
-    width: 136px;
     height: 61px;
     font-size: 21px;
     transition: all 125ms ease-in-out;
@@ -434,12 +436,13 @@ textarea::placeholder {
         flex-direction: column;
         justify-content: center;
         /* overflow: visible; */
-        width: 100vw;
+        width: 95vw;
+        padding: 30px;
         margin: -100px 0 0 0;
     }
 
     .popup2 {
-        margin-top: 150px;
+        margin-top: 180px;
     }
 
     .popup-content-add-task {
