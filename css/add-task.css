@@ -15,8 +15,8 @@ body {
     display: flex;
 }
 
-.popup-content {
-    height: auto;
+.popup-content-add-task {
+    /* height: auto; */
     margin: 20px;
     overflow: hidden;
     font-family: 'Open Sans' !important;
@@ -429,14 +429,13 @@ textarea::placeholder {
 }
 
 @media (max-width: 1000px) {
-    .popup-content {
+    .popup-content-add-task {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        overflow: visible;
-        margin-left: calc(50vw - 200px);
-        height: 1000px;
-        margin-top: -100px;
+        /* overflow: visible; */
+        width: 100vw;
+        margin: -100px 0 0 0;
     }
 
     .popup2 {
@@ -453,7 +452,11 @@ textarea::placeholder {
     }
 }
 
-@media (max-width: 430px) {
-
-
+@media (max-width: 500px) {
+    .priority span {
+        font-size:14px ;
+    }
+    #img1, #img2, #img3 {
+        width: 20px;
+    }
 }

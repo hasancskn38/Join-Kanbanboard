@@ -80,11 +80,15 @@ a {
         bottom: 0px;
         padding: unset;
         background-color: white;
-        /* z-index: 10;*/
+        z-index: 10;
     }
 
     .side-bar-legal {
         display: none;
+    }
+
+    .side-text-size {
+        font-size: 12px;
     }
 
     .side-links-div {
@@ -103,7 +107,7 @@ a {
     }
 
     .side-bar a img{
-margin-left: 20px;
+        margin-left: 20px;
     }
 
     .side-bar a:hover {

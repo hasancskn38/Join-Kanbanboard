@@ -1352,7 +1352,7 @@ button {
     }
 
     .stages-container {
-        width: 99vw;
+        width: 98vw;
     }
 
     .test {
@@ -1383,7 +1383,7 @@ button {
     .board-header {
         display: flex;
         justify-content: center;
-        margin: 50px 0;
+        margin: 50px auto;
         padding: 0;
     }
 
@@ -1398,11 +1398,13 @@ button {
     .stages-container {
         display: flex;
         align-items: center;
-        width: 100vw;
+        justify-content: center;
+        margin: 0 auto;
+        /* width: 100vw; */
     }
 
     .test {
-        width: 80vw;
+        width: 79vw;
     }
 
     .stage-general {
@@ -1421,6 +1423,26 @@ button {
     #task-popup ul li {
         padding: 15px 0;
         font-size: 16px;
+    }
+}
+
+
+@media only screen and (max-width: 500px) {
+    .board-header {
+        flex-direction: column;
+    }
+
+    .search-task {
+        margin-right: 0;
+    }
+
+    .board-header button {
+        margin-top: 20px;
+    }
+
+    .open-add-task {
+        font-size: 16px;
+        
     }
 }
 
