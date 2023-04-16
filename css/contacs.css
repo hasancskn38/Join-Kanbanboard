@@ -28,12 +28,10 @@ h4 {
 
 .layout-contact2 {
     width: 493px;
-    height: calc(100vh - 82px);
+    min-height: calc(100vh - 82px);
     box-shadow: 4px 0px 6px rgb(0 0 0 / 8%);
     margin-left: 30px;
-    padding-bottom: 150px !important;
     overflow-x: hidden;
-    overflow-y: scroll;
     margin-top: 82px;
 }
 
@@ -53,6 +51,7 @@ background-color: white;
     margin: 50px;
     width: 100%;
     margin-top: 100px;
+    overflow: hidden;
 }
 
 .new-contact {
@@ -612,6 +611,7 @@ background-color: white;
         padding: 10px;
         overflow-y: scroll;
         height: calc(100vh - 260px);
+        padding-bottom: 150px !important;
     }
 
     .contact-detail-header-right {
