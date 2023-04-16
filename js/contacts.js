@@ -15,17 +15,17 @@ async function showContacts() {
     await downloadFromServer();
     contacts = await JSON.parse(backend.getItem('contacts')) || [];
     testData = await JSON.parse(backend.getItem('testData')) || [];
-    sortContacts(contacts);
-    await includeHTML();
-    sortContacts(contacts);
-    creatSingleLetters();
     let contactContainer = document.getElementById('contactList');
     contactContainer.innerHTML = '';
+    sortContacts(contacts);
+    await includeHTML();
+    creatSingleLetters();
     let greatLetter;
     renderLetterGroups(contactContainer, greatLetter);
     renderContact();
     parseLoggedOnUser()
     getCurrentPage();
+
 }
 
 function getCurrentPage() {
@@ -122,10 +122,8 @@ async function AddNewContact() {
     let phone = document.getElementById('new-contact-phone');
     let color = randomColor();
     contacts.push({ name: name.value, email: email.value, phone: phone.value, randomColors: color });
-    await editSave();
     document.getElementById('addcontactlayout').classList.add('d-nones');
-    await showContacts();
-    location.reload();
+    await editSave();
 }
 
 
@@ -329,7 +327,6 @@ function clearInputFields() {
 
 function creatSingleLetters() {
     filterFirstLetter();
-
 }
 
 function changeUrgentColor() {
@@ -407,9 +404,10 @@ function splitName(fullName) {
 
 
 function filterFirstLetter() {
+    letters = [];
     for (let i = 0; i < contacts.length; i++) {
         let contact = contacts[i];
-        let firstLetter = contact['name'].charAt(0).toLocaleLowerCase();
+        let firstLetter = contact['name'].charAt(0).toLowerCase();
         if (!letters.includes(firstLetter)) {
             letters.push(firstLetter);
         }
@@ -493,12 +491,9 @@ async function editContactSave(contactName, contactEmail, contactPhone, i) {
     contacts[i].name = newName;
     contacts[i].email = newMail;
     contacts[i].phone = newPhone;
-    await backend.setItem('contacts', JSON.stringify(contacts));
     await editSave();
     document.getElementById('layout-contact4').innerHTML = '';
     document.getElementById('editContactLayout').classList.add('d-nones');
-    showContacts();
-    location.reload();
 }
 
 
@@ -507,15 +502,12 @@ async function editSave() {
     await backend.setItem('contacts', JSON.stringify(contacts));
     await backend.setItem('letters', JSON.stringify(letters));
     showContacts();
-
 }
 
 async function deleteContact(i) {
     contacts.splice(i, 1);
-    await backend.setItem('contacts', JSON.stringify(contacts));
     slideBack();
     await editSave();
-    location.reload();
 }
 
 
