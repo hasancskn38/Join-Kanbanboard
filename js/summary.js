@@ -39,18 +39,18 @@ function parseLoggedOnUser() {
 
 
 // Generate Greeting Based on real world time
-setInterval(function() {
+setInterval(function () {
     let date = new Date();
     let hours = date.getHours();
     let timeOfDay;
     if (hours < 12) {
         timeOfDay = 'Good Morning !';
-    } else if(hours >= 12 && hours < 17) {
+    } else if (hours >= 12 && hours < 17) {
         timeOfDay = 'Good afternoon !';
     } else {
         timeOfDay = 'Good evening !';
     }
-    document.getElementById('greeting').innerHTML = timeOfDay, ',' ;
+    document.getElementById('greeting').innerHTML = timeOfDay, ',';
 }, 1000);
 
 
@@ -73,18 +73,13 @@ function hideHelpMeSection() {
 }
 
 function renderTasks() {
-    let boardNum = document.getElementById('onBoardNum');
-    boardNum.innerHTML = countTasksOnBoard();
-    let numProgress = document.getElementById('numProgress');
-    numProgress.innerHTML = countTasksInProcess();
-    let awaitingFeedbackNum = document.getElementById('awaitingFeedbackNum');
-    awaitingFeedbackNum.innerHTML = countAwaitingFeedback();
-    let numDone = document.getElementById('numDone');
-    numDone.innerHTML = countTasksInDone();
-    let numToDo = document.getElementById('numToDo');
-    numToDo.innerHTML = countTasksToDo();
-    let numUrgent = document.getElementById('numUrgent');
-    numUrgent.innerHTML = countUrgent();
+
+    countTasksOnBoard();
+    countTasksInProcess();
+    countAwaitingFeedback();
+    countTasksInDone();
+    countTasksToDo();
+    countUrgent();
     parseLoggedOnUser();
 }
 
@@ -103,12 +98,49 @@ function logOut() {
 }
 
 function countTasksOnBoard() {
-    let onBoard = testData.length;
-    return onBoard;
+    let testDataLength = testData.length;
+    let number = 0;
+    let container = document.getElementById('onBoardNum');
+
+    if (testDataLength === 0) {
+        container.innerHTML = 0;
+    }
+    let intervalId = setInterval(() => {
+        number++;
+        container.innerHTML = number;
+        if (number === testDataLength) {
+            clearInterval(intervalId);
+        }
+    }, 500 / testDataLength);
 }
 
 
+
+
+
 function countTasksInProcess() {
+
+    let testDataLength = returnTasksProgress();
+    let number = 0;
+    let container = document.getElementById('numProgress');
+
+    if (testDataLength === 0) {
+        container.innerHTML = 0;
+    }
+    else {
+        let intervalId = setInterval(() => {
+            number++;
+            container.innerHTML = number;
+            if (number === testDataLength) {
+                clearInterval(intervalId);
+            }
+        }, 500 / testDataLength);
+
+    }
+}
+
+function returnTasksProgress() {
+
     let inProgress = 0;
     for (let i = 0; i < testData.length; i++) {
         if (testData[i]['status'] == 'inprogress') {
@@ -116,10 +148,30 @@ function countTasksInProcess() {
         }
     }
     return inProgress;
+
 }
 
-
 function countAwaitingFeedback() {
+    let container = document.getElementById('awaitingFeedbackNum');
+    let testDataLength = returnTasksFeedback();
+    let number = 0;
+
+    if (testDataLength === 0) {
+        container.innerHTML = 0;
+    }
+    else {
+        let intervalId = setInterval(() => {
+            number++;
+            container.innerHTML = number;
+            if (number === testDataLength) {
+                clearInterval(intervalId);
+            }
+        }, 500 / testDataLength);
+
+    }
+}
+
+function returnTasksFeedback() {
     let inAwaitingFeedback = 0;
     for (let i = 0; i < testData.length; i++) {
         if (testData[i]['status'] == 'feedback') {
@@ -131,6 +183,28 @@ function countAwaitingFeedback() {
 
 
 function countTasksInDone() {
+    let container = document.getElementById('numDone');
+
+
+    let testDataLength = returnTasksDone();
+    let number = 0;
+
+    if (testDataLength === 0) {
+        container.innerHTML = 0;
+    }
+    else {
+        let intervalId = setInterval(() => {
+            number++;
+            container.innerHTML = number;
+            if (number === testDataLength) {
+                clearInterval(intervalId);
+            }
+        }, 500 / testDataLength);
+
+    }
+}
+
+function returnTasksDone() {
     let inDone = 0;
     for (let i = 0; i < testData.length; i++) {
         if (testData[i]['status'] == 'done') {
@@ -140,8 +214,30 @@ function countTasksInDone() {
     return inDone;
 }
 
-
 function countTasksToDo() {
+
+    let container = document.getElementById('numToDo');
+
+    let testDataLength = returnTasksToDo();
+    let number = 0;
+
+    if (testDataLength === 0) {
+        container.innerHTML = 0;
+    }
+    else {
+        let intervalId = setInterval(() => {
+            number++;
+            container.innerHTML = number;
+            if (number === testDataLength) {
+                clearInterval(intervalId);
+            }
+        }, 500 / testDataLength);
+
+    }
+
+}
+
+function returnTasksToDo() {
     let inToDo = 0;
     for (let i = 0; i < testData.length; i++) {
         if (testData[i]['status'] == 'todo') {
@@ -149,10 +245,34 @@ function countTasksToDo() {
         }
     }
     return inToDo;
+
 }
 
-
 function countUrgent() {
+    let container = document.getElementById('numUrgent');
+
+    let testDataLength = returnTasksUrgent();
+    let number = 0;
+
+    if (testDataLength === 0) {
+        container.innerHTML = 0;
+    }
+    else {
+        let intervalId = setInterval(() => {
+            number++;
+            container.innerHTML = number;
+            if (number === testDataLength) {
+                clearInterval(intervalId);
+            }
+        }, 500 / testDataLength);
+
+    }
+
+
+}
+
+function returnTasksUrgent() {
+
     let inUrgent = 0;
     for (let i = 0; i < testData.length; i++) {
         if (testData[i]['priority'] == 'Urgent')
