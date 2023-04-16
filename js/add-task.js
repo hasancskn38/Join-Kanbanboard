@@ -180,7 +180,7 @@ function userLogout() {
 
 function logOut() {
     localStorage.removeItem("loggedOnUser");
-    window.location.href = `login.html?msg=Du hast dich erfolgreich ausgeloggt`;
+    window.location.href = `index.html?msg=Du hast dich erfolgreich ausgeloggt`;
 }
 
 function findCategory(categoryName) {
