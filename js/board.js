@@ -659,6 +659,7 @@ function openAddTaskPopUp() {
     document.getElementById('popup').classList.remove('hide');
     document.getElementById('popup').classList.add('show');
     document.getElementById('popup').classList.remove('d-none');
+    document.getElementById('side_bar').style.zIndex = 1;
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -668,6 +669,7 @@ function closeAddTaskPopUp() {
     document.getElementById('popup').classList.add('hide');
     document.getElementById('popup').classList.remove('show');
     document.querySelector('body').classList.remove('overflow-hidden');
+    document.getElementById('side_bar').style.zIndex = 11;
 }
 
 // Show Help me Container

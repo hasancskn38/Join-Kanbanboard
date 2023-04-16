@@ -431,6 +431,10 @@ textarea::placeholder {
 }
 
 @media (max-width: 1000px) {
+    .main_container {
+        display: block;
+    }
+
     .popup-content-add-task {
         display: flex;
         flex-direction: column;
@@ -439,6 +443,10 @@ textarea::placeholder {
         width: 95vw;
         padding: 30px;
         margin: -100px 0 0 0;
+    }
+
+    .successfull_added {
+        display: none;
     }
 
     .popup2 {
