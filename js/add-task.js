@@ -187,9 +187,6 @@ function findCategory(categoryName) {
     return createdCategorys.find((obj) => obj.categoryName === categoryName);
   }
 
-function navigateToBoardSection(url) {
-    window.location.href = url;
-}
 
 
 // Create New Task Function
@@ -243,10 +240,6 @@ async function addTaskToBoard() {
         await includeHTML();
         clearInputFields();
         userAddedSuccessfull(title);
-        // TODO Implement function that leads to board section
-        // setTimeout(() => {
-        //     window.location.href = 'board.html';
-        // }, 1000)
     }
 }
 
@@ -326,11 +319,11 @@ function addAnimation() {
     animation.classList.remove('display_opacity');
     animation.classList.add('successfull_added_animation');
 
-
     setTimeout(() => {
         animation.classList.remove('successfull_added_animation');
         animation.classList.add('display_opacity');
-    }, 5000);
+        window.location.href = 'board.html';
+    }, 3000);
 }
 
 function clearInputFields() {

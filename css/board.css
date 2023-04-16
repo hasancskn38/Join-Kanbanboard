@@ -256,7 +256,7 @@ input:active {
     top: 0;
     background-color: #fff;
     height: 100vh;
-    width: 500px;
+    width: 570px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 }
@@ -315,9 +315,9 @@ input:active {
 /* Animation End */
 
 .popup-content {
-    height: 100vh !important;
-    width: 100vw;
-    overflow: auto;
+    height: 100vh;
+    max-width: 100vw;
+    overflow-y: auto;
     margin-left: 20px;
 }
 
@@ -871,7 +871,6 @@ textarea::placeholder {
     height: 80vh;
     margin: auto;
     border-radius: 10px;
-    overflow-y: scroll;
     /* add a vertical scrollbar if the content overflows */
     overflow-x: hidden;
 }

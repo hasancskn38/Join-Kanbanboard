@@ -9,7 +9,6 @@ let newPriority;
 let searchedTaskArray = [];
 let subtaskArray = [];
 let selectElement = document.getElementById('select-contact');
-let initialsDiv = document.getElementById('initials-div');
 let dropDownShow = false;
 let assignedContacts = [];
 let createdCategorys = [];
@@ -52,6 +51,7 @@ function getCurrentPage() {
 async function loadDataFromServer() {
     await downloadFromServer();
     contacts = await JSON.parse(backend.getItem('contacts')) || [];
+    createdCategorys = await JSON.parse(backend.getItem('createdCategorys')) || [];
     testData = await JSON.parse(backend.getItem('testData')) || [];
     renderData();
     parseLoggedOnUser();
@@ -251,6 +251,7 @@ async function createTask() {
         };
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
+        showDropDown();
         closeAddTaskPopUp();
         await includeHTML();
         clearInputFields();
@@ -263,6 +264,8 @@ async function handleSubmit(event) {
     event.preventDefault();
     await createTask();
     subtaskArray = [];
+    assignedContacts = [];
+
 }
 
 function renderSubtasks() {
@@ -600,15 +603,16 @@ function closeEditTask() {
  */
 function clearInputFields() {
     let input = document.getElementById('task-title');
-    let selectCategory = document.getElementById('select-category');
     let selectContacts = document.getElementById('select-contact-add');
     let taskDate = document.getElementById('task-date');
     let taskDescription = document.getElementById('task-description');
     let subTasks = document.getElementById('task-subtask');
+    displayCategories.innerHTML = `
+    <p id="select-category-inner">Select task category</p>
+    <img id="dropwdown-icon" class="dropdown-icon" src="../assets/icons/dropdown.png" alt="">
+    `;
     subTasks.value = '';
-    document.getElementById('initials-div').innerHTML = '';
     input.value = '';
-    selectCategory.value = '';
     selectContacts.value = '';
     taskDate.value = '';
     taskDescription.value = '';
@@ -742,12 +746,13 @@ function renderCategorys() {
         removeButton.id = 'remove-button';
         removeButton.textContent = 'X';
 
-        removeButton.addEventListener('click', function (event) {
+        removeButton.addEventListener('click', async function (event) {
             event.stopPropagation();
             if (createdCategorys[i] === document.getElementById('select-category-inner').textContent) {
                 document.getElementById('select-category-inner').textContent = 'Select task category';
             }
             createdCategorys.splice(i, 1);
+            await backend.setItem('createdCategorys', JSON.stringify(createdCategorys));
             renderCategorys();
         });
         categoryElement.appendChild(removeButton);
@@ -786,7 +791,7 @@ newCategory.addEventListener('click', function () {
 });
 
 
-addNewCategory.addEventListener('click', function () {
+addNewCategory.addEventListener('click', async function () {
     if (newCategoryName.value == '') {
         categoryAlert.classList.remove('d-none');
     } else {
@@ -795,6 +800,7 @@ addNewCategory.addEventListener('click', function () {
             categoryColor: newCategoryColor
         };
         createdCategorys.push(newCategory);
+        await backend.setItem('createdCategorys', JSON.stringify(createdCategorys));
         hideNewCategory();
     }
     renderCategorys();
@@ -873,7 +879,6 @@ function selectContact(i) {
 
 function alreadyAssignedContact(i) {
     let container = document.getElementById(`dropdown_checkbox${i}`).innerHTML;
-    console.log(container);
     if (container == '▣') {
         return true;
     }
