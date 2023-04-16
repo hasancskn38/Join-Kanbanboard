@@ -256,7 +256,7 @@ input:active {
     top: 0;
     background-color: #fff;
     height: 100vh;
-    width: 500px;
+    width: 570px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 }
@@ -315,11 +315,18 @@ input:active {
 /* Animation End */
 
 .popup-content {
+<<<<<<< HEAD
     height: 100vh !important;
     width: 100vw;
     overflow: auto;
     /* margin-left: 20px; */
     margin: 0 20px;
+=======
+    height: 100vh;
+    max-width: 100vw;
+    overflow-y: auto;
+    margin-left: 20px;
+>>>>>>> 66de517f3d47fff2acb1d615d7f93953b1195558
 }
 
 .popup-header {
@@ -868,7 +875,6 @@ textarea::placeholder {
     height: 80vh;
     margin: auto;
     border-radius: 10px;
-    overflow-y: scroll;
     /* add a vertical scrollbar if the content overflows */
     overflow-x: hidden;
 }

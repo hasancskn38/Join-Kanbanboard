@@ -75,7 +75,8 @@ a {
 @media (max-width:1000px) {
     .side-bar {
         height: 120px;
-        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
         top: unset;
         bottom: 0px;
         padding: unset;
@@ -100,7 +101,7 @@ a {
         flex-direction: column;
         justify-content: center;
         white-space: nowrap;
-        min-width: 90px;
+        width: 90px;
         padding-block: 12px;
         padding-inline: 8px;
         height: 100px;
@@ -117,8 +118,8 @@ a {
     }
 }
 
-@media (max-width:375px) {
+@media (max-width:405px) {
     .side-bar a {
-        min-width: 75px;
+        min-width: 85px;
     }
 }
