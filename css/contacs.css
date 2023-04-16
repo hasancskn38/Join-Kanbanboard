@@ -3,7 +3,6 @@
     justify-content: center;
     height: 100%;
     margin-left: 232px;
-    overflow-y: hidden;
 }
 
 .layout-contact1 {
@@ -12,6 +11,7 @@
     flex-direction: row;
     width: 100%;
     min-height: calc(100vh - 100px);
+    max-height: calc(100vh - 100px);
 }
 
 h2 {
@@ -31,8 +31,9 @@ h4 {
     height: calc(100vh - 82px);
     box-shadow: 4px 0px 6px rgb(0 0 0 / 8%);
     margin-left: 30px;
-    overflow-y: auto;
+    padding-bottom: 150px !important;
     overflow-x: hidden;
+    overflow-y: scroll;
     margin-top: 82px;
 }
 
@@ -51,7 +52,6 @@ background-color: white;
 .layout-contact3 {
     margin: 50px;
     width: 100%;
-    overflow: hidden;
     margin-top: 100px;
 }
 
