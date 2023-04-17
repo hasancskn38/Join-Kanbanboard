@@ -4,7 +4,8 @@ let letters = [];
 let testData = [];
 let priority;
 let subtaskArray = [];
-
+let dropDownShow = false;
+let assignedContacts = [];
 
 
 /**
@@ -514,3 +515,45 @@ async function deleteContact(i) {
 
 
 
+
+function showDropDown() {
+    if (dropDownShow == false) {
+        for (let i = 0; i < contacts.length; i++) {
+            let contact = contacts[i];
+            document.getElementById('contact_dropdown').innerHTML += `
+            <div onclick="selectContact(${i})"  class="dropdown_content"><div>${contact['name']}</div> <div class="dropdown_checkbox" id="dropdown_checkbox${i}">▢</div> </div>`;
+        }
+        return dropDownShow = true;
+    }
+
+    if (dropDownShow == true) {
+        document.getElementById('contact_dropdown').innerHTML = ``;
+        return dropDownShow = false;
+    }
+}
+
+function selectContact(i) {
+    let contact = contacts[i];
+    let alreadyAssigned = alreadyAssignedContact(i);
+    if (alreadyAssigned) {
+        document.getElementById(`dropdown_checkbox${i}`).innerHTML = '▢';
+        let assignedContact = assignedContacts.find(ac => ac.name == contact.name);
+        let j = assignedContacts.indexOf(assignedContact);
+        assignedContacts.splice(j, i);
+    }
+    if (!alreadyAssigned) {
+        document.getElementById(`dropdown_checkbox${i}`).innerHTML = '▣';
+        assignedContacts.push(contacts[i].name);
+    }
+
+}
+
+function alreadyAssignedContact(i) {
+    let container = document.getElementById(`dropdown_checkbox${i}`).innerHTML;
+    if (container == '▣') {
+        return true;
+    }
+    if (container == '▢') {
+        return false;
+    }
+}
