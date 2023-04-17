@@ -12,7 +12,7 @@ async function registerUser() {
     let password = document.getElementById('register_password');
     users.push({name: name.value, email: email.value, password: password.value});
     await backend.setItem('users', JSON.stringify(users));
-    window.location.href = 'login.html?msg=Du hast dich erfolgreich registriert';
+    window.location.href = 'index.html?msg=Du hast dich erfolgreich registriert';
 }
 
 function loginUser() {

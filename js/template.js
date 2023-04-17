@@ -171,19 +171,19 @@ function renderOpenEdit(contactName, contactEmail, contactPhone, contactColor, b
         <div style="background-color: ${contactColor}" class="big-letter-user">${bothFirstLetter}
         </div>
         <div class="form">
-            <form class="add-contact-form" onsubmit="editContactSave('${contactName}', '${contactEmail}', '${contactPhone}', '${i}'); return false;">
+            <form class="add-contact-form" onsubmit="editContactSave(${i}); return false;">
                 <div class="add-contact-input-field">
-                    <input id="new-contact-name" class="conact-name-form contacts-input" type="text"
+                    <input id="new-edit-contact-name" class="conact-name-form contacts-input" type="text"
                         placeholder="Name" required value="${contactName}">
                     <img src="../assets/img/Input_Name.png">
                 </div>
                 <div class="add-contact-input-field">
-                    <input id="new-contact-email" class="conact-name-form contacts-input" type="email"
+                    <input id="new-edit-contact-email" class="conact-name-form contacts-input" type="email"
                         placeholder="Email" required value="${contactEmail}">
                     <img src="../assets/img/Input_Email.png">
                 </div>
                 <div class="add-contact-input-field">
-                    <input id="new-contact-phone" class="conact-name-form contacts-input" type="number"
+                    <input id="new-edit-contact-phone" class="conact-name-form contacts-input" type="number"
                         placeholder="Phone" required value="${contactPhone}">
                     <img src="../assets/img/Input_Phone.png">
                 </div>

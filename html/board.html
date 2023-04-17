@@ -56,7 +56,7 @@
                     <img src="../assets/icons/search.png" alt="">
                 </div>
                 <div class="add-remove-container">
-                    <button class="cursor open-add-task" onclick="openAddTaskPopUp()">Add task <span>+</span></button>
+                    <button class="cursor open-add-task" onclick="openAddTaskPopUp('todo')">Add task <span>+</span></button>
                 </div>
             </div>
             <!-- Board Header End-->
@@ -200,7 +200,7 @@
             <div ondrop="dropItem('todo')" ondragover="allowDrop(event)" class="stage-todo stage-general">
 
                 <div class="stage-header">
-                    <h2>To do</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
+                    <h2>To do</h2><button onclick="openAddTaskPopUp('todo')" class="cursor">+</button>
                 </div>
 
                 <div class="container" id="stage-todo">
@@ -210,7 +210,7 @@
             <div ondrop="dropItem('progress')" ondragover="allowDrop(event)" class="stage-todo stage-general">
 
                 <div class="stage-header">
-                    <h2>In progress</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
+                    <h2>In progress</h2><button onclick="openAddTaskPopUp('progress')" class="cursor">+</button>
                 </div>
 
                 <div class="container" id="stage-progress">
@@ -219,7 +219,7 @@
 
             <div ondrop="dropItem('feedback')" ondragover="allowDrop(event)" class="stage-todo stage-general">
                 <div class="stage-header">
-                    <h2>Await feedback</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
+                    <h2>Await feedback</h2><button onclick="openAddTaskPopUp('feedback')" class="cursor">+</button>
                 </div>
                 <div class="container" id="stage-feedback">
 
@@ -228,7 +228,7 @@
 
             <div ondrop="dropItem('done')" ondragover="allowDrop(event)" class="stage-todo stage-general">
                 <div class="stage-header">
-                    <h2>Done</h2><button onclick="openAddTaskPopUp()" class="cursor">+</button>
+                    <h2>Done</h2><button onclick="openAddTaskPopUp('done')" class="cursor">+</button>
                 </div>
                 <div class="container" id="stage-done">
                 </div>

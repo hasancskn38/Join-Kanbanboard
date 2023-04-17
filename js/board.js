@@ -13,8 +13,9 @@ let dropDownShow = false;
 let assignedContacts = [];
 let createdCategorys = [];
 let newCategoryColor;
+let taskStatus;
 let overlay = document.getElementById('overlay');
-
+let displayCategories = document.getElementById('display-categories');
 /**
  * Function to block dates that are in the past
  */
@@ -224,7 +225,7 @@ async function createTask() {
                 categoryColor: category['categoryColor']
             },
             "description": taskDescription,
-            "status": 'todo',
+            "status": taskStatus,
             "priority": priority,
             "date": date,
             "assignedContacts": assignedContacts,
@@ -242,7 +243,7 @@ async function createTask() {
                 categoryColor: category['categoryColor']
             },
             "description": taskDescription,
-            "status": 'todo',
+            "status": taskStatus,
             "priority": priority,
             "date": date,
             "assignedContacts": assignedContacts,
@@ -657,7 +658,8 @@ async function dropItem(status) {
 
 
 // openAddTaskPopUp Function
-function openAddTaskPopUp() {
+function openAddTaskPopUp(value) {
+    taskStatus = value;
     document.getElementById('overlay').classList.remove('d-none');
     document.querySelector('body').classList.add('overflow-hidden');
     document.getElementById('popup').classList.remove('hide');
@@ -720,7 +722,7 @@ function searchTask() {
     renderData();
 }
 
-let displayCategories = document.getElementById('display-categories');
+
 let categorys = document.getElementById('show-categorys');
 let addNewCategory = document.getElementById('add-new-category');
 let newCategoryName = document.getElementById('new-category-name');
@@ -774,7 +776,7 @@ function renderCategorys() {
 
 
 // hide or show categorylist
-displayCategories.addEventListener('click', function () {
+displayCategories.addEventListener('click', async function () {
     if (categorys.classList.contains('d-none')) {
         categorys.classList.remove('d-none');
         newCategory.classList.remove('d-none');

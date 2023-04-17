@@ -484,13 +484,14 @@ function openEdit(contactName, contactEmail, contactPhone, contactColor, bothFir
 }
 
 
-async function editContactSave(contactName, contactEmail, contactPhone, i) {
-    let newName = document.getElementById('new-contact-name').value;
-    let newMail = document.getElementById('new-contact-email').value;
-    let newPhone = document.getElementById('new-contact-phone').value;
-    contacts[i].name = newName;
-    contacts[i].email = newMail;
-    contacts[i].phone = newPhone;
+async function editContactSave(i) {
+    let contact = contacts[i];
+    let newName = document.getElementById('new-edit-contact-name');
+    let newMail = document.getElementById('new-edit-contact-email');
+    let newPhone = document.getElementById('new-edit-contact-phone');
+    contact['name'] = newName.value;
+    contact['email'] = newMail.value;
+    contact['phone'] = newPhone.value;
     await editSave();
     document.getElementById('layout-contact4').innerHTML = '';
     document.getElementById('editContactLayout').classList.add('d-nones');

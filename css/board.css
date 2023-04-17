@@ -921,6 +921,11 @@ textarea::placeholder {
     color: #fff;
 }
 
+.submit-change:hover {
+    background-color: rgb(87, 149, 255);
+    transition: all .2s ease-in-out;
+    }
+
 .submit-change img {
     padding-right: 0;
 }
@@ -930,6 +935,11 @@ textarea::placeholder {
     font-size: 20px;
     padding: 15px 30px;
     color: #fff;
+}
+
+.delete-task:hover {
+background-color: rgb(87, 149, 255);
+transition: all .2s ease-in-out;
 }
 
 
