@@ -664,6 +664,7 @@ background-color: white;
     .detail-main {
         height: 90vh;
         padding: 20px;
+        padding-top: 70px;
     }
 
     .span-display-none {

@@ -7,7 +7,6 @@ let subtaskArray = [];
 let dropDownShow = false;
 let assignedContacts = [];
 
-
 /**
  * Creating contanctlist
  */
