@@ -14,6 +14,7 @@ let newCategoryName = document.getElementById('new-category-name');
 let categoryAlert = document.getElementById('category-alert');
 let newCategoryContainer = document.getElementById('new-category-container');
 let newCategory = document.getElementById('new-category');
+let overlay = document.getElementById('overlay');
 /**
  * Creating contanctlist
  */
@@ -296,6 +297,16 @@ function hideHelpMeSection() {
     document.getElementById('help-me-container').classList.add('d-none');
     document.querySelector('main').classList.remove('d-none');
 }
+
+
+function closeOverlay() {
+    closeAddTaskPopUp();
+    closeAddTaskPopUp();
+  }
+
+
+overlay.addEventListener('click', closeOverlay);
+
 
 function openAddTaskPopUp() {
     document.getElementById('overlay').classList.remove('d-none');

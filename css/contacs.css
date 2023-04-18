@@ -5,6 +5,11 @@
     margin-left: 232px;
 }
 
+.popup-header {
+    display: flex;
+    justify-content: space-around;
+}
+
 .layout-contact1 {
     display: flex;
     justify-content: flex-start;

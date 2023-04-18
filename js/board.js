@@ -67,7 +67,7 @@ function parseLoggedOnUser() {
 
   function closeOverlay() {
     closeAddTaskPopUp();
-    closeTaskPopUp()
+    closeTaskPopUp();
   }
 
 
@@ -421,7 +421,7 @@ function showSubtasks(i) {
         <div class="subtask">
         <div>${subTask['subtask']}</div>
         <div id="subtask${j}">
-        <button onclick="finishSubtask(${i}, ${j})">❌</button>
+        <button onclick="finishSubtask(${i}, ${j})">🔳</button>
         </div>
         </div>
         `;
@@ -434,7 +434,7 @@ async function openSubtask(i, j) {
     testData[i]['subtasks'][j]['status'] = 'open';
     await backend.setItem('testData', JSON.stringify(testData));
     let container = document.getElementById(`subtask${j}`);
-    container.innerHTML = `<button onclick="finishSubtask(${i}, ${j})">❌</button>`;
+    container.innerHTML = `<button onclick="finishSubtask(${i}, ${j})">🔳</button>`;
 }
 
 async function finishSubtask(i, j) {

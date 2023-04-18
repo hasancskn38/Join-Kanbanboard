@@ -339,15 +339,15 @@ input:active {
 }
 
 .createtask-button {
-    margin: 20px;
+    margin-top: 25px;
+    margin-right: 20px;
     color: #fff;
     background-color: #4589FF;
-    padding: 10px;
     border-radius: 10px;
     font-size: 20px;
     font-weight: lighter;
-    width: 100px;
-    height: 70px;
+    width: 160px;
+    height: 50px;
 }
 
 .createtask-button:hover {
@@ -544,7 +544,7 @@ label>input {
 
 .new_category_item {
     display: flex;
-    width: 320px;
+    width: 370px;
     justify-content: space-between;
 }
 
