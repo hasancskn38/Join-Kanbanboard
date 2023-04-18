@@ -6,6 +6,7 @@ let priority;
 let subtaskArray = [];
 let dropDownShow = false;
 let assignedContacts = [];
+let createdCategorys = [];
 let displayCategories = document.getElementById('display-categories');
 let categorys = document.getElementById('show-categorys');
 let addNewCategory = document.getElementById('add-new-category');
@@ -13,7 +14,6 @@ let newCategoryName = document.getElementById('new-category-name');
 let categoryAlert = document.getElementById('category-alert');
 let newCategoryContainer = document.getElementById('new-category-container');
 let newCategory = document.getElementById('new-category');
-let createdCategorys = [];
 /**
  * Creating contanctlist
  */
@@ -21,6 +21,7 @@ let createdCategorys = [];
 async function showContacts() {
     await downloadFromServer();
     contacts = await JSON.parse(backend.getItem('contacts')) || [];
+    createdCategorys = await JSON.parse(backend.getItem('createdCategorys')) || [];
     testData = await JSON.parse(backend.getItem('testData')) || [];
     let contactContainer = document.getElementById('contactList');
     contactContainer.innerHTML = '';
@@ -32,7 +33,7 @@ async function showContacts() {
     renderContact();
     parseLoggedOnUser()
     getCurrentPage();
-
+    renderCategorys();
 }
 
 function getCurrentPage() {
@@ -113,6 +114,10 @@ function renderContact() {
         }
     }
 
+}
+
+function findCategory(categoryName) {
+    return createdCategorys.find((obj) => obj.categoryName === categoryName);
 }
 
 function renderCategorys() {
@@ -298,10 +303,9 @@ function openAddTaskPopUp() {
     document.getElementById('popup').classList.remove('hide');
     document.getElementById('popup').classList.add('show');
     document.getElementById('popup').classList.remove('d-none');
-    let subtaskdiv = document.getElementById('subtask');
+    let subtaskdiv = document.getElementById('subtasks');
     subtaskdiv.innerHTML = '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    renderContacts();
 }
 
 document.getElementById('urgent').addEventListener('click', function () {
@@ -392,9 +396,7 @@ async function createTask() {
     removePrioritys();
 }
 
-function findCategory(categoryName) {
-    return createdCategorys.find((obj) => obj.categoryName === categoryName);
-}
+
 
 
 function renderSubtasks() {

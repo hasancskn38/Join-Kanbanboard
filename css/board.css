@@ -1197,9 +1197,6 @@ button {
 
 }
 
-.container:hover {
-    overflow: hidden;
-}
 
 
 .contact-priority-container {
@@ -1421,7 +1418,7 @@ button {
     }
 
     .test {
-        width: 79vw;
+        width: 78vw;
     }
 
     .stage-general {
@@ -1462,6 +1459,15 @@ button {
         
     }
 }
+
+@media only screen and (max-width: 500px) {
+    .test {
+        width: 75vw;
+    }
+}
+
+
+
 
 /* Responsive End */
 /* Styling of the Content that is created or rendered with Javascript End*/
