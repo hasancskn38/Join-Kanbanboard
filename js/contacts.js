@@ -6,7 +6,14 @@ let priority;
 let subtaskArray = [];
 let dropDownShow = false;
 let assignedContacts = [];
-
+let displayCategories = document.getElementById('display-categories');
+let categorys = document.getElementById('show-categorys');
+let addNewCategory = document.getElementById('add-new-category');
+let newCategoryName = document.getElementById('new-category-name');
+let categoryAlert = document.getElementById('category-alert');
+let newCategoryContainer = document.getElementById('new-category-container');
+let newCategory = document.getElementById('new-category');
+let createdCategorys = [];
 /**
  * Creating contanctlist
  */
@@ -70,7 +77,7 @@ function addSubtask() {
 
 
 function renderSubtasksInPopUp() {
-    let subTasks = document.getElementById('subtask');
+    let subTasks = document.getElementById('subtasks');
     subTasks.innerHTML = '';
     for (let i = 0; i < subtaskArray.length; i++) {
         let subtaskInput = subtaskArray[i];
@@ -108,12 +115,130 @@ function renderContact() {
 
 }
 
+function renderCategorys() {
+    let categorys = document.getElementById('created-categorys');
+    categorys.innerHTML = '';
+    for (let i = 0; i < createdCategorys.length; i++) {
+        let createdCategory = createdCategorys[i];
+        let categoryElement = document.createElement('div');
+        categoryElement.id = `new-category-${i}`;
+        categoryElement.classList.add('new-category');
+        categoryElement.innerHTML = `
+        <div class="new_category_item">
+            <div id="category-name">${createdCategory['categoryName']}</div>
+            <div class="${createdCategory['categoryColor']}"></div>
+        </div>
+      `;
+        // Create remove button
+        let removeButton = document.createElement('button');
+        removeButton.id = 'remove-button';
+        removeButton.textContent = 'X';
+
+        removeButton.addEventListener('click', async function (event) {
+            event.stopPropagation();
+            if (createdCategorys[i] === document.getElementById('select-category-inner').textContent) {
+                document.getElementById('select-category-inner').textContent = 'Select task category';
+            }
+            createdCategorys.splice(i, 1);
+            await backend.setItem('createdCategorys', JSON.stringify(createdCategorys));
+            renderCategorys();
+        });
+        categoryElement.appendChild(removeButton);
+        // Add click event listener to select category
+        categoryElement.addEventListener('click', function () {
+            document.getElementById('select-category-inner').innerHTML = `
+        <div class="new_category_item">
+            <div id="category_Name_to_Task">${createdCategory['categoryName']}</div>
+            <div class="${createdCategory['categoryColor']}"></div>
+        </div>`;
+            document.getElementById('show-categorys').classList.add('d-none')
+        });
+
+        categorys.appendChild(categoryElement);
+    }
+}
+
+
 function firstLetter(contactFirstLetter) {
     let index = letters.indexOf(contactFirstLetter);
     return { letter: contactFirstLetter, index: index };
 
 }
 
+displayCategories.addEventListener('click', async function () {
+    if (categorys.classList.contains('d-none')) {
+        categorys.classList.remove('d-none');
+        newCategory.classList.remove('d-none');
+    } else {
+        categorys.classList.add('d-none');
+        newCategory.classList.add('d-none');
+    }
+});
+
+
+
+newCategory.addEventListener('click', function () {
+    categorys.classList.add('d-none');
+    newCategoryContainer.classList.remove('d-none');
+    displayCategories.classList.add('d-none');
+});
+
+
+function displayColor(color) {
+    // Get the clicked image
+    let clickedImage = event.target;
+    // Get the parent container of the clicked image
+    let parentContainer = clickedImage.parentNode;
+    // Get all the color images in the parent container
+    let colorImages = parentContainer.querySelectorAll('img');
+    // Loop through each color image
+    colorImages.forEach(image => {
+        // Check if the clicked image matches the current image in the loop
+        if (image === clickedImage) {
+            newCategoryColor = color;
+            // Remove the "d-none" class from the clicked image
+            image.classList.remove('d-none');
+        } else {
+            // Add the "d-none" class to all other color images
+            image.classList.add('d-none');
+        }
+    });
+}
+
+function clearSubtasksInput() {
+    document.getElementById('task-subtask').value = '';
+}
+
+
+addNewCategory.addEventListener('click', async function () {
+    if (newCategoryName.value == '') {
+        categoryAlert.classList.remove('d-none');
+    } else {
+        let newCategory = {
+            categoryName: newCategoryName.value,
+            categoryColor: newCategoryColor
+        };
+        createdCategorys.push(newCategory);
+        await backend.setItem('createdCategorys', JSON.stringify(createdCategorys));
+        hideNewCategory();
+    }
+    renderCategorys();
+    newCategoryColor = '';
+});
+
+
+function hideNewCategory() {
+    categorys.classList.remove('d-none');
+    document.getElementById('show-categorys').classList.add('d-none');
+    displayCategories.classList.remove('d-none');
+    newCategoryContainer.classList.add('d-none');
+    newCategoryName.value = '';
+    categoryAlert.classList.add('d-none');
+    let colorImages = document.querySelectorAll('.new-category-colors img');
+    colorImages.forEach(image => {
+        image.classList.remove('d-none');
+    });
+}
 
 
 async function AddNewContact() {
@@ -177,21 +302,22 @@ function openAddTaskPopUp() {
     subtaskdiv.innerHTML = '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
     renderContacts();
-    document.getElementById('urgent').addEventListener('click', function () {
-        setPriority('Urgent');
-    });
+}
 
-    document.getElementById('medium').addEventListener('click', function () {
-        setPriority('Medium');
-    });
+document.getElementById('urgent').addEventListener('click', function () {
+    setPriority('Urgent');
+});
 
-    document.getElementById('low').addEventListener('click', function () {
-        setPriority('Low');
-    });
+document.getElementById('medium').addEventListener('click', function () {
+    setPriority('Medium');
+});
 
-    function setPriority(value) {
-        priority = value;
-    }
+document.getElementById('low').addEventListener('click', function () {
+    setPriority('Low');
+});
+
+function setPriority(value) {
+    priority = value;
 }
 
 async function handleSubmit(event) {
@@ -220,22 +346,18 @@ function closeAddTaskPopUp() {
 
 async function createTask() {
     let title = document.getElementById('task-title').value;
-    let category = document.getElementById('select-category').value;
+    let categoryName = document.getElementById('category_Name_to_Task').innerHTML;
+    let category = findCategory(categoryName);
     let date = document.getElementById('task-date').value;
     let taskDescription = document.getElementById('task-description').value;
-    let assignedContacts = Array.from(document.getElementById('select-contact-add').selectedOptions)
-        .map(option => {
-            let fullName = option.value;
-            let nameArr = fullName.split(' ');
-            let initials = nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
-            return initials.toUpperCase();
-        });
-
     let lastItem = testData[testData.length - 1];
     if (testData.length == 0) {
         let newItem = {
             "title": title,
-            "cat": category,
+            "cat": {
+                categoryName: category['categoryName'],
+                categoryColor: category['categoryColor']
+            },
             "description": taskDescription,
             "status": 'todo',
             "priority": priority,
@@ -250,7 +372,10 @@ async function createTask() {
         let newId = Number(lastItem.id) + 1;
         let newItem = {
             "title": title,
-            "cat": category,
+            "cat": {
+                categoryName: category['categoryName'],
+                categoryColor: category['categoryColor']
+            },
             "description": taskDescription,
             "status": 'todo',
             "priority": priority,
@@ -265,6 +390,10 @@ async function createTask() {
     closeAddTaskPopUp();
     clearInputFields();
     removePrioritys();
+}
+
+function findCategory(categoryName) {
+    return createdCategorys.find((obj) => obj.categoryName === categoryName);
 }
 
 
@@ -308,18 +437,19 @@ function clearInputs() {
     document.getElementById('new-contact-name').value = '';
     document.getElementById('new-contact-email').value = '';
     document.getElementById('new-contact-phone').value = '';
+    document.getElementById('display-categories').innerHTML = `
+    <p id="select-category-inner">Select task category</p>
+    <img id="dropwdown-icon" class="dropdown-icon" src="../assets/icons/dropdown.png" alt="">
+    `;
 }
 
 
 function clearInputFields() {
     let input = document.getElementById('task-title');
-    let selectCategory = document.getElementById('select-category');
     let taskDate = document.getElementById('task-date');
     let taskDescription = document.getElementById('task-description');
     let subtaskdiv = document.getElementById('task-subtask');
-    document.getElementById('initials-div').innerHTML = '';
     input.value = '';
-    selectCategory.value = '';
     taskDate.value = '';
     taskDescription.value = '';
     subtaskdiv.value = '';

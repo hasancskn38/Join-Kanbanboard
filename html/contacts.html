@@ -15,9 +15,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../assets/img/logo-blue.png">
     <script src="../smallest_backend_ever/mini_backend.js"></script>
-    <script src="../js/template.js"></script>
-    <script src="../js/contacts.js"></script>
-    <script src="../js/script.js"></script>
+    <script defer src="../js/template.js"></script>
+    <script defer src="../js/contacts.js"></script>
+    <script defer src="../js/script.js"></script>
     <link rel="stylesheet" href="../css/contacs.css">
     <title>Contacts</title>
 </head>
@@ -150,7 +150,7 @@
                     <div class="subtasks-input"><input id="task-subtask" minlength="8"
                             placeholder="Add new subtask" type="text">
                         <div class="check-and-cross">
-                            <img class="cursor" src="../assets/icons/x.png" alt="">
+                            <img class="cursor" src="../assets/icons/x.png" onclick="clearSubtasksInput()" alt="">
                             <img src="../assets/icons/divider.png" alt="">
                             <img id="add-subtask" onclick="addSubtask()" class="cursor"
                                 src="../assets/icons/checkmark.png" alt="">
