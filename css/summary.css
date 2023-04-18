@@ -1,419 +1,422 @@
 /* General Stylings Start*/
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
-    scroll-behavior: smooth;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  scroll-behavior: smooth;
 }
 
 .d-none {
-    display: none;
+  display: none;
 }
 
 .cursor {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 h1 {
-    color: #2A3647;
+  color: #2a3647;
 }
 
 .summary {
-    background-color:     rgb(210,227,255);
+  background-color: rgb(210, 227, 255);
 }
 
 /* General Stylings End*/
 
 /* Header Start */
 nav {
-    height: 80px;
-    background: #4589FF;
-    position: sticky;
-    top: 0;
-    box-shadow: 0 3px 4px rgb(0 0 0 / 16%);
+  height: 80px;
+  background: #4589ff;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 3px 4px rgb(0 0 0 / 16%);
 }
 
 .nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
 }
 
 .nav-container-left img {
-    height: 40px;
-    width: auto;
+  height: 40px;
+  width: auto;
 }
 
 .nav-container-right img {
-    height: 20px;
-    width: auto;
+  height: 20px;
+  width: auto;
 }
 
 .nav-container-right {
-    display: flex;
-    color: #fff;
+  display: flex;
+  color: #fff;
 }
 
 .nav-container-right p,
 img {
-    padding: 0 22px 0 0;
+  padding: 0 22px 0 0;
 }
 
 /* Header End */
 
 /* Main Start */
 main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 main p {
-    font-size: 22px;
-    text-align: center;
+  font-size: 22px;
+  text-align: center;
 }
 
 main h2 {
-    font-size: 40px;
-    text-align: center;
+  font-size: 40px;
+  text-align: center;
 }
 
 /* Styling for temporary sidebar remove later*/
 .main-left {
-    height: 100vh;
-    width: 25%;
-    background-color: black;
+  height: 100vh;
+  width: 25%;
+  background-color: black;
 }
 
 /* Styling for temporary sidebar remove later*/
 .main-right-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 30px;
-    font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  font-size: 20px;
 }
 
 .main-right-tasks {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-left: 150px;
-    margin-top: 45px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 150px;
+  margin-top: 45px;
 }
 
 .main-right-top {
-    display: flex;
-    margin-bottom: 20px;
-    gap: 25px;
+  display: flex;
+  margin-bottom: 20px;
+  gap: 25px;
 }
 
 .main-right-bottom {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 28px;
-    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  width: 100%;
 }
 
 .main-right {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .task-urgent {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 682px;
-    height: 190px;
-    color: #fff;
-    background-color: #4589ff;
-    border-radius: 30px;
-    transition: all 225ms ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 682px;
+  height: 190px;
+  color: #fff;
+  background-color: #4589ff;
+  border-radius: 30px;
+  transition: all 225ms ease-in-out;
 }
 
 .task-urgent:hover {
-    transform: scale(1.05);
-    background-color: #fff;
-    color: #4589ff;
-    box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
+  transform: scale(1.05);
+  background-color: #fff;
+  color: #4589ff;
+  box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
 }
 
 .task-urgent-left {
-    margin: 30px;
+  margin: 30px;
 }
 
 .task-urgent-left-top {
-    display: flex;
-    align-items: center;
-    margin: 0 0 10px 0;
+  display: flex;
+  align-items: center;
+  margin: 0 0 10px 0;
 }
 
 .task-urgent-left-top img {
-    height: 60px;
-    border-radius: 50%;
-    border: 3px solid #FFFFFF;
-    object-fit: cover;
-    padding: 0;
-    margin: 0 15px 0 0;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  object-fit: cover;
+  padding: 0;
+  margin: 0 15px 0 0;
 }
 
 .task-urgent-left-top h2 {
-    font-size: 38px;
+  font-size: 38px;
 }
 
 .task-urgent-right h2 {
-    margin: 0 20px 10px 0;
+  margin: 0 20px 10px 0;
 }
 
 /* Task To-do Start */
 .task-general {
-    display: inline-block;
-    height: 190px;
-    width: 208px;
-    padding: 40px;
-    box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
-    border-radius: 30px;
-    transition: all 225ms ease-in-out;
+  display: inline-block;
+  height: 190px;
+  width: 208px;
+  padding: 40px;
+  box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
+  border-radius: 30px;
+  transition: all 225ms ease-in-out;
 }
 
 .task-general:hover {
-    background-color: #4589ff;
-    color: #fff !important;
-    transform: scale(1.05);
+  background-color: #4589ff;
+  color: #fff !important;
+  transform: scale(1.05);
 }
 
 .task-todo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 208px;
-    color: #4589FF;
-    background: #D2E3FF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 208px;
+  color: #4589ff;
+  background: #d2e3ff;
 }
 
 .task-todo-top {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .task-todo-top img {
-    padding: 0px 22px 10px 0;
+  padding: 0px 22px 10px 0;
 }
 
 /* Task To-do End */
 /* Main End */
 
 .show_logged_on_user {
-    height: 200px;
-    margin-top: 105px;
-    margin-bottom: -90px;
-    font-size: 40px;
-    display: flex;
-    justify-content: center;
+  height: 200px;
+  margin-top: 105px;
+  margin-bottom: -90px;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
 }
 
 .show_logged_on_user span {
-    color: rgb(69, 137, 255);
-    margin-left: 15px;
+  color: rgb(69, 137, 255);
+  margin-left: 15px;
 }
 
 /* Responsive Start */
 @media only screen and (max-width: 1300px) {
+  .show_logged_on_user {
+    display: flex;
+    height: 200px;
+    margin-top: 105px;
+    margin-bottom: -90px;
+    font-size: 40px;
+  }
 
-    .show_logged_on_user {
-        display: flex;
-        height: 200px;
-        margin-top: 105px;
-        margin-bottom: -90px;
-        font-size: 40px;
-    }
+  main p {
+    font-size: 18px;
+  }
 
-    main p {
-        font-size: 18px;
-    }
+  .main-right {
+    margin: auto;
+  }
 
-    .main-right {
-        margin: auto;
-    }
+  .main-right-tasks {
+    margin: 0;
+    margin-left: 232px;
+  }
 
-    .main-right-tasks {
-        margin: 0;
-        margin-left: 232px;
-    }
+  .main-right-top {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+  }
 
-    .main-right-top {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        margin: auto;
-    }
+  .main-right-bottom {
+    width: 682px;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin: 25px 0 30px;
+  }
 
-    .main-right-bottom {
-        width: 682px;
-        gap: 30px;
-        flex-wrap: wrap;
-        margin: 25px 0 30px;
-    }
+  .task-general {
+    width: 326px;
+  }
 
-    .task-general {
-        width: 326px;
-    }
+  .task-todo {
+    height: 150px;
+    width: 682px;
+  }
 
-    .task-todo {
-        height: 150px;
-        width: 682px;
-    }
-      
-
-    .show_logged_on_user {
-        margin-top: 150px;
-    } 
+  .show_logged_on_user {
+    margin-top: 150px;
+  }
 }
 
 @media only screen and (max-width: 1000px) {
+  main p {
+    font-size: 18px;
+  }
 
-    main p {
-        font-size: 18px;
-    }
+  .main-right {
+    margin: auto;
+  }
 
-    .main-right {
-        margin: auto;
-    }
+  .main-right-tasks {
+    margin: 0;
+    width: 100%;
+    margin-bottom: 125px;
+  }
 
-    .main-right-tasks {
-        margin: 0;
-        width: 100%;
-        margin-bottom: 125px;
-    }
+  .main-right-top {
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 20px auto;
+    width: 100%;
+  }
 
-    .main-right-top {
-        justify-content: center;
-        flex-wrap: wrap;
-        align-items: center;
-        margin: 20px auto;
-        width: 100%;
-    }
+  .task-urgent {
+    width: 80vw;
+  }
 
-    .task-urgent {
-        width: 80vw;
-    }
+  .main-right-bottom {
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 20px auto;
+  }
 
-    .main-right-bottom {
-        justify-content: center;
-        flex-wrap: wrap;
-        align-items: center;
-        margin: 20px auto;
-    }
+  .task-general {
+    /* width: 230px;*/
+    width: 80vw !important;
+  }
 
-    .task-general {
-        /* width: 230px;*/
-        width: 80vw !important;
-    }
-
-    .show_logged_on_user {
-        margin-left: 55px;
-        margin-top: 150px;
-    } 
+  .show_logged_on_user {
+    margin-left: 55px;
+    margin-top: 150px;
+  }
 }
 
+@media only screen and (max-width: 600px) {
+  .main-right {
+    margin: 0;
+    width: 400px;
+    margin-bottom: 150px;
+  }
 
+  .task-urgent,
+  .task-general {
+    width: 80vw;
+  }
 
+  .task-general {
+    height: 200px;
+  }
 
+  .main-right-bottom {
+    margin-left: 0;
+    width: 100%;
+  }
 
+  .main-right-tasks {
+    margin: 0;
+    width: 400px;
+  }
 
-@media only screen and (max-width:600px) {
-    .main-right {
-        margin: 0;
-        width: 400px;
-        margin-bottom: 150px;
-    }
+  .show_logged_on_user {
+    font-size: 30px;
+    margin-right: 0px;
+    margin-bottom: -140px;
+    margin-left: 0;
+  }
 
-    .task-urgent, .task-general {
-        width: 80vw;
-    }
+  .nav-container {
+    justify-content: center;
+  }
 
-    .task-general {
-        height: 200px;
-    }
+  .nav-container p {
+    text-align: center;
+  }
 
-    .main-right-bottom {
-        margin-left: 0;
-        width: 100%;
-    }
+  h1 {
+    text-align: center;
+  }
 
-    .main-right-tasks {
-        margin: 0;
-        width: 400px;
-    }
+  .main-right-header {
+    width: 80vw;
+  }
 
-     .show_logged_on_user {
-        font-size: 30px;
-        margin-right: 0px;
-        margin-bottom: -140px;
-        margin-left: 0;
-    } 
-
-    .nav-container {
-        justify-content: center;
-    }
-
-    .nav-container p {
-        text-align: center;
-    }
-
-    h1 {
-        text-align: center;
-    }
-
-    .main-right-header {
-        width: 80vw;
-    }
-
-    .side-links-div {
-        margin: 0px;
-        justify-content: center;
-        align-items: center;
-    }
-
+  .side-links-div {
+    margin: 0px;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
-@media only screen and (max-width:420px) {
+@media only screen and (max-width: 420px) {
+  .main-right {
+    margin-left: 50px;
+  }
 
-    .main-right {
-        margin-left: 50px;
-    }
+  .show_logged_on_user {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 60px;
+    margin-bottom: 0px;
+    margin-top: 50px;
+    width: 200px;
+  }
 
-    .show_logged_on_user {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-left: 60px;
-        margin-bottom: 0px;
-        margin-top: 50px;
-        width: 200px;
-    }
-
-    .main-right-tasks {
-        width: 300px;
-    }
-.main-right-bottom {
-    margin-left: 15px;
+  .main-right-tasks {
+    width: 300px;
+  }
+  .main-right-bottom {
+    margin: 0px;
+  }
+  .task-urgent div h2 {
+    font-size: 18px;
+    margin: 0;
+    margin-bottom: 5px;
+  }
+  .task-urgent div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .task-urgent div p {
+    font-size: 15px;
+    margin: 0;
+  }
 }
+
+@media only screen and (max-width: 380px) {
+  .main-right {
+    margin-left: 25px;
+  }
 }
-
-@media only screen and (max-width:380px) {
-
-    .main-right {
-        margin-left: 25px;
-    }
-}
-
-
 
 /* Responsive End */

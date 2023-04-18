@@ -712,7 +712,7 @@ background-color: white;
     }
 
     .add-contact-layout-2 {
-    width: 100vw;
+    max-width: 100vw;
     }
 
     .add-contact-top {
@@ -730,7 +730,11 @@ background-color: white;
     .layout-contact2 {
         margin-top: 168px;
     }
-
+    .add-contact-form {
+        max-width: auto;
+        padding-left: -200px;
+        padding-right: -200px;
+    }
 
 }
 

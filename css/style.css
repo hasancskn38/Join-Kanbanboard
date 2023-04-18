@@ -123,3 +123,10 @@ a {
         min-width: 85px;
     }
 }
+
+@media (max-width:380px) {
+    .side-bar a {
+        min-width: 70px;
+        margin: 0;
+    }
+}

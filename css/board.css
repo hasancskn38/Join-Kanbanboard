@@ -1462,7 +1462,15 @@ button {
 
 @media only screen and (max-width: 500px) {
     .test {
-        width: 75vw;
+        width: 74vw;
+    }
+    .stages-container {
+        margin: 0;
+        padding: 0;
+    }
+    .main-column {
+        position:absolute;
+        padding-bottom: 550px;
     }
 }
 
