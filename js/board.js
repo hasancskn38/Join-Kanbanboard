@@ -65,11 +65,14 @@ function parseLoggedOnUser() {
     document.getElementById('display_logged_on_user').innerHTML = `${loggedOnUserFirstChartToUpperCase}`;
 }
 
+// added if condition that checks if openEditTask is open
   function closeOverlay() {
-    closeAddTaskPopUp();
+    if(openEditTask) {
+        closeEditTask();
+    }
     closeTaskPopUp();
+    closeAddTaskPopUp();
   }
-
 
 overlay.addEventListener('click', closeOverlay);
 
@@ -300,6 +303,7 @@ function openTaskPopUp(i) {
     let taskPopUp = document.getElementById(`task-popup`);
     document.querySelector('body').classList.add('overflow-hidden');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('side_bar').style.zIndex = 1;
     taskPopUp.classList.remove('d-none');
     document.getElementById('overlay').classList.remove('d-none');
     taskPopUp.innerHTML = openTaskPopUpTemplate(test, i, contact);
@@ -338,6 +342,7 @@ function closeTaskPopUp() {
     document.getElementById('task-popup').classList.add('d-none');
     document.getElementById('overlay').classList.add('d-none');
     document.querySelector('body').classList.remove('overflow-hidden');
+    document.getElementById('side_bar').style.zIndex = 11;
 }
 
 
@@ -395,6 +400,7 @@ function openEditTask(i) {
     let taskPopUp = document.getElementById(`task-popup`).classList.add('d-none');
     editTask.classList.remove('d-none');
     editTask.innerHTML = openEditTaskPopUp(test, i);
+    document.getElementById('side_bar').style.zIndex = 1;
     // assignContactsToTask('edit', test);
     renderEditPriorityColors(i);
     showSubtasks(i);
@@ -596,6 +602,7 @@ function checkForPrio() {
 function closeEditTask() {
     document.getElementById(`task-popup`).classList.remove('d-none');
     document.getElementById('edit-task-popup').classList.add('d-none');
+    document.getElementById('side_bar').style.zIndex = 1;
 }
 
 
@@ -635,6 +642,11 @@ function removePrioritys() {
 
 
 function startDragging(id) {
+    let stageContainer = document.getElementById('stage-container')
+    stageContainer.style.transition = '';
+    stageContainer.style.boxShadow = '';
+    stageContainer.style.overflow = '';
+    stageContainer.style.overflow = '';
     for (let i = 0; i < testData.length; i++) {
         let index = testData[i]['id'];
         if (index == id) {

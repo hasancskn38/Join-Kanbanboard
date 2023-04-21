@@ -1,7 +1,7 @@
 function taskTemplate(i, test, finishedSubTasks) {
     if (test['subtasks'].length === 0) {
         return `
-    <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
+    <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test">
     <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
     <h4>${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
@@ -25,7 +25,7 @@ function taskTemplate(i, test, finishedSubTasks) {
     }
     if (test['subtasks'].length !== 0) {
         return `
-    <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test cursor">
+    <div onclick="openTaskPopUp(${i})" draggable=true ondragstart="startDragging(${test['id']})"  id='stage-container' class="test">
     <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
     <h4>${test.description}</h4>
     <p id="task-title" class="grey">${test.title}</p>
@@ -187,7 +187,9 @@ function renderOpenEdit(contactName, contactEmail, contactPhone, contactColor, b
                         placeholder="Phone" required value="${contactPhone}">
                     <img src="../assets/img/Input_Phone.png">
                 </div>
+                <div class="create-contact-container">
                 <button class="creat-contact">Save</button>
+                </div>
             </form>
         </div>
     </div>

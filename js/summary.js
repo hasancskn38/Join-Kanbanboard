@@ -44,11 +44,11 @@ setInterval(function () {
     let hours = date.getHours();
     let timeOfDay;
     if (hours < 12) {
-        timeOfDay = 'Good Morning !';
+        timeOfDay = 'Good Morning,';
     } else if (hours >= 12 && hours < 17) {
-        timeOfDay = 'Good afternoon !';
+        timeOfDay = 'Good afternoon,';
     } else {
-        timeOfDay = 'Good evening !';
+        timeOfDay = 'Good evening, ';
     }
     document.getElementById('greeting').innerHTML = timeOfDay, ',';
 }, 1000);

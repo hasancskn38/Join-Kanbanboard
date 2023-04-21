@@ -116,12 +116,12 @@ h4 {
   align-items: center;
   cursor: pointer;
   border-radius: 15px;
-  width: 275px;
-  height: 77px;
+  padding: 10px 0;
+  margin: 5px;
 }
 
 .over {
-  width: 260px;
+  width: 100vw;
 }
 
 .over:hover {
@@ -216,7 +216,6 @@ h4 {
   right: 30px;
   top: 30px;
   z-index: 2;
-  width: 50px;
 }
 
 .close-Img:hover {
@@ -272,6 +271,8 @@ h4 {
   gap: 20px;
 }
 
+
+
 .add-contact-input-field {
   display: flex;
   justify-content: center;
@@ -304,6 +305,11 @@ h4 {
   box-sizing: border-box;
   border: 1px solid #555;
   outline: none;
+}
+
+.create-contact-container{
+  display: flex;
+  justify-content: center;
 }
 
 .creat-contact {
@@ -377,10 +383,10 @@ h4 {
   padding-inline: 5px;
 }
 
-.plus-img {
+/* .plus-img {
   height: 18px;
   width: 40px;
-}
+} */
 
 .contact-detail-body {
   display: flex;
@@ -693,6 +699,10 @@ h4 {
     width: 100%;
     cursor: pointer;
   }
+
+  .add-contact-top {
+    border-radius: 0;
+  }
 }
 
 @media (max-width: 450px) {
@@ -707,10 +717,6 @@ h4 {
 
   .add-contact-layout-2 {
     max-width: 100vw;
-  }
-
-  .add-contact-top {
-    border-radius: 30px 30px 0 0;
   }
 
   .creat-contact {

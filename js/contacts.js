@@ -314,6 +314,7 @@ function openAddTaskPopUp() {
     document.getElementById('popup').classList.remove('hide');
     document.getElementById('popup').classList.add('show');
     document.getElementById('popup').classList.remove('d-none');
+    document.getElementById('side_bar').style.zIndex = 1;
     let subtaskdiv = document.getElementById('subtasks');
     subtaskdiv.innerHTML = '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
