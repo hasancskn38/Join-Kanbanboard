@@ -87,7 +87,7 @@ function renderOpenDetailContact(bothFirstLetter, contactColor, contactName, con
     return `
     <div id="detail-main" class="detail-main">
     <span class="span-display-none">Kanban Project Management Tool</span>
-    <div onclick="slideBack()" class="arrow-div"><img class="arrow-img" src="../assets/img/arrowBlue.png"></div>
+    <div onclick="slideBack()" class="arrow-div"></div>
         <div class="contact-detail-header">
             <div style="background-color: ${contactColor}" class="big-letters">${bothFirstLetter}</div>
             <div>
@@ -150,7 +150,9 @@ function redenderAddNewContactTemp2() {
                         placeholder="Phone" required>
                     <img src="../assets/img/Input_Phone.png">
                 </div>
-                <button class="creat-contact">Create Contact<img src="../assets/img/new.contact.png"></button>
+                <div class="add-contact-button">
+                    <button class="creat-contact">Create Contact<img src="../assets/img/new.contact.png"></button>
+                </div>
             </form>
         </div>
     </div>
@@ -207,9 +209,10 @@ function emptyTaskTemplate() {
 
 
 function openTaskPopUpTemplate(test, i, contact) {
-    return `
+    if (test['status'] === 'todo') {
+        return `
     <div class="task-popup-container">
-                    <button class="cursor" onclick="closeTaskPopUp()">X</button>
+                    <button style="font-size: 30px;" class="cursor" onclick="closeTaskPopUp()">X</button>
                     <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
                     <h1 id="task-popup-header" class="grey task-popup-header">${test.title}</h1>
                     <p>${test.description}</p>
@@ -224,10 +227,100 @@ function openTaskPopUpTemplate(test, i, contact) {
                     </ul>
 
                     <div id="subtasks-container"></div>
-
+                    <select class="d-none" onchange="updateStageOption(${i})" id="stage_option${i}">
+                        <option value="${test['status']}">${test['status']}</option>
+                        <option value="progress">progress</option>
+                        <option value="feedback">feedback</option>
+                        <option value="done">done</option>
+                    </select>
                     <img onclick="openEditTask(${i})" class="edit-button cursor" src="../assets/icons/editbutton.png" alt="">
                 </div>
     `;
+    }
+    if (test['status'] === 'progress') {
+        return `
+    <div class="task-popup-container">
+                    <button style="font-size: 30px;" class="cursor" onclick="closeTaskPopUp()">X</button>
+                    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+                    <h1 id="task-popup-header" class="grey task-popup-header">${test.title}</h1>
+                    <p>${test.description}</p>
+                    <ul>
+                        <li><b>Due Date:</b> ${test.date}</li>
+                        <li><b>Priority:</b><span id="test-priority">${test.priority}</span> </li>
+                        <li><b>Assigned to:</b>
+                        <div id="assigned-popup-contacts-${i}" class="assigned-contacts-popup">
+                        
+                        </div>
+                        </li>
+                    </ul>
+
+                    <div id="subtasks-container"></div>
+                    <select class="d-none" onchange="updateStageOption(${i})" id="stage_option${i}">
+                        <option value="${test['status']}">${test['status']}</option>
+                        <option value="todo">todo</option>
+                        <option value="feedback">feedback</option>
+                        <option value="done">done</option>
+                    </select>
+                    <img onclick="openEditTask(${i})" class="edit-button cursor" src="../assets/icons/editbutton.png" alt="">
+                </div>
+    `;
+    }
+    if (test['status'] === 'feedback') {
+        return `
+    <div class="task-popup-container">
+                    <button style="font-size: 30px;" class="cursor" onclick="closeTaskPopUp()">X</button>
+                    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+                    <h1 id="task-popup-header" class="grey task-popup-header">${test.title}</h1>
+                    <p>${test.description}</p>
+                    <ul>
+                        <li><b>Due Date:</b> ${test.date}</li>
+                        <li><b>Priority:</b><span id="test-priority">${test.priority}</span> </li>
+                        <li><b>Assigned to:</b>
+                        <div id="assigned-popup-contacts-${i}" class="assigned-contacts-popup">
+                        
+                        </div>
+                        </li>
+                    </ul>
+
+                    <div id="subtasks-container"></div>
+                    <select class="d-none" onchange="updateStageOption(${i})" id="stage_option${i}">
+                        <option value="${test['status']}">${test['status']}</option>
+                        <option value="todo">todo</option>
+                        <option value="progress">progress</option>
+                        <option value="done">done</option>
+                    </select>
+                    <img onclick="openEditTask(${i})" class="edit-button cursor" src="../assets/icons/editbutton.png" alt="">
+                </div>
+    `;
+    }
+    if (test['status'] === 'done') {
+        return `
+    <div class="task-popup-container">
+                    <button style="font-size: 30px;" class="cursor" onclick="closeTaskPopUp()">X</button>
+                    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+                    <h1 id="task-popup-header" class="grey task-popup-header">${test.title}</h1>
+                    <p>${test.description}</p>
+                    <ul>
+                        <li><b>Due Date:</b> ${test.date}</li>
+                        <li><b>Priority:</b><span id="test-priority">${test.priority}</span> </li>
+                        <li><b>Assigned to:</b>
+                        <div id="assigned-popup-contacts-${i}" class="assigned-contacts-popup">
+                        
+                        </div>
+                        </li>
+                    </ul>
+
+                    <div id="subtasks-container"></div>
+                    <select class="d-none" onchange="updateStageOption(${i})" id="stage_option${i}">
+                        <option value="${test['status']}">${test['status']}</option>
+                        <option value="todo">todo</option>
+                        <option value="progress">progress</option>
+                        <option value="feedback">feedback</option>
+                    </select>
+                    <img onclick="openEditTask(${i})" class="edit-button cursor" src="../assets/icons/editbutton.png" alt="">
+                </div>
+    `;
+    }
 }
 
 

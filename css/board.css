@@ -146,6 +146,7 @@ input:active {
 /* Main Start */
 .main {
     display: flex;
+    overflow: hidden;
 }
 
 /* Board Header Start */
@@ -1367,10 +1368,11 @@ button {
 }
 
 
-@media only screen and (max-width: 830px) {
+@media only screen and (max-width: 840px) {
     .main-column {
         width: 100vw;
         padding: 0;
+        padding-bottom: 550px !important;
         margin-right: 0;
     }
 
@@ -1412,10 +1414,6 @@ button {
         z-index: 15;
     }
 
-    #task-popup-header {
-        font-size: 50px !important;
-    }
-
     #edit-task-popup {
         height: 101vh;
         width: 101vw;
@@ -1424,7 +1422,7 @@ button {
     }
 
     #task-popup-header {
-        font-size: 40px;
+        font-size: 40px !important;
     }
 
     #task-popup ul li {
@@ -1459,8 +1457,7 @@ button {
         padding: 0;
     }
     .main-column {
-        position:absolute;
-        padding-bottom: 550px;
+        padding-bottom: 500px !important;
     }
 
     .task-popup-container p {
@@ -1468,6 +1465,25 @@ button {
     }
     .task-popup-container  li {
         font-size: 50px;
+    }
+    .priority {
+        flex-direction: column;
+    }
+    .priority div {
+        margin: 10px;
+    }
+
+    #task-popup-header {
+        font-size: 35px !important;
+    }
+    .edit-task-button-container {
+        max-height: 50px;
+    }
+    .delete-task {
+        font-size: 15px;
+    }
+    .select-contact div {
+        font-size: 15px;
     }
 }
 

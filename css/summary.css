@@ -186,6 +186,12 @@ main h2 {
   transform: scale(1.05);
 }
 
+.greet_user {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
 .task-todo {
   display: flex;
   flex-direction: column;
@@ -221,6 +227,7 @@ main h2 {
 .show_logged_on_user span {
   color: rgb(69, 137, 255);
   margin-left: 15px;
+  font-size: 35px;
 }
 
 /* Responsive Start */
@@ -346,7 +353,7 @@ main h2 {
   }
 
   .show_logged_on_user {
-    font-size: 30px;
+    font-size: 40px;
     margin-right: 0px;
     margin-bottom: -140px;
     margin-left: 0;
@@ -380,6 +387,21 @@ main h2 {
     margin-left: 50px;
   }
 
+  .greet_user {
+    margin-top: 25px;
+    flex-direction: column;
+  }
+
+  .greet_user h5 {
+    width: 300px;
+    margin: 0;
+  }
+
+  .greet_user span {
+    width: 300px;
+    margin: 0;
+  }
+
   .show_logged_on_user {
     flex-direction: column;
     justify-content: center;
@@ -393,20 +415,24 @@ main h2 {
   .main-right-tasks {
     width: 300px;
   }
+
   .main-right-bottom {
     margin: 0px;
   }
+
   .task-urgent div h2 {
     font-size: 18px;
     margin: 0;
     margin-bottom: 5px;
   }
+
   .task-urgent div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
+
   .task-urgent div p {
     font-size: 15px;
     margin: 0;

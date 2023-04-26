@@ -272,6 +272,14 @@ h4 {
 }
 
 
+.add-contact-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 420px;
+  margin: auto;
+}
 
 .add-contact-input-field {
   display: flex;
@@ -612,11 +620,8 @@ h4 {
   .layout-contact2 {
     position: relative;
     width: 100%;
-    height: 100% !important;
-    height: calc(90vh) !important;
+    min-height: 100% !important;
     padding: 10px;
-    overflow-y: scroll;
-    height: calc(100vh - 260px);
     padding-bottom: 150px !important;
   }
 
@@ -691,9 +696,12 @@ h4 {
     cursor: pointer;
   }
 
-  .contact-detail-edit {
-    display: none;
-  }
+.contact-detail-body-top {
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 0;
+margin-bottom: 20px;
+}
 
   .over {
     width: 100%;
@@ -712,15 +720,11 @@ h4 {
 
   .layout-contact1 {
     width: 440px;
-    margin-top: -75px;
+    margin-top: -80px;
   }
 
   .add-contact-layout-2 {
     max-width: 100vw;
-  }
-
-  .creat-contact {
-    margin-left: 98px;
   }
 
   .popup-content {
@@ -728,8 +732,9 @@ h4 {
   }
 
   .layout-contact2 {
-    margin-top: 168px;
+    margin-top: 165px;
   }
+
   .add-contact-form {
     max-width: auto;
     padding-left: -200px;
@@ -754,7 +759,7 @@ h4 {
   }
 
   .add-contact-input-field {
-    width: 100%;
+    width: 350px;
   }
   .add-contact-title {
     font-size: 35px !important;

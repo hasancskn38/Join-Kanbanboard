@@ -32,8 +32,11 @@ function parseLoggedOnUser() {
     let loggedOnUserFirstChart = loggedOnUser.charAt(0);
     let loggedOnUserFirstChartToUpperCase = loggedOnUserFirstChart.toUpperCase();
     document.getElementById('logged_on_user').innerHTML = `
+    <div class="greet_user">
     <h5 id="greeting"></h5>
-    <span>${loggedOnUser}</span>`;
+    <span>${loggedOnUser}</span>
+    </div>`
+    ;
     document.getElementById('display_logged_on_user').innerHTML = `${loggedOnUserFirstChartToUpperCase}`;
 }
 

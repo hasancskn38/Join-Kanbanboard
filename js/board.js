@@ -307,8 +307,21 @@ function openTaskPopUp(i) {
     taskPopUp.classList.remove('d-none');
     document.getElementById('overlay').classList.remove('d-none');
     taskPopUp.innerHTML = openTaskPopUpTemplate(test, i, contact);
+    showResponsiveStage(i);
     renderContactPopupInitials(i);
     changePriorityColorPopUp();
+}
+
+function showResponsiveStage(i) {
+    setInterval(() => {
+        let screenWidth = window.innerWidth;
+    if (screenWidth <= 830) {
+        document.getElementById(`stage_option${i}`).classList.remove('d-none');
+    }
+    else {
+        document.getElementById(`stage_option${i}`).classList.add('d-none');
+    }
+    }, 100);
 }
 
 function renderContactPopupInitials(i) {
@@ -427,7 +440,7 @@ function showSubtasks(i) {
         <div class="subtask">
         <div>${subTask['subtask']}</div>
         <div id="subtask${j}">
-        <button onclick="finishSubtask(${i}, ${j})">🔳</button>
+        <button onclick="finishSubtask(${i}, ${j})">🔲</button>
         </div>
         </div>
         `;
@@ -436,11 +449,19 @@ function showSubtasks(i) {
 
 }
 
+async function updateStageOption(i) {
+    let stageValue = document.getElementById(`stage_option${i}`);
+    testData[i]['status'] = stageValue.value;
+    await backend.setItem('testData', JSON.stringify(testData));
+    await includeHTML();
+}
+
+
 async function openSubtask(i, j) {
     testData[i]['subtasks'][j]['status'] = 'open';
     await backend.setItem('testData', JSON.stringify(testData));
     let container = document.getElementById(`subtask${j}`);
-    container.innerHTML = `<button onclick="finishSubtask(${i}, ${j})">🔳</button>`;
+    container.innerHTML = `<button onclick="finishSubtask(${i}, ${j})">🔲</button>`;
 }
 
 async function finishSubtask(i, j) {
