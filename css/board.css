@@ -547,6 +547,8 @@ label>input {
 .new_category_item {
     display: flex;
     width: 370px;
+    align-items: center;
+    padding-right: 20px;
     justify-content: space-between;
 }
 
@@ -764,7 +766,7 @@ textarea::placeholder {
 .popup>*:first-child {
     position: absolute;
     right: 8%;
-    top: .5%;
+    top: 4%;
     background: none;
     font-size: 20px;
 }
@@ -799,7 +801,7 @@ textarea::placeholder {
 }
 
 .task-popup-header {
-    font-size: 30px;
+    font-size: 35px;
     width: 100%;
 }
 
@@ -1338,6 +1340,13 @@ button {
         background: #fff;
     }
 
+    .popup>*:first-child {
+        position: absolute;
+        right: 4%;
+        top: 4%;
+        background: none;
+        font-size: 20px;
+    }
 
     .main-column {
         position: relative;

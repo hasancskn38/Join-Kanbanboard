@@ -101,12 +101,12 @@ function renderOpenDetailContact(bothFirstLetter, contactColor, contactName, con
         <div class="contact-detail-body">
             <div class="contact-detail-body-top">
                 <div class="detail-information">Contact Information</div>
-                <div class="contact-detail-edit" onclick="openEdit('${contactName}', '${contactEmail}', '${contactPhone}', '${contactColor}', '${bothFirstLetter}', '${i}')">
+                <div class="contact-detail-edit " onclick="openEdit('${contactName}', '${contactEmail}', '${contactPhone}', '${contactColor}', '${bothFirstLetter}', '${i}')">
                     <img class="pencil-img" src="../assets/img/pencil.small.png">
                     Edit Contact
                 </div>
                 <div class="contact-detail-edit" onclick="deleteContact(${i})">
-                    Delete Contact
+                    <span class="red">Delete Contact</span>
                 </div>
             </div>
             <div class="contact-detail-bottom">Email</div>
@@ -212,7 +212,7 @@ function openTaskPopUpTemplate(test, i, contact) {
     if (test['status'] === 'todo') {
         return `
     <div class="task-popup-container">
-                    <button style="font-size: 30px;" class="cursor" onclick="closeTaskPopUp()">X</button>
+                    <button class="cursor" onclick="closeTaskPopUp()">X</button>
                     <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
                     <h1 id="task-popup-header" class="grey task-popup-header">${test.title}</h1>
                     <p>${test.description}</p>
@@ -240,7 +240,7 @@ function openTaskPopUpTemplate(test, i, contact) {
     if (test['status'] === 'progress') {
         return `
     <div class="task-popup-container">
-                    <button style="font-size: 30px;" class="cursor" onclick="closeTaskPopUp()">X</button>
+                    <button class="cursor" onclick="closeTaskPopUp()">X</button>
                     <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
                     <h1 id="task-popup-header" class="grey task-popup-header">${test.title}</h1>
                     <p>${test.description}</p>
@@ -268,7 +268,7 @@ function openTaskPopUpTemplate(test, i, contact) {
     if (test['status'] === 'feedback') {
         return `
     <div class="task-popup-container">
-                    <button style="font-size: 30px;" class="cursor" onclick="closeTaskPopUp()">X</button>
+                    <button class="cursor" onclick="closeTaskPopUp()">X</button>
                     <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
                     <h1 id="task-popup-header" class="grey task-popup-header">${test.title}</h1>
                     <p>${test.description}</p>
@@ -296,7 +296,7 @@ function openTaskPopUpTemplate(test, i, contact) {
     if (test['status'] === 'done') {
         return `
     <div class="task-popup-container">
-                    <button style="font-size: 30px;" class="cursor" onclick="closeTaskPopUp()">X</button>
+                    <button class="cursor" onclick="closeTaskPopUp()">X</button>
                     <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
                     <h1 id="task-popup-header" class="grey task-popup-header">${test.title}</h1>
                     <p>${test.description}</p>

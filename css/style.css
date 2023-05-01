@@ -52,6 +52,10 @@ a {
 
 }
 
+.side-links img {
+    padding: 0;
+}
+
 .side-links-div {
     display: flex;
     flex-direction: column;
@@ -105,10 +109,6 @@ a {
         padding-block: 12px;
         padding-inline: 8px;
         height: 100px;
-    }
-
-    .side-bar a img{
-        margin-left: 20px;
     }
 
     .side-bar a:hover {

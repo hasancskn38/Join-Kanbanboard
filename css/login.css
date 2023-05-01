@@ -90,7 +90,7 @@ body {
 
 .sign_in_button {
     margin-left: 25px;
-    padding: 5px;
+    padding: 5px 10px;
     background-color: rgb(69, 137, 255);
     color: white;
     height: 30px;
@@ -245,6 +245,8 @@ body {
 }
 
 .guest_log_in_button {
+    width: 180px;
+    height: 51px;
     background-color: rgb(243, 243, 243);
     border: 1px solid rgba(0, 0, 0, 0.24);
     border-radius: 5px;

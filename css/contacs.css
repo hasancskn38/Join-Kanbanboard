@@ -1,3 +1,9 @@
+.red {
+  color: red;
+  background-color: #fff;
+  width: auto;
+}
+
 .main-contact {
   display: flex;
   justify-content: center;
@@ -35,7 +41,7 @@ h4 {
   width: 493px;
   min-height: calc(100vh - 82px);
   box-shadow: 4px 0px 6px rgb(0 0 0 / 8%);
-  margin-left: 30px;
+  padding: 0 30px;
   overflow-x: hidden;
   margin-top: 82px;
 }
@@ -621,7 +627,6 @@ h4 {
     position: relative;
     width: 100%;
     min-height: 100% !important;
-    padding: 10px;
     padding-bottom: 150px !important;
   }
 
