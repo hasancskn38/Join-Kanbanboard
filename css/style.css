@@ -78,7 +78,7 @@ a {
 
 @media (max-width:1000px) {
     .side-bar {
-        height: 120px;
+        height: 80px;
         max-width: 100%;
         min-width: 100%;
         top: unset;
@@ -86,6 +86,10 @@ a {
         padding: unset;
         background-color: white;
         z-index: 10;
+    }
+
+    .side-links {
+        height: 75px !important;
     }
 
     .side-bar-legal {
