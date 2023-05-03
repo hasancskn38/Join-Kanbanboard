@@ -66,13 +66,13 @@ function parseLoggedOnUser() {
 }
 
 // added if condition that checks if openEditTask is open
-  function closeOverlay() {
-    if(openEditTask) {
+function closeOverlay() {
+    if (openEditTask) {
         closeEditTask();
     }
     closeTaskPopUp();
     closeAddTaskPopUp();
-  }
+}
 
 overlay.addEventListener('click', closeOverlay);
 
@@ -315,12 +315,15 @@ function openTaskPopUp(i) {
 function showResponsiveStage(i) {
     setInterval(() => {
         let screenWidth = window.innerWidth;
-    if (screenWidth <= 830) {
-        document.getElementById(`stage_option${i}`).classList.remove('d-none');
-    }
-    else {
-        document.getElementById(`stage_option${i}`).classList.add('d-none');
-    }
+        if (document.getElementById(`stage_option${i}`) == undefined) {
+            return;
+        }
+        if (screenWidth <= 830) {
+            document.getElementById(`stage_option${i}`).classList.remove('d-none');
+        }
+        else {
+            document.getElementById(`stage_option${i}`).classList.add('d-none');
+        }
     }, 100);
 }
 
