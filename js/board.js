@@ -330,7 +330,7 @@ function renderContactPopupInitials(i) {
     assignedContactsContainer.innerHTML = '';
     for (let j = 0; j < task['assignedContacts'].length; j++) {
         assignedContactsContainer.innerHTML +=
-            `<span>${task['assignedContacts'][j].substring(0, 2).toUpperCase()}</span>`;
+            `<span>${task['assignedContacts'][j]}</span>`;
     }
 }
 

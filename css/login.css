@@ -118,12 +118,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid rgba(128, 128, 128, 0.103);
+    border: 2px solid rgba(128, 128, 128, 0.253);
     width: 650px;
     height: 457px;
     border-radius: 30px;
     animation: fade_in 1.5s;
-    background-color: rgb(247, 247, 247);
     margin-top: -80px;
 }
 

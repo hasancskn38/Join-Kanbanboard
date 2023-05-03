@@ -36,6 +36,8 @@ async function includeHTML() {
     }
     renderAllBackendData();
     getCurrentPage();
+    
+
 }
 
 function getCurrentPage() {
@@ -55,6 +57,7 @@ async function renderAllBackendData() {
     await downloadFromServer();
     contacts = JSON.parse(backend.getItem('contacts')) || [];
     testData = JSON.parse(backend.getItem('testData')) || [];
+    createdCategorys = JSON.parse(backend.getItem('createdCategorys')) || [];
     // renderAllContacts();
     parseLoggedOnUser();
 }
@@ -427,6 +430,7 @@ displayCategories.addEventListener('click', function () {
         categorys.classList.add('d-none');
         newCategory.classList.add('d-none');
     }
+    renderCategorys();
 });
 
 
@@ -436,10 +440,11 @@ newCategory.addEventListener('click', function () {
     categorys.classList.add('d-none');
     newCategoryContainer.classList.remove('d-none');
     displayCategories.classList.add('d-none');
+
 });
 
 
-addNewCategory.addEventListener('click', function () {
+addNewCategory.addEventListener('click', async function () {
     if (newCategoryName.value == '') {
         categoryAlert.classList.remove('d-none');
     } else {
@@ -448,6 +453,7 @@ addNewCategory.addEventListener('click', function () {
             categoryColor: newCategoryColor
         };
         createdCategorys.push(newCategory);
+        await backend.setItem('createdCategorys', JSON.stringify(createdCategorys));
         hideNewCategory();
     }
     renderCategorys();
@@ -487,6 +493,7 @@ function hideNewCategory() {
     const colorImages = document.querySelectorAll('.new-category-colors img');
     colorImages.forEach(image => {
         image.classList.remove('d-none');
+        
     });
 }
 

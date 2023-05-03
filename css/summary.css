@@ -381,6 +381,16 @@ main h2 {
     justify-content: center;
     align-items: center;
   }
+  
+  .show_logged_on_user {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 60px;
+    margin-bottom: -45px;
+    margin-top: 50px;
+    width: 200px;
+  }
 }
 
 @media only screen and (max-width: 420px) {
@@ -403,15 +413,6 @@ main h2 {
     margin: 0;
   }
 
-  .show_logged_on_user {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-left: 60px;
-    margin-bottom: 0px;
-    margin-top: 50px;
-    width: 200px;
-  }
 
   .main-right-tasks {
     width: 300px;
