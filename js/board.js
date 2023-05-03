@@ -369,15 +369,15 @@ function addSubtask() {
     }
     else {
         subtaskArray.push(subtaskInput);
-        renderSubtasksInPopUp();
+        renderSubtasksInPopUp('popup');
         document.getElementById('task-subtask').value = '';
     }
 }
 
 
 
-function renderSubtasksInPopUp() {
-    let subTasks = document.getElementById('subtasks');
+function renderSubtasksInPopUp(value) {
+    let subTasks = document.getElementById(`subtasks_${value}`);
     subTasks.innerHTML = '';
     for (let i = 0; i < subtaskArray.length; i++) {
         let subtaskInput = subtaskArray[i];
@@ -393,7 +393,7 @@ function renderSubtasksInPopUp() {
  */
 function deleteSubtask(i) {
     subtaskArray.splice(i, 1);
-    renderSubtasksInPopUp();
+    renderSubtasksInPopUp('popup');
 }
 
 
@@ -885,18 +885,18 @@ function hideNewCategory() {
 
 
 
-function showDropDown() {
+function showDropDown(value) {
     if (dropDownShow == false) {
         for (let i = 0; i < contacts.length; i++) {
             let contact = contacts[i];
-            document.getElementById('contact_dropdown').innerHTML += `
+            document.getElementById(`contact_dropdown_${value}`).innerHTML += `
             <div onclick="selectContact(${i})"  class="dropdown_content"><div>${contact['name']}</div> <div class="dropdown_checkbox" id="dropdown_checkbox${i}">▢</div> </div>`;
         }
         return dropDownShow = true;
     }
 
     if (dropDownShow == true) {
-        document.getElementById('contact_dropdown').innerHTML = ``;
+        document.getElementById(`contact_dropdown_${value}`).innerHTML = ``;
         return dropDownShow = false;
     }
 }

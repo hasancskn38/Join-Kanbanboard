@@ -350,10 +350,10 @@ function openEditTaskPopUp(test, i) {
     <div class="priority-levels cursor priority-edit" id="low-edit" onclick="changeLowColorEdit(); editPriority('Low');"><span
             id="low-inner-edit">Low</span><img id="img3-edit" src="../assets/icons/low.png" alt=""></div>
 </div>
-<div required onclick="showDropDown()" id="select-contact-add" class="select-contact cursor"><div> Select contacts to assign</div> <div class="arrow"><img id="dropwdown-icon"
+<div required onclick="showDropDown('edit')" id="select-contact-add" class="select-contact cursor"><div> Select contacts to assign</div> <div class="arrow"><img id="dropwdown-icon"
                             class="dropdown-icon" src="../assets/icons/dropdown.png" alt=""></div>
                         </div>
-                        <div id="contact_dropdown" class="contact_dropdown">
+                        <div id="contact_dropdown_edit" class="contact_dropdown">
                         
                         </div>
 </div>
@@ -361,7 +361,7 @@ function openEditTaskPopUp(test, i) {
 </div>
 
 
-<ul id="subtasks">
+<ul id="subtasks_edit">
 
 </ul>
 <div class="edit-task-button-container">
