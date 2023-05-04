@@ -400,8 +400,24 @@ body {
 }
 
 @media (max-width: 420px) {
+
+  .login_head {
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: -50px;
+  }
+
+.log_in_headline {
+  font-size: 35px;
+}
+
+.log_in_buttons {
+  margin-bottom: 20px;
+}
+
   .login_form {
     width: 330px;
+    height: 450px;
     overflow: hidden;
   }
 
@@ -411,12 +427,12 @@ body {
 }
 
 @media (max-width: 380px) {
-    .login_form {
-      width: 315px;
-      overflow: hidden;
-    }
-  
-    .login_inputs {
-      width: auto;
-    }
+  .login_form {
+    width: 315px;
+    overflow: hidden;
   }
+
+  .login_inputs {
+    width: auto;
+  }
+}
