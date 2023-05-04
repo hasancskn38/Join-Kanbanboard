@@ -1366,8 +1366,20 @@ button {
   .main-column {
     width: 100vw;
     padding: 0;
-    padding-bottom: 550px !important;
-    margin-right: 0;
+    margin: 0;
+    min-height: calc(100vh - 80px) !important;
+    max-height: calc(100vh - 80px) !important;
+    overflow-y: auto;
+    margin-left: 30px;
+  }
+
+  .stages-container {
+    width: 98vw;
+    height: 90%;
+  }
+
+  html {
+    overflow: hidden;
   }
 
   .x-button {
@@ -1377,7 +1389,7 @@ button {
   .board-header {
     display: flex;
     justify-content: center;
-    margin: 50px auto;
+  margin-top: 150px;
     padding: 0;
   }
 
@@ -1389,13 +1401,6 @@ button {
     margin: auto;
   }
 
-  .stages-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    /* width: 100vw; */
-  }
 
   .test {
     width: 78vw;
@@ -1432,56 +1437,43 @@ button {
 @media only screen and (max-width: 500px) {
   .board-header {
     flex-direction: column;
+    width: 45vw;
   }
 
   .search-task {
-    margin-right: 0;
+    margin-right: 0px;
+    width: 220px;
+    margin-left: 80px;
   }
 
-  .board-header button {
-    margin-top: 20px;
-  }
-
-  .open-add-task {
-    font-size: 16px;
+  .add-remove-container {
+    display: none;
   }
 
   .test {
-    width: 74vw;
+    overflow: hidden;
   }
-  .stages-container {
-    margin: 0;
-    padding: 0;
-  }
-  .main-column {
-    padding-bottom: 500px !important;
+}
+
+@media only screen and (max-width: 450px) {
+  .search-task {
+    margin-left: 60px !important;
   }
 
-  .task-popup-container p {
-    font-size: 20px;
-  }
-  .task-popup-container li {
-    font-size: 50px;
-  }
-  .priority {
-    flex-direction: column;
-  }
-  .priority div {
-    margin: 10px;
+}
+
+@media only screen and (max-width: 410px) {
+  .search-task {
+    margin-left: 40px !important;
   }
 
-  #task-popup-header {
-    font-size: 35px !important;
+}
+
+@media only screen and (max-width: 365px) {
+  .search-task {
+    margin-left: 30px !important;
   }
-  .edit-task-button-container {
-    max-height: 50px;
-  }
-  .delete-task {
-    font-size: 15px;
-  }
-  .select-contact div {
-    font-size: 15px;
-  }
+
 }
 
 /* Responsive End */
