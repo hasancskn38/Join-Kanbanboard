@@ -126,19 +126,19 @@ function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDo
 
 function renderSearchedTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone) {
     for (let i = 0; i < searchedTaskArray.length; i++) {
-        let task = searchedTaskArray[i];
-        let finishedSubTasks = countFinishedSubtasks(task);
-        if (task.status === 'todo') {
-            stageToDo.innerHTML += taskTemplate(i, task, finishedSubTasks);
+        let test = searchedTaskArray[i];
+        let finishedSubTasks = countFinishedSubtasks(test);
+        if (test.status === 'todo') {
+            stageToDo.innerHTML += taskTemplate(i, test, finishedSubTasks);
         }
-        if (task.status === 'inprogress') {
-            stageProgress.innerHTML += taskTemplate(i, task, finishedSubTasks);
+        if (test.status === 'inprogress') {
+            stageProgress.innerHTML += taskTemplate(i, test, finishedSubTasks);
         }
-        if (task.status === 'feedback') {
-            stageFeedBack.innerHTML += taskTemplate(i, task, finishedSubTasks);
+        if (test.status === 'feedback') {
+            stageFeedBack.innerHTML += taskTemplate(i, test, finishedSubTasks);
         }
-        if (task.status === 'done') {
-            stageDone.innerHTML += taskTemplate(i, task, finishedSubTasks);
+        if (test.status === 'done') {
+            stageDone.innerHTML += taskTemplate(i, test, finishedSubTasks);
         }
         renderContactInitials(i);
     }
@@ -161,6 +161,7 @@ function countFinishedSubtasks(test) {
  * @param {*} test is the loop variable that will contain the value of the current element of the for loop
  *  */
 function renderContactInitials(i) {
+    console.log(i);
     let task = testData[i];
     let assignedContactsContainer = document.getElementById(`assigned-contacts-${i}`);
     assignedContactsContainer.innerHTML = '';
@@ -741,7 +742,8 @@ function hideHelpMeSection() {
     document.querySelector('main').classList.remove('d-none');
 }
 
-function searchTask() {
+
+/* function searchTask() {
     let input = document.getElementById('search-input').value.toLowerCase();
     searchedTaskArray = [];
     for (let j = 0; j < testData.length; j++) {
@@ -758,7 +760,66 @@ function searchTask() {
         }
     }
     renderData();
-}
+} */
+
+
+function searchTask() {
+    let searchTerm = document.getElementById('search-input').value.toLowerCase();
+    let resultsTodo = document.getElementById('stage-todo');
+    resultsTodo.innerHTML = '';
+    let resultsProgress = document.getElementById('stage-progress');
+    resultsProgress.innerHTML = '';
+    let resultsFeedback = document.getElementById('stage-feedback');
+    resultsFeedback.innerHTML = '';
+    let resultsDone = document.getElementById('stage-done');
+    resultsDone.innerHTML = '';
+  
+  
+    if (searchTerm === '') {
+      renderData();
+      return;
+    };
+  
+    testData.forEach((task, i) => {
+      if (task.title.toLowerCase().includes(searchTerm) ||
+        task.description.toLowerCase().includes(searchTerm)) {
+        let resultItem = document.createElement("div");
+        resultItem.innerHTML = `
+        <div onclick="openTaskPopUp(6)" draggable="true" ondragstart="startDragging(6)" id="stage-container" class="test">
+        <h3 class="task_orange" id="category-6">Design</h3>
+        <h4>Portfolio</h4>
+        <p id="task-title" class="grey">Portfolio Design umsetzen</p>
+        <div class="progress-container">
+        <div class="subtasks-done"></div>
+        </div>
+       
+        <div class="contact-priority-container">
+    
+        <div id="assigned-contacts-6" class="assigned-contact"><span>CH</span><span>HA</span><span>MA</span></div>
+    
+        <div class="priority-level">
+        <img id="urgent-main-6" class="" src="../assets/icons/urgent.png">
+        <img id="medium-main-6" class="d-none" src="../assets/icons/medium.png">
+        <img id="low-main-6" class="d-none" src="../assets/icons/low.png"></div>
+        </div>
+        </div>
+        `;
+
+            if (task['status'] === 'todo') {
+                resultsTodo.appendChild(resultItem);
+            }
+            if (task['status'] === 'progress') {
+                resultsProgress.appendChild(resultItem);
+            }
+            if (task['status'] === 'feedback') {
+                resultsFeedback.appendChild(resultItem);
+            }
+            if (task['status'] === 'done') {
+                resultsDone.appendChild(resultItem);
+            }
+      }
+    });
+  }
 
 
 let categorys = document.getElementById('show-categorys');
