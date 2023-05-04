@@ -255,7 +255,7 @@ async function createTask() {
         };
         testData.push(newItem);
         await backend.setItem('testData', JSON.stringify(testData));
-        showDropDown();
+        showDropDown('popup');
         closeAddTaskPopUp();
         await includeHTML();
         clearInputFields();
@@ -639,10 +639,12 @@ function clearInputFields() {
     let taskDate = document.getElementById('task-date');
     let taskDescription = document.getElementById('task-description');
     let subTasks = document.getElementById('task-subtask');
+    let subTasksPopup = document.getElementById('subtasks_popup');
     displayCategories.innerHTML = `
     <p id="select-category-inner">Select task category</p>
     <img id="dropwdown-icon" class="dropdown-icon" src="../assets/icons/dropdown.png" alt="">
     `;
+    subTasksPopup.innerHTML = '';
     subTasks.value = '';
     input.value = '';
     selectContacts.value = '';
@@ -896,7 +898,7 @@ function showDropDown(value) {
     }
 
     if (dropDownShow == true) {
-        document.getElementById(`contact_dropdown_${value}`).innerHTML = ``;
+        document.getElementById(`contact_dropdown_${value}`).innerHTML = '';
         return dropDownShow = false;
     }
 }
