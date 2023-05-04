@@ -569,7 +569,8 @@ function changeLowColorEdit() {
 
 
 async function submitChanges(i) {
-    document.getElementById('').value = '';
+    document.getElementById('search-input').value = '';
+    searchTask();
     let test = testData[i];
     let newTaskName = document.getElementById(`input-edit-${i}`).value;
     let newDescription = document.getElementById(`edit-description${i}`).value;
