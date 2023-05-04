@@ -161,7 +161,6 @@ function countFinishedSubtasks(test) {
  * @param {*} test is the loop variable that will contain the value of the current element of the for loop
  *  */
 function renderContactInitials(i) {
-    console.log(i);
     let task = testData[i];
     let assignedContactsContainer = document.getElementById(`assigned-contacts-${i}`);
     assignedContactsContainer.innerHTML = '';
@@ -570,6 +569,7 @@ function changeLowColorEdit() {
 
 
 async function submitChanges(i) {
+    document.getElementById('').value = '';
     let test = testData[i];
     let newTaskName = document.getElementById(`input-edit-${i}`).value;
     let newDescription = document.getElementById(`edit-description${i}`).value;
@@ -773,54 +773,99 @@ function searchTask() {
     resultsFeedback.innerHTML = '';
     let resultsDone = document.getElementById('stage-done');
     resultsDone.innerHTML = '';
-  
-  
+
+
     if (searchTerm === '') {
-      renderData();
-      return;
+        renderData();
+        return;
     };
-  
+
     testData.forEach((task, i) => {
-      if (task.title.toLowerCase().includes(searchTerm) ||
-        task.description.toLowerCase().includes(searchTerm)) {
-        let resultItem = document.createElement("div");
-        resultItem.innerHTML = `
-        <div onclick="openTaskPopUp(6)" draggable="true" ondragstart="startDragging(6)" id="stage-container" class="test">
-        <h3 class="task_orange" id="category-6">Design</h3>
-        <h4>Portfolio</h4>
-        <p id="task-title" class="grey">Portfolio Design umsetzen</p>
-        <div class="progress-container">
-        <div class="subtasks-done"></div>
-        </div>
-       
-        <div class="contact-priority-container">
-    
-        <div id="assigned-contacts-6" class="assigned-contact"><span>CH</span><span>HA</span><span>MA</span></div>
-    
-        <div class="priority-level">
-        <img id="urgent-main-6" class="" src="../assets/icons/urgent.png">
-        <img id="medium-main-6" class="d-none" src="../assets/icons/medium.png">
-        <img id="low-main-6" class="d-none" src="../assets/icons/low.png"></div>
-        </div>
-        </div>
-        `;
+        if (task.title.toLowerCase().includes(searchTerm) ||
+            task.description.toLowerCase().includes(searchTerm)) {
+            let resultItem = document.createElement("div");
+
+            if (task['subtasks'].length > 0) {
+                let finishedSubtasks = getFinishedSubtasks(task);
+                resultItem.innerHTML = `
+                <div onclick="openTaskPopUp(${i})" draggable="true" ondragstart="startDragging(${i})" id="stage-container" class="test">
+                    <h3 class="task_${task['cat']['categoryColor']}" id="category-${i}">${task['cat']['categoryName']}</h3>
+                    <h4>${task['description']}</h4>
+                    <p id="task-title" class="grey">${task['title']}</p>
+
+                    <div class="progress-container">
+                    <progress style="width:80%" value="${finishedSubtasks}" max="${task['subtasks'].length}"></progress>
+                    <div class="subtasks-done">${finishedSubtasks}/${task.subtasks.length} Done</div>
+                    </div>
+                <div class="progress-container">
+                <div class="subtasks-done"></div>
+                </div>
+               
+                <div class="contact-priority-container">
+                <div id="assigned-contacts-${i}" class="assigned-contact"></div>
+                <div class="priority-level">
+                    <img id="urgent-main-6" class="" src="../assets/icons/urgent.png">
+                    <img id="medium-main-6" class="d-none" src="../assets/icons/medium.png">
+                    <img id="low-main-6" class="d-none" src="../assets/icons/low.png"></div>
+                </div>
+                </div>
+                `;
+            }
+
+
+            else {
+                resultItem.innerHTML = `
+                <div onclick="openTaskPopUp(${i})" draggable="true" ondragstart="startDragging(${i})" id="stage-container" class="test">
+                    <h3 class="task_${task['cat']['categoryColor']}" id="category-${i}">${task['cat']['categoryName']}</h3>
+                    <h4>${task['description']}</h4>
+                    <p id="task-title" class="grey">${task['title']}</p>
+                <div class="progress-container">
+                <div class="subtasks-done"></div>
+                </div>
+               
+                <div class="contact-priority-container">
+                <div id="assigned-contacts-${i}" class="assigned-contact"></div>
+                <div class="priority-level">
+                    <img id="urgent-main-6" class="" src="../assets/icons/urgent.png">
+                    <img id="medium-main-6" class="d-none" src="../assets/icons/medium.png">
+                    <img id="low-main-6" class="d-none" src="../assets/icons/low.png"></div>
+                </div>
+                </div>
+                `;
+            }
+
 
             if (task['status'] === 'todo') {
                 resultsTodo.appendChild(resultItem);
+                renderContactInitials(i);
             }
             if (task['status'] === 'progress') {
                 resultsProgress.appendChild(resultItem);
+                renderContactInitials(i);
             }
             if (task['status'] === 'feedback') {
                 resultsFeedback.appendChild(resultItem);
+                renderContactInitials(i);
             }
             if (task['status'] === 'done') {
                 resultsDone.appendChild(resultItem);
+                renderContactInitials(i);
             }
-      }
+        }
     });
-  }
+}
 
+
+function getFinishedSubtasks(task) {
+    let amount = 0;
+    for (let i = 0; i < task.subtasks.length; i++) {
+        let subtask = task.subtasks[i];
+        if (subtask.status == 'finished') {
+            amount++;
+        }
+    }
+    return amount;
+}
 
 let categorys = document.getElementById('show-categorys');
 let addNewCategory = document.getElementById('add-new-category');
