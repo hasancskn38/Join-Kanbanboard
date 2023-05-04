@@ -26,8 +26,8 @@
 }
 
 .x-button {
-  margin-top: -50px;
-  margin-right: -30px;
+  margin-top: -30px;
+  margin-right: -10px;
 }
 
 .static {
@@ -278,8 +278,10 @@ input:active {
 .subtask {
   height: 50px;
   display: flex;
+  flex-direction: row-reverse;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  width: 80%;
 }
 
 /* Animation Start */
