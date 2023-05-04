@@ -405,16 +405,16 @@ select {
 .contact_dropdown {
   width: 89%;
   max-height: 125px;
-  overflow-y: scroll;
-  margin-top: -25px;
+  overflow-y: auto;
+  margin-top: -20px;
   margin-left: 20px;
   font-size: 23px;
 }
 
 .dropdown_content {
   padding-left: 15px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   display: flex;
   justify-content: space-between;
   align-items: center;
