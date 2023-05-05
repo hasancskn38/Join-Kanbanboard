@@ -1,3 +1,8 @@
+html {
+  height: calc(100vh - 80px);
+}
+
+
 .red {
   color: red;
   background-color: #fff;
@@ -767,13 +772,17 @@ margin-bottom: 20px;
     width: 350px;
   }
   .add-contact-title {
-    font-size: 35px !important;
+    font-size: 30px !important;
   }
 
   .add-contact-info {
-    font-size: 20px !important;
+    font-size: 18px !important;
   }
   .contact-detail-name {
     font-size: 30px;
+  }
+
+  .add-contact-middle {
+    padding-top: 20px;
   }
 }
