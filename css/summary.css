@@ -327,6 +327,12 @@ main h2 {
   }
 }
 
+@media only screen and (max-width: 840px) {
+
+  html {
+    overflow: visible !important;
+  }
+}
 @media only screen and (max-width: 600px) {
   .main-right {
     margin: 0;
