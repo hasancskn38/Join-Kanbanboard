@@ -52,6 +52,10 @@ nav {
     align-items: center;
 }
 
+.nav-container-right p{
+font-size: 15px;
+}
+
 .log_on_container {
     display: flex;
     flex-direction: column;
@@ -153,9 +157,11 @@ img {
 /* Help Me Section Start */
 .help-me-container {
     background-color: #fff;
-    height: 50vh;
     position: absolute;
-    margin: 50px;
+    font-size: 25px !important;
+    margin-left: 20px;
+    margin-right: 5px;
+    height: calc(100vh - 80px) !important;
 }
 
 .help-me-container h1 {
@@ -170,26 +176,34 @@ img {
 
 .help-me-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-bottom: 25px;
+    margin-left: -50px;
+    margin-right: 20px;
+}
+
+.help-me-header button {
+    margin-right: -40px;
 }
 
 ol {
     list-style-type: none;
-    font-size: 20px;
+    font-size: 20px !important;
 }
 
 li {
     margin: 10px auto;
+    font-size: 20px !important;
 }
 
 li span {
     color: #4589FF;
     font-weight: 700;
+    font-size: 20px;
 }
 
-p, .kanban-description {
-    font-size: 20px;
+.kanban-description {
+    font-size: 20px !important;
 }
 
 .help-me-header button {
