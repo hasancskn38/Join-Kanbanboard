@@ -330,7 +330,7 @@ main h2 {
 @media only screen and (max-width: 840px) {
 
   html {
-    overflow: visible !important;
+    overflow: hidden !important;
   }
 }
 @media only screen and (max-width: 600px) {

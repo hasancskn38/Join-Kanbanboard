@@ -150,7 +150,7 @@ label>input {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 90%;
+    width: 84%;
     margin: 20px;
 }
 
@@ -251,6 +251,7 @@ textarea::placeholder {
     font-size: 18px;
     margin: 15px 0;
     border-bottom: 0;
+    /* width: 100vw; */
 }
 
 /* To only style the first child of an container */

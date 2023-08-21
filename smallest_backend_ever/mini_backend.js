@@ -22,10 +22,14 @@ window.onload = async function() {
 }
 
 async function downloadFromServer() {
-    let result = await loadJSONFromServer();
-    jsonFromServer = JSON.parse(result);
-    console.log('Loaded');
-}
+    try {
+      let result = await loadJSONFromServer();
+      jsonFromServer = JSON.parse(result);
+    } catch (error) {
+      console.error('Error while downloading JSON from server:', error);
+      // Handle the error, such as displaying an error message or fallback data
+    }
+  }
 
 function setURL(url) {
     BASE_SERVER_URL = url;

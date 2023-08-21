@@ -17,12 +17,16 @@
   margin-bottom: 0px;
 }
 
-.LOL {
-  background-color: red;
+.green {
+  background-color: rgb(142 ,236 , 134);
 }
 
 .board {
   background-color: rgb(210, 227, 255);
+}
+
+.no_category_selected {
+  color: red !important;
 }
 
 .x-button {
@@ -54,9 +58,13 @@ li {
   overflow-y: hidden;
 }
 
-body {
-  height: 100%;
+.board_add_button {
+  padding-bottom: 2px !important;
 }
+
+/* body {
+  height: 100%;
+} */
 
 .navbar {
   position: fixed;
@@ -360,7 +368,7 @@ input:active {
   justify-content: center;
   border-bottom: 1px solid lightgray;
   margin: 20px;
-  width: 90%;
+  width: 84%;
 }
 
 .popup-input {
@@ -390,7 +398,7 @@ select {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
+  width: 84%;
   font-size: 20px;
   padding: 15px;
   margin: 20px;
@@ -459,7 +467,7 @@ select option {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid lightgray;
-  width: 92%;
+  width: 84%;
   padding: 15px;
   margin: 15px;
 }
@@ -499,7 +507,7 @@ label > input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 91%;
+  width: 84%;
   margin: 15px;
   padding: 15px;
   border-bottom: 1px solid lightgray;
@@ -629,7 +637,7 @@ label > input {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 90%;
+  width: 86%;
   margin: 25px 20px;
 }
 
@@ -677,7 +685,7 @@ label > input {
 }
 
 .urgent {
-  background-color: #ff3d00;
+  background-color: #ff3c00;
   color: #fff;
 }
 
@@ -709,7 +717,7 @@ label > input {
 }
 
 textarea {
-  width: 95%;
+  width: 87%;
   height: 15vh;
   font-size: 17px;
   margin: 15px 0;
@@ -734,7 +742,7 @@ textarea::placeholder {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 95%;
   margin: 0;
 }
 
@@ -770,6 +778,7 @@ textarea::placeholder {
   z-index: 2;
   background-color: #fff;
   position: fixed;
+  overflow-y: scroll;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -782,7 +791,7 @@ textarea::placeholder {
 
 #task-popup button {
   position: absolute;
-  right: 7%;
+  right: 6%;
   top: 3.5%;
   background: none;
   font-size: 20px;
@@ -1176,7 +1185,7 @@ button {
   width: 30px;
   line-height: 30px;
   border-radius: 50% 50%;
-  background-color: orange;
+  background-color: rgb(142 ,236 , 134);
   color: #fff;
   text-align: center;
   font-size: 14px;
@@ -1203,23 +1212,17 @@ button {
 
 .assigned-contacts-popup {
   padding: 20px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  color: black;
 }
 
 .assigned-contacts-popup span {
   background-color: rgba(69, 137, 255, 0.699);
   color: #ffffff !important;
-  height: 45px;
-  width: 145px;
   line-height: 45px;
-  display: inline-block;
-  padding: 0 !important;
-  margin: 0 !important;
-  padding-left: 5px !important;
-  margin-top: 3px !important;
+  height: 45px;
+  width: 175px;
+  display: block;
+  padding: 0 0 0 8px!important;
+  margin: 3px 15px 0 0 !important;
 }
 
 /* Main End */
@@ -1322,7 +1325,7 @@ button {
 
   .popup-content {
     margin: 0;
-    padding: 0 20px;
+    overflow-x: hidden;
     background: #fff;
   }
 
@@ -1438,6 +1441,10 @@ button {
   .board-header {
     flex-direction: column;
     width: 45vw;
+  }
+
+  .subtasks-input {
+  justify-content: center;
   }
 
   .search-task {

@@ -21,8 +21,10 @@ body {
 
 .login_head {
   display: flex;
-  justify-content: space-around;
-  margin-top: 50px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+  padding: 0 25px;
 }
 
 .login_head div {
@@ -116,8 +118,9 @@ body {
   flex-direction: column;
   align-items: center;
   border: 2px solid rgba(128, 128, 128, 0.253);
-  width: 650px;
-  height: 457px;
+  /* width: 650px;
+  height: 457px; */
+  padding: 50px 100px;
   border-radius: 30px;
   animation: fade_in 1.5s;
   margin-top: -80px;

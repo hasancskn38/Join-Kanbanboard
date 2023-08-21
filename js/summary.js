@@ -1,8 +1,12 @@
-setURL('https://gruppe-447.developerakademie.net/join/smallest_backend_ever');
+setURL('https://hasan-coskun.developerakademie.net/join/smallest_backend_ever');
 let contacts = [];
 let letters = [];
 let testData = [];
 
+/**
+ * This function implements the template.html
+ *  
+ * */
 // Implement Templates
 async function includeHTML() {
     await loadDataFromServer();
@@ -21,12 +25,23 @@ async function includeHTML() {
     getCurrentPage();
 }
 
+/**
+ * getting current pages url
+ *
+ * 
+ */
 function getCurrentPage() {
     let currentPagePath = window.location.pathname;
     let htmlName = currentPagePath.split("/").pop().substring(0, currentPagePath.split("/").pop().lastIndexOf("."));
     document.getElementById(`menu_${htmlName}`).classList.add(htmlName);
 }
 
+
+/**
+ * getting current user which is logged on
+ *
+ * 
+ */
 function parseLoggedOnUser() {
     let loggedOnUser = JSON.parse(localStorage.getItem("loggedOnUser"));
     let loggedOnUserFirstChart = loggedOnUser.charAt(0);
@@ -40,7 +55,11 @@ function parseLoggedOnUser() {
     document.getElementById('display_logged_on_user').innerHTML = `${loggedOnUserFirstChartToUpperCase}`;
 }
 
-
+/**
+ * getting the current date for greeting the user which is logged on
+ *
+ * 
+ */
 // Generate Greeting Based on real world time
 setInterval(function () {
     let date = new Date();
@@ -57,26 +76,46 @@ setInterval(function () {
 }, 1000);
 
 
+
+/**
+ * Loading all data from the JSON at the backend
+ *
+ * 
+ */
 async function loadDataFromServer() {
     await downloadFromServer();
     contacts = await JSON.parse(backend.getItem('contacts')) || [];
     testData = await JSON.parse(backend.getItem('testData')) || [];
 }
 
+/**
+ * shows the help me section 
+ *
+ * 
+ */
 function showHelpMeSection() {
     document.getElementById('help-me-container').classList.remove('d-none');
-    document.querySelector('main').classList.add('d-none');
+    document.getElementById('main_right').classList.add('d-none');
+
 }
 
-
+/**
+ * hides the help me section 
+ *
+ * 
+ */
 // Hide Help me Container
 function hideHelpMeSection() {
     document.getElementById('help-me-container').classList.add('d-none');
-    document.querySelector('main').classList.remove('d-none');
+    document.getElementById('main_right').classList.remove('d-none');
 }
 
+/**
+ * Rendering all task to the different sections to display
+ *
+ * 
+ */
 function renderTasks() {
-
     countTasksOnBoard();
     countTasksInProcess();
     countAwaitingFeedback();
@@ -86,6 +125,12 @@ function renderTasks() {
     parseLoggedOnUser();
 }
 
+
+/**
+ * log out the user which is logged on and deletes the local storage
+ *
+ * 
+ */
 function userLogout() {
     if (!document.getElementById('log_out_button').classList.contains('dontShow')) {
         document.getElementById('log_out_button').classList.add('dontShow');
@@ -95,11 +140,22 @@ function userLogout() {
     }
 }
 
+/**
+ * log out the user which is logged on and deletes the local storage
+ *
+ * 
+ */
 function logOut() {
     localStorage.removeItem("loggedOnUser");
     window.location.href = `index.html?msg=Du hast dich erfolgreich ausgeloggt`;
 }
 
+
+/**
+ * Is counting the tasks in this section and is rendering this into the html
+ *
+ * 
+ */
 function countTasksOnBoard() {
     let testDataLength = testData.length;
     let number = 0;
@@ -117,16 +173,15 @@ function countTasksOnBoard() {
     }, 500 / testDataLength);
 }
 
-
-
-
-
+/**
+ * Is counting the tasks in this section and is rendering this into the html
+ *
+ * 
+ */
 function countTasksInProcess() {
-
     let testDataLength = returnTasksProgress();
     let number = 0;
     let container = document.getElementById('numProgress');
-
     if (testDataLength === 0) {
         container.innerHTML = 0;
     }
@@ -138,12 +193,15 @@ function countTasksInProcess() {
                 clearInterval(intervalId);
             }
         }, 500 / testDataLength);
-
     }
 }
 
+/**
+ * Is counting the tasks in this section and is rendering this into the html
+ *
+ * 
+ */
 function returnTasksProgress() {
-
     let inProgress = 0;
     for (let i = 0; i < testData.length; i++) {
         if (testData[i]['status'] == 'inprogress') {
@@ -151,14 +209,18 @@ function returnTasksProgress() {
         }
     }
     return inProgress;
-
 }
 
+
+/**
+ * Is counting the tasks in this section and is rendering this into the html
+ *
+ * 
+ */
 function countAwaitingFeedback() {
     let container = document.getElementById('awaitingFeedbackNum');
     let testDataLength = returnTasksFeedback();
     let number = 0;
-
     if (testDataLength === 0) {
         container.innerHTML = 0;
     }
@@ -170,10 +232,15 @@ function countAwaitingFeedback() {
                 clearInterval(intervalId);
             }
         }, 500 / testDataLength);
-
     }
 }
 
+
+/**
+ * Is counting the tasks in this section and is rendering this into the html
+ *
+ * 
+ */
 function returnTasksFeedback() {
     let inAwaitingFeedback = 0;
     for (let i = 0; i < testData.length; i++) {
@@ -184,14 +251,15 @@ function returnTasksFeedback() {
     return inAwaitingFeedback;
 }
 
-
+/**
+ * Is counting the tasks in this section and is rendering this into the html
+ *
+ * 
+ */
 function countTasksInDone() {
     let container = document.getElementById('numDone');
-
-
     let testDataLength = returnTasksDone();
     let number = 0;
-
     if (testDataLength === 0) {
         container.innerHTML = 0;
     }
@@ -203,10 +271,15 @@ function countTasksInDone() {
                 clearInterval(intervalId);
             }
         }, 500 / testDataLength);
-
     }
 }
 
+
+/**
+ * Is counting the tasks in this section and is rendering this into the html
+ *
+ * 
+ */
 function returnTasksDone() {
     let inDone = 0;
     for (let i = 0; i < testData.length; i++) {
@@ -217,10 +290,14 @@ function returnTasksDone() {
     return inDone;
 }
 
+
+/**
+ * Is counting the tasks in this section and is rendering this into the html
+ *
+ * 
+ */
 function countTasksToDo() {
-
     let container = document.getElementById('numToDo');
-
     let testDataLength = returnTasksToDo();
     let number = 0;
 
@@ -235,11 +312,15 @@ function countTasksToDo() {
                 clearInterval(intervalId);
             }
         }, 500 / testDataLength);
-
     }
-
 }
 
+
+/**
+ * Is counting the tasks in this section and is rendering this into the html
+ *
+ * 
+ */
 function returnTasksToDo() {
     let inToDo = 0;
     for (let i = 0; i < testData.length; i++) {
@@ -248,15 +329,18 @@ function returnTasksToDo() {
         }
     }
     return inToDo;
-
 }
 
+
+/**
+ * Is counting the tasks in this section and is rendering this into the html
+ *
+ * 
+ */
 function countUrgent() {
     let container = document.getElementById('numUrgent');
-
     let testDataLength = returnTasksUrgent();
     let number = 0;
-
     if (testDataLength === 0) {
         container.innerHTML = 0;
     }
@@ -268,14 +352,16 @@ function countUrgent() {
                 clearInterval(intervalId);
             }
         }, 500 / testDataLength);
-
     }
-
-
 }
 
-function returnTasksUrgent() {
 
+/**
+ * Is counting the tasks in this section and is rendering this into the html
+ *
+ * 
+ */
+function returnTasksUrgent() {
     let inUrgent = 0;
     for (let i = 0; i < testData.length; i++) {
         if (testData[i]['priority'] == 'Urgent')

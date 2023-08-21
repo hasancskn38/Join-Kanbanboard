@@ -48,7 +48,6 @@ function taskTemplate(i, test, finishedSubTasks) {
     </div>
     `;
     }
-
 }
 
 
@@ -86,8 +85,7 @@ function renderLetterContainerHTML(letter, i) {
 function renderOpenDetailContact(bothFirstLetter, contactColor, contactName, contactEmail, contactPhone, i) {
     return `
     <div id="detail-main" class="detail-main">
-    <span class="span-display-none">Kanban Project Management Tool</span>
-    <div onclick="slideBack()" class="arrow-div"></div>
+    <div id="arrow-img" onclick="slideBack()" class="arrow-div"><img class="arrow-img" src="../assets/img/arrowBlue.png"></div>
         <div class="contact-detail-header">
             <div style="background-color: ${contactColor}" class="big-letters">${bothFirstLetter}</div>
             <div>
@@ -151,7 +149,7 @@ function redenderAddNewContactTemp2() {
                     <img src="../assets/img/Input_Phone.png">
                 </div>
                 <div class="add-contact-button">
-                    <button class="creat-contact">Create Contact<img src="../assets/img/new.contact.png"></button>
+                    <button class="creat-contact">Create Contact<img class="img-new-contact" src="../assets/img/new.contact.png"></button>
                 </div>
             </form>
         </div>
@@ -350,7 +348,7 @@ function openEditTaskPopUp(test, i) {
     <div class="priority-levels cursor priority-edit" id="low-edit" onclick="changeLowColorEdit(); editPriority('Low');"><span
             id="low-inner-edit">Low</span><img id="img3-edit" src="../assets/icons/low.png" alt=""></div>
 </div>
-<div required onclick="showDropDown('edit')" id="select-contact-add" class="select-contact cursor"><div> Select contacts to assign</div> <div class="arrow"><img id="dropwdown-icon"
+<div required onclick="showDropDownEdit('edit')" id="select-contact-add" class="select-contact cursor"><div> Select contacts to assign</div> <div class="arrow"><img id="dropwdown-icon"
                             class="dropdown-icon" src="../assets/icons/dropdown.png" alt=""></div>
                         </div>
                         <div id="contact_dropdown_edit" class="contact_dropdown">
@@ -375,4 +373,64 @@ function openEditTaskPopUp(test, i) {
 <button class="delete-task cursor" onclick="deleteTask(${i})" class="cursor">Delete Task</button>
 </div>
 `;
+}
+
+/**
+ * renders the subtasks to task
+ * 
+ * @param {string} task - right task
+ * @param {Array} i - index of contact
+ */
+function getResultItemWithoutSubtask(task, i) {
+    return `
+    <div onclick="openTaskPopUp(${i})" draggable="true" ondragstart="startDragging(${i})" id="stage-container" class="test">
+        <h3 class="task_${task['cat']['categoryColor']}" id="category-${i}">${task['cat']['categoryName']}</h3>
+        <h4>${task['description']}</h4>
+        <p id="task-title" class="grey">${task['title']}</p>
+    <div class="progress-container">
+    <div class="subtasks-done"></div>
+    </div>
+
+    <div class="contact-priority-container">
+    <div id="assigned-contacts-${i}" class="assigned-contact"></div>
+    <div class="priority-level">
+        <img id="urgent-main-6" class="" src="../assets/icons/urgent.png">
+        <img id="medium-main-6" class="d-none" src="../assets/icons/medium.png">
+        <img id="low-main-6" class="d-none" src="../assets/icons/low.png"></div>
+    </div>
+    </div>
+    `;
+}
+
+/**
+ * renders the subtasks to task
+ * 
+ * @param {string} task - right task
+ * @param {string} finishedSubtasks - shows the finished subtasks
+ * @param {Array} i - index of contact
+ */
+function getResultItemWithSubtask(task, finishedSubtasks, i) {
+    return `
+    <div onclick="openTaskPopUp(${i})" draggable="true" ondragstart="startDragging(${i})" id="stage-container" class="test">
+        <h3 class="task_${task['cat']['categoryColor']}" id="category-${i}">${task['cat']['categoryName']}</h3>
+        <h4>${task['description']}</h4>
+        <p id="task-title" class="grey">${task['title']}</p>
+
+        <div class="progress-container">
+        <progress style="width:80%" value="${finishedSubtasks}" max="${task['subtasks'].length}"></progress>
+        <div class="subtasks-done">${finishedSubtasks}/${task.subtasks.length} Done</div>
+        </div>
+    <div class="progress-container">
+    <div class="subtasks-done"></div>
+    </div>
+   
+    <div class="contact-priority-container">
+    <div id="assigned-contacts-${i}" class="assigned-contact"></div>
+    <div class="priority-level">
+        <img id="urgent-main-6" class="" src="../assets/icons/urgent.png">
+        <img id="medium-main-6" class="d-none" src="../assets/icons/medium.png">
+        <img id="low-main-6" class="d-none" src="../assets/icons/low.png"></div>
+    </div>
+    </div>
+    `;
 }

@@ -88,6 +88,10 @@ h4 {
   transition: all 125ms ease-in-out;
 }
 
+.img-new-contact {
+  padding: 0;
+}
+
 .new-contact:hover {
   transition: all 125ms ease-in-out;
   background: #4e85e5;
@@ -171,7 +175,7 @@ h4 {
   box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
   border-radius: 0px 30px 30px 30px;
   height: 100vh;
-  width: 552px;
+  width: 40vw;
   left: 0px;
   animation: newContact 225ms;
 }
@@ -234,15 +238,16 @@ h4 {
 }
 
 .join-logo-contact {
-  width: 90px;
+  width: 80px;
   margin-top: -20px;
+  padding: 0;
 }
 
 .add-contact-title {
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 700;
-  font-size: 48px;
+  font-size: 40px;
   line-height: 120%;
   color: white;
 }
@@ -250,8 +255,7 @@ h4 {
 .add-contact-info {
   color: white;
   font-size: 1.5rem;
-  font-family: "Open Sans";
-  font-style: normal;
+  text-align: center;
 }
 
 .user-img {
@@ -556,10 +560,13 @@ h4 {
   display: flex;
   justify-content: end;
   margin-right: 81px;
+  margin-top: 30px;
 }
 
 .arrow-img {
+  display: none;
   cursor: pointer;
+  transform: rotate(180deg);
 }
 
 .span-display-none {
@@ -589,6 +596,9 @@ h4 {
 }
 
 @media (max-width: 1000px) {
+  .arrow-img {
+    display: block;
+  }
   .add-contact-layout-2 {
     width: 100vw;
     border-radius: 0px;
@@ -685,7 +695,7 @@ h4 {
   .detail-main {
     height: 90vh;
     padding: 20px;
-    padding-top: 70px;
+    padding-top: 140px;
   }
 
   .span-display-none {

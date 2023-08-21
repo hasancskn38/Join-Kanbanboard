@@ -14,7 +14,7 @@ a {
     justify-content: space-between;
     position: fixed;
     padding: 66px 20px;
-    width: 232px;
+    z-index: 1;
     height: 100%;
     margin-top: 80px;
     left: 0px;
