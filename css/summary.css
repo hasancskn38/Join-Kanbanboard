@@ -255,15 +255,6 @@ main h2 {
     margin-left: 230px;
   }
 
-  .task-urgent {
-    width:60vw;
-    margin-bottom:25px;
-  }
-
-  .task-general {
-    flex-basis: 30vw;
-  }
-
   main p {
     font-size: 18px;
   }
@@ -283,10 +274,22 @@ main h2 {
   .main-right-bottom {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-left: 230px;
-    margin:25px;
+    justify-content: center;
+    margin-left: 230px !important;
+    margin:0;
     gap:25px;
+  }
+
+  
+  .task-urgent {
+    width:60vw;
+    margin-bottom:25px;
+  }
+
+  .task-general {
+    width: calc((60vw - 25px) / 2); /* Calculate the width for two items with a 25px gap */
+
+    flex-basis:auto;
   }
 
   .task-todo {
@@ -317,7 +320,7 @@ main h2 {
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
-    margin: 20px auto;
+    margin: 0 !important;
   }
 
   .task-general {
