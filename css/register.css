@@ -183,9 +183,7 @@ body {
 }
 
 @media (max-width: 800px) {
-  .login_head img {
-    margin-left: -20px;
-  }
+
   .login_form {
     width: 450px;
   }
@@ -197,9 +195,6 @@ body {
 }
 
 @media (max-width: 600px) {
-  .login_head img {
-    margin-left: -70px;
-  }
   .login_form {
     height: 450px;
     width: 350px;
@@ -228,14 +223,10 @@ body {
   }
 
   .login_head {
+    justify-content:center;
     margin-left: 120px;
     margin-top: 20px;
     margin-bottom: -30px;
-  }
-
-  .login_form {
-    height: 450px;
-    width: 330px;
   }
 
   .registry_input {

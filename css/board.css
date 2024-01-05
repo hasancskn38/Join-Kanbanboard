@@ -333,30 +333,21 @@ input:active {
 
 .popup-header {
   display: flex;
-  justify-content: center;
-  font-size: 28px;
-  width: 100%;
+  align-items:center;
+  gap:30px;
+  padding:30px;
+  font-size: 24px;
   display: flex;
   justify-content: space-around;
 }
 
-.popup-header h2 {
-  margin: 20px;
-  padding: 0 5px;
-  width: 200px;
-  height: 70px;
-}
-
 .createtask-button {
-  margin-top: 25px;
-  margin-right: 20px;
+  font-size: 20px;
+  padding: 5px 15px;
   color: #fff;
   background-color: #4589ff;
   border-radius: 10px;
   font-size: 20px;
-  font-weight: lighter;
-  width: 160px;
-  height: 50px;
 }
 
 .createtask-button:hover {
@@ -1185,7 +1176,7 @@ button {
   width: 30px;
   line-height: 30px;
   border-radius: 50% 50%;
-  background-color: rgb(142 ,236 , 134);
+  background-color: rgba(69, 137, 255, 0.699);
   color: #fff;
   text-align: center;
   font-size: 14px;

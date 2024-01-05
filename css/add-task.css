@@ -440,22 +440,20 @@ textarea::placeholder {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        /* overflow: visible; */
-        width: 95vw;
-        padding: 30px;
+        width: 100vw;
         margin: -100px 0 0 0;
     }
 
     .successfull_added {
-        display: none;
+        // display: none;
     }
 
     .popup2 {
-        margin-top: 180px;
+        margin-top: 130px;
     }
 
     .popup-content-add-task {
-        padding-bottom: 120px !important;
+        padding-bottom: 60px !important;
     }
 
     .two-button button {

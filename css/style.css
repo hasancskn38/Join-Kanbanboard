@@ -15,6 +15,7 @@ a {
     position: fixed;
     padding: 66px 20px;
     z-index: 1;
+    width:230px;
     height: 100%;
     margin-top: 80px;
     left: 0px;
