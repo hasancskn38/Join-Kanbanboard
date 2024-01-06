@@ -63,10 +63,6 @@ li {
   padding-bottom: 2px !important;
 }
 
-/* body {
-  height: 100%;
-} */
-
 .navbar {
   position: fixed;
   z-index: 1;
@@ -162,7 +158,7 @@ input:active {
 /* Board Header Start */
 .board-header {
   display: flex;
-  margin: 80px 0 0 0;
+  margin: 60px 0 0 0;
 }
 
 .board-header button {
@@ -171,7 +167,7 @@ input:active {
 
 .board-header input,
 .board-header button {
-  height: 45px;
+  padding:7.5px;
   border-radius: 10px;
 }
 
@@ -182,10 +178,10 @@ input:active {
 .search-task {
   display: flex;
   align-items: center;
-  height: 45px;
   border: 1px solid rgb(184, 184, 184);
   margin-right: 30px;
   border-radius: 10px;
+  padding:7.5px;
 }
 
 .search-task img {
@@ -234,11 +230,6 @@ input:active {
 .subtask-list button {
   cursor: pointer;
   background-color: white;
-}
-
-.board-header img {
-  height: 45px;
-  margin: 0 0 0 20px;
 }
 
 /* Board Header End */
@@ -769,15 +760,12 @@ textarea::placeholder {
   z-index: 2;
   background-color: #fff;
   position: fixed;
-  overflow-y: scroll;
+  overflow-y: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 45px;
-  min-width: 50vw;
-  height: 80vh;
-  margin: auto;
-  border-radius: 10px;
+  border-radius: 15px;
 }
 
 .button-container {
@@ -958,13 +946,19 @@ button {
 /* Edit Task End */
 
 /* Stages Container Start */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right:30px;
+}
+
 .stages-container {
   height: calc(100vh - 80px);
-  width: calc(100vw - 270px);
   display: flex;
+  justify-content:center;
   column-gap: 30px;
   margin: 60px 0 0;
-  padding: 0 5px;
 }
 
 .stage-general {
@@ -1011,7 +1005,7 @@ button {
   transition: all 0.2s ease-in-out;
   cursor: grabbing;
   /* box-shadow: 1px 1px 7px 1px rgba(0, 0, 0, 0.247) !important; */
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .test > h3 {
@@ -1263,8 +1257,11 @@ button {
     padding-left: 0;
   }
 
+  .container {
+    align-items: center;
+  }
+
   .stages-container {
-    margin: 35px 0 0 -35px;
     flex-wrap: wrap;
     justify-content: space-between;
   }
@@ -1272,12 +1269,8 @@ button {
   .stage-general {
     display: flex;
     flex-direction: column;
-    height: auto;
-    max-height: none;
     width: calc(50vw - 196px);
-    padding-left: 30px;
-    margin-bottom: 100px;
-    overflow: auto;
+    margin-bottom: 50px;
   }
 
   .test {
@@ -1288,16 +1281,12 @@ button {
     height: 60vh;
   }
 
-  #task-popup {
-    /* width: 60vw; */
-    height: 80vh;
-  }
 }
 
 @media only screen and (max-width: 1000px) {
   .overlay {
     position: absolute;
-    top: 0;
+    top: -150px;
     right: 0;
     left: 0;
     bottom: 0;
@@ -1336,30 +1325,22 @@ button {
 
   .main-column {
     position: relative;
-    min-height: 100vh;
     margin: 35px 0;
-    margin-bottom: 635px;
+    padding-left:15px;
   }
 
   .stages-container {
-    width: 98vw;
+    width: 100vw;
+    height:auto;
   }
 
   .test {
-    width: 39vw;
+    width: 37vw;
   }
 
   .stage-general {
     width: 43vw;
   }
-
-  /* #edit-task-popup {
-        width: 80vw;
-    }
-
-    #task-popup {
-        width: 60vw;
-    } */
 }
 
 @media only screen and (max-width: 840px) {
@@ -1367,19 +1348,11 @@ button {
     width: 100vw;
     padding: 0;
     margin: 0;
-    min-height: calc(100vh - 80px) !important;
-    max-height: calc(100vh - 80px) !important;
-    overflow-y: auto;
-    margin-left: 30px;
+    overflow-y: scroll;
   }
 
   .stages-container {
-    width: 98vw;
-    height: 90%;
-  }
-
-  html {
-    overflow: hidden;
+    max-height:67vh;
   }
 
   .x-button {
@@ -1389,7 +1362,7 @@ button {
   .board-header {
     display: flex;
     justify-content: center;
-  margin-top: 150px;
+    margin-top: 60px;
     padding: 0;
   }
 
@@ -1398,24 +1371,18 @@ button {
   }
 
   .container {
-    margin: auto;
+    margin-right:0;
   }
 
-
   .test {
-    width: 78vw;
+    width: 65vw;
   }
 
   .stage-general {
     width: 100vw;
+    margin:0;
   }
 
-  #task-popup {
-    height: 101vh;
-    width: 101vw;
-    /* z index higher than side bar */
-    z-index: 15;
-  }
 
   #edit-task-popup {
     height: 101vh;
@@ -1448,13 +1415,14 @@ button {
 
   .board-header {
     flex-direction: column;
-    width: 45vw;
+    margin-top:60px !important;
+    align-items:center;
   }
 
   .search-task {
     margin-right: 0px;
     width: 220px;
-    margin-left: 80px;
+    margin-left: 0;
   }
 
   .add-remove-container {
@@ -1468,21 +1436,7 @@ button {
 
 @media only screen and (max-width: 450px) {
   .search-task {
-    margin-left: 60px !important;
-  }
-
-}
-
-@media only screen and (max-width: 410px) {
-  .search-task {
-    margin-left: 40px !important;
-  }
-
-}
-
-@media only screen and (max-width: 365px) {
-  .search-task {
-    margin-left: 30px !important;
+    margin-left: 0px !important;
   }
 
 }
