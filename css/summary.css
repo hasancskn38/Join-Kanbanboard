@@ -168,7 +168,6 @@ main h2 {
   border: 3px solid #ffffff;
   object-fit: cover;
   padding: 0;
-  margin: 0 15px 0 0;
 }
 
 .task-urgent-left-top h2 {
@@ -302,12 +301,6 @@ main h2 {
     font-size: 18px;
   }
 
-  .main-right-tasks {
-    /* margin: 0;
-    width: 100%;
-    margin-bottom: 125px; */
-  }
-
   .task-urgent {
     width: 80vw;
   }
@@ -327,8 +320,13 @@ main h2 {
     width: 80vw !important;
   }
 
+  .task-todo {
+    margin-bottom:25px;
+  }
+
   .show_logged_on_user {
     margin-top: 160px;
+    margin-left: 0;
   }
 }
 
@@ -341,21 +339,15 @@ main h2 {
 @media only screen and (max-width: 600px) {
   .main-right {
     margin: 0;
-    margin-bottom: 150px;
   }
-
-  .task-urgent,
-  .task-general {
-    width: 80vw;
-  }
-
   .main-right-bottom {
     margin-left: 0;
     width: 100%;
   }
 
   .show_logged_on_user {
-    margin:60px 0 30px 0;
+    margin:120px 0 40px 0;
+    text-align:center;
   }
 
   .nav-container {
@@ -379,6 +371,12 @@ main h2 {
     justify-content: center;
     align-items: center;
   }
+
+  .task-urgent div h2 {
+    font-size: 18px;
+    margin: 0;
+    margin-bottom: 5px;
+  }
 }
 
 @media only screen and (max-width: 420px) {
@@ -390,6 +388,10 @@ main h2 {
     object-fit: cover;
     padding: 0;
     margin: 0 15px 0 0;
+  }
+
+  .show_logged_on_user {
+    margin: 80px 0 40px 0;
   }
 
   .greet_user {
@@ -409,12 +411,6 @@ main h2 {
 
   .main-right-bottom {
     margin: 0px;
-  }
-
-  .task-urgent div h2 {
-    font-size: 18px;
-    margin: 0;
-    margin-bottom: 5px;
   }
 
   .task-urgent div {
