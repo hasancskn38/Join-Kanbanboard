@@ -7,6 +7,10 @@
   scroll-behavior: smooth;
 }
 
+.justify-left {
+  justify-content:left;
+}
+
 .popup-content h4 {
   font-style: normal;
   font-weight: 700;
@@ -29,10 +33,7 @@
   color: red !important;
 }
 
-.x-button {
-  margin-top: -30px;
-  margin-right: -10px;
-}
+
 
 .static {
   position: static !important;
@@ -326,9 +327,9 @@ input:active {
 .popup-content {
   height: 100vh !important;
   width: 100vw;
-  overflow: auto;
-  /* margin-left: 20px; */
-  margin: 0 20px;
+  display:flex;
+  flex-direction:column;
+  overflow-y: scroll;
 }
 
 .popup-header {
@@ -356,17 +357,14 @@ input:active {
 
 .input-container {
   display: flex;
-  justify-content: center;
+  justify-content:space-between;
   border-bottom: 1px solid lightgray;
   margin: 20px;
-  width: 84%;
 }
 
 .popup-input {
-  width: 90%;
   font-size: 35px;
-  padding: 15px;
-  padding-top: 0px;
+  padding:0 15px 15px 0;
   /* Margin Right to push the placeholder on the outside */
   margin-right: 80px;
 }
@@ -377,7 +375,6 @@ form {
 }
 
 select {
-  width: 90%;
   font-size: 24px;
   border-bottom: 1px solid lightgray;
   margin: 20px;
@@ -385,11 +382,10 @@ select {
   color: #4589ff;
 }
 
-.select-contact {
+.select-contact, #display-categories {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 84%;
   font-size: 20px;
   padding: 15px;
   margin: 20px;
@@ -402,7 +398,6 @@ select {
 }
 
 .contact_dropdown {
-  width: 89%;
   max-height: 125px;
   overflow-y: auto;
   margin-top: -20px;
@@ -435,7 +430,6 @@ select {
 
 #select-contact-edit,
 #select-category-edit {
-  width: 90%;
   font-size: 24px;
   border-bottom: 1px solid lightgray;
   margin: 20px 0;
@@ -450,7 +444,6 @@ select option {
 #initials-div {
   margin: 15px;
   padding: 5px;
-  width: 90%;
 }
 
 .date {
@@ -458,9 +451,8 @@ select option {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid lightgray;
-  width: 84%;
-  padding: 15px;
-  margin: 15px;
+  padding: 0 5px 15px 0;
+  margin: 20px;
 }
 
 .date > input {
@@ -471,7 +463,6 @@ select option {
 }
 
 label > input {
-  width: 90%;
   border-bottom: 1px solid lightgray;
   font-size: 28px;
   padding: 5px;
@@ -494,16 +485,6 @@ label > input {
   padding: 0;
 }
 
-#display-categories {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 84%;
-  margin: 15px;
-  padding: 15px;
-  border-bottom: 1px solid lightgray;
-}
-
 #display-categories p {
   font-size: 20px;
 }
@@ -517,9 +498,8 @@ label > input {
 .categorys {
   display: flex;
   justify-content: space-between;
-  width: 90%;
-  margin: 15px;
-  padding: 15px;
+  margin:0 20px;
+  padding:15px;
 }
 
 #select-category-inner {
@@ -545,15 +525,20 @@ label > input {
 }
 
 #remove-button {
+  cursor:pointer;
   background-color: #fff !important;
   background: none;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background: transparent;
 }
 
 .new-category {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   font-size: 18px;
-  padding: 15px 5px;
+  padding: 15px 0;
 }
 
 .create-new-category {
@@ -615,9 +600,10 @@ label > input {
 
 .check-and-cross {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   justify-content: center;
   align-items: center;
+  margin-right:30px;
 }
 
 .check-and-cross img {
@@ -626,9 +612,8 @@ label > input {
 
 .priority {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  width: 86%;
   margin: 25px 20px;
 }
 
@@ -703,12 +688,11 @@ label > input {
 }
 
 .description {
-  margin-left: 20px;
-  padding: 5px;
+  margin: 20px;
 }
 
 textarea {
-  width: 87%;
+  width:100%;
   height: 15vh;
   font-size: 17px;
   margin: 15px 0;
@@ -723,18 +707,37 @@ textarea::placeholder {
 }
 
 .subtasks {
-  border-bottom: 1px solid lightgray;
-  width: 90%;
-  margin: 0 20px;
-  padding: 5px;
+  margin: 0 20px; /* Add margin of 20px on both sides */
+  width: calc(100% - 40px); /* Calculate the width with margin subtracted */
+}
+
+.subtasks h4 {
+  margin: 0;
 }
 
 .subtasks-input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 95%;
-  margin: 0;
+  border-bottom: 1px solid lightgray;
+  padding: 15px 0;
+}
+
+.subtasks-input input {
+  width: 100%;
+  min-width: 0; /* Ensure input can shrink to fit */
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.check-and-cross {
+  display: flex;
+  align-items: center;
+}
+
+.check-and-cross img {
+  margin-left: 10px;
+  cursor: pointer;
 }
 
 .subtasks-input button {
@@ -745,7 +748,7 @@ textarea::placeholder {
 
 .subtasks input {
   font-size: 24px;
-  margin: 15px 0;
+  padding:15px 15px 15px 0;
   border-bottom: 0;
 }
 
@@ -754,13 +757,7 @@ textarea::placeholder {
 }
 
 /* To only style the first child of an container */
-.popup > *:first-child {
-  position: absolute;
-  right: 8%;
-  top: 4%;
-  background: none;
-  font-size: 20px;
-}
+
 
 /* Pop Up End */
 
@@ -780,12 +777,22 @@ textarea::placeholder {
   border-radius: 10px;
 }
 
-#task-popup button {
+.button-container {
+  position: sticky;
+  z-index: 1;
+  background: #fff;
+  height: 30px;
+  top: 15px;
+}
+
+.button-container button {
   position: absolute;
-  right: 6%;
-  top: 3.5%;
-  background: none;
-  font-size: 20px;
+  bottom:7.5px;
+  right: 30px;
+  height: 30px;
+  border-radius: 50%;
+  width: 30px;
+  color: #fff;
 }
 
 #task-popup li {
@@ -1299,6 +1306,10 @@ button {
     z-index: 1;
   }
 
+  .priority {
+    justify-content:space-around;
+  }
+
   .x-button {
     margin-top: -35px;
     margin-right: -20px;
@@ -1318,14 +1329,6 @@ button {
     margin: 0;
     overflow-x: hidden;
     background: #fff;
-  }
-
-  .popup > *:first-child {
-    position: absolute;
-    right: 4%;
-    top: 4%;
-    background: none;
-    font-size: 20px;
   }
 
   .main-column {
@@ -1429,13 +1432,20 @@ button {
 }
 
 @media only screen and (max-width: 500px) {
+
+  .priority {
+    flex-direction:column;
+    align-items:center;
+    gap: 20px;
+  }
+
+  .priority-levels {
+    width:100%;
+  }
+
   .board-header {
     flex-direction: column;
     width: 45vw;
-  }
-
-  .subtasks-input {
-  justify-content: center;
   }
 
   .search-task {
