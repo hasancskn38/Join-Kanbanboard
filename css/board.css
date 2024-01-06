@@ -227,9 +227,8 @@ input:active {
 }
 
 .subtask-list {
-  width: 350px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .subtask-list button {
@@ -754,6 +753,10 @@ textarea::placeholder {
 
 #subtasks {
   margin: 15px !important;
+}
+
+#subtasks_popup {
+  margin:0 20px 30px 0;
 }
 
 /* To only style the first child of an container */
