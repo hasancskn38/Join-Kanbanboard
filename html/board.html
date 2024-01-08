@@ -80,27 +80,33 @@
             <!-- Pop Up Start -->
             <div id="overlay" class="overlay d-none"></div>
             <div id="popup" class="popup d-none hide">
-                <button class="cursor x-button" onclick=" closeAddTaskPopUp()">X</button>
+
 
                 <form id="createtask-form" onsubmit="handleSubmit(event)">
 
                     <div class="popup-content">
 
                         <div class="popup-header">
-                            <h2>Add Task</h2><button id="submit-button" type="submit"
+                            <h2>Add Task</h2>
+                            <button id="submit-button" type="submit"
                                 class="createtask-button cursor">Create Task</button>
+                             <button class="cursor x-button" onclick=" closeAddTaskPopUp()">X</button>
                         </div>
 
                         <div class="input-container">
                             <input required id="task-title" class="popup-input" type="text" placeholder="Enter a title">
                         </div>
 
-                        <div required onclick="showDropDown('popup')" id="select-contact-add" class="select-contact cursor"><div> Select contacts to assign</div> <div class="arrow"><img id="dropwdown-icon"
-                            class="dropdown-icon" src="../assets/icons/dropdown.png" alt=""></div>
+                        <div required onclick="showDropDown()" id="select-contact-add" class="select-contact cursor">
+                            <div> Select contacts to assign</div> 
+                            <div class="arrow">
+                                <img id="dropwdown-icon" class="dropdown-icon" src="../assets/icons/dropdown.png" alt="">
+                            </div>
                         </div>
-                        <div id="contact_dropdown_popup" class="contact_dropdown">
                         
-                        </div>
+                        <div id="contact_dropdown_popup" class="contact_dropdown"></div>
+
+
                         <label for="appointment">
                             <h4 class="date-header">Due date</h4>
                             <div class="date">
@@ -174,10 +180,15 @@
                                 placeholder="Enter a description"></textarea>
                         </div>
 
+                        
                         <div class="subtasks">
-                            <h4>Subtask</h4>
-                            <div class="subtasks-input"><input id="task-subtask" minlength="8"
-                                    placeholder="Add new subtask" type="text">
+                        <h4>Subtask</h4>
+
+                            <div class="subtasks-input">
+
+                                <input id="task-subtask" minlength="8"
+                                placeholder="Add subtasks" type="text">
+
                                 <div class="check-and-cross">
                                     <img class="cursor" src="../assets/icons/x.png" alt="">
                                     <img src="../assets/icons/divider.png" alt="">
