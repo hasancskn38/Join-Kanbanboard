@@ -17,8 +17,7 @@
   font-size: 20px;
   line-height: 120%;
   color: #42526e;
-  margin-top: 5px;
-  margin-bottom: 0px;
+  margin:20px 20px 0 20px;
 }
 
 .green {
@@ -135,7 +134,7 @@ input:active {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: calc(100vw - 232px);
+  width: calc(100dvw - 232px);
 }
 
 /* Main Column End */
@@ -240,7 +239,7 @@ input:active {
   top: 0;
   right: 0;
   bottom: 0;
-  width: 100vw;
+  width: 100dvw;
   background-color: rgba(211, 211, 211, 0.5);
   display: flex;
   justify-content: center;
@@ -254,7 +253,7 @@ input:active {
   right: 0;
   top: 0;
   background-color: #fff;
-  height: 100vh;
+  height: 100dvh;
   width: 570px;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
@@ -315,21 +314,34 @@ input:active {
 /* Animation End */
 
 .popup-content {
-  height: 100vh !important;
-  width: 100vw;
+  height: 100dvh !important;
+  width: 100dvw;
   display:flex;
   flex-direction:column;
   overflow-y: scroll;
+  padding:0 20px;
+}
+
+.x-button {
+  height: 30px;
+  border-radius: 50%;
+  font-size: 16px;
+  width: 30px;
+  background: #4589ff;
+  color: #fff;
 }
 
 .popup-header {
   display: flex;
   align-items:center;
-  gap:30px;
-  padding:30px;
-  font-size: 24px;
-  display: flex;
   justify-content: space-around;
+  gap:30px;
+  font-size: 24px;
+  position:sticky;
+  background:#fff;
+  top:0;
+  padding:15px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); /* Offset-y, blur-radius, and shadow-color */
 }
 
 .createtask-button {
@@ -377,8 +389,8 @@ select {
   justify-content: space-between;
   align-items: center;
   font-size: 18px;
-  padding: 0 15px 15px 0;
-  margin: 20px 0;
+  padding: 0 15px 15px 15px;
+  margin: 20px;
   border-bottom: 1px solid lightgray;
 }
 
@@ -388,10 +400,9 @@ select {
 }
 
 .contact_dropdown {
-  max-height: 125px;
+  min-height: 125px;
   overflow-y: auto;
-  margin-top: -20px;
-  margin-left: 20px;
+  margin:0 20px;
   font-size: 23px;
 }
 
@@ -473,10 +484,6 @@ label > input {
 
 #calendar-img {
   padding: 0;
-}
-
-#display-categories p {
-  font-size: 20px;
 }
 
 .dropdown-icon {
@@ -605,7 +612,7 @@ label > input {
   justify-content: space-between;
   align-items: center;
   gap:10px;
-  margin: 30px 0;
+  margin: 20px;
 }
 
 #category-alert {
@@ -785,6 +792,7 @@ textarea::placeholder {
   border-radius: 50%;
   width: 30px;
   color: #fff;
+  background:#4589ff;
 }
 
 .header-task-popup {
@@ -958,6 +966,10 @@ textarea::placeholder {
   padding-right: 0;
 }
 
+.delete-task {
+  background:red !important;
+}
+
 
 .delete-task:hover {
   background-color: rgb(87, 149, 255);
@@ -987,7 +999,7 @@ button {
 }
 
 .stages-container {
-  height: calc(100vh - 80px);
+  height: calc(100dvh - 80px);
   display: flex;
   justify-content:center;
   column-gap: 30px;
@@ -996,7 +1008,7 @@ button {
 
 .stage-general {
   width: calc(20vw - 58px);
-  margin: 0 30px 0 0;
+  margin: 0 43px 0 0;
 }
 
 .stage-header {
@@ -1319,7 +1331,7 @@ button {
     right: 0;
     left: 0;
     bottom: 0;
-    width: 100vw;
+    width: 100dvw;
     background-color: rgba(211, 211, 211, 0.5);
     display: flex;
     justify-content: center;
@@ -1341,8 +1353,8 @@ button {
   }
 
   .popup {
-    width: 100vw;
-    height: 100vw;
+    width: 100dvw;
+    height: 100dvh;
     border-top-left-radius: 0;
   }
 
@@ -1360,7 +1372,7 @@ button {
 
   .stages-container {
     height:auto;
-    width: 100vw;
+    width: 100dvw;
 
   }
 
@@ -1375,8 +1387,8 @@ button {
 
 @media only screen and (max-width: 840px) {
   #task-popup {
-    height:101vh;
-    width:100vw;
+    height:101dvh;
+    width:100dvw;
     border-radius:0px;
   }
 
@@ -1384,16 +1396,16 @@ button {
     display:flex;
     flex-direction:column;
     justify-content: space-around;
-    height:calc(100vh - 60px);
+    height:calc(100dvh - 60px);
   }
 
   .edit-task-container {
-    height: 100vh;
+    height: 100dvh;
     padding:30px 0 !important;
   }
 
   .main-column {
-    width: 100vw;
+    width: 100dvw;
     padding: 0;
     margin: 0;
     overflow-y: scroll;
@@ -1428,7 +1440,7 @@ button {
   }
 
   .stage-general {
-    width: 100vw;
+    width: 100dvw;
     margin:0;
   }
 
@@ -1472,6 +1484,8 @@ button {
 
   .priority-levels {
     width:100%;
+    padding:5px !important; 
+
   }
 
   .board-header {

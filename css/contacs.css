@@ -2,11 +2,37 @@ html {
   height: calc(100vh - 80px);
 }
 
+.pd-0 {
+  padding:0;
+}
+
+.ml-0 {
+  margin-left:0 !important;
+}
 
 .red {
   color: red;
   background-color: #fff;
   width: auto;
+}
+
+.button-container {
+  position: sticky;
+  z-index: 1;
+  background: #fff;
+  height: 30px;
+  top: 15px;
+}
+
+.button-container button {
+  position: absolute;
+  bottom:7.5px;
+  right: 30px;
+  height: 30px;
+  border-radius: 50%;
+  width: 30px;
+  color: #fff;
+  background:#4589ff;
 }
 
 .main-contact {
@@ -17,8 +43,15 @@ html {
 }
 
 .popup-header {
-  display: flex;
-  justify-content: space-around;
+  display:flex;
+  justify-content:space-between;
+  padding:15px;
+}
+
+.popup-header h2,
+.createtask-button {
+    margin: 0px;
+    padding: 0 5px;
 }
 
 .layout-contact1 {
@@ -27,7 +60,6 @@ html {
   flex-direction: row;
   width: 100%;
   min-height: calc(100vh - 100px);
-  max-height: calc(100vh - 100px);
 }
 
 h2 {
@@ -70,15 +102,15 @@ h4 {
 }
 
 .new-contact {
-  background: #4589ff;
-  border: 1px solid #4589ff;
-  border-radius: 10px;
-  color: white;
-  width: 216px;
   display: flex;
   justify-content: center;
   gap: 15px;
   align-items: center;
+  background: #4589ff;
+  border: 1px solid #4589ff;
+  border-radius: 10px;
+  color: white;
+  padding:15px;
   height: 55px;
   cursor: pointer;
   position: absolute;
@@ -135,9 +167,6 @@ h4 {
   margin: 5px;
 }
 
-.over {
-  width: 100vw;
-}
 
 .over:hover {
   background-color: #d2e3ff;
@@ -335,6 +364,24 @@ h4 {
   justify-content: center;
 }
 
+.createtask-button {
+  font-size: 20px;
+  padding: 5px 15px;
+  color: #fff;
+  background-color: #4589ff;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.x-button {
+  height: 30px;
+  border-radius: 50%;
+  font-size: 16px;
+  width: 30px;
+  background: #4589ff;
+  color: #fff;
+}
+
 .creat-contact {
   background: #4589ff;
   border: 1px solid #4589ff;
@@ -404,6 +451,7 @@ h4 {
   margin-top: 13px;
   cursor: pointer;
   padding-inline: 5px;
+  gap: 10px;
 }
 
 /* .plus-img {
@@ -437,6 +485,23 @@ h4 {
   color: #005dff;
   cursor: pointer;
   padding-inline: 5px;
+  gap: 10px;
+}
+
+.delete-contact-button {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  background:red;
+  color:#fff;
+  border-radius:10px
+}
+
+.delete-contact-button div {
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .contact-detail-bottom {
@@ -559,8 +624,8 @@ h4 {
 .arrow-div {
   display: flex;
   justify-content: end;
-  margin-right: 81px;
-  margin-top: 30px;
+  margin:0 30px 0 0;
+  
 }
 
 .arrow-img {
@@ -599,6 +664,11 @@ h4 {
   .arrow-img {
     display: block;
   }
+
+  .contact-detail-edit {
+    display:none;
+  }
+
   .add-contact-layout-2 {
     width: 100vw;
     border-radius: 0px;
@@ -654,21 +724,21 @@ h4 {
   }
 
   .new-contact2 {
-    top: 4px;
-    background: #4589ff;
-    border: 1px solid #4589ff;
-    border-radius: 10px;
-    color: white;
-    width: 216px;
     display: flex;
     justify-content: center;
     gap: 15px;
     align-items: center;
+    background: #4589ff;
+    border: 1px solid #4589ff;
+    border-radius: 10px;
+    color: white;
+    padding:15px;
     height: 55px;
     cursor: pointer;
     position: absolute;
     bottom: 35px;
     right: 35px;
+    top:35px;
     font-size: 23px;
     transition: all 125ms ease-in-out;
   }
@@ -709,11 +779,9 @@ h4 {
   }
 
   .edit-contact-responsive {
-    display: block;
-    right: 81px;
-    bottom: 114px;
-    position: absolute;
-    cursor: pointer;
+    display: flex;
+    justify-content: end;
+    margin:0 30px 0 0;
   }
 
 .contact-detail-body-top {

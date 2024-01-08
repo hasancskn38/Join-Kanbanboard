@@ -65,20 +65,6 @@ li {
     font-size: 28px;
 }
 
-.popup-header h2,
-.createtask-button {
-    margin: 20px;
-    padding: 0 5px;
-}
-
-.createtask-button {
-    color: #fff;
-    background-color: #4589FF;
-    border-radius: 10px;
-    font-size: 20px;
-    font-weight: lighter;
-}
-
 .input-container {
     display: flex;
     justify-content: center;
@@ -110,15 +96,6 @@ select option {
     color: #000;
 }
 
-.date {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid lightgray;
-    width: 90%;
-    margin: 20px;
-    padding: 5px;
-}
 
 .date>input {
     font-size: 18px;
@@ -141,28 +118,6 @@ label>input {
     margin: 0 20px;
 }
 
-.date-header {
-    margin: 0 20px;
-    padding: 5px;
-}
-
-.priority {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 84%;
-    margin: 20px;
-}
-
-.priority-levels {
-    box-shadow: 1px 1px rgb(0 0 0 / 10%), -1px 1px rgb(0 0 0 / 10%), 1px -1px rgb(0 0 0 / 10%), -1px -1px rgb(0 0 0 / 10%);
-    padding: 10px 15px;
-    width: 31%;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
 
 .priority-levels>img {
     padding: 0 0 0 5px;
@@ -205,62 +160,11 @@ label>input {
     color: #fff;
 }
 
-
-
-.description {
-    margin: 0 20px;
-    padding: 5px;
-}
-
-textarea {
-    width: 90%;
-    height: 100px;
-    font-size: 17px;
-    margin: 15px 0;
-    padding: px;
-    border-radius: 10px;
-    border: 1px solid lightgrey;
-}
-
-textarea::placeholder {
-    font-size: 16px;
-}
-
-.subtasks {
-    border-bottom: 1px solid lightgray;
-    width: 90%;
-    margin: 20px;
-    padding: 5px;
-}
-
-.subtasks-input {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
-}
-
 .subtasks-input button {
     height: 25px;
     width: 25px;
     background-color: #fff;
     color: #4589FF;
-}
-
-.subtasks input {
-    font-size: 18px;
-    margin: 15px 0;
-    border-bottom: 0;
-    /* width: 100vw; */
-}
-
-/* To only style the first child of an container */
-.popup>*:first-child {
-    position: absolute;
-    right: 2%;
-    top: .5%;
-    background: none;
-    font-size: 20px;
 }
 
 /* Pop Up End */
@@ -277,18 +181,23 @@ textarea::placeholder {
     width: 100%;
 }
 
+.create-and-clear-container {
+    display: flex;
+    align-items:center;
+    justify-content:left;
+    gap:10px;
+    margin:20px;
+}
+
 .createtask-button-clear {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 18px 10px;
-    gap: 10px;
+    padding: 15px;
     background: #FFFFFF;
     color: #4589FF;
     border: 1px solid #647188;
     border-radius: 10px;
-    height: 61px;
     font-size: 21px;
     transition: all 125ms ease-in-out;
 }
@@ -304,14 +213,12 @@ textarea::placeholder {
     color: #fff;
     background-color: #4589FF;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 18px 10px;
+    padding: 15px;
     gap: 10px;
     border: 1px solid #647188;
     border-radius: 10px;
-    height: 61px;
     font-size: 21px;
     transition: all 125ms ease-in-out;
 }
@@ -324,15 +231,6 @@ textarea::placeholder {
 
 .add-task {
     background-color:  rgb(210,227,255);
-}
-
-.two-button {
-    display: flex;
-    height: 8vh;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    margin-left: 25px;
-    gap: 30px;
 }
 
 .urgent {
@@ -362,17 +260,11 @@ textarea::placeholder {
     background-color: #d0eeb9;
 }
 
-.description {
-    margin: 0 20px;
-    padding: 5px;
-}
-
 .successfull_added {
-    margin-top: 300px;
-    margin-left: 200px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     font-size: 28px;
-    width: 400px;
-    text-align: center;
 }
 
 .successfull_added b {
@@ -424,36 +316,34 @@ textarea::placeholder {
 }
 
 
-
-@media (max-width: 1250px) {
-    .successfull_added {
-        margin-left: 20px;
-    }
-}
-
 @media (max-width: 1000px) {
     .main_container {
         display: block;
+    }
+
+    .create-and-clear-container {
+        display: flex;
+        align-items:center;
+        justify-content:left;
+        gap:10px;
+        margin:20px;
     }
 
     .popup-content-add-task {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 100vw;
-        margin: -100px 0 0 0;
+        width: 100dvw;
+        margin: 0 25px;
     }
 
     .successfull_added {
-        // display: none;
-    }
-
-    .popup2 {
-        margin-top: 130px;
+        display: none;
     }
 
     .popup-content-add-task {
         padding-bottom: 60px !important;
+        padding: 30px;
     }
 
     .two-button button {
