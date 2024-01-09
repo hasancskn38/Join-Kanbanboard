@@ -84,6 +84,8 @@
 
                 <form id="createtask-form" onsubmit="handleSubmit(event)">
 
+                        
+
                     <div class="popup-content">
 
                         <div class="popup-header">
@@ -93,115 +95,119 @@
                              <button class="cursor x-button" onclick=" closeAddTaskPopUp()">X</button>
                         </div>
 
-                        <div class="input-container">
-                            <input required id="task-title" class="popup-input" type="text" placeholder="Enter a title">
-                        </div>
+                        <div class="popup-wrapper">
 
-                        <div required onclick="showDropDown()" id="select-contact-add" class="select-contact cursor">
-                            <div> Select contacts to assign</div> 
-                            <div class="arrow">
+                            <div class="input-container">
+                                <input required id="task-title" class="popup-input" type="text" placeholder="Enter a title">
+                            </div>
+    
+                            <div required onclick="showDropDown()" id="select-contact-add" class="select-contact cursor">
+                                <div> Select contacts to assign</div> 
+                                <div class="arrow">
+                                    <img id="dropwdown-icon" class="dropdown-icon" src="../assets/icons/dropdown.png" alt="">
+                                </div>
+                            </div>
+                            
+                            <div id="contact_dropdown_popup" class="contact_dropdown"></div>
+    
+    
+                            <label for="appointment">
+                                <h4 class="date-header">Due date</h4>
+                                <div class="date">
+                                    <input id="task-date" required type="date" />
+                                </div>
+                            </label>
+    
+                            <h4 class="date-header">Category</h4>
+                            <div class="new-category-container d-none" id="new-category-container">
+                                <p class="d-none" id="category-alert">Please select a category name and then a color !</p>
+    
+                                <div id="new-category-input" class="input-container">
+                                    <input id="new-category-name" class="popup-input" type="text"
+                                        placeholder="new category name">
+                                    <div class="check-and-cross">
+                                        <img onclick="hideNewCategory()" class="cursor" id="hide-new-category"
+                                            src="../assets/icons/x.png" alt="">
+                                        <img src="../assets/icons/divider.png" alt="">
+                                        <img class="cursor" id="add-new-category" src="../assets/icons/checkmark.png"
+                                            alt="">
+                                    </div>
+    
+                                </div>
+                                <div style="margin-left: 25px;" id="category-colors" class="new-category-colors">
+                                    <img onclick="displayColor('lightBlue')" class="cursor"
+                                        src="../assets/icons/color1.png" alt="">
+                                    <img onclick="displayColor('blue')" class="cursor"
+                                        src="../assets/icons/color2.png" alt="">
+                                    <img onclick="displayColor('purple')" class="cursor"
+                                        src="../assets/icons/color3.png" alt="">
+                                    <img onclick="displayColor('orange')" class="cursor"
+                                        src="../assets/icons/color4.png" alt="">
+                                    <img onclick="displayColor('green')" class="cursor"
+                                        src="../assets/icons/color5.png" alt="">
+                                    <img onclick="displayColor('red')" class="cursor"
+                                        src="../assets/icons/color6.png" alt="">
+                                </div>
+                            </div>
+    
+                            <!-- Event listener to display the categorys -->
+                            <div class="cursor" id="display-categories">
+                                <p id="select-category-inner">Select task category</p>
                                 <img id="dropwdown-icon" class="dropdown-icon" src="../assets/icons/dropdown.png" alt="">
                             </div>
-                        </div>
-                        
-                        <div id="contact_dropdown_popup" class="contact_dropdown"></div>
-
-
-                        <label for="appointment">
-                            <h4 class="date-header">Due date</h4>
-                            <div class="date">
-                                <input id="task-date" required type="date" />
-                            </div>
-                        </label>
-
-                        <h4 class="date-header">Category</h4>
-                        <div class="new-category-container d-none" id="new-category-container">
-                            <p class="d-none" id="category-alert">Please select a category name and then a color !</p>
-
-                            <div id="new-category-input" class="input-container">
-                                <input id="new-category-name" class="popup-input" type="text"
-                                    placeholder="new category name">
-                                <div class="check-and-cross">
-                                    <img onclick="hideNewCategory()" class="cursor" id="hide-new-category"
-                                        src="../assets/icons/x.png" alt="">
-                                    <img src="../assets/icons/divider.png" alt="">
-                                    <img class="cursor" id="add-new-category" src="../assets/icons/checkmark.png"
-                                        alt="">
-                                </div>
-
-                            </div>
-                            <div style="margin-left: 25px;" id="category-colors" class="new-category-colors">
-                                <img onclick="displayColor('lightBlue')" class="cursor"
-                                    src="../assets/icons/color1.png" alt="">
-                                <img onclick="displayColor('blue')" class="cursor"
-                                    src="../assets/icons/color2.png" alt="">
-                                <img onclick="displayColor('purple')" class="cursor"
-                                    src="../assets/icons/color3.png" alt="">
-                                <img onclick="displayColor('orange')" class="cursor"
-                                    src="../assets/icons/color4.png" alt="">
-                                <img onclick="displayColor('green')" class="cursor"
-                                    src="../assets/icons/color5.png" alt="">
-                                <img onclick="displayColor('red')" class="cursor"
-                                    src="../assets/icons/color6.png" alt="">
-                            </div>
-                        </div>
-
-                        <!-- Event listener to display the categorys -->
-                        <div class="cursor" id="display-categories">
-                            <p id="select-category-inner">Select task category</p>
-                            <img id="dropwdown-icon" class="dropdown-icon" src="../assets/icons/dropdown.png" alt="">
-                        </div>
-
-                        <div class="categorys-container">
-                            <div class="categorys d-none cursor" id="show-categorys">
-                                <div id="new-category" class="cursor new-category">create new category</div>
-                                <div id="created-categorys"></div>
-                            </div>
-                        </div>
-
-                        <div class="priority">
-                            <div class="priority-levels cursor" id="urgent" onclick="changeUrgentColor()"><span
-                                    id="urgent-inner">Urgent</span><img id="img1" src="../assets/icons/urgent.png"
-                                    alt=""></div>
-
-                            <div class="priority-levels cursor" id="medium" onclick="changeMediumColor()"><span
-                                    id="medium-inner">Medium</span> <img id="img2" src="../assets/icons/medium.png"
-                                    alt=""></div>
-
-                            <div class="priority-levels cursor" id="low" onclick="changeLowColor()"><span
-                                    id="low-inner">Low</span><img id="img3" src="../assets/icons/low.png" alt="">
-                            </div>
-                        </div>
-
-
-                        <div class="description">
-                            <h4>Description</h4>
-                            <textarea required maxlength="30" id="task-description"
-                                placeholder="Enter a description"></textarea>
-                        </div>
-
-                        
-                        <div class="subtasks">
-                        <h4>Subtask</h4>
-
-                            <div class="subtasks-input">
-
-                                <input id="task-subtask" minlength="8"
-                                placeholder="Add subtasks" type="text">
-
-                                <div class="check-and-cross">
-                                    <img class="cursor" src="../assets/icons/x.png" alt="">
-                                    <img src="../assets/icons/divider.png" alt="">
-                                    <img id="add-subtask" onclick="addSubtask()" class="cursor"
-                                        src="../assets/icons/checkmark.png" alt="">
+    
+                            <div class="categorys-container">
+                                <div class="categorys d-none cursor" id="show-categorys">
+                                    <div id="new-category" class="cursor new-category">create new category</div>
+                                    <div id="created-categorys"></div>
                                 </div>
                             </div>
+    
+                            <div class="priority">
+                                <div class="priority-levels cursor" id="urgent" onclick="changeUrgentColor()"><span
+                                        id="urgent-inner">Urgent</span><img id="img1" src="../assets/icons/urgent.png"
+                                        alt=""></div>
+    
+                                <div class="priority-levels cursor" id="medium" onclick="changeMediumColor()"><span
+                                        id="medium-inner">Medium</span> <img id="img2" src="../assets/icons/medium.png"
+                                        alt=""></div>
+    
+                                <div class="priority-levels cursor" id="low" onclick="changeLowColor()"><span
+                                        id="low-inner">Low</span><img id="img3" src="../assets/icons/low.png" alt="">
+                                </div>
+                            </div>
+    
+    
+                            <div class="description">
+                                <h4>Description</h4>
+                                <textarea required maxlength="30" id="task-description"
+                                    placeholder="Enter a description"></textarea>
+                            </div>
+    
+                            
+                            <div class="subtasks">
+                            <h4>Subtask</h4>
+    
+                                <div class="subtasks-input">
+    
+                                    <input id="task-subtask" minlength="8"
+                                    placeholder="Add subtasks" type="text">
+    
+                                    <div class="check-and-cross">
+                                        <img class="cursor" src="../assets/icons/x.png" alt="">
+                                        <img src="../assets/icons/divider.png" alt="">
+                                        <img id="add-subtask" onclick="addSubtask()" class="cursor"
+                                            src="../assets/icons/checkmark.png" alt="">
+                                    </div>
+                                </div>
+    
+                            </div>
+    
+                            <ul id="subtasks_popup">
+    
+                            </ul>
 
                         </div>
-
-                        <ul id="subtasks_popup">
-
-                        </ul>
 
 
                 </form>
