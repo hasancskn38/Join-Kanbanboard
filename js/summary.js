@@ -1,4 +1,4 @@
-setURL('https://hasan-coskun.developerakademie.net/join/smallest_backend_ever');
+setURL('https://hasan-coskun.com/join/smallest_backend_ever');
 let contacts = [];
 let letters = [];
 let testData = [];
@@ -150,6 +150,9 @@ function logOut() {
     window.location.href = `index.html?msg=Du hast dich erfolgreich ausgeloggt`;
 }
 
+function goToBoardSection() {
+    window.location.href = 'board.html';
+}
 
 /**
  * Is counting the tasks in this section and is rendering this into the html

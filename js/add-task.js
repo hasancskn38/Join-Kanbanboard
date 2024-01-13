@@ -1,5 +1,4 @@
-setURL('https://hasan-coskun.developerakademie.net/join/smallest_backend_ever');
-
+setURL('https://hasan-coskun.com/join/smallest_backend_ever');
 let testData = [];
 let contacts = [];
 let priorityColor;
@@ -15,8 +14,6 @@ let assignedContacts = [];
 let createdCategorys = [];
 let newCategoryColor;
 let selectNewCategory = '';
-
-
 let today = new Date().toISOString().split('T')[0];
 document.getElementById('task-date').setAttribute('min', today);
 
@@ -312,6 +309,28 @@ async function addTaskToBoard() {
     }
     await addNewItemToTestData(title, category, taskDescription, date);
     renderCreatedTask(title);
+    openPopupUserFeedback();
+    document.getElementById('user-feedback-popup-message').innerHTML = `Added task ${title} to the dashboard.`
+    setTimeout(() => {
+        closePopupUserFeedback();
+        window.location.href = 'board.html';
+
+    }, 2500);
+}
+
+function openPopupUserFeedback() {
+    let popup = document.getElementById('user-feedback-popup');
+    document.getElementById('overlay-feedback').classList.remove('d-none');
+    // overlay.style.display = 'flex';
+    popup.classList.add('fade-in');
+    popup.style.display = 'flex';
+}
+
+function closePopupUserFeedback() {
+    let popup = document.getElementById('user-feedback-popup');
+    document.getElementById('overlay-feedback').classList.add('d-none');
+    popup.classList.remove('fade-in');
+    popup.style.display = 'none';
 }
 
 
@@ -548,27 +567,6 @@ function renderSubtasks() {
 }
 
 /**
- * shows an animation which is shown when you add a task successfully 
- *
- * @param {string} title - task title
-
- */
-function userAddedSuccessfull(title) {
-    let container = document.getElementById('successfull_added');
-    addAnimation();
-    container.innerHTML = '';
-    container.innerHTML = `
-    <div>
-    Aufgabe 
-    <br>
-    <b>${title}</b> 
-    <br>
-    erstellt!
-    </div> 
-    `;
-}
-
-/**
  * Adds the subtasks
  *
  */
@@ -607,21 +605,6 @@ function renderSubtasksInPopUp() {
 function deleteSubtask(i) {
     subtaskArray.splice(i, 1);
     renderSubtasksInPopUp();
-}
-
-/**
- * Adding an animation for the successfull added task
- *
- */
-function addAnimation() {
-    let animation = document.getElementById('successfull_added');
-    animation.classList.remove('display_opacity');
-    animation.classList.add('successfull_added_animation');
-    setTimeout(() => {
-        animation.classList.remove('successfull_added_animation');
-        animation.classList.add('display_opacity');
-        window.location.href = 'board.html';
-    }, 3000);
 }
 
 /**
@@ -892,7 +875,6 @@ function selectContact(i) {
         document.getElementById(`dropdown_checkbox${i}`).innerHTML = '▣';
         assignedContacts.push(contacts[i].name);
     }
-
 }
 
 

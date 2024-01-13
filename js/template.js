@@ -65,8 +65,7 @@ function renderShowContactsHTML(contactColor, bothFirstLetter, contactName, cont
        </div>
        </div>
     </div>
-    <button onclick="openAddContact()" class="new-contact2">New Contact<img
-                src="../assets/img/new.contact.png"></button>
+    
     `;
 }
 
@@ -85,14 +84,17 @@ function renderLetterContainerHTML(letter, i) {
 function renderOpenDetailContact(bothFirstLetter, contactColor, contactName, contactEmail, contactPhone, i) {
     return `
     <div id="detail-main" class="detail-main">
-    <div id="arrow-img" onclick="slideBack()" class="arrow-div"><img class="arrow-img" src="../assets/img/arrowBlue.png"></div>
+
+    <div id="arrow-img" onclick="slideBack()" class="arrow-div">
+    <img class="arrow-img pd-0" src="../assets/img/arrowBlue.png">
+    </div>
         <div class="contact-detail-header">
             <div style="background-color: ${contactColor}" class="big-letters">${bothFirstLetter}</div>
             <div>
                 <div class="contact-detail-header-right">
                  <div class="contact-detail-name">${contactName}</div>
                  <div onclick="openAddTaskPopUp()" class="add-task-link">
-                  <img class="plus-img" src="../assets/img/plus.small.png">Add Task</div>
+                  <img class="plus-img pd-0" src="../assets/img/plus.small.png">Add Task</div>
                 </div>
             </div>
         </div>
@@ -100,19 +102,22 @@ function renderOpenDetailContact(bothFirstLetter, contactColor, contactName, con
             <div class="contact-detail-body-top">
                 <div class="detail-information">Contact Information</div>
                 <div class="contact-detail-edit " onclick="openEdit('${contactName}', '${contactEmail}', '${contactPhone}', '${contactColor}', '${bothFirstLetter}', '${i}')">
-                    <img class="pencil-img" src="../assets/img/pencil.small.png">
+                    <img class="pencil-img pd-0" src="../assets/img/pencil.small.png">
                     Edit Contact
                 </div>
-                <div class="contact-detail-edit" onclick="deleteContact(${i})">
-                    <span class="red">Delete Contact</span>
+
+                <div class="delete-contact-button cursor" onclick="deleteContact(${i})">
+                    <p>Delete Contact</p>
                 </div>
+
             </div>
             <div class="contact-detail-bottom">Email</div>
             <a class="contact-detail-email" href="mailto:${contactEmail}">${contactEmail}</a>
             <div class="contact-detail-bottom">Phone</div>
             <a class="contact-detail-phone" href="tel:${contactPhone}">${contactPhone}</a>
-            <div class="edit-contact-responsive" onclick="openAddContact()"><img src="../assets/img/white_pencil.png"></div>
         </div>
+        <div class="edit-contact-responsive cursor" onclick="openEdit('${contactName}', '${contactEmail}', '${contactPhone}', '${contactColor}', '${bothFirstLetter}', '${i}')"><img class="pd-0" src="../assets/img/white_pencil.png"></div>
+
     </div>
     `;
 }
@@ -210,8 +215,10 @@ function openTaskPopUpTemplate(test, i, contact) {
     if (test['status'] === 'todo') {
         return `
     <div class="task-popup-container">
-                    <button class="cursor" onclick="closeTaskPopUp()">X</button>
+                    <div class="header-task-popup">
                     <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+                    <button class="cursor button" onclick="closeTaskPopUp()">X</button>
+                    </div>
                     <h1 id="task-popup-header" class="grey task-popup-header">${test.title}</h1>
                     <p>${test.description}</p>
                     <ul>
@@ -231,15 +238,21 @@ function openTaskPopUpTemplate(test, i, contact) {
                         <option value="feedback">feedback</option>
                         <option value="done">done</option>
                     </select>
-                    <img onclick="openEditTask(${i})" class="edit-button cursor" src="../assets/icons/editbutton.png" alt="">
+
+                <div class="open-edit-task-container">
+                <img onclick="openEditTask(${i})" class="edit-button cursor" src="../assets/icons/editbutton.png" alt="">
+                </div>
+
                 </div>
     `;
     }
     if (test['status'] === 'progress') {
         return `
     <div class="task-popup-container">
-                    <button class="cursor" onclick="closeTaskPopUp()">X</button>
+                    <div class="header-task-popup">
                     <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+                    <button class="cursor button" onclick="closeTaskPopUp()">X</button>
+                    </div>
                     <h1 id="task-popup-header" class="grey task-popup-header">${test.title}</h1>
                     <p>${test.description}</p>
                     <ul>
@@ -259,15 +272,19 @@ function openTaskPopUpTemplate(test, i, contact) {
                         <option value="feedback">feedback</option>
                         <option value="done">done</option>
                     </select>
+                    <div class="open-edit-task-container">
                     <img onclick="openEditTask(${i})" class="edit-button cursor" src="../assets/icons/editbutton.png" alt="">
+                    </div>
                 </div>
     `;
     }
     if (test['status'] === 'feedback') {
         return `
-    <div class="task-popup-container">
-                    <button class="cursor" onclick="closeTaskPopUp()">X</button>
+                    <div class="task-popup-container">
+                    <div class="header-task-popup">
                     <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+                    <button class="cursor button" onclick="closeTaskPopUp()">X</button>
+                    </div>
                     <h1 id="task-popup-header" class="grey task-popup-header">${test.title}</h1>
                     <p>${test.description}</p>
                     <ul>
@@ -287,15 +304,19 @@ function openTaskPopUpTemplate(test, i, contact) {
                         <option value="progress">progress</option>
                         <option value="done">done</option>
                     </select>
+                    <div class="open-edit-task-container">
                     <img onclick="openEditTask(${i})" class="edit-button cursor" src="../assets/icons/editbutton.png" alt="">
-                </div>
+                    </div>
+                    </div>
     `;
     }
     if (test['status'] === 'done') {
         return `
-    <div class="task-popup-container">
-                    <button class="cursor" onclick="closeTaskPopUp()">X</button>
-                    <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+                <div class="task-popup-container">
+                <div class="header-task-popup">
+                <h3 class="task_${test.cat.categoryColor}" id="category-${i}">${test.cat.categoryName}</h3>
+                <button class="cursor button" onclick="closeTaskPopUp()">X</button>
+                </div>
                     <h1 id="task-popup-header" class="grey task-popup-header">${test.title}</h1>
                     <p>${test.description}</p>
                     <ul>
@@ -315,8 +336,12 @@ function openTaskPopUpTemplate(test, i, contact) {
                         <option value="progress">progress</option>
                         <option value="feedback">feedback</option>
                     </select>
+
+                    <div class="open-edit-task-container">
                     <img onclick="openEditTask(${i})" class="edit-button cursor" src="../assets/icons/editbutton.png" alt="">
-                </div>
+                    </div>
+
+                    </div>
     `;
     }
 }
@@ -333,7 +358,6 @@ function openEditTaskPopUp(test, i) {
     <h2 class="date-header-edit">Due date</h2>
 
     <label for="appointment">
-                            <h4 class="date-header">Due date</h4>
                             <div class="date">
                                 <input id="task-date-edit${i}" value="${test.date}" required type="date" />
                             </div>
@@ -348,30 +372,23 @@ function openEditTaskPopUp(test, i) {
     <div class="priority-levels cursor priority-edit" id="low-edit" onclick="changeLowColorEdit(); editPriority('Low');"><span
             id="low-inner-edit">Low</span><img id="img3-edit" src="../assets/icons/low.png" alt=""></div>
 </div>
-<div required onclick="showDropDownEdit('edit')" id="select-contact-add" class="select-contact cursor"><div> Select contacts to assign</div> <div class="arrow"><img id="dropwdown-icon"
-                            class="dropdown-icon" src="../assets/icons/dropdown.png" alt=""></div>
-                        </div>
-                        <div id="contact_dropdown_edit" class="contact_dropdown">
-                        
-                        </div>
-</div>
-<div class="show_subtasks" id="show_subtasks">
-</div>
+         <div class="show_subtasks" id="show_subtasks">
+        </div>
+        <ul id="subtasks_edit">
+        </ul>
+        
 
+        <div class="edit-task-button-container">
 
-<ul id="subtasks_edit">
+        <button onclick="submitChanges(${i})" class="cursor submit-change">
+        Save Changes
+        </button>
 
-</ul>
-<div class="edit-task-button-container">
+        <button class="delete-task cursor" onclick="deleteTask(${i})" class="cursor">Delete Task</button>
+        </div>   
+        </div>
 
-
-<div onclick="submitChanges(${i})" class="cursor submit-change">
-<p>Ok</p>
-<img class="cursor" src="../assets/icons/checkmark-white.png" alt="">
-</div>
-
-<button class="delete-task cursor" onclick="deleteTask(${i})" class="cursor">Delete Task</button>
-</div>
+             
 `;
 }
 

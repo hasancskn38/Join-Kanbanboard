@@ -1,4 +1,4 @@
-setURL('https://hasan-coskun.developerakademie.net/join/smallest_backend_ever');
+setURL('https://hasan-coskun.com/join/smallest_backend_ever');
 let contacts = [];
 let letters = [];
 let testData = [];
@@ -46,6 +46,20 @@ function getCurrentPage() {
     let currentPagePath = window.location.pathname;
     let htmlName = currentPagePath.split("/").pop().substring(0, currentPagePath.split("/").pop().lastIndexOf("."));
     document.getElementById(`menu_${htmlName}`).classList.add(htmlName);
+}
+
+function openPopupUserFeedback() {
+    let popup = document.getElementById('user-feedback-popup');
+    document.getElementById('overlay-feedback').classList.remove('d-none');
+    popup.classList.add('fade-in');
+    popup.style.display = 'flex';
+}
+
+function closePopupUserFeedback() {
+    let popup = document.getElementById('user-feedback-popup');
+    document.getElementById('overlay-feedback').classList.add('d-none');
+    popup.classList.remove('fade-in');
+    popup.style.display = 'none';
 }
 
 /**
@@ -122,6 +136,11 @@ async function AddNewContact() {
     contacts.push({ name: name.value, email: email.value, phone: phone.value, randomColors: color });
     document.getElementById('addcontactlayout').classList.add('d-nones');
     await editSave();
+    document.getElementById('user-feedback-popup-message').innerHTML = `Added ${name.value} to contacts.`;
+    openPopupUserFeedback();
+    setTimeout(() => {
+        closePopupUserFeedback();
+    }, 2500);
 }
 
 
@@ -423,6 +442,11 @@ async function editContactSave(i) {
     await editSave();
     document.getElementById('layout-contact4').innerHTML = '';
     document.getElementById('editContactLayout').classList.add('d-nones');
+    openPopupUserFeedback();
+    document.getElementById('user-feedback-popup-message').innerHTML = `Saved changes.`
+    setTimeout(() => {
+        closePopupUserFeedback();
+    }, 2500);
 }
 
 
@@ -441,6 +465,12 @@ async function editSave() {
  *
  */
 async function deleteContact(i) {
+    let contact = contacts[i];
+    document.getElementById('user-feedback-popup-message').innerHTML = `Deleted ${contact.name} from contacts.`;
+    openPopupUserFeedback();
+    setTimeout(() => {
+        closePopupUserFeedback();
+    }, 2500);
     contacts.splice(i, 1);
     slideBack();
     await editSave();

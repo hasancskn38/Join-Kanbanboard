@@ -4,7 +4,7 @@ let currentEditIndex;
  * open popup for more information on a task
  * @param {*} i is each element from testData JSON array
  */
-function openTaskPopUp(i) {
+function openTaskPopUp(i, contactColor) {
     let test = testData[i];
     let contact = contacts[i];
     let taskPopUp = document.getElementById(`task-popup`);
@@ -28,8 +28,16 @@ function renderContactPopupInitials(i) {
     let task = testData[i];
     let assignedContactsContainer = document.getElementById(`assigned-popup-contacts-${i}`);
     let existingSpans = assignedContactsContainer.getElementsByTagName('span');
+    
     for (let j = 0; j < task['assignedContacts'].length; j++) {
         let contactName = task['assignedContacts'][j];
+        // Find the contact object based on the name
+        let assignedContact = contacts.find(c => c.name === contactName);
+
+        if (!assignedContact) {
+            continue; // Skip if the contact is not found
+        }
+
         let foundMatch = false;
         for (let k = 0; k < existingSpans.length; k++) {
             if (existingSpans[k].innerHTML === contactName) {
@@ -37,13 +45,16 @@ function renderContactPopupInitials(i) {
                 break;
             }
         }
+
         if (!foundMatch) {
             let spanElement = document.createElement('span');
             spanElement.innerHTML = contactName;
+            spanElement.style.backgroundColor = assignedContact.randomColors; // Apply the background color
             assignedContactsContainer.appendChild(spanElement);
         }
     }
 }
+
 
 
 function isContactNamePresent(i) {
@@ -99,6 +110,7 @@ function openEditTask(i) {
     editTask.classList.remove('d-none');
     editTask.innerHTML = openEditTaskPopUp(test, i);
     document.getElementById('side_bar').style.zIndex = 1;
+    document.body.classList.add('overflow-hidden');
     renderEditPriorityColors(i);
     showSubtasks(i);
     currentEditIndex = i; // Store the value of 'i' in the global variable
@@ -171,8 +183,28 @@ async function updateStageOption(i) {
     testData[i]['status'] = stageValue.value;
     await backend.setItem('testData', JSON.stringify(testData));
     await includeHTML();
+    closeTaskPopUp();
+    openPopupUserFeedback();
+    setTimeout(() => {
+        closePopupUserFeedback();
+    }, 2500);
+    document.getElementById('user-feedback-popup-message').innerHTML = `Moved task to ${testData[i]['status']}`
 }
 
+function openPopupUserFeedback() {
+    let popup = document.getElementById('user-feedback-popup');
+    document.getElementById('overlay-feedback').classList.remove('d-none');
+    // overlay.style.display = 'flex';
+    popup.classList.add('fade-in');
+    popup.style.display = 'flex';
+}
+
+function closePopupUserFeedback() {
+    let popup = document.getElementById('user-feedback-popup');
+    document.getElementById('overlay-feedback').classList.add('d-none');
+    popup.classList.remove('fade-in');
+    popup.style.display = 'none';
+}
 
 /**
  * rendering finished subtasks to the task
@@ -218,6 +250,11 @@ async function submitChanges(i) {
     let lowEdit = document.getElementById('low-edit');
     let assignedContacts = document.getElementById(`assigned-contacts-${i}`);
     await saveChangesSubmit(newTaskName, newDescription, newDate, urgentEdit, mediumEdit, lowEdit, i, assignedContacts);
+    document.getElementById('user-feedback-popup-message').innerHTML = `Saved changes`;
+    openPopupUserFeedback();
+    setTimeout(() => {
+    closePopupUserFeedback();
+    }, 2500);
 }
 
 /**
@@ -233,6 +270,7 @@ async function submitChanges(i) {
  */
 async function saveChangesSubmit(newTaskName, newDescription, newDate, urgentEdit, mediumEdit, lowEdit, i) {
     let test = testData[i];
+    // console.log(test.assignedContacts)
     if (newPriority == undefined) {
         getChangesWithPrio(test, newTaskName, newDescription, newDate);
         await saveSubmitChanges();
@@ -255,7 +293,6 @@ async function saveChangesSubmit(newTaskName, newDescription, newDate, urgentEdi
 function getChangesWithPrio(test, newTaskName, newDescription, newDate) {
     test.title = newTaskName;
     test.description = newDescription;
-    test.assignedContacts = assignedContacts;
     test.priority;
     test.date = newDate;
 }
@@ -272,7 +309,7 @@ function getChangesWithoutPrio(test, newTaskName, newDescription, newDate) {
     test.title = newTaskName;
     test.description = newDescription;
     test.priority = newPriority;
-    test.assignedContacts = assignedContacts;
+    // test.assignedContacts = assignedContacts;
     test.date = newDate;
 }
 
@@ -315,6 +352,7 @@ function checkForPrio() {
 function closeEditTask() {
     document.getElementById(`task-popup`).classList.remove('d-none');
     document.getElementById('edit-task-popup').classList.add('d-none');
+    document.body.classList.remove('overflow-hidden');
     document.getElementById('side_bar').style.zIndex = 1;
 }
 

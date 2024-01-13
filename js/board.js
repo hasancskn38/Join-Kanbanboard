@@ -1,4 +1,4 @@
-setURL('https://hasan-coskun.developerakademie.net/join/smallest_backend_ever');
+setURL('https://hasan-coskun.com/join/smallest_backend_ever');
 let testData = [];
 let contacts = [];
 let priorityColor;
@@ -139,6 +139,25 @@ async function createTask() {
     let newItem = createNewItem(title, category, taskDescription, date);
     await saveItem(newItem);
     updateUI();
+    openPopupUserFeedback();
+    document.getElementById('user-feedback-popup-message').innerHTML = `Added task ${title} to the dashboard.`
+    setTimeout(() => {
+        closePopupUserFeedback();
+    }, 2500);
+}
+
+function openPopupUserFeedback() {
+    let popup = document.getElementById('user-feedback-popup');
+    document.getElementById('overlay-feedback').classList.remove('d-none');
+    popup.classList.add('fade-in');
+    popup.style.display = 'flex';
+}
+
+function closePopupUserFeedback() {
+    let popup = document.getElementById('user-feedback-popup');
+    document.getElementById('overlay-feedback').classList.add('d-none');
+    popup.classList.remove('fade-in');
+    popup.style.display = 'none';
 }
 
 /**
@@ -147,11 +166,17 @@ async function createTask() {
  * @param {string} i - index of the right task
  */
 async function deleteTask(i) {
+    document.getElementById('user-feedback-popup-message').innerHTML = `Task ${testData[i].title} deleted`;
+    openPopupUserFeedback();
+    setTimeout(() => {
+        closePopupUserFeedback();
+    }, 2500);
     testData.splice(i, 1);
     await backend.setItem('testData', JSON.stringify(testData));
     closeEditTask();
     closeTaskPopUp();
     await includeHTML();
+    
 }
 
 /**
@@ -394,6 +419,7 @@ async function dropItem(status) {
  *
  */
 function closeAddTaskPopUp() {
+    console.log('test');
     document.getElementById('overlay').classList.add('d-none');
     document.getElementById('popup').classList.add('hide');
     document.getElementById('popup').classList.remove('show');

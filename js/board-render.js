@@ -25,7 +25,7 @@ function renderData() {
  * @param {string} stageFeedBack - Container for the tasks Feedback
  * @param {string} stageDone - Container for the tasks Done
  */
-function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone) {
+function renderDefaultTaskArray(stageToDo, stageProgress, stageFeedBack, stageDone, contactColor) {
     for (let i = 0; i < testData.length; i++) {
         let test = testData[i];
         let finishedSubTasks = countFinishedSubtasks(test);
@@ -91,36 +91,36 @@ function renderDataFinished() {
  *  */
 function renderContactInitials(i) {
     let test = testData[i];
+    let contact = contacts[i];
     let assignedContactsContainer = document.getElementById(`assigned-contacts-${i}`);
     assignedContactsContainer.innerHTML = '';
 
     for (let j = 0; j < test['assignedContacts'].length; j++) {
-        let contactInitial = test['assignedContacts'][j].substring(0, 2).toUpperCase();
+        // Get the contact object from the 'assignedContacts' array using the index
+        let assignedContact = contacts.find(c => c.name === test['assignedContacts'][j]);
+
+        if (!assignedContact) {
+            continue; // Skip if the contact is not found
+        }
+
+        let contactInitial = assignedContact.name.substring(0, 2).toUpperCase();
+        let contactColor = assignedContact.randomColors; // Use the randomColor from the contact object
 
         // Check if the contact initial is already present in the container
         if (!isContactInitialPresent(assignedContactsContainer, contactInitial)) {
-            let backgroundColor;
-            
-            // Set the background color based on the contact initial
-            switch (contactInitial) {
-                case 'HA':
-                    backgroundColor = 'rgb(142, 236, 134)'; // Red color
-                    break;
-                case 'MA':
-                    backgroundColor = 'rgb(245, 34, 37)';
-                    break;
-                case 'CH':
-                    backgroundColor = 'rgb(215, 219, 134)'; // Blue color
-                    break;
-            }
             let spanElement = document.createElement('span');
             spanElement.id = 'assigned-contact-span';
+            spanElement.style.backgroundColor = contactColor; // Use the contact's randomColor
             spanElement.innerHTML = contactInitial;
-            spanElement.style.backgroundColor = backgroundColor;
             assignedContactsContainer.appendChild(spanElement);
         }
     }
 }
+
+
+
+
+
 
 
 function isContactInitialPresent(container, contactInitial) {

@@ -185,21 +185,24 @@ function showDropDownEdit(value) {
 }
   
 
-
-function showDropDown(value) {
-    if (dropDownShow === false) {
+function showDropDown() {
+  if (dropDownShow == false) {
       for (let i = 0; i < contacts.length; i++) {
-        let contact = contacts[i];
-        document.getElementById(`contact_dropdown_${value}`).innerHTML += `
-          <div onclick="selectContact(${i})" class="dropdown_content"><div>${contact['name']}</div> <div class="dropdown_checkbox" id="dropdown_checkbox${i}">▢</div> </div>`;
+          let contact = contacts[i];
+          document.getElementById('contact_dropdown_popup').classList.remove('d-none');
+
+          document.getElementById('contact_dropdown_popup').innerHTML += `
+          <div onclick="selectContact(${i})"  class="dropdown_content"><div>${contact['name']}</div> <div class="dropdown_checkbox" id="dropdown_checkbox${i}">▢</div> </div>`;
       }
-      return (dropDownShow = true);
-    }
-    if (dropDownShow === true) {
-      document.getElementById(`contact_dropdown_${value}`).innerHTML = '';
-      return (dropDownShow = false);
-    }
+      return dropDownShow = true;
+
   }
+  if (dropDownShow == true) {
+      document.getElementById('contact_dropdown_popup').innerHTML = ``;
+      document.getElementById('contact_dropdown_popup').classList.add('d-none');
+      return dropDownShow = false;
+  }
+}
   
 
 /**
