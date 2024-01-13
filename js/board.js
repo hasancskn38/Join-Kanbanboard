@@ -176,7 +176,6 @@ async function deleteTask(i) {
     closeEditTask();
     closeTaskPopUp();
     await includeHTML();
-    
 }
 
 /**

@@ -359,7 +359,7 @@ function changePriorityDefault(urgent, medium, low) {
  * @param {string} low - low prio
  */
 function changePriorityInnerHtml(urgent, medium, low) {
-    urgent.innerHTML = 'Auswählen';
-    medium.innerHTML = 'Auswählen';
-    low.innerHTML = 'Auswählen';
+    urgent.innerHTML = 'Select';
+    medium.innerHTML = 'Select';
+    low.innerHTML = 'Select';
 }

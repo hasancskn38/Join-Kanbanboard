@@ -21,6 +21,7 @@ function openTaskPopUp(i, contactColor) {
     renderContactPopupInitials(i);
     renderContactInitials(i);
     changePriorityColorPopUp();
+    console.log(test);
 }
 
 
@@ -274,8 +275,12 @@ async function saveChangesSubmit(newTaskName, newDescription, newDate, urgentEdi
     if (newPriority == undefined) {
         getChangesWithPrio(test, newTaskName, newDescription, newDate);
         await saveSubmitChanges();
+        priorityAlert();
+
     } else if (!urgentEdit.classList.contains('urgent') & !mediumEdit.classList.contains('medium') & !lowEdit.classList.contains('low')) {
         alert('Please choose a priority level for your task');
+        // priorityAlert();
+
     } else {
         getChangesWithoutPrio(test, newTaskName, newDescription, newDate);
         await saveSubmitChanges();
