@@ -1,6 +1,43 @@
 html {
-  height: calc(100vh - 80px);
+  height: calc(100dvh - 80px);
 }
+
+.popup-task-moved {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  z-index: 1000;
+}
+
+.contact-edit-delete-container {
+  display:flex;
+  gap:20px;
+}
+
+.popup-task-moved h2 {
+  text-align:center;
+}
+
+/* Styles for animation (optional) */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
 
 .pd-0 {
   padding:0;
@@ -59,7 +96,7 @@ html {
   justify-content: flex-start;
   flex-direction: row;
   width: 100%;
-  min-height: calc(100vh - 100px);
+  min-height: calc(100dvh - 100px);
 }
 
 h2 {
@@ -76,7 +113,7 @@ h4 {
 
 .layout-contact2 {
   width: 493px;
-  min-height: calc(100vh - 82px);
+  min-height: calc(100dvh - 82px);
   box-shadow: 4px 0px 6px rgb(0 0 0 / 8%);
   padding: 0 30px;
   overflow-x: hidden;
@@ -95,7 +132,7 @@ h4 {
 }
 
 .layout-contact3 {
-  margin: 50px;
+  margin: 25px;
   width: 100%;
   margin-top: 100px;
   overflow: hidden;
@@ -143,8 +180,8 @@ h4 {
 }
 
 .letter-circle {
-  height: 35px;
-  width: 35px;
+  min-height: 35px;
+  min-width: 35px;
   border-radius: 100%;
   margin-right: 10px;
   margin-left: 20px;
@@ -203,7 +240,7 @@ h4 {
   background: #ffffff;
   box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
   border-radius: 0px 30px 30px 30px;
-  height: 100vh;
+  height: 100dvh;
   width: 40vw;
   left: 0px;
   animation: newContact 225ms;
@@ -378,7 +415,7 @@ h4 {
   border-radius: 50%;
   font-size: 16px;
   width: 30px;
-  background: #4589ff;
+  background: red;
   color: #fff;
 }
 
@@ -495,7 +532,9 @@ h4 {
   padding:15px;
   background:red;
   color:#fff;
-  border-radius:10px
+  border-radius:10px;
+  font-weight:600;
+  white-space: nowrap;
 }
 
 .delete-contact-button div {
@@ -660,6 +699,12 @@ h4 {
   margin-left: 45px;
 }
 
+@media (max-width:1100px) {
+  .contact-edit-delete-container {
+    flex-direction:column;
+  }
+}
+
 @media (max-width: 1000px) {
   .arrow-img {
     display: block;
@@ -670,7 +715,7 @@ h4 {
   }
 
   .add-contact-layout-2 {
-    width: 100vw;
+    width: 100dvw;
     border-radius: 0px;
   }
   .side-bar {
@@ -719,8 +764,10 @@ h4 {
     margin-left: -26px;
   }
 
-  .new-contact {
-    display: none;
+    .new-contact {
+      position: fixed;
+      right: 15px;
+      bottom:100px;
   }
 
   .new-contact2 {
@@ -737,8 +784,8 @@ h4 {
     cursor: pointer;
     position: absolute;
     bottom: 35px;
-    right: 35px;
-    top:35px;
+    right: 20px;
+    top:20px;
     font-size: 23px;
     transition: all 125ms ease-in-out;
   }
@@ -758,14 +805,13 @@ h4 {
     overflow: hidden;
   }
 
-  .new-contact {
-    top: 83px;
-  }
-
   .detail-main {
-    height: 90vh;
+    height: 100vh;
     padding: 20px;
-    padding-top: 140px;
+    /* padding-top: 140px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .span-display-none {
@@ -812,7 +858,7 @@ margin-bottom: 20px;
   }
 
   .add-contact-layout-2 {
-    max-width: 100vw;
+    max-width: 100dvw;
   }
 
   .popup-content {

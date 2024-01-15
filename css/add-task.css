@@ -11,6 +11,39 @@ body {
     margin: 0;
 }
 
+.successfull_added {
+    display: none;
+}
+
+/* Pop Up Start */
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100dvw;
+    height:100dvh;
+    background-color: rgba(211, 211, 211, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+  
+  .overlay-feedback {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100dvw;
+    height:100dvh;
+    background-color: rgba(211, 211, 211, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+  }
+
 .main_container {
     display: flex;
 }
@@ -196,7 +229,7 @@ label>input {
     padding: 15px;
     background: #FFFFFF;
     color: #4589FF;
-    border: 1px solid #647188;
+    box-shadow:0px 0px 4px rgb(0 0 0 / 16%);
     border-radius: 10px;
     font-size: 21px;
     transition: all 125ms ease-in-out;
@@ -217,7 +250,8 @@ label>input {
     align-items: center;
     padding: 15px;
     gap: 10px;
-    border: 1px solid #647188;
+    box-shadow:0px 0px 4px rgb(0 0 0 / 16%);
+
     border-radius: 10px;
     font-size: 21px;
     transition: all 125ms ease-in-out;
@@ -342,8 +376,7 @@ label>input {
     }
 
     .popup-content-add-task {
-        padding-bottom: 60px !important;
-        padding: 30px;
+        padding-bottom: 80px !important;
     }
 
     .two-button button {

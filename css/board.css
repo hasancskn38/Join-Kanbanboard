@@ -7,8 +7,52 @@
   scroll-behavior: smooth;
 }
 
+.popup-task-moved {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  z-index: 1000;
+}
+
+.popup-task-moved h2 {
+  text-align:center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
+
+/* Styles for animation (optional) */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
 .justify-left {
   justify-content:left;
+}
+
+.popup-wrapper {
+  padding:30px;
 }
 
 .popup-content h4 {
@@ -31,8 +75,6 @@
 .no_category_selected {
   color: red !important;
 }
-
-
 
 .static {
   position: static !important;
@@ -235,16 +277,31 @@ input:active {
 
 /* Pop Up Start */
 .overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   width: 100dvw;
+  height:100dvh;
   background-color: rgba(211, 211, 211, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1;
+}
+
+.overlay-feedback {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100dvw;
+  height:100dvh;
+  background-color: rgba(211, 211, 211, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
 }
 
 .popup {
@@ -253,7 +310,6 @@ input:active {
   right: 0;
   top: 0;
   background-color: #fff;
-  height: 100dvh;
   width: 570px;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
@@ -319,7 +375,7 @@ input:active {
   display:flex;
   flex-direction:column;
   overflow-y: scroll;
-  padding:0 20px;
+  /* padding:0 20px; */
 }
 
 .x-button {
@@ -327,7 +383,7 @@ input:active {
   border-radius: 50%;
   font-size: 16px;
   width: 30px;
-  background: #4589ff;
+  background: red;
   color: #fff;
 }
 
@@ -400,7 +456,6 @@ select {
 }
 
 .contact_dropdown {
-  min-height: 125px;
   overflow-y: auto;
   margin:0 20px;
   font-size: 23px;
@@ -691,7 +746,7 @@ label > input {
 
 textarea {
   width:100%;
-  height: 10vh;
+  min-height: 10vh;
   font-size: 17px;
   margin: 15px 0;
   padding: 15px;
@@ -861,6 +916,7 @@ textarea::placeholder {
 
 .open-edit-task-container img {
   padding:0 !important;
+  margin-bottom: 10px;
 }
 
 .edit-button {
@@ -894,6 +950,8 @@ textarea::placeholder {
   border-radius: 15px;
   /* add a vertical scrollbar if the content overflows */
   overflow-x: hidden;
+  box-sizing: border-box; /* Include padding and border in the width and height */
+
 }
 
 .close-edit-task {
@@ -939,7 +997,7 @@ textarea::placeholder {
   display: flex;
   padding: 30px 0 !important;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .edit-task-button-container {
@@ -1327,7 +1385,7 @@ button {
 @media only screen and (max-width: 1000px) {
   .overlay {
     position: absolute;
-    top: -150px;
+    top: -35px;
     right: 0;
     left: 0;
     bottom: 0;
@@ -1387,9 +1445,11 @@ button {
 
 @media only screen and (max-width: 840px) {
   #task-popup {
-    height:101dvh;
-    width:100dvw;
-    border-radius:0px;
+    /* max-height: 101dvh; */
+    min-height: 101dvh;
+    width: 100dvw;
+    border-radius: 0px;
+    overflow-y: scroll;
   }
 
   .task-popup-container {
@@ -1446,11 +1506,11 @@ button {
 
 
   #edit-task-popup {
-    height: 101vh;
-    border-radius:0;
-    width: 101vw;
-    /* z index higher than side bar */
+    height: 101dvh;
+    border-radius: 0;
+    width: 101dvw;
     z-index: 15;
+
   }
 
   #task-popup-header {
@@ -1470,6 +1530,10 @@ button {
     flex-direction:column;
     align-items:center;
     padding-bottom: 30px;
+  }
+
+  .open-edit-task-container img {
+    margin-bottom: 10px;
   }
 
   .edit-task-button-container button {
