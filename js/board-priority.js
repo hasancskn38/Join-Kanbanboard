@@ -275,6 +275,7 @@ function changeMediumColorEdit() {
  * @param {string} priorityImg3Edit - prio img of the task
  */
 function changeMediumEditToBoard(urgentEdit, lowEdit, mediumEdit, priorityImg1Edit, priorityImg2Edit, priorityImg3Edit) {
+    
     mediumEdit.classList.add('medium');
     urgentEdit.classList.remove('urgent');
     lowEdit.classList.remove('low');

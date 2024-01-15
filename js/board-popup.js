@@ -21,7 +21,6 @@ function openTaskPopUp(i, contactColor) {
     renderContactPopupInitials(i);
     renderContactInitials(i);
     changePriorityColorPopUp();
-    console.log(test);
 }
 
 
@@ -251,11 +250,7 @@ async function submitChanges(i) {
     let lowEdit = document.getElementById('low-edit');
     let assignedContacts = document.getElementById(`assigned-contacts-${i}`);
     await saveChangesSubmit(newTaskName, newDescription, newDate, urgentEdit, mediumEdit, lowEdit, i, assignedContacts);
-    document.getElementById('user-feedback-popup-message').innerHTML = `Saved changes`;
-    openPopupUserFeedback();
-    setTimeout(() => {
-    closePopupUserFeedback();
-    }, 2500);
+        
 }
 
 /**
@@ -271,20 +266,34 @@ async function submitChanges(i) {
  */
 async function saveChangesSubmit(newTaskName, newDescription, newDate, urgentEdit, mediumEdit, lowEdit, i) {
     let test = testData[i];
-    // console.log(test.assignedContacts)
     if (newPriority == undefined) {
         getChangesWithPrio(test, newTaskName, newDescription, newDate);
         await saveSubmitChanges();
         priorityAlert();
 
     } else if (!urgentEdit.classList.contains('urgent') & !mediumEdit.classList.contains('medium') & !lowEdit.classList.contains('low')) {
-        alert('Please choose a priority level for your task');
-        // priorityAlert();
+        document.getElementById('user-feedback-popup-message').innerHTML = `Please select a priority`;
+        openPopupUserFeedback();
+        setTimeout(() => {
+            closePopupUserFeedback();
+        }, 2500);
 
     } else {
         getChangesWithoutPrio(test, newTaskName, newDescription, newDate);
         await saveSubmitChanges();
     }
+}
+
+function priorityAlertEdit() {
+    let urgent = document.getElementById('urgent-edit');
+    let medium = document.getElementById('medium-edit');
+    let low = document.getElementById('low-edit');
+    urgent.classList.add('no_category_selected');
+    medium.classList.add('no_category_selected');
+    low.classList.add('no_category_selected');
+    changePriorityInnerHtml(urgent, medium, low);
+    changePriorityDefault(urgent, medium, low);
+    
 }
 
 /**

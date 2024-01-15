@@ -2,6 +2,35 @@ setURL('https://hasan-coskun.com/join/smallest_backend_ever');
 let contacts = [];
 let letters = [];
 let testData = [];
+let closestUrgentTask;
+let urgentTasks;
+/**
+ * Loading all data from the JSON at the backend
+ */
+async function loadDataFromServer() {
+    await downloadFromServer();
+    contacts = await JSON.parse(backend.getItem('contacts')) || [];
+    testData = await JSON.parse(backend.getItem('testData')) || [];
+    closestUrgentTask = getUrgentTask(); 
+}
+
+function getUrgentTask() {
+    let today = new Date();
+    today.setHours(0, 0, 0, 0); // Set time to the start of the day for comparison
+
+    urgentTasks = testData;
+
+    // Filter out tasks that are in the past
+    urgentTasks = urgentTasks.filter(task => new Date(task.date) >= today);
+
+    // Sort by closest future date
+    urgentTasks.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    document.getElementById('upcoming-deadline-date').innerHTML = `${urgentTasks[0].date}`;
+
+}
+
+
 
 /**
  * This function implements the template.html
@@ -46,12 +75,7 @@ function parseLoggedOnUser() {
     let loggedOnUser = JSON.parse(localStorage.getItem("loggedOnUser"));
     let loggedOnUserFirstChart = loggedOnUser.charAt(0);
     let loggedOnUserFirstChartToUpperCase = loggedOnUserFirstChart.toUpperCase();
-    document.getElementById('logged_on_user').innerHTML = `
-    <div class="greet_user">
-    <h5 id="greeting"></h5>
-    <span>${loggedOnUser}</span>
-    </div>`
-    ;
+    document.getElementById('logged-on-user').innerHTML = `${loggedOnUser}`;
     document.getElementById('display_logged_on_user').innerHTML = `${loggedOnUserFirstChartToUpperCase}`;
 }
 
@@ -60,7 +84,6 @@ function parseLoggedOnUser() {
  *
  * 
  */
-// Generate Greeting Based on real world time
 setInterval(function () {
     let date = new Date();
     let hours = date.getHours();
@@ -75,18 +98,6 @@ setInterval(function () {
     document.getElementById('greeting').innerHTML = timeOfDay, ',';
 }, 1000);
 
-
-
-/**
- * Loading all data from the JSON at the backend
- *
- * 
- */
-async function loadDataFromServer() {
-    await downloadFromServer();
-    contacts = await JSON.parse(backend.getItem('contacts')) || [];
-    testData = await JSON.parse(backend.getItem('testData')) || [];
-}
 
 /**
  * shows the help me section 
