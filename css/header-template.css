@@ -162,7 +162,7 @@ img {
     margin-left: 232px;
     margin-right: 5px;
     padding-left: 20px;
-    height: calc(100vh - 80px) !important;
+    height: calc(100dvh - 120px) !important;
 }
 
 .help-me-container h1 {

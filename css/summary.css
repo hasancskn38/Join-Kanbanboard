@@ -86,7 +86,7 @@ main h2 {
 
 /* Styling for temporary sidebar remove later*/
 .main-left {
-  height: 100vh;
+  height: 100dvh;
   width: 25%;
   background-color: black;
 }
@@ -126,7 +126,7 @@ main h2 {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width:100vw;
+  width:100dvw;
 }
 
 .task-urgent {

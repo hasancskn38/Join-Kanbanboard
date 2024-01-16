@@ -1,5 +1,14 @@
 html {
-  height: calc(100dvh - 80px);
+  height: 100dvh;
+}
+
+.hidden {
+  overflow:hidden;
+}
+
+.edit-contact {
+  height:40px;
+  width:40px
 }
 
 .popup-task-moved {
@@ -81,7 +90,7 @@ html {
 
 .popup-header {
   display:flex;
-  justify-content:space-between;
+  justify-content:space-around;
   padding:15px;
 }
 
@@ -535,6 +544,7 @@ h4 {
   border-radius:10px;
   font-weight:600;
   white-space: nowrap;
+  height: 40px;
 }
 
 .delete-contact-button div {
@@ -706,6 +716,12 @@ h4 {
 }
 
 @media (max-width: 1000px) {
+
+  .contact-edit-delete-container {
+    flex-direction:row !important;
+    gap:0;
+  }
+
   .arrow-img {
     display: block;
   }
@@ -808,10 +824,11 @@ h4 {
   .detail-main {
     height: 100vh;
     padding: 20px;
-    /* padding-top: 140px; */
+    margin-top: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /* overflow-y: hidden; */
   }
 
   .span-display-none {
@@ -882,10 +899,6 @@ margin-bottom: 20px;
 @media (max-width: 397px) {
   .edit-contact-responsive {
     right: 100px;
-  }
-
-  .arrow-div {
-    margin-right: 100px;
   }
 
   .add-contact-layout-2 {

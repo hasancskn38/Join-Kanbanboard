@@ -17,10 +17,7 @@ body {
 
 /* Pop Up Start */
 .overlay {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    /* position: fixed; */
     width: 100dvw;
     height:100dvh;
     background-color: rgba(211, 211, 211, 0.5);
@@ -117,7 +114,7 @@ form {
 }
 
 select {
-    width: 90%;
+    width: 100%;
     font-size: 18px;
     border-bottom: 1px solid lightgray;
     margin: 20px;
@@ -127,20 +124,23 @@ select {
 
 select option {
     color: #000;
+    width: 100%;
 }
 
+.date img {
+    display:none;
+}
 
 .date>input {
-    font-size: 18px;
+    font-size: 26px;
     width: 95%;
     border-bottom: 0;
 }
 
-.date>input::placeholder {
-    padding-left: 200px;
-}
-
-
+.date-input::placeholder {
+    padding: 5px;
+    text-align:left;
+  }
 
 
 label>input {
@@ -393,6 +393,11 @@ label>input {
   }
 
 @media (max-width: 500px) {
+
+    .date img {
+        display:block;
+    }
+
     .priority span {
         font-size:14px ;
     }

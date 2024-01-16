@@ -7,6 +7,8 @@
   scroll-behavior: smooth;
 }
 
+
+
 .popup-task-moved {
   display: none;
   position: fixed;
@@ -380,9 +382,11 @@ input:active {
 
 .x-button {
   height: 30px;
+  width: 30px;
+  min-width:30px;
+  min-height:30px;
   border-radius: 50%;
   font-size: 16px;
-  width: 30px;
   background: red;
   color: #fff;
 }
@@ -438,6 +442,7 @@ select {
   padding:0 15px 15px 0;
   margin-bottom:20px;
   color: #4589ff;
+  width: 100%;
 }
 
 .select-contact, #display-categories {
@@ -507,9 +512,14 @@ select option {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid lightgray;
-  padding: 0 5px 15px 0;
+  padding: 5px;
   margin: 20px;
 }
+
+.date img {
+  display:none;
+}
+
 
 .date > input {
   font-size: 24px;
@@ -557,6 +567,7 @@ label > input {
 #select-category-inner {
   display: flex;
   justify-content: space-between;
+  font-size:18px;
 }
 
 #select-category-inner img {
@@ -862,7 +873,7 @@ textarea::placeholder {
   border-radius: 50%;
   font-size: 16px;
   width: 30px;
-  background:#4589ff;
+  background:red;
   color: #fff;
 }
 
@@ -962,7 +973,7 @@ textarea::placeholder {
   font-size: 14px;
   width: 30px;
   border-radius: 50%;
-  background: #4589ff;
+  background: red;
   color: #fff;
   font-size: 20px;
 }
@@ -1049,6 +1060,12 @@ button {
 /* Edit Task End */
 
 /* Stages Container Start */
+.placeholder-drag {
+  box-shadow: 0 0 7px 0 rgb(0 0 0 / 15%) !important;
+  width:100%;
+  height:100px;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -1309,18 +1326,19 @@ button {
 }
 
 .assigned-contacts-popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  gap:5px;
   padding: 20px 0;
 }
 
 .assigned-contacts-popup span {
-  background-color: rgba(69, 137, 255, 0.699);
+  display: inline-block;
+  min-width:10px;
+  max-width:250px;
+  align-items:center;
   color: #ffffff !important;
-  line-height: 45px;
-  height: 45px;
-  width: 175px;
-  display: block;
-  padding: 0 0 0 8px!important;
-  margin: 3px 15px 0 0 !important;
 }
 
 /* Main End */
@@ -1384,11 +1402,7 @@ button {
 
 @media only screen and (max-width: 1000px) {
   .overlay {
-    position: absolute;
-    top: -35px;
-    right: 0;
-    left: 0;
-    bottom: 0;
+    height: 100dvh;
     width: 100dvw;
     background-color: rgba(211, 211, 211, 0.5);
     display: flex;
@@ -1402,8 +1416,8 @@ button {
   }
 
   .x-button {
-    margin-top: -35px;
-    margin-right: -20px;
+    /* margin-top: -35px;
+    margin-right: -20px; */
   }
 
   form {
@@ -1445,8 +1459,6 @@ button {
 
 @media only screen and (max-width: 840px) {
   #task-popup {
-    /* max-height: 101dvh; */
-    min-height: 101dvh;
     width: 100dvw;
     border-radius: 0px;
     overflow-y: scroll;
@@ -1457,6 +1469,10 @@ button {
     flex-direction:column;
     justify-content: space-around;
     height:calc(100dvh - 60px);
+  }
+
+  .task-popup-container p {
+    font-size:16px;
   }
 
   .edit-task-container {
@@ -1472,7 +1488,7 @@ button {
   }
 
   .stages-container {
-    max-height:67vh;
+    max-height: 55dvh;
     width:unset;
   }
 
@@ -1514,7 +1530,7 @@ button {
   }
 
   #task-popup-header {
-    font-size: 40px !important;
+    font-size: 20px !important;
   }
 
   #task-popup ul li {
@@ -1523,7 +1539,16 @@ button {
   }
 }
 
+
 @media only screen and (max-width: 500px) {
+
+  .date img {
+    display:block;
+  }
+
+  .popup-header h2 {
+    display:none;
+  }
 
   .edit-task-button-container {
     gap:10px;
@@ -1554,7 +1579,7 @@ button {
 
   .board-header {
     flex-direction: column;
-    margin-top:60px !important;
+    margin-top:50px !important;
     align-items:center;
   }
 
