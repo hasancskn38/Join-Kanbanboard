@@ -41,7 +41,7 @@
         <!-- Sidebar End -->
         <div class="log_out_button dontShow" id="log_out_button">
             <button onclick="logOut()">Log Out</button>
-            <a href="./legalnotice.html"><button class="legal-notice-button">Legal Notice</button></a>
+            <a href="./legalnotice.html"><button class="legal-notice-button">Privacy policy</button></a>
         </div>
         
         <div class="main-right" id="main_right">
@@ -51,7 +51,10 @@
 
                 <!-- Main Top Start -->
                 <div class="show_logged_on_user" id="logged_on_user">
-                    
+                    <div class="greet_user">
+                        <h5 id="greeting"></h5>
+                        <span id="logged-on-user"></span>
+                        </div>
                 </div>
                 <div class="main-right-top">
 
@@ -67,14 +70,13 @@
                         <hr class="vertical-line" width="2" color="#fff" size="130" />
 
                         <div class="task-urgent-right">
-                            <h2>Change with Real Date</h2>
+                            <h2 id="upcoming-deadline-date"></h2>
                             <p>Upcoming Deadline</p>
                         </div>
                 </div>
                 <!-- </a> -->
                 
 
-                    <!-- <a href="board.html"> -->
                     <div onclick="goToBoardSection()" class="task-todo task-general cursor">
                         <div class="task-todo-top">
                             <img src="../assets/img/task-todo.png" alt="">
@@ -82,14 +84,12 @@
                         </div>
                         <p>Tasks To-do</p>
                     </div>
-                <!-- </a> -->
 
                 </div>
                 <!-- Main Top End -->
 
                 <!-- Main Bottom Start -->
                 <div class="main-right-bottom">
-                    <!-- <a href="board.html"> -->
                     <div onclick="goToBoardSection()" class="task-board task-general cursor">
                         
                         <div class="task-todo-top"><img src="../assets/img/task-todo.png" alt="">
@@ -97,31 +97,24 @@
                         </div>
                         <p>Tasks on board</p>
                     </div>
-                <!-- </a> -->
-                    <!-- <a href="board.html"> -->
                     <div onclick="goToBoardSection()" class="task-board task-general cursor">   
                         <div class="task-todo-top"><img src="../assets/img/task-inprogress.png" alt="">
                             <h2 id="numProgress">0</h2>
                         </div>
                         <p>Task in Progress</p>
                     </div>
-                    <!-- </a> -->
-                    <!-- <a href="board.html"> -->
                     <div onclick="goToBoardSection()" class="task-progress task-general cursor">
                         <div class="task-todo-top"><img src="../assets/img/awaiting-feedback.png" alt="">
                             <h2 id="awaitingFeedbackNum">0</h2>
                         </div>
                         <p>Awaiting Feedback</p>
                     </div>
-                    <!-- </a> -->
-                    <!-- <a href="board.html"> -->
                     <div onclick="goToBoardSection()" class="task-feedback task-general cursor">
                         <div class="task-todo-top"><img src="../assets/img/task-done.png" alt="">
                             <h2 id="numDone">0</h2>
                         </div>
                         <p>Tasks done</p>
                     </div>
-                    <!-- </a> -->
                 </div>
             </div>
             <!-- Main Bottom Start -->

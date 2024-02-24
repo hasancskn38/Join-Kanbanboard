@@ -17,24 +17,29 @@
 
 <body onload="init()">
     
-</body>
     <div class="login_head">
         <img src="../assets/img/logo-blue.png">
 
-        <div class="login_div">Not a Join user? <a class="sign_in_button" href="register.html">Sign up</a></div>
+        <div class="login_div">
+
+            <p>Not a Join user?</p>
+
+            <a class="sign_in_button" href="register.html">Sign up</a>
+        
+        </div>
+
 
     </div>
+
     <div class="login_main_container">
         <div class="login_form">
-            <h1 class="log_in_headline">Log in</h1>
+            <h1 class="log_in_headline">Login</h1>
             <form onsubmit="loginUser(); return false;">
                 <div class="login_inputs">
                 <input class="login-email" type="email" placeholder="Email" id="login_email" required>
                 <input class="login-lock" type="password" placeholder="Password" id="login_password" required>
                 </div>
                 <div class="login_additionals">
-                    <div class="login_remember_me"><input type="checkbox" id="login_remember_me">Remember me</div>
-                    <div class="forgot_my_password"><a href="forgot_password.html">Forgot my password</a></div>
                 </div>
                 <div class="log_in_buttons">
                     <button type="submit" class="log_in_button">Log in</button>
@@ -42,7 +47,19 @@
                 </div>
             </form>
             <div id="msgBox"></div>
+
+            <div class="login_div_responsive">
+
+                <p>Not a Join user?</p>
+    
+                <a class="sign_in_button" href="register.html">Sign up</a>
+            
+            </div>
+
         </div>
+
+        
+
     </div>
 
 </body>

@@ -24,12 +24,19 @@
 </head>
 <div class="log_out_button dontShow" id="log_out_button">
     <button onclick="logOut()">Log Out</button>
-    <a href="./legalnotice.html"><button class="legal-notice-button">Legal Notice</button></a>
+    <a href="./legalnotice.html"><button class="legal-notice-button">Privacy policy</button></a>
 </div>
 <body onload="showContacts()">
     <div class="navbar">
         <div w3-include-html="../assets/templates/header-template.html"></div>
     </div>
+
+    <div id="user-feedback-popup" class="popup-task-moved">
+        <h2 id="user-feedback-popup-message"></h2>
+    </div>
+
+    <div id="overlay-feedback" class="overlay-feedback d-none"></div>
+
 
     <main class="main-contact">
         <div class="sidebar">

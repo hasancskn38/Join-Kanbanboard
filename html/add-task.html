@@ -27,13 +27,20 @@
         </div>
         <div class="log_out_button dontShow" id="log_out_button">
             <button onclick="logOut()">Log Out</button>
-            <a href="./legalnotice.html"><button class="legal-notice-button">Legal Notice</button></a>
+            <a href="./legalnotice.html"><button class="legal-notice-button">Privacy policy</button></a>
         </div>
         <main class="main-contact"></main>
 
         <div class="sidebar">
             <div w3-include-html="../assets/templates/sidebar-template.html"></div>
         </div>
+
+        <div id="user-feedback-popup" class="popup-task-moved">
+            <h2 id="user-feedback-popup-message"></h2>
+        </div>
+
+        <div id="overlay-feedback" class="overlay-feedback d-none"></div>
+
 
         <div id="popup" class="popup2">
             <button class="cursor" onclick="closeAddTaskPopUp()"></button>
@@ -56,7 +63,15 @@
                     <label for="appointment">
                         <h4 class="date-header">Due date</h4>
                         <div class="date">
-                            <input id="task-date" required type="date" />
+                            <input 
+                            placeholder="Date" 
+                            id="task-date" 
+                            class="date-input" 
+                            required 
+                            type="date" 
+                            onclick="setTodaysDate()"
+                        />
+                        <img onclick="openDatePicker()" src="../assets/icons/date-icon.png" alt="Open Date Picker">
                         </div>
                     </label>
 
@@ -121,14 +136,15 @@
                         </div>
                     </div>
 
+                    <h4>Description</h4>
+
                     <div class="description">
-                        <h2>Description</h2>
                         <textarea required maxlength="30" id="task-description"
                             placeholder="Enter a description"></textarea>
                     </div>
 
+                    <h4>Subtask</h4>
                     <div class="subtasks">
-                        <h2>Subtask</h2>
                         <div class="subtasks-input"><input id="task-subtask" minlength="8"
                                 placeholder="Add new subtask" type="text">
                             <button id="add-subtask" type="button" onclick="addSubtask()" class="cursor">+</button>

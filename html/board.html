@@ -28,6 +28,11 @@
 </head>
 
 <body onload="includeHTML()">
+
+    <div id="user-feedback-popup" class="popup-task-moved">
+        <h2 id="user-feedback-popup-message"></h2>
+    </div>
+
     <!-- Header Start -->
     <div class="navbar">
         <div w3-include-html="../assets/templates/header-template.html"></div>
@@ -35,7 +40,7 @@
     <!-- Header End -->
     <div class="log_out_button dontShow" id="log_out_button">
         <button onclick="logOut()">Log Out</button>
-        <a href="./legalnotice.html"><button class="legal-notice-button">Legal Notice</button></a>
+        <a href="./legalnotice.html"><button class="legal-notice-button">Privacy policy</button></a>
     </div>
     <!-- We need to wrap the sidebar and the board content in another div to put it next to each other -->
     <main class="main">
@@ -79,6 +84,9 @@
 
             <!-- Pop Up Start -->
             <div id="overlay" class="overlay d-none"></div>
+            <div id="overlay-feedback" class="overlay-feedback d-none"></div>
+
+
             <div id="popup" class="popup d-none hide">
 
 
@@ -114,7 +122,15 @@
                             <label for="appointment">
                                 <h4 class="date-header">Due date</h4>
                                 <div class="date">
-                                    <input id="task-date" required type="date" />
+                                    <input 
+                                    placeholder="Date" 
+                                    id="task-date" 
+                                    class="date-input" 
+                                    required 
+                                    type="date" 
+                                    onclick="setTodaysDate()"
+                                />
+                                <img onclick="openDatePicker()" src="../assets/icons/date-icon.png" alt="Open Date Picker">
                                 </div>
                             </label>
     
@@ -162,7 +178,7 @@
                                     <div id="created-categorys"></div>
                                 </div>
                             </div>
-    
+                            <h4>Priority</h4>
                             <div class="priority">
                                 <div class="priority-levels cursor" id="urgent" onclick="changeUrgentColor()"><span
                                         id="urgent-inner">Urgent</span><img id="img1" src="../assets/icons/urgent.png"
@@ -177,9 +193,8 @@
                                 </div>
                             </div>
     
-    
+                            <h4>Description</h4>
                             <div class="description">
-                                <h4>Description</h4>
                                 <textarea required maxlength="30" id="task-description"
                                     placeholder="Enter a description"></textarea>
                             </div>
@@ -225,6 +240,7 @@
                 </div>
 
                 <div class="container" id="stage-todo">
+
                 </div>
             </div>
 
