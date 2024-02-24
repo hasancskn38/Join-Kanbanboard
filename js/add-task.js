@@ -40,6 +40,19 @@ async function includeHTML() {
 }
 
 
+function openDatePicker() {
+    let dateInput = document.getElementById('task-date');
+    dateInput.showPicker();
+    setTodaysDate();
+}
+
+function setTodaysDate() {
+    var today = new Date();
+    var formattedDate = today.toISOString().substr(0, 10); // Format date as YYYY-MM-DD
+    document.getElementById('task-date').value = formattedDate;
+}
+
+
 /**
  * Getting current page url
  *
@@ -652,18 +665,30 @@ function resetForm() {
  * the help me section will added
  *
  */
-function showHelpMeSection() {
-    document.getElementById('help-me-container').classList.remove('d-none');
-    document.getElementById('createtask-form').classList.add('d-none');
+function toggleHelpMeSection() {
+    if(document.getElementById('help-me-container').classList.contains('d-none')) {
+        document.getElementById('help-me-container').classList.remove('d-none');
+        document.querySelector('main').classList.add('d-none');
+    } else {
+        document.getElementById('help-me-container').classList.add('d-none');
+        document.querySelector('main').classList.remove('d-none');
+    }
 }
 
-/**
- * the help me section will get removed
- *
- */
-function hideHelpMeSection() {
-    document.getElementById('help-me-container').classList.add('d-none');
-    document.getElementById('createtask-form').classList.remove('d-none');
+function toggleHelpMeSection() {
+    let helpMeContainer = document.getElementById('help-me-container');
+    let createTaskForm = document.getElementById('createtask-form');
+
+    // Check if 'help-me-container' is currently visible
+    if (helpMeContainer.classList.contains('d-none')) {
+        // It's hidden, so show it
+        helpMeContainer.classList.remove('d-none');
+        createTaskForm.classList.add('d-none');
+    } else {
+        // It's visible, so hide it
+        helpMeContainer.classList.add('d-none');
+        createTaskForm.classList.remove('d-none');
+    }
 }
 
 

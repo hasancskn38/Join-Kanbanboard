@@ -107,6 +107,18 @@ function setStageInnerHtml(stageToDo, stageProgress, stageFeedBack, stageDone) {
     stageDone.innerHTML = '';
 }
 
+function openDatePicker() {
+    let dateInput = document.getElementById('task-date');
+    dateInput.showPicker();
+    setTodaysDate();
+}
+
+function setTodaysDate() {
+    var today = new Date();
+    var formattedDate = today.toISOString().substr(0, 10); // Format date as YYYY-MM-DD
+    document.getElementById('task-date').value = formattedDate;
+}
+
 
 /**
  * is counting the finished subtasks and returning
@@ -353,7 +365,7 @@ function showResponsiveStage(i) {
         if (document.getElementById(`stage_option${i}`) == undefined) {
             return;
         }
-        if (screenWidth <= 830) {
+        if (screenWidth <= 1200) {
             document.getElementById(`stage_option${i}`).classList.remove('d-none');
         } else {
             document.getElementById(`stage_option${i}`).classList.add('d-none');
@@ -383,12 +395,18 @@ function startDragging(id) {
     stageContainer.style.boxShadow = '';
     stageContainer.style.overflow = '';
     stageContainer.style.overflow = '';
+    stageContainer,innerHTML = 'Drag Task here';
+    // document.getElementById('stage-todo').innerHTML +=
+    //  `
+    //  <div class="placeholder-drag"></div>
+    //  `;
     for (let i = 0; i < testData.length; i++) {
         let index = testData[i]['id'];
         if (index == id) {
             currentDraggedItemId = i;
         }
     }
+    
 }
 
 /**
@@ -410,7 +428,7 @@ async function dropItem(status) {
     await backend.setItem('testData', JSON.stringify(testData));
     await includeHTML();
 }
-// Drag and Drop Function End
+// Drag and Drop Function Ed
 
 
 /**
@@ -418,7 +436,6 @@ async function dropItem(status) {
  *
  */
 function closeAddTaskPopUp() {
-    console.log('test');
     document.getElementById('overlay').classList.add('d-none');
     document.getElementById('popup').classList.add('hide');
     document.getElementById('popup').classList.remove('show');
@@ -451,18 +468,14 @@ function logOut() {
  * shows the help me section
  *
  */
-function showHelpMeSection() {
-    document.getElementById('help-me-container').classList.remove('d-none');
-    document.getElementById('main-column').classList.add('d-none');
-}
-
-/**
- * hides the help me section
- *
- */
-function hideHelpMeSection() {
-    document.getElementById('help-me-container').classList.add('d-none');
-    document.getElementById('main-column').classList.remove('d-none');
+function toggleHelpMeSection() {
+    if(document.getElementById('help-me-container').classList.contains('d-none')) {
+        document.getElementById('help-me-container').classList.remove('d-none');
+        document.querySelector('main').classList.add('d-none');
+    } else {
+        document.getElementById('help-me-container').classList.add('d-none');
+        document.querySelector('main').classList.remove('d-none');
+    }
 }
 
 

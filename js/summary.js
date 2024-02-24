@@ -104,10 +104,14 @@ setInterval(function () {
  *
  * 
  */
-function showHelpMeSection() {
-    document.getElementById('help-me-container').classList.remove('d-none');
-    document.getElementById('main_right').classList.add('d-none');
-
+function toggleHelpMeSection() {
+    if(document.getElementById('help-me-container').classList.contains('d-none')) {
+        document.getElementById('help-me-container').classList.remove('d-none');
+        document.querySelector('main').classList.add('d-none');
+    } else {
+        document.getElementById('help-me-container').classList.add('d-none');
+        document.querySelector('main').classList.remove('d-none');
+    }
 }
 
 /**

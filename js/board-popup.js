@@ -250,7 +250,6 @@ async function submitChanges(i) {
     let lowEdit = document.getElementById('low-edit');
     let assignedContacts = document.getElementById(`assigned-contacts-${i}`);
     await saveChangesSubmit(newTaskName, newDescription, newDate, urgentEdit, mediumEdit, lowEdit, i, assignedContacts);
-        
 }
 
 /**
@@ -270,6 +269,11 @@ async function saveChangesSubmit(newTaskName, newDescription, newDate, urgentEdi
         getChangesWithPrio(test, newTaskName, newDescription, newDate);
         await saveSubmitChanges();
         priorityAlert();
+        document.getElementById('user-feedback-popup-message').innerHTML = `Saved changes`;
+        openPopupUserFeedback();
+        setTimeout(() => {
+            closePopupUserFeedback();
+        }, 2500);
 
     } else if (!urgentEdit.classList.contains('urgent') & !mediumEdit.classList.contains('medium') & !lowEdit.classList.contains('low')) {
         document.getElementById('user-feedback-popup-message').innerHTML = `Please select a priority`;
@@ -281,6 +285,11 @@ async function saveChangesSubmit(newTaskName, newDescription, newDate, urgentEdi
     } else {
         getChangesWithoutPrio(test, newTaskName, newDescription, newDate);
         await saveSubmitChanges();
+        document.getElementById('user-feedback-popup-message').innerHTML = `Saved changes`;
+        openPopupUserFeedback();
+        setTimeout(() => {
+            closePopupUserFeedback();
+        }, 2500);
     }
 }
 

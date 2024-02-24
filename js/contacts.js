@@ -169,18 +169,14 @@ function highlightClickedContact(i) {
  * shows the help me section
  *
  */
-function showHelpMeSection() {
-    document.getElementById('help-me-container').classList.remove('d-none');
-    document.getElementById('main_right').classList.add('d-none');
-}
-
-/**
- * hides the help me section
- *
- */
-function hideHelpMeSection() {
-    document.getElementById('help-me-container').classList.add('d-none');
-    document.getElementById('main_right').classList.remove('d-none');
+function toggleHelpMeSection() {
+    if(document.getElementById('help-me-container').classList.contains('d-none')) {
+        document.getElementById('help-me-container').classList.remove('d-none');
+        document.querySelector('main').classList.add('d-none');
+    } else {
+        document.getElementById('help-me-container').classList.add('d-none');
+        document.querySelector('main').classList.remove('d-none');
+    }
 }
 
 /**
@@ -370,6 +366,14 @@ function randomColor() {
 function closeAddContact() {
     document.getElementById('addcontactlayout').classList.add('d-nones');
     document.getElementById('editContactLayout').classList.add('d-nones');
+    document.body.classList.remove('hidden');
+
+}
+
+function closeAddContact2() {
+    document.getElementById('addcontactlayout').classList.add('d-nones');
+    document.body.classList.remove('hidden');
+    document.getElementById('editContactLayout').classList.add('d-nones');
 }
 
 /**
@@ -379,6 +383,8 @@ function closeAddContact() {
 function openAddContact() {
     renderAddNewContactTemp();
     document.getElementById('addcontactlayout').classList.remove('d-nones');
+    document.body.classList.add('hidden');
+
 }
 
 /**
@@ -421,6 +427,7 @@ function renderAddNewContactTemp() {
  */
 function openEdit(contactName, contactEmail, contactPhone, contactColor, bothFirstLetter, i) {
     document.getElementById('editContactLayout').classList.remove('d-nones');
+    document.body.classList.add('hidden');
     let editContact = document.getElementById('editContactLayout');
     editContact.innerHTML = '';
     editContact.innerHTML = renderOpenEdit(contactName, contactEmail, contactPhone, contactColor, bothFirstLetter, i);

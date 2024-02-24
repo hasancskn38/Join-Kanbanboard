@@ -101,13 +101,20 @@ function renderOpenDetailContact(bothFirstLetter, contactColor, contactName, con
         <div class="contact-detail-body">
             <div class="contact-detail-body-top">
                 <div class="detail-information">Contact Information</div>
+
+                <div class="contact-edit-delete-container">
                 <div class="contact-detail-edit " onclick="openEdit('${contactName}', '${contactEmail}', '${contactPhone}', '${contactColor}', '${bothFirstLetter}', '${i}')">
                     <img class="pencil-img pd-0" src="../assets/img/pencil.small.png">
                     Edit Contact
                 </div>
 
+                <div class="edit-contact-responsive cursor" onclick="openEdit('${contactName}', '${contactEmail}', '${contactPhone}', '${contactColor}', '${bothFirstLetter}', '${i}')">
+                <img class="pd-0 edit-contact" src="../assets/img/white_pencil.png">
+                </div>
+
                 <div class="delete-contact-button cursor" onclick="deleteContact(${i})">
                     <p>Delete Contact</p>
+                </div>
                 </div>
 
             </div>
@@ -116,7 +123,7 @@ function renderOpenDetailContact(bothFirstLetter, contactColor, contactName, con
             <div class="contact-detail-bottom">Phone</div>
             <a class="contact-detail-phone" href="tel:${contactPhone}">${contactPhone}</a>
         </div>
-        <div class="edit-contact-responsive cursor" onclick="openEdit('${contactName}', '${contactEmail}', '${contactPhone}', '${contactColor}', '${bothFirstLetter}', '${i}')"><img class="pd-0" src="../assets/img/white_pencil.png"></div>
+        
 
     </div>
     `;
@@ -351,7 +358,7 @@ function openEditTaskPopUp(test, i) {
     return `<div class="edit-task-container">
     <button class="cursor close-edit-task" onclick="closeEditTask()">X</button>
     <div class="input-container-edit">
-    <input id="input-edit-${i}" type="text" value="${test.title}">
+    <input required id="input-edit-${i}" type="text" value="${test.title}">
     </div>
     <h2>Description</h2>
     <textarea id="edit-description${i}">${test.description}</textarea>
@@ -362,6 +369,7 @@ function openEditTaskPopUp(test, i) {
                                 <input id="task-date-edit${i}" value="${test.date}" required type="date" />
                             </div>
                         </label>
+    <h2>Priority</h2>
     <div class="priority">
     <div class="priority-levels cursor priority-edit" id="urgent-edit" onclick="changeUrgentColorEdit(); editPriority('Urgent');"><span
             id="urgent-inner-edit">Urgent</span><img id="img1-edit" src="../assets/icons/urgent.png"
@@ -380,11 +388,20 @@ function openEditTaskPopUp(test, i) {
 
         <div class="edit-task-button-container">
 
-        <button onclick="submitChanges(${i})" class="cursor submit-change">
+        <div class="save-button cursor" onclick="submitChanges(${i})">
+        <button  class="cursor submit-change">
         Save Changes
         </button>
+        <img src="../assets/icons/checkmark.png"> 
+        </div>
 
-        <button class="delete-task cursor" onclick="deleteTask(${i})" class="cursor">Delete Task</button>
+        <div onclick="deleteTask(${i})" class="delete-button cursor">
+        <button class="cursor delete-task">
+        Delete Task
+        </button>
+        <img src="../assets/icons/bin.png"> 
+        </div>
+
         </div>   
         </div>
 
