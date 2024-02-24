@@ -16,6 +16,18 @@ body {
 }
 
 /* Pop Up Start */
+.popup-content-add-task h4 {
+    padding-top: 10px;
+    margin-left: 30px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 120%;
+    color: #42526e;
+    margin-top: 5px;
+    margin-bottom: 0px;
+  }
+
 .overlay {
     /* position: fixed; */
     width: 100dvw;

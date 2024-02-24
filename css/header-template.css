@@ -160,7 +160,7 @@ img {
     position: absolute;
     font-size: 25px !important;
     margin-left: 232px;
-    margin-right: 5px;
+    padding-right:5px;
     padding-left: 20px;
     height: calc(100dvh - 120px) !important;
 }
